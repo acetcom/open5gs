@@ -11,11 +11,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_create(
     char *detail,
     char *instance,
     char *cause,
-    OpenAPI_list_t *invalid_params,
-    char *supported_features,
-    OpenAPI_access_token_err_t *access_token_error,
-    OpenAPI_access_token_req_t *access_token_request,
-    char *nrf_id
+    OpenAPI_list_t *invalid_params
 )
 {
     OpenAPI_problem_details_1_t *problem_details_1_local_var = OpenAPI_malloc(sizeof(OpenAPI_problem_details_1_t));
@@ -29,10 +25,6 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_create(
     problem_details_1_local_var->instance = instance;
     problem_details_1_local_var->cause = cause;
     problem_details_1_local_var->invalid_params = invalid_params;
-    problem_details_1_local_var->supported_features = supported_features;
-    problem_details_1_local_var->access_token_error = access_token_error;
-    problem_details_1_local_var->access_token_request = access_token_request;
-    problem_details_1_local_var->nrf_id = nrf_id;
 
     return problem_details_1_local_var;
 }
@@ -49,13 +41,9 @@ void OpenAPI_problem_details_1_free(OpenAPI_problem_details_1_t *problem_details
     ogs_free(problem_details_1->instance);
     ogs_free(problem_details_1->cause);
     OpenAPI_list_for_each(problem_details_1->invalid_params, node) {
-        OpenAPI_invalid_param_free(node->data);
+        OpenAPI_invalid_param_1_free(node->data);
     }
     OpenAPI_list_free(problem_details_1->invalid_params);
-    ogs_free(problem_details_1->supported_features);
-    OpenAPI_access_token_err_free(problem_details_1->access_token_error);
-    OpenAPI_access_token_req_free(problem_details_1->access_token_request);
-    ogs_free(problem_details_1->nrf_id);
     ogs_free(problem_details_1);
 }
 
@@ -121,53 +109,13 @@ cJSON *OpenAPI_problem_details_1_convertToJSON(OpenAPI_problem_details_1_t *prob
     OpenAPI_lnode_t *invalid_params_node;
     if (problem_details_1->invalid_params) {
         OpenAPI_list_for_each(problem_details_1->invalid_params, invalid_params_node) {
-            cJSON *itemLocal = OpenAPI_invalid_param_convertToJSON(invalid_params_node->data);
+            cJSON *itemLocal = OpenAPI_invalid_param_1_convertToJSON(invalid_params_node->data);
             if (itemLocal == NULL) {
                 ogs_error("OpenAPI_problem_details_1_convertToJSON() failed [invalid_params]");
                 goto end;
             }
             cJSON_AddItemToArray(invalid_paramsList, itemLocal);
         }
-    }
-    }
-
-    if (problem_details_1->supported_features) {
-    if (cJSON_AddStringToObject(item, "supportedFeatures", problem_details_1->supported_features) == NULL) {
-        ogs_error("OpenAPI_problem_details_1_convertToJSON() failed [supported_features]");
-        goto end;
-    }
-    }
-
-    if (problem_details_1->access_token_error) {
-    cJSON *access_token_error_local_JSON = OpenAPI_access_token_err_convertToJSON(problem_details_1->access_token_error);
-    if (access_token_error_local_JSON == NULL) {
-        ogs_error("OpenAPI_problem_details_1_convertToJSON() failed [access_token_error]");
-        goto end;
-    }
-    cJSON_AddItemToObject(item, "accessTokenError", access_token_error_local_JSON);
-    if (item->child == NULL) {
-        ogs_error("OpenAPI_problem_details_1_convertToJSON() failed [access_token_error]");
-        goto end;
-    }
-    }
-
-    if (problem_details_1->access_token_request) {
-    cJSON *access_token_request_local_JSON = OpenAPI_access_token_req_convertToJSON(problem_details_1->access_token_request);
-    if (access_token_request_local_JSON == NULL) {
-        ogs_error("OpenAPI_problem_details_1_convertToJSON() failed [access_token_request]");
-        goto end;
-    }
-    cJSON_AddItemToObject(item, "accessTokenRequest", access_token_request_local_JSON);
-    if (item->child == NULL) {
-        ogs_error("OpenAPI_problem_details_1_convertToJSON() failed [access_token_request]");
-        goto end;
-    }
-    }
-
-    if (problem_details_1->nrf_id) {
-    if (cJSON_AddStringToObject(item, "nrfId", problem_details_1->nrf_id) == NULL) {
-        ogs_error("OpenAPI_problem_details_1_convertToJSON() failed [nrf_id]");
-        goto end;
     }
     }
 
@@ -249,41 +197,9 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
             ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [invalid_params]");
             goto end;
         }
-        OpenAPI_invalid_param_t *invalid_paramsItem = OpenAPI_invalid_param_parseFromJSON(invalid_params_local_nonprimitive);
+        OpenAPI_invalid_param_1_t *invalid_paramsItem = OpenAPI_invalid_param_1_parseFromJSON(invalid_params_local_nonprimitive);
 
         OpenAPI_list_add(invalid_paramsList, invalid_paramsItem);
-    }
-    }
-
-    cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "supportedFeatures");
-
-    if (supported_features) { 
-    if (!cJSON_IsString(supported_features)) {
-        ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [supported_features]");
-        goto end;
-    }
-    }
-
-    cJSON *access_token_error = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "accessTokenError");
-
-    OpenAPI_access_token_err_t *access_token_error_local_nonprim = NULL;
-    if (access_token_error) { 
-    access_token_error_local_nonprim = OpenAPI_access_token_err_parseFromJSON(access_token_error);
-    }
-
-    cJSON *access_token_request = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "accessTokenRequest");
-
-    OpenAPI_access_token_req_t *access_token_request_local_nonprim = NULL;
-    if (access_token_request) { 
-    access_token_request_local_nonprim = OpenAPI_access_token_req_parseFromJSON(access_token_request);
-    }
-
-    cJSON *nrf_id = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "nrfId");
-
-    if (nrf_id) { 
-    if (!cJSON_IsString(nrf_id)) {
-        ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [nrf_id]");
-        goto end;
     }
     }
 
@@ -294,11 +210,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
         detail ? ogs_strdup_or_assert(detail->valuestring) : NULL,
         instance ? ogs_strdup_or_assert(instance->valuestring) : NULL,
         cause ? ogs_strdup_or_assert(cause->valuestring) : NULL,
-        invalid_params ? invalid_paramsList : NULL,
-        supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
-        access_token_error ? access_token_error_local_nonprim : NULL,
-        access_token_request ? access_token_request_local_nonprim : NULL,
-        nrf_id ? ogs_strdup_or_assert(nrf_id->valuestring) : NULL
+        invalid_params ? invalid_paramsList : NULL
     );
 
     return problem_details_1_local_var;
