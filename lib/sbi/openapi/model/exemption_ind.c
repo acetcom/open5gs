@@ -76,7 +76,7 @@ OpenAPI_exemption_ind_t *OpenAPI_exemption_ind_parseFromJSON(cJSON *exemption_in
     OpenAPI_exemption_ind_t *exemption_ind_local_var = NULL;
     cJSON *dnn_congestion = cJSON_GetObjectItemCaseSensitive(exemption_indJSON, "dnnCongestion");
 
-    if (dnn_congestion) { 
+    if (dnn_congestion) {
     if (!cJSON_IsBool(dnn_congestion)) {
         ogs_error("OpenAPI_exemption_ind_parseFromJSON() failed [dnn_congestion]");
         goto end;
@@ -85,7 +85,7 @@ OpenAPI_exemption_ind_t *OpenAPI_exemption_ind_parseFromJSON(cJSON *exemption_in
 
     cJSON *snssai_only_congestion = cJSON_GetObjectItemCaseSensitive(exemption_indJSON, "snssaiOnlyCongestion");
 
-    if (snssai_only_congestion) { 
+    if (snssai_only_congestion) {
     if (!cJSON_IsBool(snssai_only_congestion)) {
         ogs_error("OpenAPI_exemption_ind_parseFromJSON() failed [snssai_only_congestion]");
         goto end;
@@ -94,7 +94,7 @@ OpenAPI_exemption_ind_t *OpenAPI_exemption_ind_parseFromJSON(cJSON *exemption_in
 
     cJSON *snssai_dnn_congestion = cJSON_GetObjectItemCaseSensitive(exemption_indJSON, "snssaiDnnCongestion");
 
-    if (snssai_dnn_congestion) { 
+    if (snssai_dnn_congestion) {
     if (!cJSON_IsBool(snssai_dnn_congestion)) {
         ogs_error("OpenAPI_exemption_ind_parseFromJSON() failed [snssai_dnn_congestion]");
         goto end;

@@ -80,7 +80,7 @@ OpenAPI_ip_sm_gw_registration_t *OpenAPI_ip_sm_gw_registration_parseFromJSON(cJS
     OpenAPI_ip_sm_gw_registration_t *ip_sm_gw_registration_local_var = NULL;
     cJSON *ip_sm_gw_map_address = cJSON_GetObjectItemCaseSensitive(ip_sm_gw_registrationJSON, "ipSmGwMapAddress");
 
-    if (ip_sm_gw_map_address) { 
+    if (ip_sm_gw_map_address) {
     if (!cJSON_IsString(ip_sm_gw_map_address)) {
         ogs_error("OpenAPI_ip_sm_gw_registration_parseFromJSON() failed [ip_sm_gw_map_address]");
         goto end;
@@ -90,13 +90,13 @@ OpenAPI_ip_sm_gw_registration_t *OpenAPI_ip_sm_gw_registration_parseFromJSON(cJS
     cJSON *ip_sm_gw_diameter_address = cJSON_GetObjectItemCaseSensitive(ip_sm_gw_registrationJSON, "ipSmGwDiameterAddress");
 
     OpenAPI_network_node_diameter_address_t *ip_sm_gw_diameter_address_local_nonprim = NULL;
-    if (ip_sm_gw_diameter_address) { 
+    if (ip_sm_gw_diameter_address) {
     ip_sm_gw_diameter_address_local_nonprim = OpenAPI_network_node_diameter_address_parseFromJSON(ip_sm_gw_diameter_address);
     }
 
     cJSON *unri_indicator = cJSON_GetObjectItemCaseSensitive(ip_sm_gw_registrationJSON, "unriIndicator");
 
-    if (unri_indicator) { 
+    if (unri_indicator) {
     if (!cJSON_IsBool(unri_indicator)) {
         ogs_error("OpenAPI_ip_sm_gw_registration_parseFromJSON() failed [unri_indicator]");
         goto end;

@@ -74,7 +74,6 @@ OpenAPI_eps_pdn_cnx_info_t *OpenAPI_eps_pdn_cnx_info_parseFromJSON(cJSON *eps_pd
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(pgw_s8c_fteid)) {
         ogs_error("OpenAPI_eps_pdn_cnx_info_parseFromJSON() failed [pgw_s8c_fteid]");
         goto end;
@@ -82,7 +81,7 @@ OpenAPI_eps_pdn_cnx_info_t *OpenAPI_eps_pdn_cnx_info_parseFromJSON(cJSON *eps_pd
 
     cJSON *pgw_node_name = cJSON_GetObjectItemCaseSensitive(eps_pdn_cnx_infoJSON, "pgwNodeName");
 
-    if (pgw_node_name) { 
+    if (pgw_node_name) {
     if (!cJSON_IsNumber(pgw_node_name)) {
         ogs_error("OpenAPI_eps_pdn_cnx_info_parseFromJSON() failed [pgw_node_name]");
         goto end;
@@ -91,7 +90,7 @@ OpenAPI_eps_pdn_cnx_info_t *OpenAPI_eps_pdn_cnx_info_parseFromJSON(cJSON *eps_pd
 
     cJSON *linked_bearer_id = cJSON_GetObjectItemCaseSensitive(eps_pdn_cnx_infoJSON, "linkedBearerId");
 
-    if (linked_bearer_id) { 
+    if (linked_bearer_id) {
     if (!cJSON_IsNumber(linked_bearer_id)) {
         ogs_error("OpenAPI_eps_pdn_cnx_info_parseFromJSON() failed [linked_bearer_id]");
         goto end;

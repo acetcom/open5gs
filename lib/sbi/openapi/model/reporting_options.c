@@ -114,13 +114,13 @@ OpenAPI_reporting_options_t *OpenAPI_reporting_options_parseFromJSON(cJSON *repo
     cJSON *report_mode = cJSON_GetObjectItemCaseSensitive(reporting_optionsJSON, "reportMode");
 
     OpenAPI_event_report_mode_t *report_mode_local_nonprim = NULL;
-    if (report_mode) { 
+    if (report_mode) {
     report_mode_local_nonprim = OpenAPI_event_report_mode_parseFromJSON(report_mode);
     }
 
     cJSON *max_num_of_reports = cJSON_GetObjectItemCaseSensitive(reporting_optionsJSON, "maxNumOfReports");
 
-    if (max_num_of_reports) { 
+    if (max_num_of_reports) {
     if (!cJSON_IsNumber(max_num_of_reports)) {
         ogs_error("OpenAPI_reporting_options_parseFromJSON() failed [max_num_of_reports]");
         goto end;
@@ -129,7 +129,7 @@ OpenAPI_reporting_options_t *OpenAPI_reporting_options_parseFromJSON(cJSON *repo
 
     cJSON *expiry = cJSON_GetObjectItemCaseSensitive(reporting_optionsJSON, "expiry");
 
-    if (expiry) { 
+    if (expiry) {
     if (!cJSON_IsString(expiry)) {
         ogs_error("OpenAPI_reporting_options_parseFromJSON() failed [expiry]");
         goto end;
@@ -138,7 +138,7 @@ OpenAPI_reporting_options_t *OpenAPI_reporting_options_parseFromJSON(cJSON *repo
 
     cJSON *sampling_ratio = cJSON_GetObjectItemCaseSensitive(reporting_optionsJSON, "samplingRatio");
 
-    if (sampling_ratio) { 
+    if (sampling_ratio) {
     if (!cJSON_IsNumber(sampling_ratio)) {
         ogs_error("OpenAPI_reporting_options_parseFromJSON() failed [sampling_ratio]");
         goto end;
@@ -147,7 +147,7 @@ OpenAPI_reporting_options_t *OpenAPI_reporting_options_parseFromJSON(cJSON *repo
 
     cJSON *guard_time = cJSON_GetObjectItemCaseSensitive(reporting_optionsJSON, "guardTime");
 
-    if (guard_time) { 
+    if (guard_time) {
     if (!cJSON_IsNumber(guard_time)) {
         ogs_error("OpenAPI_reporting_options_parseFromJSON() failed [guard_time]");
         goto end;
@@ -156,7 +156,7 @@ OpenAPI_reporting_options_t *OpenAPI_reporting_options_parseFromJSON(cJSON *repo
 
     cJSON *report_period = cJSON_GetObjectItemCaseSensitive(reporting_optionsJSON, "reportPeriod");
 
-    if (report_period) { 
+    if (report_period) {
     if (!cJSON_IsNumber(report_period)) {
         ogs_error("OpenAPI_reporting_options_parseFromJSON() failed [report_period]");
         goto end;

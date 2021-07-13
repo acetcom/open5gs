@@ -77,7 +77,6 @@ OpenAPI_dnai_information_t *OpenAPI_dnai_information_parseFromJSON(cJSON *dnai_i
         goto end;
     }
 
-    
     if (!cJSON_IsString(dnai)) {
         ogs_error("OpenAPI_dnai_information_parseFromJSON() failed [dnai]");
         goto end;
@@ -85,7 +84,7 @@ OpenAPI_dnai_information_t *OpenAPI_dnai_information_parseFromJSON(cJSON *dnai_i
 
     cJSON *no_dnai_change_ind = cJSON_GetObjectItemCaseSensitive(dnai_informationJSON, "noDnaiChangeInd");
 
-    if (no_dnai_change_ind) { 
+    if (no_dnai_change_ind) {
     if (!cJSON_IsBool(no_dnai_change_ind)) {
         ogs_error("OpenAPI_dnai_information_parseFromJSON() failed [no_dnai_change_ind]");
         goto end;
@@ -94,7 +93,7 @@ OpenAPI_dnai_information_t *OpenAPI_dnai_information_parseFromJSON(cJSON *dnai_i
 
     cJSON *no_local_psa_change_ind = cJSON_GetObjectItemCaseSensitive(dnai_informationJSON, "noLocalPsaChangeInd");
 
-    if (no_local_psa_change_ind) { 
+    if (no_local_psa_change_ind) {
     if (!cJSON_IsBool(no_local_psa_change_ind)) {
         ogs_error("OpenAPI_dnai_information_parseFromJSON() failed [no_local_psa_change_ind]");
         goto end;

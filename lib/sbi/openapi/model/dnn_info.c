@@ -143,7 +143,6 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(dnn)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [dnn]");
         goto end;
@@ -151,7 +150,7 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
 
     cJSON *default_dnn_indicator = cJSON_GetObjectItemCaseSensitive(dnn_infoJSON, "defaultDnnIndicator");
 
-    if (default_dnn_indicator) { 
+    if (default_dnn_indicator) {
     if (!cJSON_IsBool(default_dnn_indicator)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [default_dnn_indicator]");
         goto end;
@@ -160,7 +159,7 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
 
     cJSON *lbo_roaming_allowed = cJSON_GetObjectItemCaseSensitive(dnn_infoJSON, "lboRoamingAllowed");
 
-    if (lbo_roaming_allowed) { 
+    if (lbo_roaming_allowed) {
     if (!cJSON_IsBool(lbo_roaming_allowed)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [lbo_roaming_allowed]");
         goto end;
@@ -169,7 +168,7 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
 
     cJSON *iwk_eps_ind = cJSON_GetObjectItemCaseSensitive(dnn_infoJSON, "iwkEpsInd");
 
-    if (iwk_eps_ind) { 
+    if (iwk_eps_ind) {
     if (!cJSON_IsBool(iwk_eps_ind)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [iwk_eps_ind]");
         goto end;
@@ -178,7 +177,7 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
 
     cJSON *dnn_barred = cJSON_GetObjectItemCaseSensitive(dnn_infoJSON, "dnnBarred");
 
-    if (dnn_barred) { 
+    if (dnn_barred) {
     if (!cJSON_IsBool(dnn_barred)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [dnn_barred]");
         goto end;
@@ -187,7 +186,7 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
 
     cJSON *invoke_nef_ind = cJSON_GetObjectItemCaseSensitive(dnn_infoJSON, "invokeNefInd");
 
-    if (invoke_nef_ind) { 
+    if (invoke_nef_ind) {
     if (!cJSON_IsBool(invoke_nef_ind)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [invoke_nef_ind]");
         goto end;
@@ -197,7 +196,7 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
     cJSON *smf_list = cJSON_GetObjectItemCaseSensitive(dnn_infoJSON, "smfList");
 
     OpenAPI_list_t *smf_listList;
-    if (smf_list) { 
+    if (smf_list) {
     cJSON *smf_list_local;
     if (!cJSON_IsArray(smf_list)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [smf_list]");
@@ -211,12 +210,12 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
         goto end;
     }
     OpenAPI_list_add(smf_listList , ogs_strdup_or_assert(smf_list_local->valuestring));
-                    }
+    }
     }
 
     cJSON *same_smf_ind = cJSON_GetObjectItemCaseSensitive(dnn_infoJSON, "sameSmfInd");
 
-    if (same_smf_ind) { 
+    if (same_smf_ind) {
     if (!cJSON_IsBool(same_smf_ind)) {
         ogs_error("OpenAPI_dnn_info_parseFromJSON() failed [same_smf_ind]");
         goto end;

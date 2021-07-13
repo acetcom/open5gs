@@ -87,7 +87,6 @@ OpenAPI_acc_net_ch_id_t *OpenAPI_acc_net_ch_id_parseFromJSON(cJSON *acc_net_ch_i
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(acc_net_cha_id_value)) {
         ogs_error("OpenAPI_acc_net_ch_id_parseFromJSON() failed [acc_net_cha_id_value]");
         goto end;
@@ -96,7 +95,7 @@ OpenAPI_acc_net_ch_id_t *OpenAPI_acc_net_ch_id_parseFromJSON(cJSON *acc_net_ch_i
     cJSON *ref_pcc_rule_ids = cJSON_GetObjectItemCaseSensitive(acc_net_ch_idJSON, "refPccRuleIds");
 
     OpenAPI_list_t *ref_pcc_rule_idsList;
-    if (ref_pcc_rule_ids) { 
+    if (ref_pcc_rule_ids) {
     cJSON *ref_pcc_rule_ids_local;
     if (!cJSON_IsArray(ref_pcc_rule_ids)) {
         ogs_error("OpenAPI_acc_net_ch_id_parseFromJSON() failed [ref_pcc_rule_ids]");
@@ -110,12 +109,12 @@ OpenAPI_acc_net_ch_id_t *OpenAPI_acc_net_ch_id_parseFromJSON(cJSON *acc_net_ch_i
         goto end;
     }
     OpenAPI_list_add(ref_pcc_rule_idsList , ogs_strdup_or_assert(ref_pcc_rule_ids_local->valuestring));
-                    }
+    }
     }
 
     cJSON *session_ch_scope = cJSON_GetObjectItemCaseSensitive(acc_net_ch_idJSON, "sessionChScope");
 
-    if (session_ch_scope) { 
+    if (session_ch_scope) {
     if (!cJSON_IsBool(session_ch_scope)) {
         ogs_error("OpenAPI_acc_net_ch_id_parseFromJSON() failed [session_ch_scope]");
         goto end;

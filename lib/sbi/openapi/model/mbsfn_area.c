@@ -65,7 +65,7 @@ OpenAPI_mbsfn_area_t *OpenAPI_mbsfn_area_parseFromJSON(cJSON *mbsfn_areaJSON)
     OpenAPI_mbsfn_area_t *mbsfn_area_local_var = NULL;
     cJSON *mbsfn_area_id = cJSON_GetObjectItemCaseSensitive(mbsfn_areaJSON, "mbsfnAreaId");
 
-    if (mbsfn_area_id) { 
+    if (mbsfn_area_id) {
     if (!cJSON_IsNumber(mbsfn_area_id)) {
         ogs_error("OpenAPI_mbsfn_area_parseFromJSON() failed [mbsfn_area_id]");
         goto end;
@@ -74,7 +74,7 @@ OpenAPI_mbsfn_area_t *OpenAPI_mbsfn_area_parseFromJSON(cJSON *mbsfn_areaJSON)
 
     cJSON *carrier_frequency = cJSON_GetObjectItemCaseSensitive(mbsfn_areaJSON, "carrierFrequency");
 
-    if (carrier_frequency) { 
+    if (carrier_frequency) {
     if (!cJSON_IsNumber(carrier_frequency)) {
         ogs_error("OpenAPI_mbsfn_area_parseFromJSON() failed [carrier_frequency]");
         goto end;

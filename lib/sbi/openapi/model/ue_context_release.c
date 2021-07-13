@@ -78,7 +78,7 @@ OpenAPI_ue_context_release_t *OpenAPI_ue_context_release_parseFromJSON(cJSON *ue
     OpenAPI_ue_context_release_t *ue_context_release_local_var = NULL;
     cJSON *supi = cJSON_GetObjectItemCaseSensitive(ue_context_releaseJSON, "supi");
 
-    if (supi) { 
+    if (supi) {
     if (!cJSON_IsString(supi)) {
         ogs_error("OpenAPI_ue_context_release_parseFromJSON() failed [supi]");
         goto end;
@@ -87,7 +87,7 @@ OpenAPI_ue_context_release_t *OpenAPI_ue_context_release_parseFromJSON(cJSON *ue
 
     cJSON *unauthenticated_supi = cJSON_GetObjectItemCaseSensitive(ue_context_releaseJSON, "unauthenticatedSupi");
 
-    if (unauthenticated_supi) { 
+    if (unauthenticated_supi) {
     if (!cJSON_IsBool(unauthenticated_supi)) {
         ogs_error("OpenAPI_ue_context_release_parseFromJSON() failed [unauthenticated_supi]");
         goto end;
@@ -101,7 +101,6 @@ OpenAPI_ue_context_release_t *OpenAPI_ue_context_release_parseFromJSON(cJSON *ue
     }
 
     OpenAPI_ng_ap_cause_t *ngap_cause_local_nonprim = NULL;
-    
     ngap_cause_local_nonprim = OpenAPI_ng_ap_cause_parseFromJSON(ngap_cause);
 
     ue_context_release_local_var = OpenAPI_ue_context_release_create (

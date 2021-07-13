@@ -116,7 +116,6 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(_5qi)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [_5qi]");
         goto end;
@@ -129,7 +128,6 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
     }
 
     OpenAPI_qos_resource_type_e resource_typeVariable;
-    
     if (!cJSON_IsString(resource_type)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [resource_type]");
         goto end;
@@ -142,7 +140,6 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(priority_level)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [priority_level]");
         goto end;
@@ -154,7 +151,6 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(packet_delay_budget)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [packet_delay_budget]");
         goto end;
@@ -166,7 +162,6 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
         goto end;
     }
 
-    
     if (!cJSON_IsString(packet_error_rate)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [packet_error_rate]");
         goto end;
@@ -174,7 +169,7 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
 
     cJSON *averaging_window = cJSON_GetObjectItemCaseSensitive(qos_characteristicsJSON, "averagingWindow");
 
-    if (averaging_window) { 
+    if (averaging_window) {
     if (!cJSON_IsNumber(averaging_window)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [averaging_window]");
         goto end;
@@ -183,7 +178,7 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
 
     cJSON *max_data_burst_vol = cJSON_GetObjectItemCaseSensitive(qos_characteristicsJSON, "maxDataBurstVol");
 
-    if (max_data_burst_vol) { 
+    if (max_data_burst_vol) {
     if (!cJSON_IsNumber(max_data_burst_vol)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [max_data_burst_vol]");
         goto end;
@@ -192,7 +187,7 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
 
     cJSON *ext_max_data_burst_vol = cJSON_GetObjectItemCaseSensitive(qos_characteristicsJSON, "extMaxDataBurstVol");
 
-    if (ext_max_data_burst_vol) { 
+    if (ext_max_data_burst_vol) {
     if (!cJSON_IsNumber(ext_max_data_burst_vol)) {
         ogs_error("OpenAPI_qos_characteristics_parseFromJSON() failed [ext_max_data_burst_vol]");
         goto end;

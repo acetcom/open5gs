@@ -101,7 +101,7 @@ OpenAPI_service_area_restriction_1_t *OpenAPI_service_area_restriction_1_parseFr
     cJSON *restriction_type = cJSON_GetObjectItemCaseSensitive(service_area_restriction_1JSON, "restrictionType");
 
     OpenAPI_restriction_type_e restriction_typeVariable;
-    if (restriction_type) { 
+    if (restriction_type) {
     if (!cJSON_IsString(restriction_type)) {
         ogs_error("OpenAPI_service_area_restriction_1_parseFromJSON() failed [restriction_type]");
         goto end;
@@ -112,7 +112,7 @@ OpenAPI_service_area_restriction_1_t *OpenAPI_service_area_restriction_1_parseFr
     cJSON *areas = cJSON_GetObjectItemCaseSensitive(service_area_restriction_1JSON, "areas");
 
     OpenAPI_list_t *areasList;
-    if (areas) { 
+    if (areas) {
     cJSON *areas_local_nonprimitive;
     if (!cJSON_IsArray(areas)){
         ogs_error("OpenAPI_service_area_restriction_1_parseFromJSON() failed [areas]");
@@ -134,7 +134,7 @@ OpenAPI_service_area_restriction_1_t *OpenAPI_service_area_restriction_1_parseFr
 
     cJSON *max_num_of_tas = cJSON_GetObjectItemCaseSensitive(service_area_restriction_1JSON, "maxNumOfTAs");
 
-    if (max_num_of_tas) { 
+    if (max_num_of_tas) {
     if (!cJSON_IsNumber(max_num_of_tas)) {
         ogs_error("OpenAPI_service_area_restriction_1_parseFromJSON() failed [max_num_of_tas]");
         goto end;
@@ -143,7 +143,7 @@ OpenAPI_service_area_restriction_1_t *OpenAPI_service_area_restriction_1_parseFr
 
     cJSON *max_num_of_tas_for_not_allowed_areas = cJSON_GetObjectItemCaseSensitive(service_area_restriction_1JSON, "maxNumOfTAsForNotAllowedAreas");
 
-    if (max_num_of_tas_for_not_allowed_areas) { 
+    if (max_num_of_tas_for_not_allowed_areas) {
     if (!cJSON_IsNumber(max_num_of_tas_for_not_allowed_areas)) {
         ogs_error("OpenAPI_service_area_restriction_1_parseFromJSON() failed [max_num_of_tas_for_not_allowed_areas]");
         goto end;

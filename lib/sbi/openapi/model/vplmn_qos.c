@@ -126,7 +126,7 @@ OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_parseFromJSON(cJSON *vplmn_qosJSON)
     OpenAPI_vplmn_qos_t *vplmn_qos_local_var = NULL;
     cJSON *_5qi = cJSON_GetObjectItemCaseSensitive(vplmn_qosJSON, "5qi");
 
-    if (_5qi) { 
+    if (_5qi) {
     if (!cJSON_IsNumber(_5qi)) {
         ogs_error("OpenAPI_vplmn_qos_parseFromJSON() failed [_5qi]");
         goto end;
@@ -136,20 +136,20 @@ OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_parseFromJSON(cJSON *vplmn_qosJSON)
     cJSON *arp = cJSON_GetObjectItemCaseSensitive(vplmn_qosJSON, "arp");
 
     OpenAPI_arp_t *arp_local_nonprim = NULL;
-    if (arp) { 
+    if (arp) {
     arp_local_nonprim = OpenAPI_arp_parseFromJSON(arp);
     }
 
     cJSON *session_ambr = cJSON_GetObjectItemCaseSensitive(vplmn_qosJSON, "sessionAmbr");
 
     OpenAPI_ambr_t *session_ambr_local_nonprim = NULL;
-    if (session_ambr) { 
+    if (session_ambr) {
     session_ambr_local_nonprim = OpenAPI_ambr_parseFromJSON(session_ambr);
     }
 
     cJSON *max_fbr_dl = cJSON_GetObjectItemCaseSensitive(vplmn_qosJSON, "maxFbrDl");
 
-    if (max_fbr_dl) { 
+    if (max_fbr_dl) {
     if (!cJSON_IsString(max_fbr_dl)) {
         ogs_error("OpenAPI_vplmn_qos_parseFromJSON() failed [max_fbr_dl]");
         goto end;
@@ -158,7 +158,7 @@ OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_parseFromJSON(cJSON *vplmn_qosJSON)
 
     cJSON *max_fbr_ul = cJSON_GetObjectItemCaseSensitive(vplmn_qosJSON, "maxFbrUl");
 
-    if (max_fbr_ul) { 
+    if (max_fbr_ul) {
     if (!cJSON_IsString(max_fbr_ul)) {
         ogs_error("OpenAPI_vplmn_qos_parseFromJSON() failed [max_fbr_ul]");
         goto end;
@@ -167,7 +167,7 @@ OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_parseFromJSON(cJSON *vplmn_qosJSON)
 
     cJSON *gua_fbr_dl = cJSON_GetObjectItemCaseSensitive(vplmn_qosJSON, "guaFbrDl");
 
-    if (gua_fbr_dl) { 
+    if (gua_fbr_dl) {
     if (!cJSON_IsString(gua_fbr_dl)) {
         ogs_error("OpenAPI_vplmn_qos_parseFromJSON() failed [gua_fbr_dl]");
         goto end;
@@ -176,7 +176,7 @@ OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_parseFromJSON(cJSON *vplmn_qosJSON)
 
     cJSON *gua_fbr_ul = cJSON_GetObjectItemCaseSensitive(vplmn_qosJSON, "guaFbrUl");
 
-    if (gua_fbr_ul) { 
+    if (gua_fbr_ul) {
     if (!cJSON_IsString(gua_fbr_ul)) {
         ogs_error("OpenAPI_vplmn_qos_parseFromJSON() failed [gua_fbr_ul]");
         goto end;

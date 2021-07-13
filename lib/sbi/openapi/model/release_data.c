@@ -222,7 +222,7 @@ OpenAPI_release_data_t *OpenAPI_release_data_parseFromJSON(cJSON *release_dataJS
     cJSON *cause = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "cause");
 
     OpenAPI_cause_e causeVariable;
-    if (cause) { 
+    if (cause) {
     if (!cJSON_IsString(cause)) {
         ogs_error("OpenAPI_release_data_parseFromJSON() failed [cause]");
         goto end;
@@ -233,13 +233,13 @@ OpenAPI_release_data_t *OpenAPI_release_data_parseFromJSON(cJSON *release_dataJS
     cJSON *ng_ap_cause = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "ngApCause");
 
     OpenAPI_ng_ap_cause_t *ng_ap_cause_local_nonprim = NULL;
-    if (ng_ap_cause) { 
+    if (ng_ap_cause) {
     ng_ap_cause_local_nonprim = OpenAPI_ng_ap_cause_parseFromJSON(ng_ap_cause);
     }
 
     cJSON *_5g_mm_cause_value = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "5gMmCauseValue");
 
-    if (_5g_mm_cause_value) { 
+    if (_5g_mm_cause_value) {
     if (!cJSON_IsNumber(_5g_mm_cause_value)) {
         ogs_error("OpenAPI_release_data_parseFromJSON() failed [_5g_mm_cause_value]");
         goto end;
@@ -249,13 +249,13 @@ OpenAPI_release_data_t *OpenAPI_release_data_parseFromJSON(cJSON *release_dataJS
     cJSON *ue_location = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "ueLocation");
 
     OpenAPI_user_location_t *ue_location_local_nonprim = NULL;
-    if (ue_location) { 
+    if (ue_location) {
     ue_location_local_nonprim = OpenAPI_user_location_parseFromJSON(ue_location);
     }
 
     cJSON *ue_time_zone = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "ueTimeZone");
 
-    if (ue_time_zone) { 
+    if (ue_time_zone) {
     if (!cJSON_IsString(ue_time_zone)) {
         ogs_error("OpenAPI_release_data_parseFromJSON() failed [ue_time_zone]");
         goto end;
@@ -265,14 +265,14 @@ OpenAPI_release_data_t *OpenAPI_release_data_parseFromJSON(cJSON *release_dataJS
     cJSON *add_ue_location = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "addUeLocation");
 
     OpenAPI_user_location_t *add_ue_location_local_nonprim = NULL;
-    if (add_ue_location) { 
+    if (add_ue_location) {
     add_ue_location_local_nonprim = OpenAPI_user_location_parseFromJSON(add_ue_location);
     }
 
     cJSON *secondary_rat_usage_report = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "secondaryRatUsageReport");
 
     OpenAPI_list_t *secondary_rat_usage_reportList;
-    if (secondary_rat_usage_report) { 
+    if (secondary_rat_usage_report) {
     cJSON *secondary_rat_usage_report_local_nonprimitive;
     if (!cJSON_IsArray(secondary_rat_usage_report)){
         ogs_error("OpenAPI_release_data_parseFromJSON() failed [secondary_rat_usage_report]");
@@ -295,7 +295,7 @@ OpenAPI_release_data_t *OpenAPI_release_data_parseFromJSON(cJSON *release_dataJS
     cJSON *secondary_rat_usage_info = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "secondaryRatUsageInfo");
 
     OpenAPI_list_t *secondary_rat_usage_infoList;
-    if (secondary_rat_usage_info) { 
+    if (secondary_rat_usage_info) {
     cJSON *secondary_rat_usage_info_local_nonprimitive;
     if (!cJSON_IsArray(secondary_rat_usage_info)){
         ogs_error("OpenAPI_release_data_parseFromJSON() failed [secondary_rat_usage_info]");
@@ -318,21 +318,21 @@ OpenAPI_release_data_t *OpenAPI_release_data_parseFromJSON(cJSON *release_dataJS
     cJSON *n4_info = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "n4Info");
 
     OpenAPI_n4_information_t *n4_info_local_nonprim = NULL;
-    if (n4_info) { 
+    if (n4_info) {
     n4_info_local_nonprim = OpenAPI_n4_information_parseFromJSON(n4_info);
     }
 
     cJSON *n4_info_ext1 = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "n4InfoExt1");
 
     OpenAPI_n4_information_t *n4_info_ext1_local_nonprim = NULL;
-    if (n4_info_ext1) { 
+    if (n4_info_ext1) {
     n4_info_ext1_local_nonprim = OpenAPI_n4_information_parseFromJSON(n4_info_ext1);
     }
 
     cJSON *n4_info_ext2 = cJSON_GetObjectItemCaseSensitive(release_dataJSON, "n4InfoExt2");
 
     OpenAPI_n4_information_t *n4_info_ext2_local_nonprim = NULL;
-    if (n4_info_ext2) { 
+    if (n4_info_ext2) {
     n4_info_ext2_local_nonprim = OpenAPI_n4_information_parseFromJSON(n4_info_ext2);
     }
 

@@ -114,7 +114,6 @@ OpenAPI_sm_context_retrieved_data_t *OpenAPI_sm_context_retrieved_data_parseFrom
         goto end;
     }
 
-    
     if (!cJSON_IsString(ue_eps_pdn_connection)) {
         ogs_error("OpenAPI_sm_context_retrieved_data_parseFromJSON() failed [ue_eps_pdn_connection]");
         goto end;
@@ -123,27 +122,27 @@ OpenAPI_sm_context_retrieved_data_t *OpenAPI_sm_context_retrieved_data_parseFrom
     cJSON *sm_context = cJSON_GetObjectItemCaseSensitive(sm_context_retrieved_dataJSON, "smContext");
 
     OpenAPI_sm_context_t *sm_context_local_nonprim = NULL;
-    if (sm_context) { 
+    if (sm_context) {
     sm_context_local_nonprim = OpenAPI_sm_context_parseFromJSON(sm_context);
     }
 
     cJSON *small_data_rate_status = cJSON_GetObjectItemCaseSensitive(sm_context_retrieved_dataJSON, "smallDataRateStatus");
 
     OpenAPI_small_data_rate_status_t *small_data_rate_status_local_nonprim = NULL;
-    if (small_data_rate_status) { 
+    if (small_data_rate_status) {
     small_data_rate_status_local_nonprim = OpenAPI_small_data_rate_status_parseFromJSON(small_data_rate_status);
     }
 
     cJSON *apn_rate_status = cJSON_GetObjectItemCaseSensitive(sm_context_retrieved_dataJSON, "apnRateStatus");
 
     OpenAPI_apn_rate_status_t *apn_rate_status_local_nonprim = NULL;
-    if (apn_rate_status) { 
+    if (apn_rate_status) {
     apn_rate_status_local_nonprim = OpenAPI_apn_rate_status_parseFromJSON(apn_rate_status);
     }
 
     cJSON *dl_data_waiting_ind = cJSON_GetObjectItemCaseSensitive(sm_context_retrieved_dataJSON, "dlDataWaitingInd");
 
-    if (dl_data_waiting_ind) { 
+    if (dl_data_waiting_ind) {
     if (!cJSON_IsBool(dl_data_waiting_ind)) {
         ogs_error("OpenAPI_sm_context_retrieved_data_parseFromJSON() failed [dl_data_waiting_ind]");
         goto end;

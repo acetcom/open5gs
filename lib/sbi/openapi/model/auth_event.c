@@ -96,7 +96,6 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_parseFromJSON(cJSON *auth_eventJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(nf_instance_id)) {
         ogs_error("OpenAPI_auth_event_parseFromJSON() failed [nf_instance_id]");
         goto end;
@@ -108,7 +107,6 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_parseFromJSON(cJSON *auth_eventJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsBool(success)) {
         ogs_error("OpenAPI_auth_event_parseFromJSON() failed [success]");
         goto end;
@@ -120,7 +118,6 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_parseFromJSON(cJSON *auth_eventJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(time_stamp)) {
         ogs_error("OpenAPI_auth_event_parseFromJSON() failed [time_stamp]");
         goto end;
@@ -133,7 +130,6 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_parseFromJSON(cJSON *auth_eventJSON)
     }
 
     OpenAPI_auth_type_e auth_typeVariable;
-    
     if (!cJSON_IsString(auth_type)) {
         ogs_error("OpenAPI_auth_event_parseFromJSON() failed [auth_type]");
         goto end;
@@ -146,7 +142,6 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_parseFromJSON(cJSON *auth_eventJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(serving_network_name)) {
         ogs_error("OpenAPI_auth_event_parseFromJSON() failed [serving_network_name]");
         goto end;
@@ -154,7 +149,7 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_parseFromJSON(cJSON *auth_eventJSON)
 
     cJSON *auth_removal_ind = cJSON_GetObjectItemCaseSensitive(auth_eventJSON, "authRemovalInd");
 
-    if (auth_removal_ind) { 
+    if (auth_removal_ind) {
     if (!cJSON_IsBool(auth_removal_ind)) {
         ogs_error("OpenAPI_auth_event_parseFromJSON() failed [auth_removal_ind]");
         goto end;

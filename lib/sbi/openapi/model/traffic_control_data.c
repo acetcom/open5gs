@@ -247,7 +247,6 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
         goto end;
     }
 
-    
     if (!cJSON_IsString(tc_id)) {
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [tc_id]");
         goto end;
@@ -256,7 +255,7 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
     cJSON *flow_status = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "flowStatus");
 
     OpenAPI_flow_status_e flow_statusVariable;
-    if (flow_status) { 
+    if (flow_status) {
     if (!cJSON_IsString(flow_status)) {
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [flow_status]");
         goto end;
@@ -267,14 +266,14 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
     cJSON *redirect_info = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "redirectInfo");
 
     OpenAPI_redirect_information_t *redirect_info_local_nonprim = NULL;
-    if (redirect_info) { 
+    if (redirect_info) {
     redirect_info_local_nonprim = OpenAPI_redirect_information_parseFromJSON(redirect_info);
     }
 
     cJSON *add_redirect_info = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "addRedirectInfo");
 
     OpenAPI_list_t *add_redirect_infoList;
-    if (add_redirect_info) { 
+    if (add_redirect_info) {
     cJSON *add_redirect_info_local_nonprimitive;
     if (!cJSON_IsArray(add_redirect_info)){
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [add_redirect_info]");
@@ -296,7 +295,7 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
 
     cJSON *mute_notif = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "muteNotif");
 
-    if (mute_notif) { 
+    if (mute_notif) {
     if (!cJSON_IsBool(mute_notif)) {
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [mute_notif]");
         goto end;
@@ -305,7 +304,7 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
 
     cJSON *traffic_steering_pol_id_dl = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "trafficSteeringPolIdDl");
 
-    if (traffic_steering_pol_id_dl) { 
+    if (traffic_steering_pol_id_dl) {
     if (!cJSON_IsString(traffic_steering_pol_id_dl)) {
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [traffic_steering_pol_id_dl]");
         goto end;
@@ -314,7 +313,7 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
 
     cJSON *traffic_steering_pol_id_ul = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "trafficSteeringPolIdUl");
 
-    if (traffic_steering_pol_id_ul) { 
+    if (traffic_steering_pol_id_ul) {
     if (!cJSON_IsString(traffic_steering_pol_id_ul)) {
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [traffic_steering_pol_id_ul]");
         goto end;
@@ -324,7 +323,7 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
     cJSON *route_to_locs = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "routeToLocs");
 
     OpenAPI_list_t *route_to_locsList;
-    if (route_to_locs) { 
+    if (route_to_locs) {
     cJSON *route_to_locs_local_nonprimitive;
     if (!cJSON_IsArray(route_to_locs)){
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [route_to_locs]");
@@ -346,7 +345,7 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
 
     cJSON *traff_corre_ind = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "traffCorreInd");
 
-    if (traff_corre_ind) { 
+    if (traff_corre_ind) {
     if (!cJSON_IsBool(traff_corre_ind)) {
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [traff_corre_ind]");
         goto end;
@@ -356,14 +355,14 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
     cJSON *up_path_chg_event = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "upPathChgEvent");
 
     OpenAPI_up_path_chg_event_t *up_path_chg_event_local_nonprim = NULL;
-    if (up_path_chg_event) { 
+    if (up_path_chg_event) {
     up_path_chg_event_local_nonprim = OpenAPI_up_path_chg_event_parseFromJSON(up_path_chg_event);
     }
 
     cJSON *steer_fun = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "steerFun");
 
     OpenAPI_steering_functionality_e steer_funVariable;
-    if (steer_fun) { 
+    if (steer_fun) {
     if (!cJSON_IsString(steer_fun)) {
         ogs_error("OpenAPI_traffic_control_data_parseFromJSON() failed [steer_fun]");
         goto end;
@@ -374,21 +373,21 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
     cJSON *steer_mode_dl = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "steerModeDl");
 
     OpenAPI_steering_mode_t *steer_mode_dl_local_nonprim = NULL;
-    if (steer_mode_dl) { 
+    if (steer_mode_dl) {
     steer_mode_dl_local_nonprim = OpenAPI_steering_mode_parseFromJSON(steer_mode_dl);
     }
 
     cJSON *steer_mode_ul = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "steerModeUl");
 
     OpenAPI_steering_mode_t *steer_mode_ul_local_nonprim = NULL;
-    if (steer_mode_ul) { 
+    if (steer_mode_ul) {
     steer_mode_ul_local_nonprim = OpenAPI_steering_mode_parseFromJSON(steer_mode_ul);
     }
 
     cJSON *mul_acc_ctrl = cJSON_GetObjectItemCaseSensitive(traffic_control_dataJSON, "mulAccCtrl");
 
     OpenAPI_multicast_access_control_t *mul_acc_ctrl_local_nonprim = NULL;
-    if (mul_acc_ctrl) { 
+    if (mul_acc_ctrl) {
     mul_acc_ctrl_local_nonprim = OpenAPI_multicast_access_control_parseFromJSON(mul_acc_ctrl);
     }
 

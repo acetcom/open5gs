@@ -103,7 +103,6 @@ OpenAPI_pfd_change_notification_t *OpenAPI_pfd_change_notification_parseFromJSON
         goto end;
     }
 
-    
     if (!cJSON_IsString(application_id)) {
         ogs_error("OpenAPI_pfd_change_notification_parseFromJSON() failed [application_id]");
         goto end;
@@ -111,7 +110,7 @@ OpenAPI_pfd_change_notification_t *OpenAPI_pfd_change_notification_parseFromJSON
 
     cJSON *removal_flag = cJSON_GetObjectItemCaseSensitive(pfd_change_notificationJSON, "removalFlag");
 
-    if (removal_flag) { 
+    if (removal_flag) {
     if (!cJSON_IsBool(removal_flag)) {
         ogs_error("OpenAPI_pfd_change_notification_parseFromJSON() failed [removal_flag]");
         goto end;
@@ -120,7 +119,7 @@ OpenAPI_pfd_change_notification_t *OpenAPI_pfd_change_notification_parseFromJSON
 
     cJSON *partial_flag = cJSON_GetObjectItemCaseSensitive(pfd_change_notificationJSON, "partialFlag");
 
-    if (partial_flag) { 
+    if (partial_flag) {
     if (!cJSON_IsBool(partial_flag)) {
         ogs_error("OpenAPI_pfd_change_notification_parseFromJSON() failed [partial_flag]");
         goto end;
@@ -130,7 +129,7 @@ OpenAPI_pfd_change_notification_t *OpenAPI_pfd_change_notification_parseFromJSON
     cJSON *pfds = cJSON_GetObjectItemCaseSensitive(pfd_change_notificationJSON, "pfds");
 
     OpenAPI_list_t *pfdsList;
-    if (pfds) { 
+    if (pfds) {
     cJSON *pfds_local_nonprimitive;
     if (!cJSON_IsArray(pfds)){
         ogs_error("OpenAPI_pfd_change_notification_parseFromJSON() failed [pfds]");

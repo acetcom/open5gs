@@ -313,7 +313,6 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
         goto end;
     }
 
-    
     if (!cJSON_IsString(amf_instance_id)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [amf_instance_id]");
         goto end;
@@ -321,7 +320,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "supportedFeatures");
 
-    if (supported_features) { 
+    if (supported_features) {
     if (!cJSON_IsString(supported_features)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [supported_features]");
         goto end;
@@ -330,7 +329,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *purge_flag = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "purgeFlag");
 
-    if (purge_flag) { 
+    if (purge_flag) {
     if (!cJSON_IsBool(purge_flag)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [purge_flag]");
         goto end;
@@ -339,7 +338,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *pei = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "pei");
 
-    if (pei) { 
+    if (pei) {
     if (!cJSON_IsString(pei)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [pei]");
         goto end;
@@ -349,7 +348,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
     cJSON *ims_vo_ps = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "imsVoPs");
 
     OpenAPI_ims_vo_ps_e ims_vo_psVariable;
-    if (ims_vo_ps) { 
+    if (ims_vo_ps) {
     if (!cJSON_IsString(ims_vo_ps)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [ims_vo_ps]");
         goto end;
@@ -363,7 +362,6 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
         goto end;
     }
 
-    
     if (!cJSON_IsString(dereg_callback_uri)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [dereg_callback_uri]");
         goto end;
@@ -371,7 +369,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *amf_service_name_dereg = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "amfServiceNameDereg");
 
-    if (amf_service_name_dereg) { 
+    if (amf_service_name_dereg) {
     if (!cJSON_IsString(amf_service_name_dereg)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [amf_service_name_dereg]");
         goto end;
@@ -380,7 +378,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *pcscf_restoration_callback_uri = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "pcscfRestorationCallbackUri");
 
-    if (pcscf_restoration_callback_uri) { 
+    if (pcscf_restoration_callback_uri) {
     if (!cJSON_IsString(pcscf_restoration_callback_uri)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [pcscf_restoration_callback_uri]");
         goto end;
@@ -389,7 +387,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *amf_service_name_pcscf_rest = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "amfServiceNamePcscfRest");
 
-    if (amf_service_name_pcscf_rest) { 
+    if (amf_service_name_pcscf_rest) {
     if (!cJSON_IsString(amf_service_name_pcscf_rest)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [amf_service_name_pcscf_rest]");
         goto end;
@@ -398,7 +396,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *initial_registration_ind = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "initialRegistrationInd");
 
-    if (initial_registration_ind) { 
+    if (initial_registration_ind) {
     if (!cJSON_IsBool(initial_registration_ind)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [initial_registration_ind]");
         goto end;
@@ -412,13 +410,12 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
     }
 
     OpenAPI_guami_t *guami_local_nonprim = NULL;
-    
     guami_local_nonprim = OpenAPI_guami_parseFromJSON(guami);
 
     cJSON *backup_amf_info = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "backupAmfInfo");
 
     OpenAPI_list_t *backup_amf_infoList;
-    if (backup_amf_info) { 
+    if (backup_amf_info) {
     cJSON *backup_amf_info_local_nonprimitive;
     if (!cJSON_IsArray(backup_amf_info)){
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [backup_amf_info]");
@@ -440,7 +437,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *dr_flag = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "drFlag");
 
-    if (dr_flag) { 
+    if (dr_flag) {
     if (!cJSON_IsBool(dr_flag)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [dr_flag]");
         goto end;
@@ -454,7 +451,6 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
     }
 
     OpenAPI_rat_type_e rat_typeVariable;
-    
     if (!cJSON_IsString(rat_type)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [rat_type]");
         goto end;
@@ -463,7 +459,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *urrp_indicator = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "urrpIndicator");
 
-    if (urrp_indicator) { 
+    if (urrp_indicator) {
     if (!cJSON_IsBool(urrp_indicator)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [urrp_indicator]");
         goto end;
@@ -472,7 +468,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *amf_ee_subscription_id = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "amfEeSubscriptionId");
 
-    if (amf_ee_subscription_id) { 
+    if (amf_ee_subscription_id) {
     if (!cJSON_IsString(amf_ee_subscription_id)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [amf_ee_subscription_id]");
         goto end;
@@ -482,13 +478,13 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
     cJSON *eps_interworking_info = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "epsInterworkingInfo");
 
     OpenAPI_eps_interworking_info_t *eps_interworking_info_local_nonprim = NULL;
-    if (eps_interworking_info) { 
+    if (eps_interworking_info) {
     eps_interworking_info_local_nonprim = OpenAPI_eps_interworking_info_parseFromJSON(eps_interworking_info);
     }
 
     cJSON *ue_srvcc_capability = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "ueSrvccCapability");
 
-    if (ue_srvcc_capability) { 
+    if (ue_srvcc_capability) {
     if (!cJSON_IsBool(ue_srvcc_capability)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [ue_srvcc_capability]");
         goto end;
@@ -497,7 +493,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *registration_time = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "registrationTime");
 
-    if (registration_time) { 
+    if (registration_time) {
     if (!cJSON_IsString(registration_time)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [registration_time]");
         goto end;
@@ -507,20 +503,20 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
     cJSON *vgmlc_address = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "vgmlcAddress");
 
     OpenAPI_vgmlc_address_t *vgmlc_address_local_nonprim = NULL;
-    if (vgmlc_address) { 
+    if (vgmlc_address) {
     vgmlc_address_local_nonprim = OpenAPI_vgmlc_address_parseFromJSON(vgmlc_address);
     }
 
     cJSON *context_info = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "contextInfo");
 
     OpenAPI_context_info_t *context_info_local_nonprim = NULL;
-    if (context_info) { 
+    if (context_info) {
     context_info_local_nonprim = OpenAPI_context_info_parseFromJSON(context_info);
     }
 
     cJSON *no_ee_subscription_ind = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "noEeSubscriptionInd");
 
-    if (no_ee_subscription_ind) { 
+    if (no_ee_subscription_ind) {
     if (!cJSON_IsBool(no_ee_subscription_ind)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [no_ee_subscription_ind]");
         goto end;
@@ -529,7 +525,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
 
     cJSON *supi = cJSON_GetObjectItemCaseSensitive(amf3_gpp_access_registrationJSON, "supi");
 
-    if (supi) { 
+    if (supi) {
     if (!cJSON_IsString(supi)) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_parseFromJSON() failed [supi]");
         goto end;

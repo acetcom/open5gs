@@ -86,7 +86,6 @@ OpenAPI_af_event_subscription_t *OpenAPI_af_event_subscription_parseFromJSON(cJS
     }
 
     OpenAPI_af_event_e eventVariable;
-    
     if (!cJSON_IsString(event)) {
         ogs_error("OpenAPI_af_event_subscription_parseFromJSON() failed [event]");
         goto end;
@@ -96,7 +95,7 @@ OpenAPI_af_event_subscription_t *OpenAPI_af_event_subscription_parseFromJSON(cJS
     cJSON *notif_method = cJSON_GetObjectItemCaseSensitive(af_event_subscriptionJSON, "notifMethod");
 
     OpenAPI_af_notif_method_e notif_methodVariable;
-    if (notif_method) { 
+    if (notif_method) {
     if (!cJSON_IsString(notif_method)) {
         ogs_error("OpenAPI_af_event_subscription_parseFromJSON() failed [notif_method]");
         goto end;
@@ -106,7 +105,7 @@ OpenAPI_af_event_subscription_t *OpenAPI_af_event_subscription_parseFromJSON(cJS
 
     cJSON *rep_period = cJSON_GetObjectItemCaseSensitive(af_event_subscriptionJSON, "repPeriod");
 
-    if (rep_period) { 
+    if (rep_period) {
     if (!cJSON_IsNumber(rep_period)) {
         ogs_error("OpenAPI_af_event_subscription_parseFromJSON() failed [rep_period]");
         goto end;
@@ -115,7 +114,7 @@ OpenAPI_af_event_subscription_t *OpenAPI_af_event_subscription_parseFromJSON(cJS
 
     cJSON *wait_time = cJSON_GetObjectItemCaseSensitive(af_event_subscriptionJSON, "waitTime");
 
-    if (wait_time) { 
+    if (wait_time) {
     if (!cJSON_IsNumber(wait_time)) {
         ogs_error("OpenAPI_af_event_subscription_parseFromJSON() failed [wait_time]");
         goto end;

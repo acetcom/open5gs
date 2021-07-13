@@ -72,7 +72,6 @@ OpenAPI_rg_authentication_info_t *OpenAPI_rg_authentication_info_parseFromJSON(c
         goto end;
     }
 
-    
     if (!cJSON_IsString(suci)) {
         ogs_error("OpenAPI_rg_authentication_info_parseFromJSON() failed [suci]");
         goto end;
@@ -84,7 +83,6 @@ OpenAPI_rg_authentication_info_t *OpenAPI_rg_authentication_info_parseFromJSON(c
         goto end;
     }
 
-    
     if (!cJSON_IsBool(authenticated_ind)) {
         ogs_error("OpenAPI_rg_authentication_info_parseFromJSON() failed [authenticated_ind]");
         goto end;
@@ -92,7 +90,7 @@ OpenAPI_rg_authentication_info_t *OpenAPI_rg_authentication_info_parseFromJSON(c
 
     cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(rg_authentication_infoJSON, "supportedFeatures");
 
-    if (supported_features) { 
+    if (supported_features) {
     if (!cJSON_IsString(supported_features)) {
         ogs_error("OpenAPI_rg_authentication_info_parseFromJSON() failed [supported_features]");
         goto end;

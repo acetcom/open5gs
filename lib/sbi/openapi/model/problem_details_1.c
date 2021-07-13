@@ -130,7 +130,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
     OpenAPI_problem_details_1_t *problem_details_1_local_var = NULL;
     cJSON *type = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "type");
 
-    if (type) { 
+    if (type) {
     if (!cJSON_IsString(type)) {
         ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [type]");
         goto end;
@@ -139,7 +139,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
 
     cJSON *title = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "title");
 
-    if (title) { 
+    if (title) {
     if (!cJSON_IsString(title)) {
         ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [title]");
         goto end;
@@ -148,7 +148,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
 
     cJSON *status = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "status");
 
-    if (status) { 
+    if (status) {
     if (!cJSON_IsNumber(status)) {
         ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [status]");
         goto end;
@@ -157,7 +157,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
 
     cJSON *detail = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "detail");
 
-    if (detail) { 
+    if (detail) {
     if (!cJSON_IsString(detail)) {
         ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [detail]");
         goto end;
@@ -166,7 +166,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
 
     cJSON *instance = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "instance");
 
-    if (instance) { 
+    if (instance) {
     if (!cJSON_IsString(instance)) {
         ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [instance]");
         goto end;
@@ -175,7 +175,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
 
     cJSON *cause = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "cause");
 
-    if (cause) { 
+    if (cause) {
     if (!cJSON_IsString(cause)) {
         ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [cause]");
         goto end;
@@ -185,7 +185,7 @@ OpenAPI_problem_details_1_t *OpenAPI_problem_details_1_parseFromJSON(cJSON *prob
     cJSON *invalid_params = cJSON_GetObjectItemCaseSensitive(problem_details_1JSON, "invalidParams");
 
     OpenAPI_list_t *invalid_paramsList;
-    if (invalid_params) { 
+    if (invalid_params) {
     cJSON *invalid_params_local_nonprimitive;
     if (!cJSON_IsArray(invalid_params)){
         ogs_error("OpenAPI_problem_details_1_parseFromJSON() failed [invalid_params]");

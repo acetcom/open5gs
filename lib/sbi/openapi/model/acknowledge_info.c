@@ -92,7 +92,7 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_parseFromJSON(cJSON *acknow
     OpenAPI_acknowledge_info_t *acknowledge_info_local_var = NULL;
     cJSON *sor_mac_iue = cJSON_GetObjectItemCaseSensitive(acknowledge_infoJSON, "sorMacIue");
 
-    if (sor_mac_iue) { 
+    if (sor_mac_iue) {
     if (!cJSON_IsString(sor_mac_iue)) {
         ogs_error("OpenAPI_acknowledge_info_parseFromJSON() failed [sor_mac_iue]");
         goto end;
@@ -101,7 +101,7 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_parseFromJSON(cJSON *acknow
 
     cJSON *upu_mac_iue = cJSON_GetObjectItemCaseSensitive(acknowledge_infoJSON, "upuMacIue");
 
-    if (upu_mac_iue) { 
+    if (upu_mac_iue) {
     if (!cJSON_IsString(upu_mac_iue)) {
         ogs_error("OpenAPI_acknowledge_info_parseFromJSON() failed [upu_mac_iue]");
         goto end;
@@ -110,7 +110,7 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_parseFromJSON(cJSON *acknow
 
     cJSON *secured_packet = cJSON_GetObjectItemCaseSensitive(acknowledge_infoJSON, "securedPacket");
 
-    if (secured_packet) { 
+    if (secured_packet) {
     if (!cJSON_IsString(secured_packet)) {
         ogs_error("OpenAPI_acknowledge_info_parseFromJSON() failed [secured_packet]");
         goto end;
@@ -123,7 +123,6 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_parseFromJSON(cJSON *acknow
         goto end;
     }
 
-    
     if (!cJSON_IsString(provisioning_time)) {
         ogs_error("OpenAPI_acknowledge_info_parseFromJSON() failed [provisioning_time]");
         goto end;
@@ -131,7 +130,7 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_parseFromJSON(cJSON *acknow
 
     cJSON *ue_not_reachable = cJSON_GetObjectItemCaseSensitive(acknowledge_infoJSON, "ueNotReachable");
 
-    if (ue_not_reachable) { 
+    if (ue_not_reachable) {
     if (!cJSON_IsBool(ue_not_reachable)) {
         ogs_error("OpenAPI_acknowledge_info_parseFromJSON() failed [ue_not_reachable]");
         goto end;

@@ -133,7 +133,6 @@ OpenAPI_nr_location_t *OpenAPI_nr_location_parseFromJSON(cJSON *nr_locationJSON)
     }
 
     OpenAPI_tai_t *tai_local_nonprim = NULL;
-    
     tai_local_nonprim = OpenAPI_tai_parseFromJSON(tai);
 
     cJSON *ncgi = cJSON_GetObjectItemCaseSensitive(nr_locationJSON, "ncgi");
@@ -143,12 +142,11 @@ OpenAPI_nr_location_t *OpenAPI_nr_location_parseFromJSON(cJSON *nr_locationJSON)
     }
 
     OpenAPI_ncgi_t *ncgi_local_nonprim = NULL;
-    
     ncgi_local_nonprim = OpenAPI_ncgi_parseFromJSON(ncgi);
 
     cJSON *age_of_location_information = cJSON_GetObjectItemCaseSensitive(nr_locationJSON, "ageOfLocationInformation");
 
-    if (age_of_location_information) { 
+    if (age_of_location_information) {
     if (!cJSON_IsNumber(age_of_location_information)) {
         ogs_error("OpenAPI_nr_location_parseFromJSON() failed [age_of_location_information]");
         goto end;
@@ -157,7 +155,7 @@ OpenAPI_nr_location_t *OpenAPI_nr_location_parseFromJSON(cJSON *nr_locationJSON)
 
     cJSON *ue_location_timestamp = cJSON_GetObjectItemCaseSensitive(nr_locationJSON, "ueLocationTimestamp");
 
-    if (ue_location_timestamp) { 
+    if (ue_location_timestamp) {
     if (!cJSON_IsString(ue_location_timestamp)) {
         ogs_error("OpenAPI_nr_location_parseFromJSON() failed [ue_location_timestamp]");
         goto end;
@@ -166,7 +164,7 @@ OpenAPI_nr_location_t *OpenAPI_nr_location_parseFromJSON(cJSON *nr_locationJSON)
 
     cJSON *geographical_information = cJSON_GetObjectItemCaseSensitive(nr_locationJSON, "geographicalInformation");
 
-    if (geographical_information) { 
+    if (geographical_information) {
     if (!cJSON_IsString(geographical_information)) {
         ogs_error("OpenAPI_nr_location_parseFromJSON() failed [geographical_information]");
         goto end;
@@ -175,7 +173,7 @@ OpenAPI_nr_location_t *OpenAPI_nr_location_parseFromJSON(cJSON *nr_locationJSON)
 
     cJSON *geodetic_information = cJSON_GetObjectItemCaseSensitive(nr_locationJSON, "geodeticInformation");
 
-    if (geodetic_information) { 
+    if (geodetic_information) {
     if (!cJSON_IsString(geodetic_information)) {
         ogs_error("OpenAPI_nr_location_parseFromJSON() failed [geodetic_information]");
         goto end;
@@ -185,7 +183,7 @@ OpenAPI_nr_location_t *OpenAPI_nr_location_parseFromJSON(cJSON *nr_locationJSON)
     cJSON *global_gnb_id = cJSON_GetObjectItemCaseSensitive(nr_locationJSON, "globalGnbId");
 
     OpenAPI_global_ran_node_id_t *global_gnb_id_local_nonprim = NULL;
-    if (global_gnb_id) { 
+    if (global_gnb_id) {
     global_gnb_id_local_nonprim = OpenAPI_global_ran_node_id_parseFromJSON(global_gnb_id);
     }
 

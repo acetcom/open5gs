@@ -73,12 +73,11 @@ OpenAPI_subscribed_snssai_t *OpenAPI_subscribed_snssai_parseFromJSON(cJSON *subs
     }
 
     OpenAPI_snssai_t *subscribed_snssai_local_nonprim = NULL;
-    
     subscribed_snssai_local_nonprim = OpenAPI_snssai_parseFromJSON(subscribed_snssai);
 
     cJSON *default_indication = cJSON_GetObjectItemCaseSensitive(subscribed_snssaiJSON, "defaultIndication");
 
-    if (default_indication) { 
+    if (default_indication) {
     if (!cJSON_IsBool(default_indication)) {
         ogs_error("OpenAPI_subscribed_snssai_parseFromJSON() failed [default_indication]");
         goto end;

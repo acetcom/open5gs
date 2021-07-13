@@ -641,7 +641,6 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(pdu_session_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pdu_session_id]");
         goto end;
@@ -653,7 +652,6 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(dnn)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [dnn]");
         goto end;
@@ -661,7 +659,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *selected_dnn = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "selectedDnn");
 
-    if (selected_dnn) { 
+    if (selected_dnn) {
     if (!cJSON_IsString(selected_dnn)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [selected_dnn]");
         goto end;
@@ -675,13 +673,12 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     }
 
     OpenAPI_snssai_t *s_nssai_local_nonprim = NULL;
-    
     s_nssai_local_nonprim = OpenAPI_snssai_parseFromJSON(s_nssai);
 
     cJSON *hplmn_snssai = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "hplmnSnssai");
 
     OpenAPI_snssai_t *hplmn_snssai_local_nonprim = NULL;
-    if (hplmn_snssai) { 
+    if (hplmn_snssai) {
     hplmn_snssai_local_nonprim = OpenAPI_snssai_parseFromJSON(hplmn_snssai);
     }
 
@@ -692,7 +689,6 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     }
 
     OpenAPI_pdu_session_type_e pdu_session_typeVariable;
-    
     if (!cJSON_IsString(pdu_session_type)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pdu_session_type]");
         goto end;
@@ -701,7 +697,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *gpsi = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "gpsi");
 
-    if (gpsi) { 
+    if (gpsi) {
     if (!cJSON_IsString(gpsi)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [gpsi]");
         goto end;
@@ -710,7 +706,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *h_smf_uri = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "hSmfUri");
 
-    if (h_smf_uri) { 
+    if (h_smf_uri) {
     if (!cJSON_IsString(h_smf_uri)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [h_smf_uri]");
         goto end;
@@ -719,7 +715,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *smf_uri = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "smfUri");
 
-    if (smf_uri) { 
+    if (smf_uri) {
     if (!cJSON_IsString(smf_uri)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [smf_uri]");
         goto end;
@@ -728,7 +724,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *pdu_session_ref = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "pduSessionRef");
 
-    if (pdu_session_ref) { 
+    if (pdu_session_ref) {
     if (!cJSON_IsString(pdu_session_ref)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pdu_session_ref]");
         goto end;
@@ -737,7 +733,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *pcf_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "pcfId");
 
-    if (pcf_id) { 
+    if (pcf_id) {
     if (!cJSON_IsString(pcf_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pcf_id]");
         goto end;
@@ -746,7 +742,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *pcf_group_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "pcfGroupId");
 
-    if (pcf_group_id) { 
+    if (pcf_group_id) {
     if (!cJSON_IsString(pcf_group_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pcf_group_id]");
         goto end;
@@ -755,7 +751,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *pcf_set_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "pcfSetId");
 
-    if (pcf_set_id) { 
+    if (pcf_set_id) {
     if (!cJSON_IsString(pcf_set_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pcf_set_id]");
         goto end;
@@ -765,7 +761,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *sel_mode = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "selMode");
 
     OpenAPI_dnn_selection_mode_e sel_modeVariable;
-    if (sel_mode) { 
+    if (sel_mode) {
     if (!cJSON_IsString(sel_mode)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [sel_mode]");
         goto end;
@@ -775,7 +771,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *udm_group_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "udmGroupId");
 
-    if (udm_group_id) { 
+    if (udm_group_id) {
     if (!cJSON_IsString(udm_group_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [udm_group_id]");
         goto end;
@@ -784,7 +780,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *routing_indicator = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "routingIndicator");
 
-    if (routing_indicator) { 
+    if (routing_indicator) {
     if (!cJSON_IsString(routing_indicator)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [routing_indicator]");
         goto end;
@@ -798,7 +794,6 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     }
 
     OpenAPI_ambr_t *session_ambr_local_nonprim = NULL;
-    
     session_ambr_local_nonprim = OpenAPI_ambr_parseFromJSON(session_ambr);
 
     cJSON *qos_flows_list = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "qosFlowsList");
@@ -808,7 +803,6 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     }
 
     OpenAPI_list_t *qos_flows_listList;
-    
     cJSON *qos_flows_list_local_nonprimitive;
     if (!cJSON_IsArray(qos_flows_list)){
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [qos_flows_list]");
@@ -829,7 +823,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *h_smf_instance_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "hSmfInstanceId");
 
-    if (h_smf_instance_id) { 
+    if (h_smf_instance_id) {
     if (!cJSON_IsString(h_smf_instance_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [h_smf_instance_id]");
         goto end;
@@ -838,7 +832,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *smf_instance_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "smfInstanceId");
 
-    if (smf_instance_id) { 
+    if (smf_instance_id) {
     if (!cJSON_IsString(smf_instance_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [smf_instance_id]");
         goto end;
@@ -847,7 +841,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *pdu_session_smf_set_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "pduSessionSmfSetId");
 
-    if (pdu_session_smf_set_id) { 
+    if (pdu_session_smf_set_id) {
     if (!cJSON_IsString(pdu_session_smf_set_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pdu_session_smf_set_id]");
         goto end;
@@ -856,7 +850,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *pdu_session_smf_service_set_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "pduSessionSmfServiceSetId");
 
-    if (pdu_session_smf_service_set_id) { 
+    if (pdu_session_smf_service_set_id) {
     if (!cJSON_IsString(pdu_session_smf_service_set_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pdu_session_smf_service_set_id]");
         goto end;
@@ -866,7 +860,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *pdu_session_smf_binding = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "pduSessionSmfBinding");
 
     OpenAPI_sbi_binding_level_e pdu_session_smf_bindingVariable;
-    if (pdu_session_smf_binding) { 
+    if (pdu_session_smf_binding) {
     if (!cJSON_IsString(pdu_session_smf_binding)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [pdu_session_smf_binding]");
         goto end;
@@ -876,7 +870,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *enable_pause_charging = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "enablePauseCharging");
 
-    if (enable_pause_charging) { 
+    if (enable_pause_charging) {
     if (!cJSON_IsBool(enable_pause_charging)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [enable_pause_charging]");
         goto end;
@@ -885,7 +879,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *ue_ipv4_address = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "ueIpv4Address");
 
-    if (ue_ipv4_address) { 
+    if (ue_ipv4_address) {
     if (!cJSON_IsString(ue_ipv4_address)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [ue_ipv4_address]");
         goto end;
@@ -894,7 +888,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *ue_ipv6_prefix = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "ueIpv6Prefix");
 
-    if (ue_ipv6_prefix) { 
+    if (ue_ipv6_prefix) {
     if (!cJSON_IsString(ue_ipv6_prefix)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [ue_ipv6_prefix]");
         goto end;
@@ -904,14 +898,14 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *eps_pdn_cnx_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "epsPdnCnxInfo");
 
     OpenAPI_eps_pdn_cnx_info_t *eps_pdn_cnx_info_local_nonprim = NULL;
-    if (eps_pdn_cnx_info) { 
+    if (eps_pdn_cnx_info) {
     eps_pdn_cnx_info_local_nonprim = OpenAPI_eps_pdn_cnx_info_parseFromJSON(eps_pdn_cnx_info);
     }
 
     cJSON *eps_bearer_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "epsBearerInfo");
 
     OpenAPI_list_t *eps_bearer_infoList;
-    if (eps_bearer_info) { 
+    if (eps_bearer_info) {
     cJSON *eps_bearer_info_local_nonprimitive;
     if (!cJSON_IsArray(eps_bearer_info)){
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [eps_bearer_info]");
@@ -934,7 +928,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *max_integrity_protected_data_rate = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "maxIntegrityProtectedDataRate");
 
     OpenAPI_max_integrity_protected_data_rate_e max_integrity_protected_data_rateVariable;
-    if (max_integrity_protected_data_rate) { 
+    if (max_integrity_protected_data_rate) {
     if (!cJSON_IsString(max_integrity_protected_data_rate)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [max_integrity_protected_data_rate]");
         goto end;
@@ -944,7 +938,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *always_on_granted = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "alwaysOnGranted");
 
-    if (always_on_granted) { 
+    if (always_on_granted) {
     if (!cJSON_IsBool(always_on_granted)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [always_on_granted]");
         goto end;
@@ -954,13 +948,13 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *up_security = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "upSecurity");
 
     OpenAPI_up_security_t *up_security_local_nonprim = NULL;
-    if (up_security) { 
+    if (up_security) {
     up_security_local_nonprim = OpenAPI_up_security_parseFromJSON(up_security);
     }
 
     cJSON *h_smf_service_instance_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "hSmfServiceInstanceId");
 
-    if (h_smf_service_instance_id) { 
+    if (h_smf_service_instance_id) {
     if (!cJSON_IsString(h_smf_service_instance_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [h_smf_service_instance_id]");
         goto end;
@@ -969,7 +963,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *smf_service_instance_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "smfServiceInstanceId");
 
-    if (smf_service_instance_id) { 
+    if (smf_service_instance_id) {
     if (!cJSON_IsString(smf_service_instance_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [smf_service_instance_id]");
         goto end;
@@ -978,7 +972,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *recovery_time = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "recoveryTime");
 
-    if (recovery_time) { 
+    if (recovery_time) {
     if (!cJSON_IsString(recovery_time)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [recovery_time]");
         goto end;
@@ -987,7 +981,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *forwarding_ind = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "forwardingInd");
 
-    if (forwarding_ind) { 
+    if (forwarding_ind) {
     if (!cJSON_IsBool(forwarding_ind)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [forwarding_ind]");
         goto end;
@@ -997,13 +991,13 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *psa_tunnel_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "psaTunnelInfo");
 
     OpenAPI_tunnel_info_t *psa_tunnel_info_local_nonprim = NULL;
-    if (psa_tunnel_info) { 
+    if (psa_tunnel_info) {
     psa_tunnel_info_local_nonprim = OpenAPI_tunnel_info_parseFromJSON(psa_tunnel_info);
     }
 
     cJSON *charging_id = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "chargingId");
 
-    if (charging_id) { 
+    if (charging_id) {
     if (!cJSON_IsString(charging_id)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [charging_id]");
         goto end;
@@ -1013,20 +1007,20 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *charging_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "chargingInfo");
 
     OpenAPI_charging_information_t *charging_info_local_nonprim = NULL;
-    if (charging_info) { 
+    if (charging_info) {
     charging_info_local_nonprim = OpenAPI_charging_information_parseFromJSON(charging_info);
     }
 
     cJSON *roaming_charging_profile = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "roamingChargingProfile");
 
     OpenAPI_roaming_charging_profile_t *roaming_charging_profile_local_nonprim = NULL;
-    if (roaming_charging_profile) { 
+    if (roaming_charging_profile) {
     roaming_charging_profile_local_nonprim = OpenAPI_roaming_charging_profile_parseFromJSON(roaming_charging_profile);
     }
 
     cJSON *nef_ext_buf_support_ind = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "nefExtBufSupportInd");
 
-    if (nef_ext_buf_support_ind) { 
+    if (nef_ext_buf_support_ind) {
     if (!cJSON_IsBool(nef_ext_buf_support_ind)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [nef_ext_buf_support_ind]");
         goto end;
@@ -1035,7 +1029,7 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
 
     cJSON *ipv6_index = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "ipv6Index");
 
-    if (ipv6_index) { 
+    if (ipv6_index) {
     if (!cJSON_IsNumber(ipv6_index)) {
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [ipv6_index]");
         goto end;
@@ -1045,28 +1039,28 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *dn_aaa_address = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "dnAaaAddress");
 
     OpenAPI_ip_address_t *dn_aaa_address_local_nonprim = NULL;
-    if (dn_aaa_address) { 
+    if (dn_aaa_address) {
     dn_aaa_address_local_nonprim = OpenAPI_ip_address_parseFromJSON(dn_aaa_address);
     }
 
     cJSON *redundant_pdu_session_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "redundantPduSessionInfo");
 
     OpenAPI_redundant_pdu_session_information_t *redundant_pdu_session_info_local_nonprim = NULL;
-    if (redundant_pdu_session_info) { 
+    if (redundant_pdu_session_info) {
     redundant_pdu_session_info_local_nonprim = OpenAPI_redundant_pdu_session_information_parseFromJSON(redundant_pdu_session_info);
     }
 
     cJSON *ran_tunnel_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "ranTunnelInfo");
 
     OpenAPI_qos_flow_tunnel_t *ran_tunnel_info_local_nonprim = NULL;
-    if (ran_tunnel_info) { 
+    if (ran_tunnel_info) {
     ran_tunnel_info_local_nonprim = OpenAPI_qos_flow_tunnel_parseFromJSON(ran_tunnel_info);
     }
 
     cJSON *add_ran_tunnel_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "addRanTunnelInfo");
 
     OpenAPI_list_t *add_ran_tunnel_infoList;
-    if (add_ran_tunnel_info) { 
+    if (add_ran_tunnel_info) {
     cJSON *add_ran_tunnel_info_local_nonprimitive;
     if (!cJSON_IsArray(add_ran_tunnel_info)){
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [add_ran_tunnel_info]");
@@ -1089,14 +1083,14 @@ OpenAPI_sm_context_t *OpenAPI_sm_context_parseFromJSON(cJSON *sm_contextJSON)
     cJSON *red_ran_tunnel_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "redRanTunnelInfo");
 
     OpenAPI_qos_flow_tunnel_t *red_ran_tunnel_info_local_nonprim = NULL;
-    if (red_ran_tunnel_info) { 
+    if (red_ran_tunnel_info) {
     red_ran_tunnel_info_local_nonprim = OpenAPI_qos_flow_tunnel_parseFromJSON(red_ran_tunnel_info);
     }
 
     cJSON *add_red_ran_tunnel_info = cJSON_GetObjectItemCaseSensitive(sm_contextJSON, "addRedRanTunnelInfo");
 
     OpenAPI_list_t *add_red_ran_tunnel_infoList;
-    if (add_red_ran_tunnel_info) { 
+    if (add_red_ran_tunnel_info) {
     cJSON *add_red_ran_tunnel_info_local_nonprimitive;
     if (!cJSON_IsArray(add_red_ran_tunnel_info)){
         ogs_error("OpenAPI_sm_context_parseFromJSON() failed [add_red_ran_tunnel_info]");

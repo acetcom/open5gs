@@ -171,12 +171,11 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
     }
 
     OpenAPI_tai_t *tai_local_nonprim = NULL;
-    
     tai_local_nonprim = OpenAPI_tai_parseFromJSON(tai);
 
     cJSON *ignore_tai = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "ignoreTai");
 
-    if (ignore_tai) { 
+    if (ignore_tai) {
     if (!cJSON_IsBool(ignore_tai)) {
         ogs_error("OpenAPI_eutra_location_parseFromJSON() failed [ignore_tai]");
         goto end;
@@ -190,12 +189,11 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
     }
 
     OpenAPI_ecgi_t *ecgi_local_nonprim = NULL;
-    
     ecgi_local_nonprim = OpenAPI_ecgi_parseFromJSON(ecgi);
 
     cJSON *ignore_ecgi = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "ignoreEcgi");
 
-    if (ignore_ecgi) { 
+    if (ignore_ecgi) {
     if (!cJSON_IsBool(ignore_ecgi)) {
         ogs_error("OpenAPI_eutra_location_parseFromJSON() failed [ignore_ecgi]");
         goto end;
@@ -204,7 +202,7 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
 
     cJSON *age_of_location_information = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "ageOfLocationInformation");
 
-    if (age_of_location_information) { 
+    if (age_of_location_information) {
     if (!cJSON_IsNumber(age_of_location_information)) {
         ogs_error("OpenAPI_eutra_location_parseFromJSON() failed [age_of_location_information]");
         goto end;
@@ -213,7 +211,7 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
 
     cJSON *ue_location_timestamp = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "ueLocationTimestamp");
 
-    if (ue_location_timestamp) { 
+    if (ue_location_timestamp) {
     if (!cJSON_IsString(ue_location_timestamp)) {
         ogs_error("OpenAPI_eutra_location_parseFromJSON() failed [ue_location_timestamp]");
         goto end;
@@ -222,7 +220,7 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
 
     cJSON *geographical_information = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "geographicalInformation");
 
-    if (geographical_information) { 
+    if (geographical_information) {
     if (!cJSON_IsString(geographical_information)) {
         ogs_error("OpenAPI_eutra_location_parseFromJSON() failed [geographical_information]");
         goto end;
@@ -231,7 +229,7 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
 
     cJSON *geodetic_information = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "geodeticInformation");
 
-    if (geodetic_information) { 
+    if (geodetic_information) {
     if (!cJSON_IsString(geodetic_information)) {
         ogs_error("OpenAPI_eutra_location_parseFromJSON() failed [geodetic_information]");
         goto end;
@@ -241,14 +239,14 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
     cJSON *global_ngenb_id = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "globalNgenbId");
 
     OpenAPI_global_ran_node_id_t *global_ngenb_id_local_nonprim = NULL;
-    if (global_ngenb_id) { 
+    if (global_ngenb_id) {
     global_ngenb_id_local_nonprim = OpenAPI_global_ran_node_id_parseFromJSON(global_ngenb_id);
     }
 
     cJSON *global_enb_id = cJSON_GetObjectItemCaseSensitive(eutra_locationJSON, "globalENbId");
 
     OpenAPI_global_ran_node_id_t *global_enb_id_local_nonprim = NULL;
-    if (global_enb_id) { 
+    if (global_enb_id) {
     global_enb_id_local_nonprim = OpenAPI_global_ran_node_id_parseFromJSON(global_enb_id);
     }
 

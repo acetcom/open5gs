@@ -267,27 +267,27 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
     cJSON *n1_message_container = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "n1MessageContainer");
 
     OpenAPI_n1_message_container_t *n1_message_container_local_nonprim = NULL;
-    if (n1_message_container) { 
+    if (n1_message_container) {
     n1_message_container_local_nonprim = OpenAPI_n1_message_container_parseFromJSON(n1_message_container);
     }
 
     cJSON *n2_info_container = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "n2InfoContainer");
 
     OpenAPI_n2_info_container_t *n2_info_container_local_nonprim = NULL;
-    if (n2_info_container) { 
+    if (n2_info_container) {
     n2_info_container_local_nonprim = OpenAPI_n2_info_container_parseFromJSON(n2_info_container);
     }
 
     cJSON *mt_data = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "mtData");
 
     OpenAPI_ref_to_binary_data_t *mt_data_local_nonprim = NULL;
-    if (mt_data) { 
+    if (mt_data) {
     mt_data_local_nonprim = OpenAPI_ref_to_binary_data_parseFromJSON(mt_data);
     }
 
     cJSON *skip_ind = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "skipInd");
 
-    if (skip_ind) { 
+    if (skip_ind) {
     if (!cJSON_IsBool(skip_ind)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [skip_ind]");
         goto end;
@@ -296,7 +296,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
 
     cJSON *last_msg_indication = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "lastMsgIndication");
 
-    if (last_msg_indication) { 
+    if (last_msg_indication) {
     if (!cJSON_IsBool(last_msg_indication)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [last_msg_indication]");
         goto end;
@@ -305,7 +305,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
 
     cJSON *pdu_session_id = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "pduSessionId");
 
-    if (pdu_session_id) { 
+    if (pdu_session_id) {
     if (!cJSON_IsNumber(pdu_session_id)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [pdu_session_id]");
         goto end;
@@ -314,7 +314,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
 
     cJSON *lcs_correlation_id = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "lcsCorrelationId");
 
-    if (lcs_correlation_id) { 
+    if (lcs_correlation_id) {
     if (!cJSON_IsString(lcs_correlation_id)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [lcs_correlation_id]");
         goto end;
@@ -323,7 +323,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
 
     cJSON *ppi = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "ppi");
 
-    if (ppi) { 
+    if (ppi) {
     if (!cJSON_IsNumber(ppi)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [ppi]");
         goto end;
@@ -333,13 +333,13 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
     cJSON *arp = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "arp");
 
     OpenAPI_arp_t *arp_local_nonprim = NULL;
-    if (arp) { 
+    if (arp) {
     arp_local_nonprim = OpenAPI_arp_parseFromJSON(arp);
     }
 
     cJSON *_5qi = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "5qi");
 
-    if (_5qi) { 
+    if (_5qi) {
     if (!cJSON_IsNumber(_5qi)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [_5qi]");
         goto end;
@@ -348,7 +348,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
 
     cJSON *n1n2_failure_txf_notif_uri = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "n1n2FailureTxfNotifURI");
 
-    if (n1n2_failure_txf_notif_uri) { 
+    if (n1n2_failure_txf_notif_uri) {
     if (!cJSON_IsString(n1n2_failure_txf_notif_uri)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [n1n2_failure_txf_notif_uri]");
         goto end;
@@ -357,7 +357,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
 
     cJSON *smf_reallocation_ind = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "smfReallocationInd");
 
-    if (smf_reallocation_ind) { 
+    if (smf_reallocation_ind) {
     if (!cJSON_IsBool(smf_reallocation_ind)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [smf_reallocation_ind]");
         goto end;
@@ -367,13 +367,13 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
     cJSON *area_of_validity = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "areaOfValidity");
 
     OpenAPI_area_of_validity_t *area_of_validity_local_nonprim = NULL;
-    if (area_of_validity) { 
+    if (area_of_validity) {
     area_of_validity_local_nonprim = OpenAPI_area_of_validity_parseFromJSON(area_of_validity);
     }
 
     cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "supportedFeatures");
 
-    if (supported_features) { 
+    if (supported_features) {
     if (!cJSON_IsString(supported_features)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [supported_features]");
         goto end;
@@ -383,13 +383,13 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
     cJSON *old_guami = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "oldGuami");
 
     OpenAPI_guami_t *old_guami_local_nonprim = NULL;
-    if (old_guami) { 
+    if (old_guami) {
     old_guami_local_nonprim = OpenAPI_guami_parseFromJSON(old_guami);
     }
 
     cJSON *ma_accepted_ind = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "maAcceptedInd");
 
-    if (ma_accepted_ind) { 
+    if (ma_accepted_ind) {
     if (!cJSON_IsBool(ma_accepted_ind)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [ma_accepted_ind]");
         goto end;
@@ -398,7 +398,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
 
     cJSON *ext_buf_support = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "extBufSupport");
 
-    if (ext_buf_support) { 
+    if (ext_buf_support) {
     if (!cJSON_IsBool(ext_buf_support)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [ext_buf_support]");
         goto end;
@@ -408,7 +408,7 @@ OpenAPI_n1_n2_message_transfer_req_data_t *OpenAPI_n1_n2_message_transfer_req_da
     cJSON *target_access = cJSON_GetObjectItemCaseSensitive(n1_n2_message_transfer_req_dataJSON, "targetAccess");
 
     OpenAPI_access_type_e target_accessVariable;
-    if (target_access) { 
+    if (target_access) {
     if (!cJSON_IsString(target_access)) {
         ogs_error("OpenAPI_n1_n2_message_transfer_req_data_parseFromJSON() failed [target_access]");
         goto end;

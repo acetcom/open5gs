@@ -73,7 +73,7 @@ OpenAPI_redirect_information_t *OpenAPI_redirect_information_parseFromJSON(cJSON
     OpenAPI_redirect_information_t *redirect_information_local_var = NULL;
     cJSON *redirect_enabled = cJSON_GetObjectItemCaseSensitive(redirect_informationJSON, "redirectEnabled");
 
-    if (redirect_enabled) { 
+    if (redirect_enabled) {
     if (!cJSON_IsBool(redirect_enabled)) {
         ogs_error("OpenAPI_redirect_information_parseFromJSON() failed [redirect_enabled]");
         goto end;
@@ -83,7 +83,7 @@ OpenAPI_redirect_information_t *OpenAPI_redirect_information_parseFromJSON(cJSON
     cJSON *redirect_address_type = cJSON_GetObjectItemCaseSensitive(redirect_informationJSON, "redirectAddressType");
 
     OpenAPI_redirect_address_type_e redirect_address_typeVariable;
-    if (redirect_address_type) { 
+    if (redirect_address_type) {
     if (!cJSON_IsString(redirect_address_type)) {
         ogs_error("OpenAPI_redirect_information_parseFromJSON() failed [redirect_address_type]");
         goto end;
@@ -93,7 +93,7 @@ OpenAPI_redirect_information_t *OpenAPI_redirect_information_parseFromJSON(cJSON
 
     cJSON *redirect_server_address = cJSON_GetObjectItemCaseSensitive(redirect_informationJSON, "redirectServerAddress");
 
-    if (redirect_server_address) { 
+    if (redirect_server_address) {
     if (!cJSON_IsString(redirect_server_address)) {
         ogs_error("OpenAPI_redirect_information_parseFromJSON() failed [redirect_server_address]");
         goto end;

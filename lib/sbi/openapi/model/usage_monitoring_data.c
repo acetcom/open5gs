@@ -186,7 +186,6 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
         goto end;
     }
 
-    
     if (!cJSON_IsString(um_id)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [um_id]");
         goto end;
@@ -194,7 +193,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *volume_threshold = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "volumeThreshold");
 
-    if (volume_threshold) { 
+    if (volume_threshold) {
     if (!cJSON_IsNumber(volume_threshold)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [volume_threshold]");
         goto end;
@@ -203,7 +202,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *volume_threshold_uplink = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "volumeThresholdUplink");
 
-    if (volume_threshold_uplink) { 
+    if (volume_threshold_uplink) {
     if (!cJSON_IsNumber(volume_threshold_uplink)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [volume_threshold_uplink]");
         goto end;
@@ -212,7 +211,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *volume_threshold_downlink = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "volumeThresholdDownlink");
 
-    if (volume_threshold_downlink) { 
+    if (volume_threshold_downlink) {
     if (!cJSON_IsNumber(volume_threshold_downlink)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [volume_threshold_downlink]");
         goto end;
@@ -221,7 +220,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *time_threshold = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "timeThreshold");
 
-    if (time_threshold) { 
+    if (time_threshold) {
     if (!cJSON_IsNumber(time_threshold)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [time_threshold]");
         goto end;
@@ -230,7 +229,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *monitoring_time = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "monitoringTime");
 
-    if (monitoring_time) { 
+    if (monitoring_time) {
     if (!cJSON_IsString(monitoring_time)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [monitoring_time]");
         goto end;
@@ -239,7 +238,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *next_vol_threshold = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "nextVolThreshold");
 
-    if (next_vol_threshold) { 
+    if (next_vol_threshold) {
     if (!cJSON_IsNumber(next_vol_threshold)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [next_vol_threshold]");
         goto end;
@@ -248,7 +247,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *next_vol_threshold_uplink = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "nextVolThresholdUplink");
 
-    if (next_vol_threshold_uplink) { 
+    if (next_vol_threshold_uplink) {
     if (!cJSON_IsNumber(next_vol_threshold_uplink)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [next_vol_threshold_uplink]");
         goto end;
@@ -257,7 +256,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *next_vol_threshold_downlink = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "nextVolThresholdDownlink");
 
-    if (next_vol_threshold_downlink) { 
+    if (next_vol_threshold_downlink) {
     if (!cJSON_IsNumber(next_vol_threshold_downlink)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [next_vol_threshold_downlink]");
         goto end;
@@ -266,7 +265,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *next_time_threshold = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "nextTimeThreshold");
 
-    if (next_time_threshold) { 
+    if (next_time_threshold) {
     if (!cJSON_IsNumber(next_time_threshold)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [next_time_threshold]");
         goto end;
@@ -275,7 +274,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
 
     cJSON *inactivity_time = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "inactivityTime");
 
-    if (inactivity_time) { 
+    if (inactivity_time) {
     if (!cJSON_IsNumber(inactivity_time)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [inactivity_time]");
         goto end;
@@ -285,7 +284,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
     cJSON *ex_usage_pcc_rule_ids = cJSON_GetObjectItemCaseSensitive(usage_monitoring_dataJSON, "exUsagePccRuleIds");
 
     OpenAPI_list_t *ex_usage_pcc_rule_idsList;
-    if (ex_usage_pcc_rule_ids) { 
+    if (ex_usage_pcc_rule_ids) {
     cJSON *ex_usage_pcc_rule_ids_local;
     if (!cJSON_IsArray(ex_usage_pcc_rule_ids)) {
         ogs_error("OpenAPI_usage_monitoring_data_parseFromJSON() failed [ex_usage_pcc_rule_ids]");
@@ -299,7 +298,7 @@ OpenAPI_usage_monitoring_data_t *OpenAPI_usage_monitoring_data_parseFromJSON(cJS
         goto end;
     }
     OpenAPI_list_add(ex_usage_pcc_rule_idsList , ogs_strdup_or_assert(ex_usage_pcc_rule_ids_local->valuestring));
-                    }
+    }
     }
 
     usage_monitoring_data_local_var = OpenAPI_usage_monitoring_data_create (

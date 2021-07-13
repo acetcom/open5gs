@@ -61,7 +61,6 @@ OpenAPI_port_management_container_t *OpenAPI_port_management_container_parseFrom
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(port_man_cont)) {
         ogs_error("OpenAPI_port_management_container_parseFromJSON() failed [port_man_cont]");
         goto end;
@@ -73,7 +72,6 @@ OpenAPI_port_management_container_t *OpenAPI_port_management_container_parseFrom
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(port_num)) {
         ogs_error("OpenAPI_port_management_container_parseFromJSON() failed [port_num]");
         goto end;

@@ -348,7 +348,6 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
         goto end;
     }
 
-    
     if (!cJSON_IsString(dnn)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [dnn]");
         goto end;
@@ -357,7 +356,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
     cJSON *allowed_services = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "allowedServices");
 
     OpenAPI_list_t *allowed_servicesList;
-    if (allowed_services) { 
+    if (allowed_services) {
     cJSON *allowed_services_local;
     if (!cJSON_IsArray(allowed_services)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [allowed_services]");
@@ -371,13 +370,13 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
         goto end;
     }
     OpenAPI_list_add(allowed_servicesList , ogs_strdup_or_assert(allowed_services_local->valuestring));
-                    }
+    }
     }
 
     cJSON *subsc_cats = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "subscCats");
 
     OpenAPI_list_t *subsc_catsList;
-    if (subsc_cats) { 
+    if (subsc_cats) {
     cJSON *subsc_cats_local;
     if (!cJSON_IsArray(subsc_cats)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [subsc_cats]");
@@ -391,12 +390,12 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
         goto end;
     }
     OpenAPI_list_add(subsc_catsList , ogs_strdup_or_assert(subsc_cats_local->valuestring));
-                    }
+    }
     }
 
     cJSON *gbr_ul = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "gbrUl");
 
-    if (gbr_ul) { 
+    if (gbr_ul) {
     if (!cJSON_IsString(gbr_ul)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [gbr_ul]");
         goto end;
@@ -405,7 +404,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *gbr_dl = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "gbrDl");
 
-    if (gbr_dl) { 
+    if (gbr_dl) {
     if (!cJSON_IsString(gbr_dl)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [gbr_dl]");
         goto end;
@@ -414,7 +413,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *adc_support = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "adcSupport");
 
-    if (adc_support) { 
+    if (adc_support) {
     if (!cJSON_IsBool(adc_support)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [adc_support]");
         goto end;
@@ -423,7 +422,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *subsc_spending_limits = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "subscSpendingLimits");
 
-    if (subsc_spending_limits) { 
+    if (subsc_spending_limits) {
     if (!cJSON_IsBool(subsc_spending_limits)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [subsc_spending_limits]");
         goto end;
@@ -432,7 +431,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *ipv4_index = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "ipv4Index");
 
-    if (ipv4_index) { 
+    if (ipv4_index) {
     if (!cJSON_IsNumber(ipv4_index)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [ipv4_index]");
         goto end;
@@ -441,7 +440,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *ipv6_index = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "ipv6Index");
 
-    if (ipv6_index) { 
+    if (ipv6_index) {
     if (!cJSON_IsNumber(ipv6_index)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [ipv6_index]");
         goto end;
@@ -450,7 +449,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *offline = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "offline");
 
-    if (offline) { 
+    if (offline) {
     if (!cJSON_IsBool(offline)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [offline]");
         goto end;
@@ -459,7 +458,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *online = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "online");
 
-    if (online) { 
+    if (online) {
     if (!cJSON_IsBool(online)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [online]");
         goto end;
@@ -469,14 +468,14 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
     cJSON *chf_info = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "chfInfo");
 
     OpenAPI_charging_information_t *chf_info_local_nonprim = NULL;
-    if (chf_info) { 
+    if (chf_info) {
     chf_info_local_nonprim = OpenAPI_charging_information_parseFromJSON(chf_info);
     }
 
     cJSON *ref_um_data_limit_ids = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "refUmDataLimitIds");
 
     OpenAPI_list_t *ref_um_data_limit_idsList;
-    if (ref_um_data_limit_ids) { 
+    if (ref_um_data_limit_ids) {
     cJSON *ref_um_data_limit_ids_local_map;
     if (!cJSON_IsObject(ref_um_data_limit_ids)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [ref_um_data_limit_ids]");
@@ -498,7 +497,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *mps_priority = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "mpsPriority");
 
-    if (mps_priority) { 
+    if (mps_priority) {
     if (!cJSON_IsBool(mps_priority)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [mps_priority]");
         goto end;
@@ -507,7 +506,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *mcs_priority = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "mcsPriority");
 
-    if (mcs_priority) { 
+    if (mcs_priority) {
     if (!cJSON_IsBool(mcs_priority)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [mcs_priority]");
         goto end;
@@ -516,7 +515,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *ims_signalling_prio = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "imsSignallingPrio");
 
-    if (ims_signalling_prio) { 
+    if (ims_signalling_prio) {
     if (!cJSON_IsBool(ims_signalling_prio)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [ims_signalling_prio]");
         goto end;
@@ -525,7 +524,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *mps_priority_level = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "mpsPriorityLevel");
 
-    if (mps_priority_level) { 
+    if (mps_priority_level) {
     if (!cJSON_IsNumber(mps_priority_level)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [mps_priority_level]");
         goto end;
@@ -534,7 +533,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *mcs_priority_level = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "mcsPriorityLevel");
 
-    if (mcs_priority_level) { 
+    if (mcs_priority_level) {
     if (!cJSON_IsNumber(mcs_priority_level)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [mcs_priority_level]");
         goto end;
@@ -544,7 +543,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
     cJSON *pra_infos = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "praInfos");
 
     OpenAPI_list_t *pra_infosList;
-    if (pra_infos) { 
+    if (pra_infos) {
     cJSON *pra_infos_local_map;
     if (!cJSON_IsObject(pra_infos)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [pra_infos]");
@@ -567,7 +566,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
     cJSON *bdt_ref_ids = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "bdtRefIds");
 
     OpenAPI_list_t *bdt_ref_idsList;
-    if (bdt_ref_ids) { 
+    if (bdt_ref_ids) {
     cJSON *bdt_ref_ids_local_map;
     if (!cJSON_IsObject(bdt_ref_ids)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [bdt_ref_ids]");
@@ -583,7 +582,7 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
 
     cJSON *loc_rout_not_allowed = cJSON_GetObjectItemCaseSensitive(sm_policy_dnn_dataJSON, "locRoutNotAllowed");
 
-    if (loc_rout_not_allowed) { 
+    if (loc_rout_not_allowed) {
     if (!cJSON_IsBool(loc_rout_not_allowed)) {
         ogs_error("OpenAPI_sm_policy_dnn_data_parseFromJSON() failed [loc_rout_not_allowed]");
         goto end;

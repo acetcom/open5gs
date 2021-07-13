@@ -114,7 +114,6 @@ OpenAPI_ue_reg_status_update_req_data_t *OpenAPI_ue_reg_status_update_req_data_p
     }
 
     OpenAPI_ue_context_transfer_status_e transfer_statusVariable;
-    
     if (!cJSON_IsString(transfer_status)) {
         ogs_error("OpenAPI_ue_reg_status_update_req_data_parseFromJSON() failed [transfer_status]");
         goto end;
@@ -124,7 +123,7 @@ OpenAPI_ue_reg_status_update_req_data_t *OpenAPI_ue_reg_status_update_req_data_p
     cJSON *to_release_session_list = cJSON_GetObjectItemCaseSensitive(ue_reg_status_update_req_dataJSON, "toReleaseSessionList");
 
     OpenAPI_list_t *to_release_session_listList;
-    if (to_release_session_list) { 
+    if (to_release_session_list) {
     cJSON *to_release_session_list_local;
     if (!cJSON_IsArray(to_release_session_list)) {
         ogs_error("OpenAPI_ue_reg_status_update_req_data_parseFromJSON() failed [to_release_session_list]");
@@ -138,12 +137,12 @@ OpenAPI_ue_reg_status_update_req_data_t *OpenAPI_ue_reg_status_update_req_data_p
         goto end;
     }
     OpenAPI_list_add(to_release_session_listList , &to_release_session_list_local->valuedouble);
-                    }
+    }
     }
 
     cJSON *pcf_reselected_ind = cJSON_GetObjectItemCaseSensitive(ue_reg_status_update_req_dataJSON, "pcfReselectedInd");
 
-    if (pcf_reselected_ind) { 
+    if (pcf_reselected_ind) {
     if (!cJSON_IsBool(pcf_reselected_ind)) {
         ogs_error("OpenAPI_ue_reg_status_update_req_data_parseFromJSON() failed [pcf_reselected_ind]");
         goto end;
@@ -153,7 +152,7 @@ OpenAPI_ue_reg_status_update_req_data_t *OpenAPI_ue_reg_status_update_req_data_p
     cJSON *smf_change_info_list = cJSON_GetObjectItemCaseSensitive(ue_reg_status_update_req_dataJSON, "smfChangeInfoList");
 
     OpenAPI_list_t *smf_change_info_listList;
-    if (smf_change_info_list) { 
+    if (smf_change_info_list) {
     cJSON *smf_change_info_list_local_nonprimitive;
     if (!cJSON_IsArray(smf_change_info_list)){
         ogs_error("OpenAPI_ue_reg_status_update_req_data_parseFromJSON() failed [smf_change_info_list]");

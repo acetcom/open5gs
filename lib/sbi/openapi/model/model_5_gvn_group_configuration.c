@@ -123,14 +123,14 @@ OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configurati
     cJSON *_5g_vn_group_data = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_configurationJSON, "5gVnGroupData");
 
     OpenAPI_model_5_gvn_group_data_t *_5g_vn_group_data_local_nonprim = NULL;
-    if (_5g_vn_group_data) { 
+    if (_5g_vn_group_data) {
     _5g_vn_group_data_local_nonprim = OpenAPI_model_5_gvn_group_data_parseFromJSON(_5g_vn_group_data);
     }
 
     cJSON *members = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_configurationJSON, "members");
 
     OpenAPI_list_t *membersList;
-    if (members) { 
+    if (members) {
     cJSON *members_local;
     if (!cJSON_IsArray(members)) {
         ogs_error("OpenAPI_model_5_gvn_group_configuration_parseFromJSON() failed [members]");
@@ -144,12 +144,12 @@ OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configurati
         goto end;
     }
     OpenAPI_list_add(membersList , ogs_strdup_or_assert(members_local->valuestring));
-                    }
+    }
     }
 
     cJSON *reference_id = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_configurationJSON, "referenceId");
 
-    if (reference_id) { 
+    if (reference_id) {
     if (!cJSON_IsNumber(reference_id)) {
         ogs_error("OpenAPI_model_5_gvn_group_configuration_parseFromJSON() failed [reference_id]");
         goto end;
@@ -158,7 +158,7 @@ OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configurati
 
     cJSON *af_instance_id = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_configurationJSON, "afInstanceId");
 
-    if (af_instance_id) { 
+    if (af_instance_id) {
     if (!cJSON_IsString(af_instance_id)) {
         ogs_error("OpenAPI_model_5_gvn_group_configuration_parseFromJSON() failed [af_instance_id]");
         goto end;
@@ -167,7 +167,7 @@ OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configurati
 
     cJSON *internal_group_identifier = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_configurationJSON, "internalGroupIdentifier");
 
-    if (internal_group_identifier) { 
+    if (internal_group_identifier) {
     if (!cJSON_IsString(internal_group_identifier)) {
         ogs_error("OpenAPI_model_5_gvn_group_configuration_parseFromJSON() failed [internal_group_identifier]");
         goto end;
@@ -176,7 +176,7 @@ OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configurati
 
     cJSON *mtc_provider_information = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_configurationJSON, "mtcProviderInformation");
 
-    if (mtc_provider_information) { 
+    if (mtc_provider_information) {
     if (!cJSON_IsString(mtc_provider_information)) {
         ogs_error("OpenAPI_model_5_gvn_group_configuration_parseFromJSON() failed [mtc_provider_information]");
         goto end;

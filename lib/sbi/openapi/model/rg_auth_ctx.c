@@ -76,7 +76,6 @@ OpenAPI_rg_auth_ctx_t *OpenAPI_rg_auth_ctx_parseFromJSON(cJSON *rg_auth_ctxJSON)
     }
 
     OpenAPI_auth_result_e auth_resultVariable;
-    
     if (!cJSON_IsString(auth_result)) {
         ogs_error("OpenAPI_rg_auth_ctx_parseFromJSON() failed [auth_result]");
         goto end;
@@ -85,7 +84,7 @@ OpenAPI_rg_auth_ctx_t *OpenAPI_rg_auth_ctx_parseFromJSON(cJSON *rg_auth_ctxJSON)
 
     cJSON *supi = cJSON_GetObjectItemCaseSensitive(rg_auth_ctxJSON, "supi");
 
-    if (supi) { 
+    if (supi) {
     if (!cJSON_IsString(supi)) {
         ogs_error("OpenAPI_rg_auth_ctx_parseFromJSON() failed [supi]");
         goto end;
@@ -94,7 +93,7 @@ OpenAPI_rg_auth_ctx_t *OpenAPI_rg_auth_ctx_parseFromJSON(cJSON *rg_auth_ctxJSON)
 
     cJSON *auth_ind = cJSON_GetObjectItemCaseSensitive(rg_auth_ctxJSON, "authInd");
 
-    if (auth_ind) { 
+    if (auth_ind) {
     if (!cJSON_IsBool(auth_ind)) {
         ogs_error("OpenAPI_rg_auth_ctx_parseFromJSON() failed [auth_ind]");
         goto end;

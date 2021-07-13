@@ -81,7 +81,7 @@ OpenAPI_n1_n2_msg_txfr_err_detail_t *OpenAPI_n1_n2_msg_txfr_err_detail_parseFrom
     OpenAPI_n1_n2_msg_txfr_err_detail_t *n1_n2_msg_txfr_err_detail_local_var = NULL;
     cJSON *retry_after = cJSON_GetObjectItemCaseSensitive(n1_n2_msg_txfr_err_detailJSON, "retryAfter");
 
-    if (retry_after) { 
+    if (retry_after) {
     if (!cJSON_IsNumber(retry_after)) {
         ogs_error("OpenAPI_n1_n2_msg_txfr_err_detail_parseFromJSON() failed [retry_after]");
         goto end;
@@ -91,13 +91,13 @@ OpenAPI_n1_n2_msg_txfr_err_detail_t *OpenAPI_n1_n2_msg_txfr_err_detail_parseFrom
     cJSON *highest_prio_arp = cJSON_GetObjectItemCaseSensitive(n1_n2_msg_txfr_err_detailJSON, "highestPrioArp");
 
     OpenAPI_arp_t *highest_prio_arp_local_nonprim = NULL;
-    if (highest_prio_arp) { 
+    if (highest_prio_arp) {
     highest_prio_arp_local_nonprim = OpenAPI_arp_parseFromJSON(highest_prio_arp);
     }
 
     cJSON *max_waiting_time = cJSON_GetObjectItemCaseSensitive(n1_n2_msg_txfr_err_detailJSON, "maxWaitingTime");
 
-    if (max_waiting_time) { 
+    if (max_waiting_time) {
     if (!cJSON_IsNumber(max_waiting_time)) {
         ogs_error("OpenAPI_n1_n2_msg_txfr_err_detail_parseFromJSON() failed [max_waiting_time]");
         goto end;

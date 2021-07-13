@@ -193,7 +193,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
     OpenAPI_transfer_mt_data_error_t *transfer_mt_data_error_local_var = NULL;
     cJSON *type = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "type");
 
-    if (type) { 
+    if (type) {
     if (!cJSON_IsString(type)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [type]");
         goto end;
@@ -202,7 +202,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
 
     cJSON *title = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "title");
 
-    if (title) { 
+    if (title) {
     if (!cJSON_IsString(title)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [title]");
         goto end;
@@ -211,7 +211,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
 
     cJSON *status = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "status");
 
-    if (status) { 
+    if (status) {
     if (!cJSON_IsNumber(status)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [status]");
         goto end;
@@ -220,7 +220,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
 
     cJSON *detail = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "detail");
 
-    if (detail) { 
+    if (detail) {
     if (!cJSON_IsString(detail)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [detail]");
         goto end;
@@ -229,7 +229,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
 
     cJSON *instance = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "instance");
 
-    if (instance) { 
+    if (instance) {
     if (!cJSON_IsString(instance)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [instance]");
         goto end;
@@ -238,7 +238,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
 
     cJSON *cause = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "cause");
 
-    if (cause) { 
+    if (cause) {
     if (!cJSON_IsString(cause)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [cause]");
         goto end;
@@ -248,7 +248,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
     cJSON *invalid_params = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "invalidParams");
 
     OpenAPI_list_t *invalid_paramsList;
-    if (invalid_params) { 
+    if (invalid_params) {
     cJSON *invalid_params_local_nonprimitive;
     if (!cJSON_IsArray(invalid_params)){
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [invalid_params]");
@@ -270,7 +270,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
 
     cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "supportedFeatures");
 
-    if (supported_features) { 
+    if (supported_features) {
     if (!cJSON_IsString(supported_features)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [supported_features]");
         goto end;
@@ -280,20 +280,20 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
     cJSON *access_token_error = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "accessTokenError");
 
     OpenAPI_access_token_err_t *access_token_error_local_nonprim = NULL;
-    if (access_token_error) { 
+    if (access_token_error) {
     access_token_error_local_nonprim = OpenAPI_access_token_err_parseFromJSON(access_token_error);
     }
 
     cJSON *access_token_request = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "accessTokenRequest");
 
     OpenAPI_access_token_req_t *access_token_request_local_nonprim = NULL;
-    if (access_token_request) { 
+    if (access_token_request) {
     access_token_request_local_nonprim = OpenAPI_access_token_req_parseFromJSON(access_token_request);
     }
 
     cJSON *nrf_id = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "nrfId");
 
-    if (nrf_id) { 
+    if (nrf_id) {
     if (!cJSON_IsString(nrf_id)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [nrf_id]");
         goto end;
@@ -302,7 +302,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
 
     cJSON *max_waiting_time = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_errorJSON, "maxWaitingTime");
 
-    if (max_waiting_time) { 
+    if (max_waiting_time) {
     if (!cJSON_IsNumber(max_waiting_time)) {
         ogs_error("OpenAPI_transfer_mt_data_error_parseFromJSON() failed [max_waiting_time]");
         goto end;

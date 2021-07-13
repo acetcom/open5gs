@@ -61,7 +61,7 @@ OpenAPI_ec_restriction_data_wb_t *OpenAPI_ec_restriction_data_wb_parseFromJSON(c
     OpenAPI_ec_restriction_data_wb_t *ec_restriction_data_wb_local_var = NULL;
     cJSON *ec_mode_a_restricted = cJSON_GetObjectItemCaseSensitive(ec_restriction_data_wbJSON, "ecModeARestricted");
 
-    if (ec_mode_a_restricted) { 
+    if (ec_mode_a_restricted) {
     if (!cJSON_IsBool(ec_mode_a_restricted)) {
         ogs_error("OpenAPI_ec_restriction_data_wb_parseFromJSON() failed [ec_mode_a_restricted]");
         goto end;
@@ -74,7 +74,6 @@ OpenAPI_ec_restriction_data_wb_t *OpenAPI_ec_restriction_data_wb_parseFromJSON(c
         goto end;
     }
 
-    
     if (!cJSON_IsBool(ec_mode_b_restricted)) {
         ogs_error("OpenAPI_ec_restriction_data_wb_parseFromJSON() failed [ec_mode_b_restricted]");
         goto end;

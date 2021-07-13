@@ -165,7 +165,7 @@ OpenAPI_slice_info_for_ue_configuration_update_t *OpenAPI_slice_info_for_ue_conf
     cJSON *subscribed_nssai = cJSON_GetObjectItemCaseSensitive(slice_info_for_ue_configuration_updateJSON, "subscribedNssai");
 
     OpenAPI_list_t *subscribed_nssaiList;
-    if (subscribed_nssai) { 
+    if (subscribed_nssai) {
     cJSON *subscribed_nssai_local_nonprimitive;
     if (!cJSON_IsArray(subscribed_nssai)){
         ogs_error("OpenAPI_slice_info_for_ue_configuration_update_parseFromJSON() failed [subscribed_nssai]");
@@ -188,20 +188,20 @@ OpenAPI_slice_info_for_ue_configuration_update_t *OpenAPI_slice_info_for_ue_conf
     cJSON *allowed_nssai_current_access = cJSON_GetObjectItemCaseSensitive(slice_info_for_ue_configuration_updateJSON, "allowedNssaiCurrentAccess");
 
     OpenAPI_allowed_nssai_t *allowed_nssai_current_access_local_nonprim = NULL;
-    if (allowed_nssai_current_access) { 
+    if (allowed_nssai_current_access) {
     allowed_nssai_current_access_local_nonprim = OpenAPI_allowed_nssai_parseFromJSON(allowed_nssai_current_access);
     }
 
     cJSON *allowed_nssai_other_access = cJSON_GetObjectItemCaseSensitive(slice_info_for_ue_configuration_updateJSON, "allowedNssaiOtherAccess");
 
     OpenAPI_allowed_nssai_t *allowed_nssai_other_access_local_nonprim = NULL;
-    if (allowed_nssai_other_access) { 
+    if (allowed_nssai_other_access) {
     allowed_nssai_other_access_local_nonprim = OpenAPI_allowed_nssai_parseFromJSON(allowed_nssai_other_access);
     }
 
     cJSON *default_configured_snssai_ind = cJSON_GetObjectItemCaseSensitive(slice_info_for_ue_configuration_updateJSON, "defaultConfiguredSnssaiInd");
 
-    if (default_configured_snssai_ind) { 
+    if (default_configured_snssai_ind) {
     if (!cJSON_IsBool(default_configured_snssai_ind)) {
         ogs_error("OpenAPI_slice_info_for_ue_configuration_update_parseFromJSON() failed [default_configured_snssai_ind]");
         goto end;
@@ -211,7 +211,7 @@ OpenAPI_slice_info_for_ue_configuration_update_t *OpenAPI_slice_info_for_ue_conf
     cJSON *requested_nssai = cJSON_GetObjectItemCaseSensitive(slice_info_for_ue_configuration_updateJSON, "requestedNssai");
 
     OpenAPI_list_t *requested_nssaiList;
-    if (requested_nssai) { 
+    if (requested_nssai) {
     cJSON *requested_nssai_local_nonprimitive;
     if (!cJSON_IsArray(requested_nssai)){
         ogs_error("OpenAPI_slice_info_for_ue_configuration_update_parseFromJSON() failed [requested_nssai]");
@@ -234,7 +234,7 @@ OpenAPI_slice_info_for_ue_configuration_update_t *OpenAPI_slice_info_for_ue_conf
     cJSON *mapping_of_nssai = cJSON_GetObjectItemCaseSensitive(slice_info_for_ue_configuration_updateJSON, "mappingOfNssai");
 
     OpenAPI_list_t *mapping_of_nssaiList;
-    if (mapping_of_nssai) { 
+    if (mapping_of_nssai) {
     cJSON *mapping_of_nssai_local_nonprimitive;
     if (!cJSON_IsArray(mapping_of_nssai)){
         ogs_error("OpenAPI_slice_info_for_ue_configuration_update_parseFromJSON() failed [mapping_of_nssai]");

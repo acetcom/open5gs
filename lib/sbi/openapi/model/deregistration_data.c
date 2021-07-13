@@ -85,7 +85,6 @@ OpenAPI_deregistration_data_t *OpenAPI_deregistration_data_parseFromJSON(cJSON *
     }
 
     OpenAPI_deregistration_reason_e dereg_reasonVariable;
-    
     if (!cJSON_IsString(dereg_reason)) {
         ogs_error("OpenAPI_deregistration_data_parseFromJSON() failed [dereg_reason]");
         goto end;
@@ -95,7 +94,7 @@ OpenAPI_deregistration_data_t *OpenAPI_deregistration_data_parseFromJSON(cJSON *
     cJSON *access_type = cJSON_GetObjectItemCaseSensitive(deregistration_dataJSON, "accessType");
 
     OpenAPI_access_type_e access_typeVariable;
-    if (access_type) { 
+    if (access_type) {
     if (!cJSON_IsString(access_type)) {
         ogs_error("OpenAPI_deregistration_data_parseFromJSON() failed [access_type]");
         goto end;
@@ -105,7 +104,7 @@ OpenAPI_deregistration_data_t *OpenAPI_deregistration_data_parseFromJSON(cJSON *
 
     cJSON *pdu_session_id = cJSON_GetObjectItemCaseSensitive(deregistration_dataJSON, "pduSessionId");
 
-    if (pdu_session_id) { 
+    if (pdu_session_id) {
     if (!cJSON_IsNumber(pdu_session_id)) {
         ogs_error("OpenAPI_deregistration_data_parseFromJSON() failed [pdu_session_id]");
         goto end;
@@ -114,7 +113,7 @@ OpenAPI_deregistration_data_t *OpenAPI_deregistration_data_parseFromJSON(cJSON *
 
     cJSON *new_smf_instance_id = cJSON_GetObjectItemCaseSensitive(deregistration_dataJSON, "newSmfInstanceId");
 
-    if (new_smf_instance_id) { 
+    if (new_smf_instance_id) {
     if (!cJSON_IsString(new_smf_instance_id)) {
         ogs_error("OpenAPI_deregistration_data_parseFromJSON() failed [new_smf_instance_id]");
         goto end;

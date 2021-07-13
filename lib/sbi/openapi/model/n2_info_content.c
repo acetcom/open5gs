@@ -77,7 +77,7 @@ OpenAPI_n2_info_content_t *OpenAPI_n2_info_content_parseFromJSON(cJSON *n2_info_
     OpenAPI_n2_info_content_t *n2_info_content_local_var = NULL;
     cJSON *ngap_message_type = cJSON_GetObjectItemCaseSensitive(n2_info_contentJSON, "ngapMessageType");
 
-    if (ngap_message_type) { 
+    if (ngap_message_type) {
     if (!cJSON_IsNumber(ngap_message_type)) {
         ogs_error("OpenAPI_n2_info_content_parseFromJSON() failed [ngap_message_type]");
         goto end;
@@ -87,7 +87,7 @@ OpenAPI_n2_info_content_t *OpenAPI_n2_info_content_parseFromJSON(cJSON *n2_info_
     cJSON *ngap_ie_type = cJSON_GetObjectItemCaseSensitive(n2_info_contentJSON, "ngapIeType");
 
     OpenAPI_ngap_ie_type_e ngap_ie_typeVariable;
-    if (ngap_ie_type) { 
+    if (ngap_ie_type) {
     if (!cJSON_IsString(ngap_ie_type)) {
         ogs_error("OpenAPI_n2_info_content_parseFromJSON() failed [ngap_ie_type]");
         goto end;
@@ -102,7 +102,6 @@ OpenAPI_n2_info_content_t *OpenAPI_n2_info_content_parseFromJSON(cJSON *n2_info_
     }
 
     OpenAPI_ref_to_binary_data_t *ngap_data_local_nonprim = NULL;
-    
     ngap_data_local_nonprim = OpenAPI_ref_to_binary_data_parseFromJSON(ngap_data);
 
     n2_info_content_local_var = OpenAPI_n2_info_content_create (

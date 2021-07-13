@@ -459,7 +459,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     OpenAPI_media_component_t *media_component_local_var = NULL;
     cJSON *af_app_id = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "afAppId");
 
-    if (af_app_id) { 
+    if (af_app_id) {
     if (!cJSON_IsString(af_app_id)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [af_app_id]");
         goto end;
@@ -469,13 +469,13 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *af_rout_req = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "afRoutReq");
 
     OpenAPI_af_routing_requirement_t *af_rout_req_local_nonprim = NULL;
-    if (af_rout_req) { 
+    if (af_rout_req) {
     af_rout_req_local_nonprim = OpenAPI_af_routing_requirement_parseFromJSON(af_rout_req);
     }
 
     cJSON *qos_reference = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "qosReference");
 
-    if (qos_reference) { 
+    if (qos_reference) {
     if (!cJSON_IsString(qos_reference)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [qos_reference]");
         goto end;
@@ -484,7 +484,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *dis_ue_notif = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "disUeNotif");
 
-    if (dis_ue_notif) { 
+    if (dis_ue_notif) {
     if (!cJSON_IsBool(dis_ue_notif)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [dis_ue_notif]");
         goto end;
@@ -494,7 +494,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *alt_ser_reqs = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "altSerReqs");
 
     OpenAPI_list_t *alt_ser_reqsList;
-    if (alt_ser_reqs) { 
+    if (alt_ser_reqs) {
     cJSON *alt_ser_reqs_local;
     if (!cJSON_IsArray(alt_ser_reqs)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [alt_ser_reqs]");
@@ -508,12 +508,12 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
         goto end;
     }
     OpenAPI_list_add(alt_ser_reqsList , ogs_strdup_or_assert(alt_ser_reqs_local->valuestring));
-                    }
+    }
     }
 
     cJSON *cont_ver = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "contVer");
 
-    if (cont_ver) { 
+    if (cont_ver) {
     if (!cJSON_IsNumber(cont_ver)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [cont_ver]");
         goto end;
@@ -523,7 +523,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *codecs = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "codecs");
 
     OpenAPI_list_t *codecsList;
-    if (codecs) { 
+    if (codecs) {
     cJSON *codecs_local;
     if (!cJSON_IsArray(codecs)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [codecs]");
@@ -537,12 +537,12 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
         goto end;
     }
     OpenAPI_list_add(codecsList , ogs_strdup_or_assert(codecs_local->valuestring));
-                    }
+    }
     }
 
     cJSON *des_max_latency = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "desMaxLatency");
 
-    if (des_max_latency) { 
+    if (des_max_latency) {
     if (!cJSON_IsNumber(des_max_latency)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [des_max_latency]");
         goto end;
@@ -551,7 +551,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *des_max_loss = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "desMaxLoss");
 
-    if (des_max_loss) { 
+    if (des_max_loss) {
     if (!cJSON_IsNumber(des_max_loss)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [des_max_loss]");
         goto end;
@@ -560,7 +560,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *flus_id = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "flusId");
 
-    if (flus_id) { 
+    if (flus_id) {
     if (!cJSON_IsString(flus_id)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [flus_id]");
         goto end;
@@ -570,7 +570,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *f_status = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "fStatus");
 
     OpenAPI_flow_status_e f_statusVariable;
-    if (f_status) { 
+    if (f_status) {
     if (!cJSON_IsString(f_status)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [f_status]");
         goto end;
@@ -580,7 +580,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *mar_bw_dl = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "marBwDl");
 
-    if (mar_bw_dl) { 
+    if (mar_bw_dl) {
     if (!cJSON_IsString(mar_bw_dl)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [mar_bw_dl]");
         goto end;
@@ -589,7 +589,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *mar_bw_ul = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "marBwUl");
 
-    if (mar_bw_ul) { 
+    if (mar_bw_ul) {
     if (!cJSON_IsString(mar_bw_ul)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [mar_bw_ul]");
         goto end;
@@ -598,7 +598,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *max_packet_loss_rate_dl = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "maxPacketLossRateDl");
 
-    if (max_packet_loss_rate_dl) { 
+    if (max_packet_loss_rate_dl) {
     if (!cJSON_IsNumber(max_packet_loss_rate_dl)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [max_packet_loss_rate_dl]");
         goto end;
@@ -607,7 +607,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *max_packet_loss_rate_ul = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "maxPacketLossRateUl");
 
-    if (max_packet_loss_rate_ul) { 
+    if (max_packet_loss_rate_ul) {
     if (!cJSON_IsNumber(max_packet_loss_rate_ul)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [max_packet_loss_rate_ul]");
         goto end;
@@ -616,7 +616,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *max_supp_bw_dl = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "maxSuppBwDl");
 
-    if (max_supp_bw_dl) { 
+    if (max_supp_bw_dl) {
     if (!cJSON_IsString(max_supp_bw_dl)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [max_supp_bw_dl]");
         goto end;
@@ -625,7 +625,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *max_supp_bw_ul = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "maxSuppBwUl");
 
-    if (max_supp_bw_ul) { 
+    if (max_supp_bw_ul) {
     if (!cJSON_IsString(max_supp_bw_ul)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [max_supp_bw_ul]");
         goto end;
@@ -638,7 +638,6 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(med_comp_n)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [med_comp_n]");
         goto end;
@@ -647,7 +646,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *med_sub_comps = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "medSubComps");
 
     OpenAPI_list_t *med_sub_compsList;
-    if (med_sub_comps) { 
+    if (med_sub_comps) {
     cJSON *med_sub_comps_local_map;
     if (!cJSON_IsObject(med_sub_comps)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [med_sub_comps]");
@@ -670,7 +669,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *med_type = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "medType");
 
     OpenAPI_media_type_e med_typeVariable;
-    if (med_type) { 
+    if (med_type) {
     if (!cJSON_IsString(med_type)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [med_type]");
         goto end;
@@ -680,7 +679,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *min_des_bw_dl = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "minDesBwDl");
 
-    if (min_des_bw_dl) { 
+    if (min_des_bw_dl) {
     if (!cJSON_IsString(min_des_bw_dl)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [min_des_bw_dl]");
         goto end;
@@ -689,7 +688,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *min_des_bw_ul = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "minDesBwUl");
 
-    if (min_des_bw_ul) { 
+    if (min_des_bw_ul) {
     if (!cJSON_IsString(min_des_bw_ul)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [min_des_bw_ul]");
         goto end;
@@ -698,7 +697,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *mir_bw_dl = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "mirBwDl");
 
-    if (mir_bw_dl) { 
+    if (mir_bw_dl) {
     if (!cJSON_IsString(mir_bw_dl)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [mir_bw_dl]");
         goto end;
@@ -707,7 +706,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *mir_bw_ul = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "mirBwUl");
 
-    if (mir_bw_ul) { 
+    if (mir_bw_ul) {
     if (!cJSON_IsString(mir_bw_ul)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [mir_bw_ul]");
         goto end;
@@ -717,7 +716,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *preempt_cap = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "preemptCap");
 
     OpenAPI_preemption_capability_e preempt_capVariable;
-    if (preempt_cap) { 
+    if (preempt_cap) {
     if (!cJSON_IsString(preempt_cap)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [preempt_cap]");
         goto end;
@@ -728,7 +727,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *preempt_vuln = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "preemptVuln");
 
     OpenAPI_preemption_vulnerability_e preempt_vulnVariable;
-    if (preempt_vuln) { 
+    if (preempt_vuln) {
     if (!cJSON_IsString(preempt_vuln)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [preempt_vuln]");
         goto end;
@@ -739,7 +738,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *prio_sharing_ind = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "prioSharingInd");
 
     OpenAPI_priority_sharing_indicator_e prio_sharing_indVariable;
-    if (prio_sharing_ind) { 
+    if (prio_sharing_ind) {
     if (!cJSON_IsString(prio_sharing_ind)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [prio_sharing_ind]");
         goto end;
@@ -750,7 +749,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *res_prio = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "resPrio");
 
     OpenAPI_reserv_priority_e res_prioVariable;
-    if (res_prio) { 
+    if (res_prio) {
     if (!cJSON_IsString(res_prio)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [res_prio]");
         goto end;
@@ -760,7 +759,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *rr_bw = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "rrBw");
 
-    if (rr_bw) { 
+    if (rr_bw) {
     if (!cJSON_IsString(rr_bw)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [rr_bw]");
         goto end;
@@ -769,7 +768,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *rs_bw = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "rsBw");
 
-    if (rs_bw) { 
+    if (rs_bw) {
     if (!cJSON_IsString(rs_bw)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [rs_bw]");
         goto end;
@@ -778,7 +777,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *sharing_key_dl = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "sharingKeyDl");
 
-    if (sharing_key_dl) { 
+    if (sharing_key_dl) {
     if (!cJSON_IsNumber(sharing_key_dl)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [sharing_key_dl]");
         goto end;
@@ -787,7 +786,7 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
 
     cJSON *sharing_key_ul = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "sharingKeyUl");
 
-    if (sharing_key_ul) { 
+    if (sharing_key_ul) {
     if (!cJSON_IsNumber(sharing_key_ul)) {
         ogs_error("OpenAPI_media_component_parseFromJSON() failed [sharing_key_ul]");
         goto end;
@@ -797,21 +796,21 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
     cJSON *tsn_qos = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "tsnQos");
 
     OpenAPI_tsn_qos_container_t *tsn_qos_local_nonprim = NULL;
-    if (tsn_qos) { 
+    if (tsn_qos) {
     tsn_qos_local_nonprim = OpenAPI_tsn_qos_container_parseFromJSON(tsn_qos);
     }
 
     cJSON *tscai_input_dl = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "tscaiInputDl");
 
     OpenAPI_tscai_input_container_t *tscai_input_dl_local_nonprim = NULL;
-    if (tscai_input_dl) { 
+    if (tscai_input_dl) {
     tscai_input_dl_local_nonprim = OpenAPI_tscai_input_container_parseFromJSON(tscai_input_dl);
     }
 
     cJSON *tscai_input_ul = cJSON_GetObjectItemCaseSensitive(media_componentJSON, "tscaiInputUl");
 
     OpenAPI_tscai_input_container_t *tscai_input_ul_local_nonprim = NULL;
-    if (tscai_input_ul) { 
+    if (tscai_input_ul) {
     tscai_input_ul_local_nonprim = OpenAPI_tscai_input_container_parseFromJSON(tscai_input_ul);
     }
 

@@ -175,7 +175,6 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
         goto end;
     }
 
-    
     if (!cJSON_IsString(callback_reference)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [callback_reference]");
         goto end;
@@ -188,7 +187,6 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
     }
 
     OpenAPI_list_t *monitoring_configurationsList;
-    
     cJSON *monitoring_configurations_local_map;
     if (!cJSON_IsObject(monitoring_configurations)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [monitoring_configurations]");
@@ -210,13 +208,13 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
     cJSON *reporting_options = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "reportingOptions");
 
     OpenAPI_reporting_options_t *reporting_options_local_nonprim = NULL;
-    if (reporting_options) { 
+    if (reporting_options) {
     reporting_options_local_nonprim = OpenAPI_reporting_options_parseFromJSON(reporting_options);
     }
 
     cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "supportedFeatures");
 
-    if (supported_features) { 
+    if (supported_features) {
     if (!cJSON_IsString(supported_features)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [supported_features]");
         goto end;
@@ -225,7 +223,7 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
 
     cJSON *subscription_id = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "subscriptionId");
 
-    if (subscription_id) { 
+    if (subscription_id) {
     if (!cJSON_IsString(subscription_id)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [subscription_id]");
         goto end;
@@ -235,13 +233,13 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
     cJSON *context_info = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "contextInfo");
 
     OpenAPI_context_info_t *context_info_local_nonprim = NULL;
-    if (context_info) { 
+    if (context_info) {
     context_info_local_nonprim = OpenAPI_context_info_parseFromJSON(context_info);
     }
 
     cJSON *epc_applied_ind = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "epcAppliedInd");
 
-    if (epc_applied_ind) { 
+    if (epc_applied_ind) {
     if (!cJSON_IsBool(epc_applied_ind)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [epc_applied_ind]");
         goto end;
@@ -250,7 +248,7 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
 
     cJSON *scef_diam_host = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "scefDiamHost");
 
-    if (scef_diam_host) { 
+    if (scef_diam_host) {
     if (!cJSON_IsString(scef_diam_host)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [scef_diam_host]");
         goto end;
@@ -259,7 +257,7 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
 
     cJSON *scef_diam_realm = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "scefDiamRealm");
 
-    if (scef_diam_realm) { 
+    if (scef_diam_realm) {
     if (!cJSON_IsString(scef_diam_realm)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [scef_diam_realm]");
         goto end;
@@ -268,7 +266,7 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
 
     cJSON *notify_correlation_id = cJSON_GetObjectItemCaseSensitive(ee_subscriptionJSON, "notifyCorrelationId");
 
-    if (notify_correlation_id) { 
+    if (notify_correlation_id) {
     if (!cJSON_IsString(notify_correlation_id)) {
         ogs_error("OpenAPI_ee_subscription_parseFromJSON() failed [notify_correlation_id]");
         goto end;

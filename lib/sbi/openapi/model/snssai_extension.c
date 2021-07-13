@@ -81,7 +81,7 @@ OpenAPI_snssai_extension_t *OpenAPI_snssai_extension_parseFromJSON(cJSON *snssai
     cJSON *sd_ranges = cJSON_GetObjectItemCaseSensitive(snssai_extensionJSON, "sdRanges");
 
     OpenAPI_list_t *sd_rangesList;
-    if (sd_ranges) { 
+    if (sd_ranges) {
     cJSON *sd_ranges_local_nonprimitive;
     if (!cJSON_IsArray(sd_ranges)){
         ogs_error("OpenAPI_snssai_extension_parseFromJSON() failed [sd_ranges]");
@@ -103,7 +103,7 @@ OpenAPI_snssai_extension_t *OpenAPI_snssai_extension_parseFromJSON(cJSON *snssai
 
     cJSON *wildcard_sd = cJSON_GetObjectItemCaseSensitive(snssai_extensionJSON, "wildcardSd");
 
-    if (wildcard_sd) { 
+    if (wildcard_sd) {
     if (!cJSON_IsBool(wildcard_sd)) {
         ogs_error("OpenAPI_snssai_extension_parseFromJSON() failed [wildcard_sd]");
         goto end;

@@ -109,7 +109,7 @@ OpenAPI_non_dynamic5_qi_t *OpenAPI_non_dynamic5_qi_parseFromJSON(cJSON *non_dyna
     OpenAPI_non_dynamic5_qi_t *non_dynamic5_qi_local_var = NULL;
     cJSON *priority_level = cJSON_GetObjectItemCaseSensitive(non_dynamic5_qiJSON, "priorityLevel");
 
-    if (priority_level) { 
+    if (priority_level) {
     if (!cJSON_IsNumber(priority_level)) {
         ogs_error("OpenAPI_non_dynamic5_qi_parseFromJSON() failed [priority_level]");
         goto end;
@@ -118,7 +118,7 @@ OpenAPI_non_dynamic5_qi_t *OpenAPI_non_dynamic5_qi_parseFromJSON(cJSON *non_dyna
 
     cJSON *aver_window = cJSON_GetObjectItemCaseSensitive(non_dynamic5_qiJSON, "averWindow");
 
-    if (aver_window) { 
+    if (aver_window) {
     if (!cJSON_IsNumber(aver_window)) {
         ogs_error("OpenAPI_non_dynamic5_qi_parseFromJSON() failed [aver_window]");
         goto end;
@@ -127,7 +127,7 @@ OpenAPI_non_dynamic5_qi_t *OpenAPI_non_dynamic5_qi_parseFromJSON(cJSON *non_dyna
 
     cJSON *max_data_burst_vol = cJSON_GetObjectItemCaseSensitive(non_dynamic5_qiJSON, "maxDataBurstVol");
 
-    if (max_data_burst_vol) { 
+    if (max_data_burst_vol) {
     if (!cJSON_IsNumber(max_data_burst_vol)) {
         ogs_error("OpenAPI_non_dynamic5_qi_parseFromJSON() failed [max_data_burst_vol]");
         goto end;
@@ -136,7 +136,7 @@ OpenAPI_non_dynamic5_qi_t *OpenAPI_non_dynamic5_qi_parseFromJSON(cJSON *non_dyna
 
     cJSON *ext_max_data_burst_vol = cJSON_GetObjectItemCaseSensitive(non_dynamic5_qiJSON, "extMaxDataBurstVol");
 
-    if (ext_max_data_burst_vol) { 
+    if (ext_max_data_burst_vol) {
     if (!cJSON_IsNumber(ext_max_data_burst_vol)) {
         ogs_error("OpenAPI_non_dynamic5_qi_parseFromJSON() failed [ext_max_data_burst_vol]");
         goto end;
@@ -145,7 +145,7 @@ OpenAPI_non_dynamic5_qi_t *OpenAPI_non_dynamic5_qi_parseFromJSON(cJSON *non_dyna
 
     cJSON *cn_packet_delay_budget_dl = cJSON_GetObjectItemCaseSensitive(non_dynamic5_qiJSON, "cnPacketDelayBudgetDl");
 
-    if (cn_packet_delay_budget_dl) { 
+    if (cn_packet_delay_budget_dl) {
     if (!cJSON_IsNumber(cn_packet_delay_budget_dl)) {
         ogs_error("OpenAPI_non_dynamic5_qi_parseFromJSON() failed [cn_packet_delay_budget_dl]");
         goto end;
@@ -154,7 +154,7 @@ OpenAPI_non_dynamic5_qi_t *OpenAPI_non_dynamic5_qi_parseFromJSON(cJSON *non_dyna
 
     cJSON *cn_packet_delay_budget_ul = cJSON_GetObjectItemCaseSensitive(non_dynamic5_qiJSON, "cnPacketDelayBudgetUl");
 
-    if (cn_packet_delay_budget_ul) { 
+    if (cn_packet_delay_budget_ul) {
     if (!cJSON_IsNumber(cn_packet_delay_budget_ul)) {
         ogs_error("OpenAPI_non_dynamic5_qi_parseFromJSON() failed [cn_packet_delay_budget_ul]");
         goto end;

@@ -140,7 +140,6 @@ OpenAPI_model_5_gvn_group_data_t *OpenAPI_model_5_gvn_group_data_parseFromJSON(c
         goto end;
     }
 
-    
     if (!cJSON_IsString(dnn)) {
         ogs_error("OpenAPI_model_5_gvn_group_data_parseFromJSON() failed [dnn]");
         goto end;
@@ -153,13 +152,12 @@ OpenAPI_model_5_gvn_group_data_t *OpenAPI_model_5_gvn_group_data_parseFromJSON(c
     }
 
     OpenAPI_snssai_t *s_nssai_local_nonprim = NULL;
-    
     s_nssai_local_nonprim = OpenAPI_snssai_parseFromJSON(s_nssai);
 
     cJSON *pdu_session_types = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_dataJSON, "pduSessionTypes");
 
     OpenAPI_list_t *pdu_session_typesList;
-    if (pdu_session_types) { 
+    if (pdu_session_types) {
     cJSON *pdu_session_types_local_nonprimitive;
     if (!cJSON_IsArray(pdu_session_types)) {
         ogs_error("OpenAPI_model_5_gvn_group_data_parseFromJSON() failed [pdu_session_types]");
@@ -181,7 +179,7 @@ OpenAPI_model_5_gvn_group_data_t *OpenAPI_model_5_gvn_group_data_parseFromJSON(c
     cJSON *app_descriptors = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_dataJSON, "appDescriptors");
 
     OpenAPI_list_t *app_descriptorsList;
-    if (app_descriptors) { 
+    if (app_descriptors) {
     cJSON *app_descriptors_local_nonprimitive;
     if (!cJSON_IsArray(app_descriptors)){
         ogs_error("OpenAPI_model_5_gvn_group_data_parseFromJSON() failed [app_descriptors]");
@@ -203,7 +201,7 @@ OpenAPI_model_5_gvn_group_data_t *OpenAPI_model_5_gvn_group_data_parseFromJSON(c
 
     cJSON *secondary_auth = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_dataJSON, "secondaryAuth");
 
-    if (secondary_auth) { 
+    if (secondary_auth) {
     if (!cJSON_IsBool(secondary_auth)) {
         ogs_error("OpenAPI_model_5_gvn_group_data_parseFromJSON() failed [secondary_auth]");
         goto end;
@@ -213,7 +211,7 @@ OpenAPI_model_5_gvn_group_data_t *OpenAPI_model_5_gvn_group_data_parseFromJSON(c
     cJSON *dn_aaa_address = cJSON_GetObjectItemCaseSensitive(model_5_gvn_group_dataJSON, "dnAaaAddress");
 
     OpenAPI_ip_address_1_t *dn_aaa_address_local_nonprim = NULL;
-    if (dn_aaa_address) { 
+    if (dn_aaa_address) {
     dn_aaa_address_local_nonprim = OpenAPI_ip_address_1_parseFromJSON(dn_aaa_address);
     }
 

@@ -64,7 +64,6 @@ OpenAPI_suggested_packet_num_dl_1_t *OpenAPI_suggested_packet_num_dl_1_parseFrom
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(suggested_packet_num_dl)) {
         ogs_error("OpenAPI_suggested_packet_num_dl_1_parseFromJSON() failed [suggested_packet_num_dl]");
         goto end;
@@ -72,7 +71,7 @@ OpenAPI_suggested_packet_num_dl_1_t *OpenAPI_suggested_packet_num_dl_1_parseFrom
 
     cJSON *validity_time = cJSON_GetObjectItemCaseSensitive(suggested_packet_num_dl_1JSON, "validityTime");
 
-    if (validity_time) { 
+    if (validity_time) {
     if (!cJSON_IsString(validity_time)) {
         ogs_error("OpenAPI_suggested_packet_num_dl_1_parseFromJSON() failed [validity_time]");
         goto end;

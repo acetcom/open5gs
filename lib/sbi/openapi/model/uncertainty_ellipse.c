@@ -68,7 +68,6 @@ OpenAPI_uncertainty_ellipse_t *OpenAPI_uncertainty_ellipse_parseFromJSON(cJSON *
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(semi_major)) {
         ogs_error("OpenAPI_uncertainty_ellipse_parseFromJSON() failed [semi_major]");
         goto end;
@@ -80,7 +79,6 @@ OpenAPI_uncertainty_ellipse_t *OpenAPI_uncertainty_ellipse_parseFromJSON(cJSON *
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(semi_minor)) {
         ogs_error("OpenAPI_uncertainty_ellipse_parseFromJSON() failed [semi_minor]");
         goto end;
@@ -92,7 +90,6 @@ OpenAPI_uncertainty_ellipse_t *OpenAPI_uncertainty_ellipse_parseFromJSON(cJSON *
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(orientation_major)) {
         ogs_error("OpenAPI_uncertainty_ellipse_parseFromJSON() failed [orientation_major]");
         goto end;

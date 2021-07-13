@@ -74,7 +74,6 @@ OpenAPI_atom_t *OpenAPI_atom_parseFromJSON(cJSON *atomJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(attr)) {
         ogs_error("OpenAPI_atom_parseFromJSON() failed [attr]");
         goto end;
@@ -86,7 +85,6 @@ OpenAPI_atom_t *OpenAPI_atom_parseFromJSON(cJSON *atomJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(value)) {
         ogs_error("OpenAPI_atom_parseFromJSON() failed [value]");
         goto end;
@@ -94,7 +92,7 @@ OpenAPI_atom_t *OpenAPI_atom_parseFromJSON(cJSON *atomJSON)
 
     cJSON *negative = cJSON_GetObjectItemCaseSensitive(atomJSON, "negative");
 
-    if (negative) { 
+    if (negative) {
     if (!cJSON_IsBool(negative)) {
         ogs_error("OpenAPI_atom_parseFromJSON() failed [negative]");
         goto end;

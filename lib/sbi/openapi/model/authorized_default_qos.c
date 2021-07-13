@@ -154,7 +154,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
     OpenAPI_authorized_default_qos_t *authorized_default_qos_local_var = NULL;
     cJSON *_5qi = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "5qi");
 
-    if (_5qi) { 
+    if (_5qi) {
     if (!cJSON_IsNumber(_5qi)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [_5qi]");
         goto end;
@@ -164,13 +164,13 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
     cJSON *arp = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "arp");
 
     OpenAPI_arp_t *arp_local_nonprim = NULL;
-    if (arp) { 
+    if (arp) {
     arp_local_nonprim = OpenAPI_arp_parseFromJSON(arp);
     }
 
     cJSON *priority_level = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "priorityLevel");
 
-    if (priority_level) { 
+    if (priority_level) {
     if (!cJSON_IsNumber(priority_level)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [priority_level]");
         goto end;
@@ -179,7 +179,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
 
     cJSON *aver_window = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "averWindow");
 
-    if (aver_window) { 
+    if (aver_window) {
     if (!cJSON_IsNumber(aver_window)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [aver_window]");
         goto end;
@@ -188,7 +188,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
 
     cJSON *max_data_burst_vol = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "maxDataBurstVol");
 
-    if (max_data_burst_vol) { 
+    if (max_data_burst_vol) {
     if (!cJSON_IsNumber(max_data_burst_vol)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [max_data_burst_vol]");
         goto end;
@@ -197,7 +197,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
 
     cJSON *maxbr_ul = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "maxbrUl");
 
-    if (maxbr_ul) { 
+    if (maxbr_ul) {
     if (!cJSON_IsString(maxbr_ul)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [maxbr_ul]");
         goto end;
@@ -206,7 +206,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
 
     cJSON *maxbr_dl = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "maxbrDl");
 
-    if (maxbr_dl) { 
+    if (maxbr_dl) {
     if (!cJSON_IsString(maxbr_dl)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [maxbr_dl]");
         goto end;
@@ -215,7 +215,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
 
     cJSON *gbr_ul = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "gbrUl");
 
-    if (gbr_ul) { 
+    if (gbr_ul) {
     if (!cJSON_IsString(gbr_ul)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [gbr_ul]");
         goto end;
@@ -224,7 +224,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
 
     cJSON *gbr_dl = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "gbrDl");
 
-    if (gbr_dl) { 
+    if (gbr_dl) {
     if (!cJSON_IsString(gbr_dl)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [gbr_dl]");
         goto end;
@@ -233,7 +233,7 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
 
     cJSON *ext_max_data_burst_vol = cJSON_GetObjectItemCaseSensitive(authorized_default_qosJSON, "extMaxDataBurstVol");
 
-    if (ext_max_data_burst_vol) { 
+    if (ext_max_data_burst_vol) {
     if (!cJSON_IsNumber(ext_max_data_burst_vol)) {
         ogs_error("OpenAPI_authorized_default_qos_parseFromJSON() failed [ext_max_data_burst_vol]");
         goto end;

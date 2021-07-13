@@ -138,7 +138,7 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_parseFromJSON(cJSON *
     cJSON *ue_policy_sections = cJSON_GetObjectItemCaseSensitive(ue_policy_set_patchJSON, "uePolicySections");
 
     OpenAPI_list_t *ue_policy_sectionsList;
-    if (ue_policy_sections) { 
+    if (ue_policy_sections) {
     cJSON *ue_policy_sections_local_map;
     if (!cJSON_IsObject(ue_policy_sections)) {
         ogs_error("OpenAPI_ue_policy_set_patch_parseFromJSON() failed [ue_policy_sections]");
@@ -161,7 +161,7 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_parseFromJSON(cJSON *
     cJSON *upsis = cJSON_GetObjectItemCaseSensitive(ue_policy_set_patchJSON, "upsis");
 
     OpenAPI_list_t *upsisList;
-    if (upsis) { 
+    if (upsis) {
     cJSON *upsis_local;
     if (!cJSON_IsArray(upsis)) {
         ogs_error("OpenAPI_ue_policy_set_patch_parseFromJSON() failed [upsis]");
@@ -175,12 +175,12 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_parseFromJSON(cJSON *
         goto end;
     }
     OpenAPI_list_add(upsisList , ogs_strdup_or_assert(upsis_local->valuestring));
-                    }
+    }
     }
 
     cJSON *andsp_ind = cJSON_GetObjectItemCaseSensitive(ue_policy_set_patchJSON, "andspInd");
 
-    if (andsp_ind) { 
+    if (andsp_ind) {
     if (!cJSON_IsBool(andsp_ind)) {
         ogs_error("OpenAPI_ue_policy_set_patch_parseFromJSON() failed [andsp_ind]");
         goto end;
@@ -189,7 +189,7 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_parseFromJSON(cJSON *
 
     cJSON *pei = cJSON_GetObjectItemCaseSensitive(ue_policy_set_patchJSON, "pei");
 
-    if (pei) { 
+    if (pei) {
     if (!cJSON_IsString(pei)) {
         ogs_error("OpenAPI_ue_policy_set_patch_parseFromJSON() failed [pei]");
         goto end;
@@ -199,7 +199,7 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_parseFromJSON(cJSON *
     cJSON *os_ids = cJSON_GetObjectItemCaseSensitive(ue_policy_set_patchJSON, "osIds");
 
     OpenAPI_list_t *os_idsList;
-    if (os_ids) { 
+    if (os_ids) {
     cJSON *os_ids_local;
     if (!cJSON_IsArray(os_ids)) {
         ogs_error("OpenAPI_ue_policy_set_patch_parseFromJSON() failed [os_ids]");
@@ -213,7 +213,7 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_parseFromJSON(cJSON *
         goto end;
     }
     OpenAPI_list_add(os_idsList , ogs_strdup_or_assert(os_ids_local->valuestring));
-                    }
+    }
     }
 
     ue_policy_set_patch_local_var = OpenAPI_ue_policy_set_patch_create (

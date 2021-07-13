@@ -64,7 +64,6 @@ OpenAPI_snssai_t *OpenAPI_snssai_parseFromJSON(cJSON *snssaiJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(sst)) {
         ogs_error("OpenAPI_snssai_parseFromJSON() failed [sst]");
         goto end;
@@ -72,7 +71,7 @@ OpenAPI_snssai_t *OpenAPI_snssai_parseFromJSON(cJSON *snssaiJSON)
 
     cJSON *sd = cJSON_GetObjectItemCaseSensitive(snssaiJSON, "sd");
 
-    if (sd) { 
+    if (sd) {
     if (!cJSON_IsString(sd)) {
         ogs_error("OpenAPI_snssai_parseFromJSON() failed [sd]");
         goto end;

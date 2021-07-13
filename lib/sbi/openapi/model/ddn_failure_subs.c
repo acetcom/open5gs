@@ -80,7 +80,7 @@ OpenAPI_ddn_failure_subs_t *OpenAPI_ddn_failure_subs_parseFromJSON(cJSON *ddn_fa
     OpenAPI_ddn_failure_subs_t *ddn_failure_subs_local_var = NULL;
     cJSON *ddn_failure_subs_ind = cJSON_GetObjectItemCaseSensitive(ddn_failure_subsJSON, "ddnFailureSubsInd");
 
-    if (ddn_failure_subs_ind) { 
+    if (ddn_failure_subs_ind) {
     if (!cJSON_IsBool(ddn_failure_subs_ind)) {
         ogs_error("OpenAPI_ddn_failure_subs_parseFromJSON() failed [ddn_failure_subs_ind]");
         goto end;
@@ -90,7 +90,7 @@ OpenAPI_ddn_failure_subs_t *OpenAPI_ddn_failure_subs_parseFromJSON(cJSON *ddn_fa
     cJSON *ddn_failure_subs_info_list = cJSON_GetObjectItemCaseSensitive(ddn_failure_subsJSON, "ddnFailureSubsInfoList");
 
     OpenAPI_list_t *ddn_failure_subs_info_listList;
-    if (ddn_failure_subs_info_list) { 
+    if (ddn_failure_subs_info_list) {
     cJSON *ddn_failure_subs_info_list_local_nonprimitive;
     if (!cJSON_IsArray(ddn_failure_subs_info_list)){
         ogs_error("OpenAPI_ddn_failure_subs_parseFromJSON() failed [ddn_failure_subs_info_list]");

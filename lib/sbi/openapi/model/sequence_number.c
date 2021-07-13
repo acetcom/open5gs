@@ -106,7 +106,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_parseFromJSON(cJSON *sequence
     cJSON *sqn_scheme = cJSON_GetObjectItemCaseSensitive(sequence_numberJSON, "sqnScheme");
 
     OpenAPI_sqn_scheme_e sqn_schemeVariable;
-    if (sqn_scheme) { 
+    if (sqn_scheme) {
     if (!cJSON_IsString(sqn_scheme)) {
         ogs_error("OpenAPI_sequence_number_parseFromJSON() failed [sqn_scheme]");
         goto end;
@@ -116,7 +116,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_parseFromJSON(cJSON *sequence
 
     cJSON *sqn = cJSON_GetObjectItemCaseSensitive(sequence_numberJSON, "sqn");
 
-    if (sqn) { 
+    if (sqn) {
     if (!cJSON_IsString(sqn)) {
         ogs_error("OpenAPI_sequence_number_parseFromJSON() failed [sqn]");
         goto end;
@@ -126,7 +126,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_parseFromJSON(cJSON *sequence
     cJSON *last_indexes = cJSON_GetObjectItemCaseSensitive(sequence_numberJSON, "lastIndexes");
 
     OpenAPI_list_t *last_indexesList;
-    if (last_indexes) { 
+    if (last_indexes) {
     cJSON *last_indexes_local_map;
     if (!cJSON_IsObject(last_indexes)) {
         ogs_error("OpenAPI_sequence_number_parseFromJSON() failed [last_indexes]");
@@ -142,7 +142,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_parseFromJSON(cJSON *sequence
 
     cJSON *ind_length = cJSON_GetObjectItemCaseSensitive(sequence_numberJSON, "indLength");
 
-    if (ind_length) { 
+    if (ind_length) {
     if (!cJSON_IsNumber(ind_length)) {
         ogs_error("OpenAPI_sequence_number_parseFromJSON() failed [ind_length]");
         goto end;
@@ -152,7 +152,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_parseFromJSON(cJSON *sequence
     cJSON *dif_sign = cJSON_GetObjectItemCaseSensitive(sequence_numberJSON, "difSign");
 
     OpenAPI_sign_e dif_signVariable;
-    if (dif_sign) { 
+    if (dif_sign) {
     if (!cJSON_IsString(dif_sign)) {
         ogs_error("OpenAPI_sequence_number_parseFromJSON() failed [dif_sign]");
         goto end;

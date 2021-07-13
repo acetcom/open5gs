@@ -90,7 +90,7 @@ OpenAPI_lcs_privacy_t *OpenAPI_lcs_privacy_parseFromJSON(cJSON *lcs_privacyJSON)
     OpenAPI_lcs_privacy_t *lcs_privacy_local_var = NULL;
     cJSON *af_instance_id = cJSON_GetObjectItemCaseSensitive(lcs_privacyJSON, "afInstanceId");
 
-    if (af_instance_id) { 
+    if (af_instance_id) {
     if (!cJSON_IsString(af_instance_id)) {
         ogs_error("OpenAPI_lcs_privacy_parseFromJSON() failed [af_instance_id]");
         goto end;
@@ -99,7 +99,7 @@ OpenAPI_lcs_privacy_t *OpenAPI_lcs_privacy_parseFromJSON(cJSON *lcs_privacyJSON)
 
     cJSON *reference_id = cJSON_GetObjectItemCaseSensitive(lcs_privacyJSON, "referenceId");
 
-    if (reference_id) { 
+    if (reference_id) {
     if (!cJSON_IsNumber(reference_id)) {
         ogs_error("OpenAPI_lcs_privacy_parseFromJSON() failed [reference_id]");
         goto end;
@@ -109,13 +109,13 @@ OpenAPI_lcs_privacy_t *OpenAPI_lcs_privacy_parseFromJSON(cJSON *lcs_privacyJSON)
     cJSON *lpi = cJSON_GetObjectItemCaseSensitive(lcs_privacyJSON, "lpi");
 
     OpenAPI_lpi_t *lpi_local_nonprim = NULL;
-    if (lpi) { 
+    if (lpi) {
     lpi_local_nonprim = OpenAPI_lpi_parseFromJSON(lpi);
     }
 
     cJSON *mtc_provider_information = cJSON_GetObjectItemCaseSensitive(lcs_privacyJSON, "mtcProviderInformation");
 
-    if (mtc_provider_information) { 
+    if (mtc_provider_information) {
     if (!cJSON_IsString(mtc_provider_information)) {
         ogs_error("OpenAPI_lcs_privacy_parseFromJSON() failed [mtc_provider_information]");
         goto end;

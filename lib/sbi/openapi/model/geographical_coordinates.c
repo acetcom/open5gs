@@ -61,7 +61,6 @@ OpenAPI_geographical_coordinates_t *OpenAPI_geographical_coordinates_parseFromJS
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(lon)) {
         ogs_error("OpenAPI_geographical_coordinates_parseFromJSON() failed [lon]");
         goto end;
@@ -73,7 +72,6 @@ OpenAPI_geographical_coordinates_t *OpenAPI_geographical_coordinates_parseFromJS
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(lat)) {
         ogs_error("OpenAPI_geographical_coordinates_parseFromJSON() failed [lat]");
         goto end;

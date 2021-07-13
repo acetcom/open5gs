@@ -211,12 +211,11 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
     }
 
     OpenAPI_amf_event_type_t *type_local_nonprim = NULL;
-    
     type_local_nonprim = OpenAPI_amf_event_type_parseFromJSON(type);
 
     cJSON *immediate_flag = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "immediateFlag");
 
-    if (immediate_flag) { 
+    if (immediate_flag) {
     if (!cJSON_IsBool(immediate_flag)) {
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [immediate_flag]");
         goto end;
@@ -226,7 +225,7 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
     cJSON *area_list = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "areaList");
 
     OpenAPI_list_t *area_listList;
-    if (area_list) { 
+    if (area_list) {
     cJSON *area_list_local_nonprimitive;
     if (!cJSON_IsArray(area_list)){
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [area_list]");
@@ -249,7 +248,7 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
     cJSON *location_filter_list = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "locationFilterList");
 
     OpenAPI_list_t *location_filter_listList;
-    if (location_filter_list) { 
+    if (location_filter_list) {
     cJSON *location_filter_list_local_nonprimitive;
     if (!cJSON_IsArray(location_filter_list)){
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [location_filter_list]");
@@ -271,7 +270,7 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
 
     cJSON *ref_id = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "refId");
 
-    if (ref_id) { 
+    if (ref_id) {
     if (!cJSON_IsNumber(ref_id)) {
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [ref_id]");
         goto end;
@@ -281,7 +280,7 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
     cJSON *traffic_descriptor_list = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "trafficDescriptorList");
 
     OpenAPI_list_t *traffic_descriptor_listList;
-    if (traffic_descriptor_list) { 
+    if (traffic_descriptor_list) {
     cJSON *traffic_descriptor_list_local_nonprimitive;
     if (!cJSON_IsArray(traffic_descriptor_list)){
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [traffic_descriptor_list]");
@@ -303,7 +302,7 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
 
     cJSON *report_ue_reachable = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "reportUeReachable");
 
-    if (report_ue_reachable) { 
+    if (report_ue_reachable) {
     if (!cJSON_IsBool(report_ue_reachable)) {
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [report_ue_reachable]");
         goto end;
@@ -313,13 +312,13 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
     cJSON *reachability_filter = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "reachabilityFilter");
 
     OpenAPI_reachability_filter_t *reachability_filter_local_nonprim = NULL;
-    if (reachability_filter) { 
+    if (reachability_filter) {
     reachability_filter_local_nonprim = OpenAPI_reachability_filter_parseFromJSON(reachability_filter);
     }
 
     cJSON *max_reports = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "maxReports");
 
-    if (max_reports) { 
+    if (max_reports) {
     if (!cJSON_IsNumber(max_reports)) {
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [max_reports]");
         goto end;
@@ -328,7 +327,7 @@ OpenAPI_amf_event_t *OpenAPI_amf_event_parseFromJSON(cJSON *amf_eventJSON)
 
     cJSON *max_response_time = cJSON_GetObjectItemCaseSensitive(amf_eventJSON, "maxResponseTime");
 
-    if (max_response_time) { 
+    if (max_response_time) {
     if (!cJSON_IsNumber(max_response_time)) {
         ogs_error("OpenAPI_amf_event_parseFromJSON() failed [max_response_time]");
         goto end;

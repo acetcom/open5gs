@@ -64,7 +64,7 @@ OpenAPI_sms_subscription_data_t *OpenAPI_sms_subscription_data_parseFromJSON(cJS
     OpenAPI_sms_subscription_data_t *sms_subscription_data_local_var = NULL;
     cJSON *sms_subscribed = cJSON_GetObjectItemCaseSensitive(sms_subscription_dataJSON, "smsSubscribed");
 
-    if (sms_subscribed) { 
+    if (sms_subscribed) {
     if (!cJSON_IsBool(sms_subscribed)) {
         ogs_error("OpenAPI_sms_subscription_data_parseFromJSON() failed [sms_subscribed]");
         goto end;
@@ -73,7 +73,7 @@ OpenAPI_sms_subscription_data_t *OpenAPI_sms_subscription_data_parseFromJSON(cJS
 
     cJSON *shared_sms_subs_data_id = cJSON_GetObjectItemCaseSensitive(sms_subscription_dataJSON, "sharedSmsSubsDataId");
 
-    if (shared_sms_subs_data_id) { 
+    if (shared_sms_subs_data_id) {
     if (!cJSON_IsString(shared_sms_subs_data_id)) {
         ogs_error("OpenAPI_sms_subscription_data_parseFromJSON() failed [shared_sms_subs_data_id]");
         goto end;

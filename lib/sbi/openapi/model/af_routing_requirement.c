@@ -149,7 +149,7 @@ OpenAPI_af_routing_requirement_t *OpenAPI_af_routing_requirement_parseFromJSON(c
     OpenAPI_af_routing_requirement_t *af_routing_requirement_local_var = NULL;
     cJSON *app_reloc = cJSON_GetObjectItemCaseSensitive(af_routing_requirementJSON, "appReloc");
 
-    if (app_reloc) { 
+    if (app_reloc) {
     if (!cJSON_IsBool(app_reloc)) {
         ogs_error("OpenAPI_af_routing_requirement_parseFromJSON() failed [app_reloc]");
         goto end;
@@ -159,7 +159,7 @@ OpenAPI_af_routing_requirement_t *OpenAPI_af_routing_requirement_parseFromJSON(c
     cJSON *route_to_locs = cJSON_GetObjectItemCaseSensitive(af_routing_requirementJSON, "routeToLocs");
 
     OpenAPI_list_t *route_to_locsList;
-    if (route_to_locs) { 
+    if (route_to_locs) {
     cJSON *route_to_locs_local_nonprimitive;
     if (!cJSON_IsArray(route_to_locs)){
         ogs_error("OpenAPI_af_routing_requirement_parseFromJSON() failed [route_to_locs]");
@@ -182,14 +182,14 @@ OpenAPI_af_routing_requirement_t *OpenAPI_af_routing_requirement_parseFromJSON(c
     cJSON *sp_val = cJSON_GetObjectItemCaseSensitive(af_routing_requirementJSON, "spVal");
 
     OpenAPI_spatial_validity_t *sp_val_local_nonprim = NULL;
-    if (sp_val) { 
+    if (sp_val) {
     sp_val_local_nonprim = OpenAPI_spatial_validity_parseFromJSON(sp_val);
     }
 
     cJSON *temp_vals = cJSON_GetObjectItemCaseSensitive(af_routing_requirementJSON, "tempVals");
 
     OpenAPI_list_t *temp_valsList;
-    if (temp_vals) { 
+    if (temp_vals) {
     cJSON *temp_vals_local_nonprimitive;
     if (!cJSON_IsArray(temp_vals)){
         ogs_error("OpenAPI_af_routing_requirement_parseFromJSON() failed [temp_vals]");
@@ -212,13 +212,13 @@ OpenAPI_af_routing_requirement_t *OpenAPI_af_routing_requirement_parseFromJSON(c
     cJSON *up_path_chg_sub = cJSON_GetObjectItemCaseSensitive(af_routing_requirementJSON, "upPathChgSub");
 
     OpenAPI_up_path_chg_event_t *up_path_chg_sub_local_nonprim = NULL;
-    if (up_path_chg_sub) { 
+    if (up_path_chg_sub) {
     up_path_chg_sub_local_nonprim = OpenAPI_up_path_chg_event_parseFromJSON(up_path_chg_sub);
     }
 
     cJSON *addr_preser_ind = cJSON_GetObjectItemCaseSensitive(af_routing_requirementJSON, "addrPreserInd");
 
-    if (addr_preser_ind) { 
+    if (addr_preser_ind) {
     if (!cJSON_IsBool(addr_preser_ind)) {
         ogs_error("OpenAPI_af_routing_requirement_parseFromJSON() failed [addr_preser_ind]");
         goto end;

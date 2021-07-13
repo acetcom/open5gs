@@ -54,7 +54,6 @@ OpenAPI_lte_m_ind_t *OpenAPI_lte_m_ind_parseFromJSON(cJSON *lte_m_indJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsBool(lte_cat_m_ind)) {
         ogs_error("OpenAPI_lte_m_ind_parseFromJSON() failed [lte_cat_m_ind]");
         goto end;

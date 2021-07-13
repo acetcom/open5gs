@@ -97,7 +97,6 @@ OpenAPI_snssai_upf_info_item_t *OpenAPI_snssai_upf_info_item_parseFromJSON(cJSON
     }
 
     OpenAPI_snssai_t *s_nssai_local_nonprim = NULL;
-    
     s_nssai_local_nonprim = OpenAPI_snssai_parseFromJSON(s_nssai);
 
     cJSON *dnn_upf_info_list = cJSON_GetObjectItemCaseSensitive(snssai_upf_info_itemJSON, "dnnUpfInfoList");
@@ -107,7 +106,6 @@ OpenAPI_snssai_upf_info_item_t *OpenAPI_snssai_upf_info_item_parseFromJSON(cJSON
     }
 
     OpenAPI_list_t *dnn_upf_info_listList;
-    
     cJSON *dnn_upf_info_list_local_nonprimitive;
     if (!cJSON_IsArray(dnn_upf_info_list)){
         ogs_error("OpenAPI_snssai_upf_info_item_parseFromJSON() failed [dnn_upf_info_list]");
@@ -128,7 +126,7 @@ OpenAPI_snssai_upf_info_item_t *OpenAPI_snssai_upf_info_item_parseFromJSON(cJSON
 
     cJSON *redundant_transport = cJSON_GetObjectItemCaseSensitive(snssai_upf_info_itemJSON, "redundantTransport");
 
-    if (redundant_transport) { 
+    if (redundant_transport) {
     if (!cJSON_IsBool(redundant_transport)) {
         ogs_error("OpenAPI_snssai_upf_info_item_parseFromJSON() failed [redundant_transport]");
         goto end;

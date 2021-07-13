@@ -97,7 +97,6 @@ OpenAPI_location_reporting_configuration_t *OpenAPI_location_reporting_configura
         goto end;
     }
 
-    
     if (!cJSON_IsBool(current_location)) {
         ogs_error("OpenAPI_location_reporting_configuration_parseFromJSON() failed [current_location]");
         goto end;
@@ -105,7 +104,7 @@ OpenAPI_location_reporting_configuration_t *OpenAPI_location_reporting_configura
 
     cJSON *one_time = cJSON_GetObjectItemCaseSensitive(location_reporting_configurationJSON, "oneTime");
 
-    if (one_time) { 
+    if (one_time) {
     if (!cJSON_IsBool(one_time)) {
         ogs_error("OpenAPI_location_reporting_configuration_parseFromJSON() failed [one_time]");
         goto end;
@@ -115,14 +114,14 @@ OpenAPI_location_reporting_configuration_t *OpenAPI_location_reporting_configura
     cJSON *accuracy = cJSON_GetObjectItemCaseSensitive(location_reporting_configurationJSON, "accuracy");
 
     OpenAPI_location_accuracy_t *accuracy_local_nonprim = NULL;
-    if (accuracy) { 
+    if (accuracy) {
     accuracy_local_nonprim = OpenAPI_location_accuracy_parseFromJSON(accuracy);
     }
 
     cJSON *n3gpp_accuracy = cJSON_GetObjectItemCaseSensitive(location_reporting_configurationJSON, "n3gppAccuracy");
 
     OpenAPI_location_accuracy_t *n3gpp_accuracy_local_nonprim = NULL;
-    if (n3gpp_accuracy) { 
+    if (n3gpp_accuracy) {
     n3gpp_accuracy_local_nonprim = OpenAPI_location_accuracy_parseFromJSON(n3gpp_accuracy);
     }
 

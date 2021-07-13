@@ -156,7 +156,6 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_parseFromJSON(cJSON *qos_fl
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(_5qi)) {
         ogs_error("OpenAPI_qos_flow_profile_parseFromJSON() failed [_5qi]");
         goto end;
@@ -165,35 +164,35 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_parseFromJSON(cJSON *qos_fl
     cJSON *non_dynamic5_qi = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "nonDynamic5Qi");
 
     OpenAPI_non_dynamic5_qi_t *non_dynamic5_qi_local_nonprim = NULL;
-    if (non_dynamic5_qi) { 
+    if (non_dynamic5_qi) {
     non_dynamic5_qi_local_nonprim = OpenAPI_non_dynamic5_qi_parseFromJSON(non_dynamic5_qi);
     }
 
     cJSON *dynamic5_qi = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "dynamic5Qi");
 
     OpenAPI_dynamic5_qi_t *dynamic5_qi_local_nonprim = NULL;
-    if (dynamic5_qi) { 
+    if (dynamic5_qi) {
     dynamic5_qi_local_nonprim = OpenAPI_dynamic5_qi_parseFromJSON(dynamic5_qi);
     }
 
     cJSON *arp = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "arp");
 
     OpenAPI_arp_t *arp_local_nonprim = NULL;
-    if (arp) { 
+    if (arp) {
     arp_local_nonprim = OpenAPI_arp_parseFromJSON(arp);
     }
 
     cJSON *gbr_qos_flow_info = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "gbrQosFlowInfo");
 
     OpenAPI_gbr_qos_flow_information_t *gbr_qos_flow_info_local_nonprim = NULL;
-    if (gbr_qos_flow_info) { 
+    if (gbr_qos_flow_info) {
     gbr_qos_flow_info_local_nonprim = OpenAPI_gbr_qos_flow_information_parseFromJSON(gbr_qos_flow_info);
     }
 
     cJSON *rqa = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "rqa");
 
     OpenAPI_reflective_qo_s_attribute_e rqaVariable;
-    if (rqa) { 
+    if (rqa) {
     if (!cJSON_IsString(rqa)) {
         ogs_error("OpenAPI_qos_flow_profile_parseFromJSON() failed [rqa]");
         goto end;
@@ -204,7 +203,7 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_parseFromJSON(cJSON *qos_fl
     cJSON *additional_qos_flow_info = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "additionalQosFlowInfo");
 
     OpenAPI_additional_qos_flow_info_e additional_qos_flow_infoVariable;
-    if (additional_qos_flow_info) { 
+    if (additional_qos_flow_info) {
     if (!cJSON_IsString(additional_qos_flow_info)) {
         ogs_error("OpenAPI_qos_flow_profile_parseFromJSON() failed [additional_qos_flow_info]");
         goto end;
@@ -215,7 +214,7 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_parseFromJSON(cJSON *qos_fl
     cJSON *qos_monitoring_req = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "qosMonitoringReq");
 
     OpenAPI_qos_monitoring_req_e qos_monitoring_reqVariable;
-    if (qos_monitoring_req) { 
+    if (qos_monitoring_req) {
     if (!cJSON_IsString(qos_monitoring_req)) {
         ogs_error("OpenAPI_qos_flow_profile_parseFromJSON() failed [qos_monitoring_req]");
         goto end;
@@ -225,7 +224,7 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_parseFromJSON(cJSON *qos_fl
 
     cJSON *qos_rep_period = cJSON_GetObjectItemCaseSensitive(qos_flow_profileJSON, "qosRepPeriod");
 
-    if (qos_rep_period) { 
+    if (qos_rep_period) {
     if (!cJSON_IsNumber(qos_rep_period)) {
         ogs_error("OpenAPI_qos_flow_profile_parseFromJSON() failed [qos_rep_period]");
         goto end;

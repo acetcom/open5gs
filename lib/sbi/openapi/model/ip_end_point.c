@@ -83,7 +83,7 @@ OpenAPI_ip_end_point_t *OpenAPI_ip_end_point_parseFromJSON(cJSON *ip_end_pointJS
     OpenAPI_ip_end_point_t *ip_end_point_local_var = NULL;
     cJSON *ipv4_address = cJSON_GetObjectItemCaseSensitive(ip_end_pointJSON, "ipv4Address");
 
-    if (ipv4_address) { 
+    if (ipv4_address) {
     if (!cJSON_IsString(ipv4_address)) {
         ogs_error("OpenAPI_ip_end_point_parseFromJSON() failed [ipv4_address]");
         goto end;
@@ -92,7 +92,7 @@ OpenAPI_ip_end_point_t *OpenAPI_ip_end_point_parseFromJSON(cJSON *ip_end_pointJS
 
     cJSON *ipv6_address = cJSON_GetObjectItemCaseSensitive(ip_end_pointJSON, "ipv6Address");
 
-    if (ipv6_address) { 
+    if (ipv6_address) {
     if (!cJSON_IsString(ipv6_address)) {
         ogs_error("OpenAPI_ip_end_point_parseFromJSON() failed [ipv6_address]");
         goto end;
@@ -102,7 +102,7 @@ OpenAPI_ip_end_point_t *OpenAPI_ip_end_point_parseFromJSON(cJSON *ip_end_pointJS
     cJSON *transport = cJSON_GetObjectItemCaseSensitive(ip_end_pointJSON, "transport");
 
     OpenAPI_transport_protocol_e transportVariable;
-    if (transport) { 
+    if (transport) {
     if (!cJSON_IsString(transport)) {
         ogs_error("OpenAPI_ip_end_point_parseFromJSON() failed [transport]");
         goto end;
@@ -112,7 +112,7 @@ OpenAPI_ip_end_point_t *OpenAPI_ip_end_point_parseFromJSON(cJSON *ip_end_pointJS
 
     cJSON *port = cJSON_GetObjectItemCaseSensitive(ip_end_pointJSON, "port");
 
-    if (port) { 
+    if (port) {
     if (!cJSON_IsNumber(port)) {
         ogs_error("OpenAPI_ip_end_point_parseFromJSON() failed [port]");
         goto end;

@@ -219,7 +219,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
     OpenAPI_sm_context_created_data_t *sm_context_created_data_local_var = NULL;
     cJSON *h_smf_uri = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "hSmfUri");
 
-    if (h_smf_uri) { 
+    if (h_smf_uri) {
     if (!cJSON_IsString(h_smf_uri)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [h_smf_uri]");
         goto end;
@@ -228,7 +228,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *smf_uri = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "smfUri");
 
-    if (smf_uri) { 
+    if (smf_uri) {
     if (!cJSON_IsString(smf_uri)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [smf_uri]");
         goto end;
@@ -237,7 +237,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *pdu_session_id = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "pduSessionId");
 
-    if (pdu_session_id) { 
+    if (pdu_session_id) {
     if (!cJSON_IsNumber(pdu_session_id)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [pdu_session_id]");
         goto end;
@@ -247,14 +247,14 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
     cJSON *s_nssai = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "sNssai");
 
     OpenAPI_snssai_t *s_nssai_local_nonprim = NULL;
-    if (s_nssai) { 
+    if (s_nssai) {
     s_nssai_local_nonprim = OpenAPI_snssai_parseFromJSON(s_nssai);
     }
 
     cJSON *up_cnx_state = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "upCnxState");
 
     OpenAPI_up_cnx_state_e up_cnx_stateVariable;
-    if (up_cnx_state) { 
+    if (up_cnx_state) {
     if (!cJSON_IsString(up_cnx_state)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [up_cnx_state]");
         goto end;
@@ -265,14 +265,14 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
     cJSON *n2_sm_info = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "n2SmInfo");
 
     OpenAPI_ref_to_binary_data_t *n2_sm_info_local_nonprim = NULL;
-    if (n2_sm_info) { 
+    if (n2_sm_info) {
     n2_sm_info_local_nonprim = OpenAPI_ref_to_binary_data_parseFromJSON(n2_sm_info);
     }
 
     cJSON *n2_sm_info_type = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "n2SmInfoType");
 
     OpenAPI_n2_sm_info_type_e n2_sm_info_typeVariable;
-    if (n2_sm_info_type) { 
+    if (n2_sm_info_type) {
     if (!cJSON_IsString(n2_sm_info_type)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [n2_sm_info_type]");
         goto end;
@@ -283,7 +283,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
     cJSON *allocated_ebi_list = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "allocatedEbiList");
 
     OpenAPI_list_t *allocated_ebi_listList;
-    if (allocated_ebi_list) { 
+    if (allocated_ebi_list) {
     cJSON *allocated_ebi_list_local_nonprimitive;
     if (!cJSON_IsArray(allocated_ebi_list)){
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [allocated_ebi_list]");
@@ -306,7 +306,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
     cJSON *ho_state = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "hoState");
 
     OpenAPI_ho_state_e ho_stateVariable;
-    if (ho_state) { 
+    if (ho_state) {
     if (!cJSON_IsString(ho_state)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [ho_state]");
         goto end;
@@ -316,7 +316,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *gpsi = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "gpsi");
 
-    if (gpsi) { 
+    if (gpsi) {
     if (!cJSON_IsString(gpsi)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [gpsi]");
         goto end;
@@ -325,7 +325,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *smf_service_instance_id = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "smfServiceInstanceId");
 
-    if (smf_service_instance_id) { 
+    if (smf_service_instance_id) {
     if (!cJSON_IsString(smf_service_instance_id)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [smf_service_instance_id]");
         goto end;
@@ -334,7 +334,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *recovery_time = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "recoveryTime");
 
-    if (recovery_time) { 
+    if (recovery_time) {
     if (!cJSON_IsString(recovery_time)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [recovery_time]");
         goto end;
@@ -343,7 +343,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "supportedFeatures");
 
-    if (supported_features) { 
+    if (supported_features) {
     if (!cJSON_IsString(supported_features)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [supported_features]");
         goto end;
@@ -352,7 +352,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *selected_smf_id = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "selectedSmfId");
 
-    if (selected_smf_id) { 
+    if (selected_smf_id) {
     if (!cJSON_IsString(selected_smf_id)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [selected_smf_id]");
         goto end;
@@ -361,7 +361,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
 
     cJSON *selected_old_smf_id = cJSON_GetObjectItemCaseSensitive(sm_context_created_dataJSON, "selectedOldSmfId");
 
-    if (selected_old_smf_id) { 
+    if (selected_old_smf_id) {
     if (!cJSON_IsString(selected_old_smf_id)) {
         ogs_error("OpenAPI_sm_context_created_data_parseFromJSON() failed [selected_old_smf_id]");
         goto end;

@@ -125,7 +125,7 @@ OpenAPI_search_result_t *OpenAPI_search_result_parseFromJSON(cJSON *search_resul
     OpenAPI_search_result_t *search_result_local_var = NULL;
     cJSON *validity_period = cJSON_GetObjectItemCaseSensitive(search_resultJSON, "validityPeriod");
 
-    if (validity_period) { 
+    if (validity_period) {
     if (!cJSON_IsNumber(validity_period)) {
         ogs_error("OpenAPI_search_result_parseFromJSON() failed [validity_period]");
         goto end;
@@ -139,7 +139,6 @@ OpenAPI_search_result_t *OpenAPI_search_result_parseFromJSON(cJSON *search_resul
     }
 
     OpenAPI_list_t *nf_instancesList;
-    
     cJSON *nf_instances_local_nonprimitive;
     if (!cJSON_IsArray(nf_instances)){
         ogs_error("OpenAPI_search_result_parseFromJSON() failed [nf_instances]");
@@ -160,7 +159,7 @@ OpenAPI_search_result_t *OpenAPI_search_result_parseFromJSON(cJSON *search_resul
 
     cJSON *search_id = cJSON_GetObjectItemCaseSensitive(search_resultJSON, "searchId");
 
-    if (search_id) { 
+    if (search_id) {
     if (!cJSON_IsString(search_id)) {
         ogs_error("OpenAPI_search_result_parseFromJSON() failed [search_id]");
         goto end;
@@ -169,7 +168,7 @@ OpenAPI_search_result_t *OpenAPI_search_result_parseFromJSON(cJSON *search_resul
 
     cJSON *num_nf_inst_complete = cJSON_GetObjectItemCaseSensitive(search_resultJSON, "numNfInstComplete");
 
-    if (num_nf_inst_complete) { 
+    if (num_nf_inst_complete) {
     if (!cJSON_IsNumber(num_nf_inst_complete)) {
         ogs_error("OpenAPI_search_result_parseFromJSON() failed [num_nf_inst_complete]");
         goto end;
@@ -179,13 +178,13 @@ OpenAPI_search_result_t *OpenAPI_search_result_parseFromJSON(cJSON *search_resul
     cJSON *preferred_search = cJSON_GetObjectItemCaseSensitive(search_resultJSON, "preferredSearch");
 
     OpenAPI_preferred_search_t *preferred_search_local_nonprim = NULL;
-    if (preferred_search) { 
+    if (preferred_search) {
     preferred_search_local_nonprim = OpenAPI_preferred_search_parseFromJSON(preferred_search);
     }
 
     cJSON *nrf_supported_features = cJSON_GetObjectItemCaseSensitive(search_resultJSON, "nrfSupportedFeatures");
 
-    if (nrf_supported_features) { 
+    if (nrf_supported_features) {
     if (!cJSON_IsString(nrf_supported_features)) {
         ogs_error("OpenAPI_search_result_parseFromJSON() failed [nrf_supported_features]");
         goto end;

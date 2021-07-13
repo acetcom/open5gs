@@ -76,7 +76,7 @@ OpenAPI_atsss_capability_t *OpenAPI_atsss_capability_parseFromJSON(cJSON *atsss_
     OpenAPI_atsss_capability_t *atsss_capability_local_var = NULL;
     cJSON *atsss_ll = cJSON_GetObjectItemCaseSensitive(atsss_capabilityJSON, "atsssLL");
 
-    if (atsss_ll) { 
+    if (atsss_ll) {
     if (!cJSON_IsBool(atsss_ll)) {
         ogs_error("OpenAPI_atsss_capability_parseFromJSON() failed [atsss_ll]");
         goto end;
@@ -85,7 +85,7 @@ OpenAPI_atsss_capability_t *OpenAPI_atsss_capability_parseFromJSON(cJSON *atsss_
 
     cJSON *mptcp = cJSON_GetObjectItemCaseSensitive(atsss_capabilityJSON, "mptcp");
 
-    if (mptcp) { 
+    if (mptcp) {
     if (!cJSON_IsBool(mptcp)) {
         ogs_error("OpenAPI_atsss_capability_parseFromJSON() failed [mptcp]");
         goto end;
@@ -94,7 +94,7 @@ OpenAPI_atsss_capability_t *OpenAPI_atsss_capability_parseFromJSON(cJSON *atsss_
 
     cJSON *rtt_without_pmf = cJSON_GetObjectItemCaseSensitive(atsss_capabilityJSON, "rttWithoutPmf");
 
-    if (rtt_without_pmf) { 
+    if (rtt_without_pmf) {
     if (!cJSON_IsBool(rtt_without_pmf)) {
         ogs_error("OpenAPI_atsss_capability_parseFromJSON() failed [rtt_without_pmf]");
         goto end;

@@ -109,12 +109,11 @@ OpenAPI_pdu_session_create_error_t *OpenAPI_pdu_session_create_error_parseFromJS
     }
 
     OpenAPI_problem_details_t *error_local_nonprim = NULL;
-    
     error_local_nonprim = OpenAPI_problem_details_parseFromJSON(error);
 
     cJSON *n1sm_cause = cJSON_GetObjectItemCaseSensitive(pdu_session_create_errorJSON, "n1smCause");
 
-    if (n1sm_cause) { 
+    if (n1sm_cause) {
     if (!cJSON_IsString(n1sm_cause)) {
         ogs_error("OpenAPI_pdu_session_create_error_parseFromJSON() failed [n1sm_cause]");
         goto end;
@@ -124,13 +123,13 @@ OpenAPI_pdu_session_create_error_t *OpenAPI_pdu_session_create_error_parseFromJS
     cJSON *n1_sm_info_to_ue = cJSON_GetObjectItemCaseSensitive(pdu_session_create_errorJSON, "n1SmInfoToUe");
 
     OpenAPI_ref_to_binary_data_t *n1_sm_info_to_ue_local_nonprim = NULL;
-    if (n1_sm_info_to_ue) { 
+    if (n1_sm_info_to_ue) {
     n1_sm_info_to_ue_local_nonprim = OpenAPI_ref_to_binary_data_parseFromJSON(n1_sm_info_to_ue);
     }
 
     cJSON *back_off_timer = cJSON_GetObjectItemCaseSensitive(pdu_session_create_errorJSON, "backOffTimer");
 
-    if (back_off_timer) { 
+    if (back_off_timer) {
     if (!cJSON_IsNumber(back_off_timer)) {
         ogs_error("OpenAPI_pdu_session_create_error_parseFromJSON() failed [back_off_timer]");
         goto end;
@@ -139,7 +138,7 @@ OpenAPI_pdu_session_create_error_t *OpenAPI_pdu_session_create_error_parseFromJS
 
     cJSON *recovery_time = cJSON_GetObjectItemCaseSensitive(pdu_session_create_errorJSON, "recoveryTime");
 
-    if (recovery_time) { 
+    if (recovery_time) {
     if (!cJSON_IsString(recovery_time)) {
         ogs_error("OpenAPI_pdu_session_create_error_parseFromJSON() failed [recovery_time]");
         goto end;

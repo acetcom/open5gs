@@ -528,7 +528,6 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(service_instance_id)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [service_instance_id]");
         goto end;
@@ -540,7 +539,6 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(service_name)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [service_name]");
         goto end;
@@ -553,7 +551,6 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     }
 
     OpenAPI_list_t *versionsList;
-    
     cJSON *versions_local_nonprimitive;
     if (!cJSON_IsArray(versions)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [versions]");
@@ -579,7 +576,6 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     }
 
     OpenAPI_uri_scheme_e schemeVariable;
-    
     if (!cJSON_IsString(scheme)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [scheme]");
         goto end;
@@ -593,7 +589,6 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     }
 
     OpenAPI_nf_service_status_e nf_service_statusVariable;
-    
     if (!cJSON_IsString(nf_service_status)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [nf_service_status]");
         goto end;
@@ -602,7 +597,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *fqdn = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "fqdn");
 
-    if (fqdn) { 
+    if (fqdn) {
     if (!cJSON_IsString(fqdn)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [fqdn]");
         goto end;
@@ -611,7 +606,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *inter_plmn_fqdn = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "interPlmnFqdn");
 
-    if (inter_plmn_fqdn) { 
+    if (inter_plmn_fqdn) {
     if (!cJSON_IsString(inter_plmn_fqdn)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [inter_plmn_fqdn]");
         goto end;
@@ -621,7 +616,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *ip_end_points = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "ipEndPoints");
 
     OpenAPI_list_t *ip_end_pointsList;
-    if (ip_end_points) { 
+    if (ip_end_points) {
     cJSON *ip_end_points_local_nonprimitive;
     if (!cJSON_IsArray(ip_end_points)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [ip_end_points]");
@@ -643,7 +638,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *api_prefix = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "apiPrefix");
 
-    if (api_prefix) { 
+    if (api_prefix) {
     if (!cJSON_IsString(api_prefix)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [api_prefix]");
         goto end;
@@ -653,7 +648,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *default_notification_subscriptions = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "defaultNotificationSubscriptions");
 
     OpenAPI_list_t *default_notification_subscriptionsList;
-    if (default_notification_subscriptions) { 
+    if (default_notification_subscriptions) {
     cJSON *default_notification_subscriptions_local_nonprimitive;
     if (!cJSON_IsArray(default_notification_subscriptions)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [default_notification_subscriptions]");
@@ -676,7 +671,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *allowed_plmns = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "allowedPlmns");
 
     OpenAPI_list_t *allowed_plmnsList;
-    if (allowed_plmns) { 
+    if (allowed_plmns) {
     cJSON *allowed_plmns_local_nonprimitive;
     if (!cJSON_IsArray(allowed_plmns)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [allowed_plmns]");
@@ -699,7 +694,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *allowed_snpns = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "allowedSnpns");
 
     OpenAPI_list_t *allowed_snpnsList;
-    if (allowed_snpns) { 
+    if (allowed_snpns) {
     cJSON *allowed_snpns_local_nonprimitive;
     if (!cJSON_IsArray(allowed_snpns)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [allowed_snpns]");
@@ -722,7 +717,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *allowed_nf_types = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "allowedNfTypes");
 
     OpenAPI_list_t *allowed_nf_typesList;
-    if (allowed_nf_types) { 
+    if (allowed_nf_types) {
     cJSON *allowed_nf_types_local_nonprimitive;
     if (!cJSON_IsArray(allowed_nf_types)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [allowed_nf_types]");
@@ -744,7 +739,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *allowed_nf_domains = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "allowedNfDomains");
 
     OpenAPI_list_t *allowed_nf_domainsList;
-    if (allowed_nf_domains) { 
+    if (allowed_nf_domains) {
     cJSON *allowed_nf_domains_local;
     if (!cJSON_IsArray(allowed_nf_domains)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [allowed_nf_domains]");
@@ -758,13 +753,13 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
         goto end;
     }
     OpenAPI_list_add(allowed_nf_domainsList , ogs_strdup_or_assert(allowed_nf_domains_local->valuestring));
-                    }
+    }
     }
 
     cJSON *allowed_nssais = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "allowedNssais");
 
     OpenAPI_list_t *allowed_nssaisList;
-    if (allowed_nssais) { 
+    if (allowed_nssais) {
     cJSON *allowed_nssais_local_nonprimitive;
     if (!cJSON_IsArray(allowed_nssais)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [allowed_nssais]");
@@ -787,7 +782,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *allowed_operations_per_nf_type = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "allowedOperationsPerNfType");
 
     OpenAPI_list_t *allowed_operations_per_nf_typeList;
-    if (allowed_operations_per_nf_type) { 
+    if (allowed_operations_per_nf_type) {
     cJSON *allowed_operations_per_nf_type_local_map;
     if (!cJSON_IsObject(allowed_operations_per_nf_type)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [allowed_operations_per_nf_type]");
@@ -804,7 +799,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *allowed_operations_per_nf_instance = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "allowedOperationsPerNfInstance");
 
     OpenAPI_list_t *allowed_operations_per_nf_instanceList;
-    if (allowed_operations_per_nf_instance) { 
+    if (allowed_operations_per_nf_instance) {
     cJSON *allowed_operations_per_nf_instance_local_map;
     if (!cJSON_IsObject(allowed_operations_per_nf_instance)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [allowed_operations_per_nf_instance]");
@@ -820,7 +815,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *priority = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "priority");
 
-    if (priority) { 
+    if (priority) {
     if (!cJSON_IsNumber(priority)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [priority]");
         goto end;
@@ -829,7 +824,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *capacity = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "capacity");
 
-    if (capacity) { 
+    if (capacity) {
     if (!cJSON_IsNumber(capacity)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [capacity]");
         goto end;
@@ -838,7 +833,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *load = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "load");
 
-    if (load) { 
+    if (load) {
     if (!cJSON_IsNumber(load)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [load]");
         goto end;
@@ -847,7 +842,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *load_time_stamp = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "loadTimeStamp");
 
-    if (load_time_stamp) { 
+    if (load_time_stamp) {
     if (!cJSON_IsString(load_time_stamp)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [load_time_stamp]");
         goto end;
@@ -856,7 +851,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *recovery_time = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "recoveryTime");
 
-    if (recovery_time) { 
+    if (recovery_time) {
     if (!cJSON_IsString(recovery_time)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [recovery_time]");
         goto end;
@@ -865,7 +860,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *supported_features = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "supportedFeatures");
 
-    if (supported_features) { 
+    if (supported_features) {
     if (!cJSON_IsString(supported_features)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [supported_features]");
         goto end;
@@ -875,7 +870,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *nf_service_set_id_list = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "nfServiceSetIdList");
 
     OpenAPI_list_t *nf_service_set_id_listList;
-    if (nf_service_set_id_list) { 
+    if (nf_service_set_id_list) {
     cJSON *nf_service_set_id_list_local;
     if (!cJSON_IsArray(nf_service_set_id_list)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [nf_service_set_id_list]");
@@ -889,13 +884,13 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
         goto end;
     }
     OpenAPI_list_add(nf_service_set_id_listList , ogs_strdup_or_assert(nf_service_set_id_list_local->valuestring));
-                    }
+    }
     }
 
     cJSON *s_nssais = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "sNssais");
 
     OpenAPI_list_t *s_nssaisList;
-    if (s_nssais) { 
+    if (s_nssais) {
     cJSON *s_nssais_local_nonprimitive;
     if (!cJSON_IsArray(s_nssais)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [s_nssais]");
@@ -918,7 +913,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *per_plmn_snssai_list = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "perPlmnSnssaiList");
 
     OpenAPI_list_t *per_plmn_snssai_listList;
-    if (per_plmn_snssai_list) { 
+    if (per_plmn_snssai_list) {
     cJSON *per_plmn_snssai_list_local_nonprimitive;
     if (!cJSON_IsArray(per_plmn_snssai_list)){
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [per_plmn_snssai_list]");
@@ -940,7 +935,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *vendor_id = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "vendorId");
 
-    if (vendor_id) { 
+    if (vendor_id) {
     if (!cJSON_IsString(vendor_id)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [vendor_id]");
         goto end;
@@ -950,7 +945,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
     cJSON *supported_vendor_specific_features = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "supportedVendorSpecificFeatures");
 
     OpenAPI_list_t *supported_vendor_specific_featuresList;
-    if (supported_vendor_specific_features) { 
+    if (supported_vendor_specific_features) {
     cJSON *supported_vendor_specific_features_local_map;
     if (!cJSON_IsObject(supported_vendor_specific_features)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [supported_vendor_specific_features]");
@@ -966,7 +961,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
 
     cJSON *oauth2_required = cJSON_GetObjectItemCaseSensitive(nf_serviceJSON, "oauth2Required");
 
-    if (oauth2_required) { 
+    if (oauth2_required) {
     if (!cJSON_IsBool(oauth2_required)) {
         ogs_error("OpenAPI_nf_service_parseFromJSON() failed [oauth2_required]");
         goto end;

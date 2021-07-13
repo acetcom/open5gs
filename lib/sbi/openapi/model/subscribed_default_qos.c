@@ -79,7 +79,6 @@ OpenAPI_subscribed_default_qos_t *OpenAPI_subscribed_default_qos_parseFromJSON(c
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(_5qi)) {
         ogs_error("OpenAPI_subscribed_default_qos_parseFromJSON() failed [_5qi]");
         goto end;
@@ -92,12 +91,11 @@ OpenAPI_subscribed_default_qos_t *OpenAPI_subscribed_default_qos_parseFromJSON(c
     }
 
     OpenAPI_arp_t *arp_local_nonprim = NULL;
-    
     arp_local_nonprim = OpenAPI_arp_parseFromJSON(arp);
 
     cJSON *priority_level = cJSON_GetObjectItemCaseSensitive(subscribed_default_qosJSON, "priorityLevel");
 
-    if (priority_level) { 
+    if (priority_level) {
     if (!cJSON_IsNumber(priority_level)) {
         ogs_error("OpenAPI_subscribed_default_qos_parseFromJSON() failed [priority_level]");
         goto end;

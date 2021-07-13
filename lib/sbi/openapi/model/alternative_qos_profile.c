@@ -95,7 +95,6 @@ OpenAPI_alternative_qos_profile_t *OpenAPI_alternative_qos_profile_parseFromJSON
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(index)) {
         ogs_error("OpenAPI_alternative_qos_profile_parseFromJSON() failed [index]");
         goto end;
@@ -103,7 +102,7 @@ OpenAPI_alternative_qos_profile_t *OpenAPI_alternative_qos_profile_parseFromJSON
 
     cJSON *gua_fbr_dl = cJSON_GetObjectItemCaseSensitive(alternative_qos_profileJSON, "guaFbrDl");
 
-    if (gua_fbr_dl) { 
+    if (gua_fbr_dl) {
     if (!cJSON_IsString(gua_fbr_dl)) {
         ogs_error("OpenAPI_alternative_qos_profile_parseFromJSON() failed [gua_fbr_dl]");
         goto end;
@@ -112,7 +111,7 @@ OpenAPI_alternative_qos_profile_t *OpenAPI_alternative_qos_profile_parseFromJSON
 
     cJSON *gua_fbr_ul = cJSON_GetObjectItemCaseSensitive(alternative_qos_profileJSON, "guaFbrUl");
 
-    if (gua_fbr_ul) { 
+    if (gua_fbr_ul) {
     if (!cJSON_IsString(gua_fbr_ul)) {
         ogs_error("OpenAPI_alternative_qos_profile_parseFromJSON() failed [gua_fbr_ul]");
         goto end;
@@ -121,7 +120,7 @@ OpenAPI_alternative_qos_profile_t *OpenAPI_alternative_qos_profile_parseFromJSON
 
     cJSON *packet_delay_budget = cJSON_GetObjectItemCaseSensitive(alternative_qos_profileJSON, "packetDelayBudget");
 
-    if (packet_delay_budget) { 
+    if (packet_delay_budget) {
     if (!cJSON_IsNumber(packet_delay_budget)) {
         ogs_error("OpenAPI_alternative_qos_profile_parseFromJSON() failed [packet_delay_budget]");
         goto end;
@@ -130,7 +129,7 @@ OpenAPI_alternative_qos_profile_t *OpenAPI_alternative_qos_profile_parseFromJSON
 
     cJSON *packet_err_rate = cJSON_GetObjectItemCaseSensitive(alternative_qos_profileJSON, "packetErrRate");
 
-    if (packet_err_rate) { 
+    if (packet_err_rate) {
     if (!cJSON_IsString(packet_err_rate)) {
         ogs_error("OpenAPI_alternative_qos_profile_parseFromJSON() failed [packet_err_rate]");
         goto end;

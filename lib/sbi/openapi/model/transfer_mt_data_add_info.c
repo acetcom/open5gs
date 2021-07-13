@@ -54,7 +54,7 @@ OpenAPI_transfer_mt_data_add_info_t *OpenAPI_transfer_mt_data_add_info_parseFrom
     OpenAPI_transfer_mt_data_add_info_t *transfer_mt_data_add_info_local_var = NULL;
     cJSON *max_waiting_time = cJSON_GetObjectItemCaseSensitive(transfer_mt_data_add_infoJSON, "maxWaitingTime");
 
-    if (max_waiting_time) { 
+    if (max_waiting_time) {
     if (!cJSON_IsNumber(max_waiting_time)) {
         ogs_error("OpenAPI_transfer_mt_data_add_info_parseFromJSON() failed [max_waiting_time]");
         goto end;

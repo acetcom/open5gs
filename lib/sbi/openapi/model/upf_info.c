@@ -294,7 +294,6 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
     }
 
     OpenAPI_list_t *s_nssai_upf_info_listList;
-    
     cJSON *s_nssai_upf_info_list_local_nonprimitive;
     if (!cJSON_IsArray(s_nssai_upf_info_list)){
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [s_nssai_upf_info_list]");
@@ -316,7 +315,7 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
     cJSON *smf_serving_area = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "smfServingArea");
 
     OpenAPI_list_t *smf_serving_areaList;
-    if (smf_serving_area) { 
+    if (smf_serving_area) {
     cJSON *smf_serving_area_local;
     if (!cJSON_IsArray(smf_serving_area)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [smf_serving_area]");
@@ -330,13 +329,13 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
         goto end;
     }
     OpenAPI_list_add(smf_serving_areaList , ogs_strdup_or_assert(smf_serving_area_local->valuestring));
-                    }
+    }
     }
 
     cJSON *interface_upf_info_list = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "interfaceUpfInfoList");
 
     OpenAPI_list_t *interface_upf_info_listList;
-    if (interface_upf_info_list) { 
+    if (interface_upf_info_list) {
     cJSON *interface_upf_info_list_local_nonprimitive;
     if (!cJSON_IsArray(interface_upf_info_list)){
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [interface_upf_info_list]");
@@ -358,7 +357,7 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
 
     cJSON *iwk_eps_ind = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "iwkEpsInd");
 
-    if (iwk_eps_ind) { 
+    if (iwk_eps_ind) {
     if (!cJSON_IsBool(iwk_eps_ind)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [iwk_eps_ind]");
         goto end;
@@ -368,7 +367,7 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
     cJSON *pdu_session_types = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "pduSessionTypes");
 
     OpenAPI_list_t *pdu_session_typesList;
-    if (pdu_session_types) { 
+    if (pdu_session_types) {
     cJSON *pdu_session_types_local_nonprimitive;
     if (!cJSON_IsArray(pdu_session_types)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [pdu_session_types]");
@@ -390,13 +389,13 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
     cJSON *atsss_capability = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "atsssCapability");
 
     OpenAPI_atsss_capability_t *atsss_capability_local_nonprim = NULL;
-    if (atsss_capability) { 
+    if (atsss_capability) {
     atsss_capability_local_nonprim = OpenAPI_atsss_capability_parseFromJSON(atsss_capability);
     }
 
     cJSON *ue_ip_addr_ind = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "ueIpAddrInd");
 
-    if (ue_ip_addr_ind) { 
+    if (ue_ip_addr_ind) {
     if (!cJSON_IsBool(ue_ip_addr_ind)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [ue_ip_addr_ind]");
         goto end;
@@ -406,7 +405,7 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
     cJSON *tai_list = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "taiList");
 
     OpenAPI_list_t *tai_listList;
-    if (tai_list) { 
+    if (tai_list) {
     cJSON *tai_list_local_nonprimitive;
     if (!cJSON_IsArray(tai_list)){
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [tai_list]");
@@ -429,27 +428,27 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
     cJSON *w_agf_info = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "wAgfInfo");
 
     OpenAPI_w_agf_info_t *w_agf_info_local_nonprim = NULL;
-    if (w_agf_info) { 
+    if (w_agf_info) {
     w_agf_info_local_nonprim = OpenAPI_w_agf_info_parseFromJSON(w_agf_info);
     }
 
     cJSON *tngf_info = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "tngfInfo");
 
     OpenAPI_tngf_info_t *tngf_info_local_nonprim = NULL;
-    if (tngf_info) { 
+    if (tngf_info) {
     tngf_info_local_nonprim = OpenAPI_tngf_info_parseFromJSON(tngf_info);
     }
 
     cJSON *twif_info = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "twifInfo");
 
     OpenAPI_twif_info_t *twif_info_local_nonprim = NULL;
-    if (twif_info) { 
+    if (twif_info) {
     twif_info_local_nonprim = OpenAPI_twif_info_parseFromJSON(twif_info);
     }
 
     cJSON *priority = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "priority");
 
-    if (priority) { 
+    if (priority) {
     if (!cJSON_IsNumber(priority)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [priority]");
         goto end;
@@ -458,7 +457,7 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
 
     cJSON *redundant_gtpu = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "redundantGtpu");
 
-    if (redundant_gtpu) { 
+    if (redundant_gtpu) {
     if (!cJSON_IsBool(redundant_gtpu)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [redundant_gtpu]");
         goto end;
@@ -467,7 +466,7 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
 
     cJSON *ipups = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "ipups");
 
-    if (ipups) { 
+    if (ipups) {
     if (!cJSON_IsBool(ipups)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [ipups]");
         goto end;
@@ -476,7 +475,7 @@ OpenAPI_upf_info_t *OpenAPI_upf_info_parseFromJSON(cJSON *upf_infoJSON)
 
     cJSON *data_forwarding = cJSON_GetObjectItemCaseSensitive(upf_infoJSON, "dataForwarding");
 
-    if (data_forwarding) { 
+    if (data_forwarding) {
     if (!cJSON_IsBool(data_forwarding)) {
         ogs_error("OpenAPI_upf_info_parseFromJSON() failed [data_forwarding]");
         goto end;

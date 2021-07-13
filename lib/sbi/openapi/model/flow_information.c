@@ -129,7 +129,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
     OpenAPI_flow_information_t *flow_information_local_var = NULL;
     cJSON *flow_description = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "flowDescription");
 
-    if (flow_description) { 
+    if (flow_description) {
     if (!cJSON_IsString(flow_description)) {
         ogs_error("OpenAPI_flow_information_parseFromJSON() failed [flow_description]");
         goto end;
@@ -139,13 +139,13 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
     cJSON *eth_flow_description = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "ethFlowDescription");
 
     OpenAPI_eth_flow_description_t *eth_flow_description_local_nonprim = NULL;
-    if (eth_flow_description) { 
+    if (eth_flow_description) {
     eth_flow_description_local_nonprim = OpenAPI_eth_flow_description_parseFromJSON(eth_flow_description);
     }
 
     cJSON *pack_filt_id = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "packFiltId");
 
-    if (pack_filt_id) { 
+    if (pack_filt_id) {
     if (!cJSON_IsString(pack_filt_id)) {
         ogs_error("OpenAPI_flow_information_parseFromJSON() failed [pack_filt_id]");
         goto end;
@@ -154,7 +154,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
 
     cJSON *packet_filter_usage = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "packetFilterUsage");
 
-    if (packet_filter_usage) { 
+    if (packet_filter_usage) {
     if (!cJSON_IsBool(packet_filter_usage)) {
         ogs_error("OpenAPI_flow_information_parseFromJSON() failed [packet_filter_usage]");
         goto end;
@@ -163,7 +163,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
 
     cJSON *tos_traffic_class = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "tosTrafficClass");
 
-    if (tos_traffic_class) { 
+    if (tos_traffic_class) {
     if (!cJSON_IsString(tos_traffic_class)) {
         ogs_error("OpenAPI_flow_information_parseFromJSON() failed [tos_traffic_class]");
         goto end;
@@ -172,7 +172,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
 
     cJSON *spi = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "spi");
 
-    if (spi) { 
+    if (spi) {
     if (!cJSON_IsString(spi)) {
         ogs_error("OpenAPI_flow_information_parseFromJSON() failed [spi]");
         goto end;
@@ -181,7 +181,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
 
     cJSON *flow_label = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "flowLabel");
 
-    if (flow_label) { 
+    if (flow_label) {
     if (!cJSON_IsString(flow_label)) {
         ogs_error("OpenAPI_flow_information_parseFromJSON() failed [flow_label]");
         goto end;
@@ -191,7 +191,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
     cJSON *flow_direction = cJSON_GetObjectItemCaseSensitive(flow_informationJSON, "flowDirection");
 
     OpenAPI_flow_direction_e flow_directionVariable;
-    if (flow_direction) { 
+    if (flow_direction) {
     if (!cJSON_IsString(flow_direction)) {
         ogs_error("OpenAPI_flow_information_parseFromJSON() failed [flow_direction]");
         goto end;

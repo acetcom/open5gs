@@ -97,7 +97,7 @@ OpenAPI_small_data_rate_status_t *OpenAPI_small_data_rate_status_parseFromJSON(c
     OpenAPI_small_data_rate_status_t *small_data_rate_status_local_var = NULL;
     cJSON *remain_packets_ul = cJSON_GetObjectItemCaseSensitive(small_data_rate_statusJSON, "remainPacketsUl");
 
-    if (remain_packets_ul) { 
+    if (remain_packets_ul) {
     if (!cJSON_IsNumber(remain_packets_ul)) {
         ogs_error("OpenAPI_small_data_rate_status_parseFromJSON() failed [remain_packets_ul]");
         goto end;
@@ -106,7 +106,7 @@ OpenAPI_small_data_rate_status_t *OpenAPI_small_data_rate_status_parseFromJSON(c
 
     cJSON *remain_packets_dl = cJSON_GetObjectItemCaseSensitive(small_data_rate_statusJSON, "remainPacketsDl");
 
-    if (remain_packets_dl) { 
+    if (remain_packets_dl) {
     if (!cJSON_IsNumber(remain_packets_dl)) {
         ogs_error("OpenAPI_small_data_rate_status_parseFromJSON() failed [remain_packets_dl]");
         goto end;
@@ -115,7 +115,7 @@ OpenAPI_small_data_rate_status_t *OpenAPI_small_data_rate_status_parseFromJSON(c
 
     cJSON *validity_time = cJSON_GetObjectItemCaseSensitive(small_data_rate_statusJSON, "validityTime");
 
-    if (validity_time) { 
+    if (validity_time) {
     if (!cJSON_IsString(validity_time)) {
         ogs_error("OpenAPI_small_data_rate_status_parseFromJSON() failed [validity_time]");
         goto end;
@@ -124,7 +124,7 @@ OpenAPI_small_data_rate_status_t *OpenAPI_small_data_rate_status_parseFromJSON(c
 
     cJSON *remain_ex_reports_ul = cJSON_GetObjectItemCaseSensitive(small_data_rate_statusJSON, "remainExReportsUl");
 
-    if (remain_ex_reports_ul) { 
+    if (remain_ex_reports_ul) {
     if (!cJSON_IsNumber(remain_ex_reports_ul)) {
         ogs_error("OpenAPI_small_data_rate_status_parseFromJSON() failed [remain_ex_reports_ul]");
         goto end;
@@ -133,7 +133,7 @@ OpenAPI_small_data_rate_status_t *OpenAPI_small_data_rate_status_parseFromJSON(c
 
     cJSON *remain_ex_reports_dl = cJSON_GetObjectItemCaseSensitive(small_data_rate_statusJSON, "remainExReportsDl");
 
-    if (remain_ex_reports_dl) { 
+    if (remain_ex_reports_dl) {
     if (!cJSON_IsNumber(remain_ex_reports_dl)) {
         ogs_error("OpenAPI_small_data_rate_status_parseFromJSON() failed [remain_ex_reports_dl]");
         goto end;

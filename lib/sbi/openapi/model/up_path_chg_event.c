@@ -81,7 +81,6 @@ OpenAPI_up_path_chg_event_t *OpenAPI_up_path_chg_event_parseFromJSON(cJSON *up_p
         goto end;
     }
 
-    
     if (!cJSON_IsString(notification_uri)) {
         ogs_error("OpenAPI_up_path_chg_event_parseFromJSON() failed [notification_uri]");
         goto end;
@@ -93,7 +92,6 @@ OpenAPI_up_path_chg_event_t *OpenAPI_up_path_chg_event_parseFromJSON(cJSON *up_p
         goto end;
     }
 
-    
     if (!cJSON_IsString(notif_corre_id)) {
         ogs_error("OpenAPI_up_path_chg_event_parseFromJSON() failed [notif_corre_id]");
         goto end;
@@ -106,7 +104,6 @@ OpenAPI_up_path_chg_event_t *OpenAPI_up_path_chg_event_parseFromJSON(cJSON *up_p
     }
 
     OpenAPI_dnai_change_type_e dnai_chg_typeVariable;
-    
     if (!cJSON_IsString(dnai_chg_type)) {
         ogs_error("OpenAPI_up_path_chg_event_parseFromJSON() failed [dnai_chg_type]");
         goto end;
@@ -115,7 +112,7 @@ OpenAPI_up_path_chg_event_t *OpenAPI_up_path_chg_event_parseFromJSON(cJSON *up_p
 
     cJSON *af_ack_ind = cJSON_GetObjectItemCaseSensitive(up_path_chg_eventJSON, "afAckInd");
 
-    if (af_ack_ind) { 
+    if (af_ack_ind) {
     if (!cJSON_IsBool(af_ack_ind)) {
         ogs_error("OpenAPI_up_path_chg_event_parseFromJSON() failed [af_ack_ind]");
         goto end;

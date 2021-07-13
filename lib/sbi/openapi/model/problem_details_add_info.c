@@ -54,7 +54,7 @@ OpenAPI_problem_details_add_info_t *OpenAPI_problem_details_add_info_parseFromJS
     OpenAPI_problem_details_add_info_t *problem_details_add_info_local_var = NULL;
     cJSON *remote_error = cJSON_GetObjectItemCaseSensitive(problem_details_add_infoJSON, "remoteError");
 
-    if (remote_error) { 
+    if (remote_error) {
     if (!cJSON_IsBool(remote_error)) {
         ogs_error("OpenAPI_problem_details_add_info_parseFromJSON() failed [remote_error]");
         goto end;

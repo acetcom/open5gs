@@ -118,14 +118,14 @@ OpenAPI_sm_context_retrieve_data_t *OpenAPI_sm_context_retrieve_data_parseFromJS
     cJSON *target_mme_cap = cJSON_GetObjectItemCaseSensitive(sm_context_retrieve_dataJSON, "targetMmeCap");
 
     OpenAPI_mme_capabilities_t *target_mme_cap_local_nonprim = NULL;
-    if (target_mme_cap) { 
+    if (target_mme_cap) {
     target_mme_cap_local_nonprim = OpenAPI_mme_capabilities_parseFromJSON(target_mme_cap);
     }
 
     cJSON *sm_context_type = cJSON_GetObjectItemCaseSensitive(sm_context_retrieve_dataJSON, "smContextType");
 
     OpenAPI_sm_context_type_e sm_context_typeVariable;
-    if (sm_context_type) { 
+    if (sm_context_type) {
     if (!cJSON_IsString(sm_context_type)) {
         ogs_error("OpenAPI_sm_context_retrieve_data_parseFromJSON() failed [sm_context_type]");
         goto end;
@@ -136,14 +136,14 @@ OpenAPI_sm_context_retrieve_data_t *OpenAPI_sm_context_retrieve_data_parseFromJS
     cJSON *serving_network = cJSON_GetObjectItemCaseSensitive(sm_context_retrieve_dataJSON, "servingNetwork");
 
     OpenAPI_plmn_id_t *serving_network_local_nonprim = NULL;
-    if (serving_network) { 
+    if (serving_network) {
     serving_network_local_nonprim = OpenAPI_plmn_id_parseFromJSON(serving_network);
     }
 
     cJSON *not_to_transfer_ebi_list = cJSON_GetObjectItemCaseSensitive(sm_context_retrieve_dataJSON, "notToTransferEbiList");
 
     OpenAPI_list_t *not_to_transfer_ebi_listList;
-    if (not_to_transfer_ebi_list) { 
+    if (not_to_transfer_ebi_list) {
     cJSON *not_to_transfer_ebi_list_local;
     if (!cJSON_IsArray(not_to_transfer_ebi_list)) {
         ogs_error("OpenAPI_sm_context_retrieve_data_parseFromJSON() failed [not_to_transfer_ebi_list]");
@@ -157,12 +157,12 @@ OpenAPI_sm_context_retrieve_data_t *OpenAPI_sm_context_retrieve_data_parseFromJS
         goto end;
     }
     OpenAPI_list_add(not_to_transfer_ebi_listList , &not_to_transfer_ebi_list_local->valuedouble);
-                    }
+    }
     }
 
     cJSON *ran_unchanged_ind = cJSON_GetObjectItemCaseSensitive(sm_context_retrieve_dataJSON, "ranUnchangedInd");
 
-    if (ran_unchanged_ind) { 
+    if (ran_unchanged_ind) {
     if (!cJSON_IsBool(ran_unchanged_ind)) {
         ogs_error("OpenAPI_sm_context_retrieve_data_parseFromJSON() failed [ran_unchanged_ind]");
         goto end;

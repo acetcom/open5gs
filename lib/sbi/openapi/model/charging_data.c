@@ -169,7 +169,6 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
         goto end;
     }
 
-    
     if (!cJSON_IsString(chg_id)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [chg_id]");
         goto end;
@@ -178,7 +177,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
     cJSON *metering_method = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "meteringMethod");
 
     OpenAPI_metering_method_e metering_methodVariable;
-    if (metering_method) { 
+    if (metering_method) {
     if (!cJSON_IsString(metering_method)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [metering_method]");
         goto end;
@@ -188,7 +187,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *offline = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "offline");
 
-    if (offline) { 
+    if (offline) {
     if (!cJSON_IsBool(offline)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [offline]");
         goto end;
@@ -197,7 +196,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *online = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "online");
 
-    if (online) { 
+    if (online) {
     if (!cJSON_IsBool(online)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [online]");
         goto end;
@@ -206,7 +205,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *sdf_handl = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "sdfHandl");
 
-    if (sdf_handl) { 
+    if (sdf_handl) {
     if (!cJSON_IsBool(sdf_handl)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [sdf_handl]");
         goto end;
@@ -215,7 +214,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *rating_group = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "ratingGroup");
 
-    if (rating_group) { 
+    if (rating_group) {
     if (!cJSON_IsNumber(rating_group)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [rating_group]");
         goto end;
@@ -225,7 +224,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
     cJSON *reporting_level = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "reportingLevel");
 
     OpenAPI_reporting_level_e reporting_levelVariable;
-    if (reporting_level) { 
+    if (reporting_level) {
     if (!cJSON_IsString(reporting_level)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [reporting_level]");
         goto end;
@@ -235,7 +234,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *service_id = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "serviceId");
 
-    if (service_id) { 
+    if (service_id) {
     if (!cJSON_IsNumber(service_id)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [service_id]");
         goto end;
@@ -244,7 +243,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *sponsor_id = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "sponsorId");
 
-    if (sponsor_id) { 
+    if (sponsor_id) {
     if (!cJSON_IsString(sponsor_id)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [sponsor_id]");
         goto end;
@@ -253,7 +252,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *app_svc_prov_id = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "appSvcProvId");
 
-    if (app_svc_prov_id) { 
+    if (app_svc_prov_id) {
     if (!cJSON_IsString(app_svc_prov_id)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [app_svc_prov_id]");
         goto end;
@@ -262,7 +261,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *af_charging_identifier = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "afChargingIdentifier");
 
-    if (af_charging_identifier) { 
+    if (af_charging_identifier) {
     if (!cJSON_IsNumber(af_charging_identifier)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [af_charging_identifier]");
         goto end;
@@ -271,7 +270,7 @@ OpenAPI_charging_data_t *OpenAPI_charging_data_parseFromJSON(cJSON *charging_dat
 
     cJSON *af_charg_id = cJSON_GetObjectItemCaseSensitive(charging_dataJSON, "afChargId");
 
-    if (af_charg_id) { 
+    if (af_charg_id) {
     if (!cJSON_IsString(af_charg_id)) {
         ogs_error("OpenAPI_charging_data_parseFromJSON() failed [af_charg_id]");
         goto end;

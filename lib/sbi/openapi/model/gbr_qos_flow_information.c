@@ -136,7 +136,6 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
         goto end;
     }
 
-    
     if (!cJSON_IsString(max_fbr_dl)) {
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [max_fbr_dl]");
         goto end;
@@ -148,7 +147,6 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
         goto end;
     }
 
-    
     if (!cJSON_IsString(max_fbr_ul)) {
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [max_fbr_ul]");
         goto end;
@@ -160,7 +158,6 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
         goto end;
     }
 
-    
     if (!cJSON_IsString(gua_fbr_dl)) {
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [gua_fbr_dl]");
         goto end;
@@ -172,7 +169,6 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
         goto end;
     }
 
-    
     if (!cJSON_IsString(gua_fbr_ul)) {
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [gua_fbr_ul]");
         goto end;
@@ -181,7 +177,7 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
     cJSON *notif_control = cJSON_GetObjectItemCaseSensitive(gbr_qos_flow_informationJSON, "notifControl");
 
     OpenAPI_notification_control_e notif_controlVariable;
-    if (notif_control) { 
+    if (notif_control) {
     if (!cJSON_IsString(notif_control)) {
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [notif_control]");
         goto end;
@@ -191,7 +187,7 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
 
     cJSON *max_packet_loss_rate_dl = cJSON_GetObjectItemCaseSensitive(gbr_qos_flow_informationJSON, "maxPacketLossRateDl");
 
-    if (max_packet_loss_rate_dl) { 
+    if (max_packet_loss_rate_dl) {
     if (!cJSON_IsNumber(max_packet_loss_rate_dl)) {
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [max_packet_loss_rate_dl]");
         goto end;
@@ -200,7 +196,7 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
 
     cJSON *max_packet_loss_rate_ul = cJSON_GetObjectItemCaseSensitive(gbr_qos_flow_informationJSON, "maxPacketLossRateUl");
 
-    if (max_packet_loss_rate_ul) { 
+    if (max_packet_loss_rate_ul) {
     if (!cJSON_IsNumber(max_packet_loss_rate_ul)) {
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [max_packet_loss_rate_ul]");
         goto end;
@@ -210,7 +206,7 @@ OpenAPI_gbr_qos_flow_information_t *OpenAPI_gbr_qos_flow_information_parseFromJS
     cJSON *alternative_qos_profile_list = cJSON_GetObjectItemCaseSensitive(gbr_qos_flow_informationJSON, "alternativeQosProfileList");
 
     OpenAPI_list_t *alternative_qos_profile_listList;
-    if (alternative_qos_profile_list) { 
+    if (alternative_qos_profile_list) {
     cJSON *alternative_qos_profile_list_local_nonprimitive;
     if (!cJSON_IsArray(alternative_qos_profile_list)){
         ogs_error("OpenAPI_gbr_qos_flow_information_parseFromJSON() failed [alternative_qos_profile_list]");

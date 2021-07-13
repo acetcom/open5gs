@@ -81,7 +81,6 @@ OpenAPI_pc5_qos_flow_item_t *OpenAPI_pc5_qos_flow_item_parseFromJSON(cJSON *pc5_
         goto end;
     }
 
-    
     if (!cJSON_IsNumber(pqi)) {
         ogs_error("OpenAPI_pc5_qos_flow_item_parseFromJSON() failed [pqi]");
         goto end;
@@ -90,13 +89,13 @@ OpenAPI_pc5_qos_flow_item_t *OpenAPI_pc5_qos_flow_item_parseFromJSON(cJSON *pc5_
     cJSON *pc5_flow_bit_rates = cJSON_GetObjectItemCaseSensitive(pc5_qos_flow_itemJSON, "pc5FlowBitRates");
 
     OpenAPI_pc5_flow_bit_rates_t *pc5_flow_bit_rates_local_nonprim = NULL;
-    if (pc5_flow_bit_rates) { 
+    if (pc5_flow_bit_rates) {
     pc5_flow_bit_rates_local_nonprim = OpenAPI_pc5_flow_bit_rates_parseFromJSON(pc5_flow_bit_rates);
     }
 
     cJSON *range = cJSON_GetObjectItemCaseSensitive(pc5_qos_flow_itemJSON, "range");
 
-    if (range) { 
+    if (range) {
     if (!cJSON_IsNumber(range)) {
         ogs_error("OpenAPI_pc5_qos_flow_item_parseFromJSON() failed [range]");
         goto end;

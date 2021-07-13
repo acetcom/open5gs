@@ -411,7 +411,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
     cJSON *flow_infos = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "flowInfos");
 
     OpenAPI_list_t *flow_infosList;
-    if (flow_infos) { 
+    if (flow_infos) {
     cJSON *flow_infos_local_nonprimitive;
     if (!cJSON_IsArray(flow_infos)){
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [flow_infos]");
@@ -433,7 +433,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
 
     cJSON *app_id = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "appId");
 
-    if (app_id) { 
+    if (app_id) {
     if (!cJSON_IsString(app_id)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [app_id]");
         goto end;
@@ -442,7 +442,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
 
     cJSON *app_descriptor = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "appDescriptor");
 
-    if (app_descriptor) { 
+    if (app_descriptor) {
     if (!cJSON_IsNumber(app_descriptor)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [app_descriptor]");
         goto end;
@@ -451,7 +451,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
 
     cJSON *cont_ver = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "contVer");
 
-    if (cont_ver) { 
+    if (cont_ver) {
     if (!cJSON_IsNumber(cont_ver)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [cont_ver]");
         goto end;
@@ -464,7 +464,6 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
 
-    
     if (!cJSON_IsString(pcc_rule_id)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [pcc_rule_id]");
         goto end;
@@ -472,7 +471,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
 
     cJSON *precedence = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "precedence");
 
-    if (precedence) { 
+    if (precedence) {
     if (!cJSON_IsNumber(precedence)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [precedence]");
         goto end;
@@ -482,7 +481,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
     cJSON *af_sig_protocol = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "afSigProtocol");
 
     OpenAPI_af_sig_protocol_e af_sig_protocolVariable;
-    if (af_sig_protocol) { 
+    if (af_sig_protocol) {
     if (!cJSON_IsString(af_sig_protocol)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [af_sig_protocol]");
         goto end;
@@ -492,7 +491,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
 
     cJSON *app_reloc = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "appReloc");
 
-    if (app_reloc) { 
+    if (app_reloc) {
     if (!cJSON_IsBool(app_reloc)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [app_reloc]");
         goto end;
@@ -502,7 +501,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
     cJSON *ref_qos_data = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refQosData");
 
     OpenAPI_list_t *ref_qos_dataList;
-    if (ref_qos_data) { 
+    if (ref_qos_data) {
     cJSON *ref_qos_data_local;
     if (!cJSON_IsArray(ref_qos_data)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_qos_data]");
@@ -516,13 +515,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_qos_dataList , ogs_strdup_or_assert(ref_qos_data_local->valuestring));
-                    }
+    }
     }
 
     cJSON *ref_alt_qos_params = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refAltQosParams");
 
     OpenAPI_list_t *ref_alt_qos_paramsList;
-    if (ref_alt_qos_params) { 
+    if (ref_alt_qos_params) {
     cJSON *ref_alt_qos_params_local;
     if (!cJSON_IsArray(ref_alt_qos_params)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_alt_qos_params]");
@@ -536,13 +535,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_alt_qos_paramsList , ogs_strdup_or_assert(ref_alt_qos_params_local->valuestring));
-                    }
+    }
     }
 
     cJSON *ref_tc_data = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refTcData");
 
     OpenAPI_list_t *ref_tc_dataList;
-    if (ref_tc_data) { 
+    if (ref_tc_data) {
     cJSON *ref_tc_data_local;
     if (!cJSON_IsArray(ref_tc_data)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_tc_data]");
@@ -556,13 +555,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_tc_dataList , ogs_strdup_or_assert(ref_tc_data_local->valuestring));
-                    }
+    }
     }
 
     cJSON *ref_chg_data = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refChgData");
 
     OpenAPI_list_t *ref_chg_dataList;
-    if (ref_chg_data) { 
+    if (ref_chg_data) {
     cJSON *ref_chg_data_local;
     if (!cJSON_IsArray(ref_chg_data)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_chg_data]");
@@ -576,13 +575,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_chg_dataList , ogs_strdup_or_assert(ref_chg_data_local->valuestring));
-                    }
+    }
     }
 
     cJSON *ref_chg_n3g_data = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refChgN3gData");
 
     OpenAPI_list_t *ref_chg_n3g_dataList;
-    if (ref_chg_n3g_data) { 
+    if (ref_chg_n3g_data) {
     cJSON *ref_chg_n3g_data_local;
     if (!cJSON_IsArray(ref_chg_n3g_data)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_chg_n3g_data]");
@@ -596,13 +595,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_chg_n3g_dataList , ogs_strdup_or_assert(ref_chg_n3g_data_local->valuestring));
-                    }
+    }
     }
 
     cJSON *ref_um_data = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refUmData");
 
     OpenAPI_list_t *ref_um_dataList;
-    if (ref_um_data) { 
+    if (ref_um_data) {
     cJSON *ref_um_data_local;
     if (!cJSON_IsArray(ref_um_data)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_um_data]");
@@ -616,13 +615,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_um_dataList , ogs_strdup_or_assert(ref_um_data_local->valuestring));
-                    }
+    }
     }
 
     cJSON *ref_um_n3g_data = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refUmN3gData");
 
     OpenAPI_list_t *ref_um_n3g_dataList;
-    if (ref_um_n3g_data) { 
+    if (ref_um_n3g_data) {
     cJSON *ref_um_n3g_data_local;
     if (!cJSON_IsArray(ref_um_n3g_data)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_um_n3g_data]");
@@ -636,12 +635,12 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_um_n3g_dataList , ogs_strdup_or_assert(ref_um_n3g_data_local->valuestring));
-                    }
+    }
     }
 
     cJSON *ref_cond_data = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refCondData");
 
-    if (ref_cond_data) { 
+    if (ref_cond_data) {
     if (!cJSON_IsString(ref_cond_data)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_cond_data]");
         goto end;
@@ -651,7 +650,7 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
     cJSON *ref_qos_mon = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "refQosMon");
 
     OpenAPI_list_t *ref_qos_monList;
-    if (ref_qos_mon) { 
+    if (ref_qos_mon) {
     cJSON *ref_qos_mon_local;
     if (!cJSON_IsArray(ref_qos_mon)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [ref_qos_mon]");
@@ -665,12 +664,12 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         goto end;
     }
     OpenAPI_list_add(ref_qos_monList , ogs_strdup_or_assert(ref_qos_mon_local->valuestring));
-                    }
+    }
     }
 
     cJSON *addr_preser_ind = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "addrPreserInd");
 
-    if (addr_preser_ind) { 
+    if (addr_preser_ind) {
     if (!cJSON_IsBool(addr_preser_ind)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [addr_preser_ind]");
         goto end;
@@ -680,34 +679,34 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
     cJSON *tscai_input_dl = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "tscaiInputDl");
 
     OpenAPI_tscai_input_container_t *tscai_input_dl_local_nonprim = NULL;
-    if (tscai_input_dl) { 
+    if (tscai_input_dl) {
     tscai_input_dl_local_nonprim = OpenAPI_tscai_input_container_parseFromJSON(tscai_input_dl);
     }
 
     cJSON *tscai_input_ul = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "tscaiInputUl");
 
     OpenAPI_tscai_input_container_t *tscai_input_ul_local_nonprim = NULL;
-    if (tscai_input_ul) { 
+    if (tscai_input_ul) {
     tscai_input_ul_local_nonprim = OpenAPI_tscai_input_container_parseFromJSON(tscai_input_ul);
     }
 
     cJSON *dd_notif_ctrl = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "ddNotifCtrl");
 
     OpenAPI_downlink_data_notification_control_t *dd_notif_ctrl_local_nonprim = NULL;
-    if (dd_notif_ctrl) { 
+    if (dd_notif_ctrl) {
     dd_notif_ctrl_local_nonprim = OpenAPI_downlink_data_notification_control_parseFromJSON(dd_notif_ctrl);
     }
 
     cJSON *dd_notif_ctrl2 = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "ddNotifCtrl2");
 
     OpenAPI_downlink_data_notification_control_rm_t *dd_notif_ctrl2_local_nonprim = NULL;
-    if (dd_notif_ctrl2) { 
+    if (dd_notif_ctrl2) {
     dd_notif_ctrl2_local_nonprim = OpenAPI_downlink_data_notification_control_rm_parseFromJSON(dd_notif_ctrl2);
     }
 
     cJSON *dis_ue_notif = cJSON_GetObjectItemCaseSensitive(pcc_ruleJSON, "disUeNotif");
 
-    if (dis_ue_notif) { 
+    if (dis_ue_notif) {
     if (!cJSON_IsBool(dis_ue_notif)) {
         ogs_error("OpenAPI_pcc_rule_parseFromJSON() failed [dis_ue_notif]");
         goto end;

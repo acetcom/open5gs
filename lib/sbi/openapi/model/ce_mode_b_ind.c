@@ -54,7 +54,6 @@ OpenAPI_ce_mode_b_ind_t *OpenAPI_ce_mode_b_ind_parseFromJSON(cJSON *ce_mode_b_in
         goto end;
     }
 
-    
     if (!cJSON_IsBool(ce_mode_b_support_ind)) {
         ogs_error("OpenAPI_ce_mode_b_ind_parseFromJSON() failed [ce_mode_b_support_ind]");
         goto end;

@@ -161,7 +161,7 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
     cJSON *stationary_indication = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "stationaryIndication");
 
     OpenAPI_stationary_indication_e stationary_indicationVariable;
-    if (stationary_indication) { 
+    if (stationary_indication) {
     if (!cJSON_IsString(stationary_indication)) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_parseFromJSON() failed [stationary_indication]");
         goto end;
@@ -171,7 +171,7 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
 
     cJSON *communication_duration_time = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "communicationDurationTime");
 
-    if (communication_duration_time) { 
+    if (communication_duration_time) {
     if (!cJSON_IsNumber(communication_duration_time)) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_parseFromJSON() failed [communication_duration_time]");
         goto end;
@@ -180,7 +180,7 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
 
     cJSON *periodic_time = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "periodicTime");
 
-    if (periodic_time) { 
+    if (periodic_time) {
     if (!cJSON_IsNumber(periodic_time)) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_parseFromJSON() failed [periodic_time]");
         goto end;
@@ -190,14 +190,14 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
     cJSON *scheduled_communication_time = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "scheduledCommunicationTime");
 
     OpenAPI_scheduled_communication_time_t *scheduled_communication_time_local_nonprim = NULL;
-    if (scheduled_communication_time) { 
+    if (scheduled_communication_time) {
     scheduled_communication_time_local_nonprim = OpenAPI_scheduled_communication_time_parseFromJSON(scheduled_communication_time);
     }
 
     cJSON *scheduled_communication_type = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "scheduledCommunicationType");
 
     OpenAPI_scheduled_communication_type_e scheduled_communication_typeVariable;
-    if (scheduled_communication_type) { 
+    if (scheduled_communication_type) {
     if (!cJSON_IsString(scheduled_communication_type)) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_parseFromJSON() failed [scheduled_communication_type]");
         goto end;
@@ -208,7 +208,7 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
     cJSON *expected_umts = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "expectedUmts");
 
     OpenAPI_list_t *expected_umtsList;
-    if (expected_umts) { 
+    if (expected_umts) {
     cJSON *expected_umts_local_nonprimitive;
     if (!cJSON_IsArray(expected_umts)){
         ogs_error("OpenAPI_expected_ue_behaviour_data_parseFromJSON() failed [expected_umts]");
@@ -231,7 +231,7 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
     cJSON *traffic_profile = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "trafficProfile");
 
     OpenAPI_traffic_profile_e traffic_profileVariable;
-    if (traffic_profile) { 
+    if (traffic_profile) {
     if (!cJSON_IsString(traffic_profile)) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_parseFromJSON() failed [traffic_profile]");
         goto end;
@@ -242,13 +242,13 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
     cJSON *battery_indication = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "batteryIndication");
 
     OpenAPI_battery_indication_t *battery_indication_local_nonprim = NULL;
-    if (battery_indication) { 
+    if (battery_indication) {
     battery_indication_local_nonprim = OpenAPI_battery_indication_parseFromJSON(battery_indication);
     }
 
     cJSON *validity_time = cJSON_GetObjectItemCaseSensitive(expected_ue_behaviour_dataJSON, "validityTime");
 
-    if (validity_time) { 
+    if (validity_time) {
     if (!cJSON_IsString(validity_time)) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_parseFromJSON() failed [validity_time]");
         goto end;

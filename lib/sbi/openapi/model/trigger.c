@@ -141,7 +141,6 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
     }
 
     OpenAPI_trigger_type_t *trigger_type_local_nonprim = NULL;
-    
     trigger_type_local_nonprim = OpenAPI_trigger_type_parseFromJSON(trigger_type);
 
     cJSON *trigger_category = cJSON_GetObjectItemCaseSensitive(triggerJSON, "triggerCategory");
@@ -151,12 +150,11 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
     }
 
     OpenAPI_trigger_category_t *trigger_category_local_nonprim = NULL;
-    
     trigger_category_local_nonprim = OpenAPI_trigger_category_parseFromJSON(trigger_category);
 
     cJSON *time_limit = cJSON_GetObjectItemCaseSensitive(triggerJSON, "timeLimit");
 
-    if (time_limit) { 
+    if (time_limit) {
     if (!cJSON_IsNumber(time_limit)) {
         ogs_error("OpenAPI_trigger_parseFromJSON() failed [time_limit]");
         goto end;
@@ -165,7 +163,7 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
 
     cJSON *volume_limit = cJSON_GetObjectItemCaseSensitive(triggerJSON, "volumeLimit");
 
-    if (volume_limit) { 
+    if (volume_limit) {
     if (!cJSON_IsNumber(volume_limit)) {
         ogs_error("OpenAPI_trigger_parseFromJSON() failed [volume_limit]");
         goto end;
@@ -174,7 +172,7 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
 
     cJSON *volume_limit64 = cJSON_GetObjectItemCaseSensitive(triggerJSON, "volumeLimit64");
 
-    if (volume_limit64) { 
+    if (volume_limit64) {
     if (!cJSON_IsNumber(volume_limit64)) {
         ogs_error("OpenAPI_trigger_parseFromJSON() failed [volume_limit64]");
         goto end;
@@ -183,7 +181,7 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
 
     cJSON *event_limit = cJSON_GetObjectItemCaseSensitive(triggerJSON, "eventLimit");
 
-    if (event_limit) { 
+    if (event_limit) {
     if (!cJSON_IsNumber(event_limit)) {
         ogs_error("OpenAPI_trigger_parseFromJSON() failed [event_limit]");
         goto end;
@@ -192,7 +190,7 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
 
     cJSON *max_number_ofccc = cJSON_GetObjectItemCaseSensitive(triggerJSON, "maxNumberOfccc");
 
-    if (max_number_ofccc) { 
+    if (max_number_ofccc) {
     if (!cJSON_IsNumber(max_number_ofccc)) {
         ogs_error("OpenAPI_trigger_parseFromJSON() failed [max_number_ofccc]");
         goto end;
@@ -201,7 +199,7 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
 
     cJSON *tariff_time_change = cJSON_GetObjectItemCaseSensitive(triggerJSON, "tariffTimeChange");
 
-    if (tariff_time_change) { 
+    if (tariff_time_change) {
     if (!cJSON_IsString(tariff_time_change)) {
         ogs_error("OpenAPI_trigger_parseFromJSON() failed [tariff_time_change]");
         goto end;

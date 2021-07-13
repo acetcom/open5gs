@@ -125,7 +125,7 @@ OpenAPI_smf_selection_data_t *OpenAPI_smf_selection_data_parseFromJSON(cJSON *sm
     OpenAPI_smf_selection_data_t *smf_selection_data_local_var = NULL;
     cJSON *unsupp_dnn = cJSON_GetObjectItemCaseSensitive(smf_selection_dataJSON, "unsuppDnn");
 
-    if (unsupp_dnn) { 
+    if (unsupp_dnn) {
     if (!cJSON_IsBool(unsupp_dnn)) {
         ogs_error("OpenAPI_smf_selection_data_parseFromJSON() failed [unsupp_dnn]");
         goto end;
@@ -135,7 +135,7 @@ OpenAPI_smf_selection_data_t *OpenAPI_smf_selection_data_parseFromJSON(cJSON *sm
     cJSON *candidates = cJSON_GetObjectItemCaseSensitive(smf_selection_dataJSON, "candidates");
 
     OpenAPI_list_t *candidatesList;
-    if (candidates) { 
+    if (candidates) {
     cJSON *candidates_local_map;
     if (!cJSON_IsObject(candidates)) {
         ogs_error("OpenAPI_smf_selection_data_parseFromJSON() failed [candidates]");
@@ -158,20 +158,20 @@ OpenAPI_smf_selection_data_t *OpenAPI_smf_selection_data_parseFromJSON(cJSON *sm
     cJSON *snssai = cJSON_GetObjectItemCaseSensitive(smf_selection_dataJSON, "snssai");
 
     OpenAPI_snssai_t *snssai_local_nonprim = NULL;
-    if (snssai) { 
+    if (snssai) {
     snssai_local_nonprim = OpenAPI_snssai_parseFromJSON(snssai);
     }
 
     cJSON *mapping_snssai = cJSON_GetObjectItemCaseSensitive(smf_selection_dataJSON, "mappingSnssai");
 
     OpenAPI_snssai_t *mapping_snssai_local_nonprim = NULL;
-    if (mapping_snssai) { 
+    if (mapping_snssai) {
     mapping_snssai_local_nonprim = OpenAPI_snssai_parseFromJSON(mapping_snssai);
     }
 
     cJSON *dnn = cJSON_GetObjectItemCaseSensitive(smf_selection_dataJSON, "dnn");
 
-    if (dnn) { 
+    if (dnn) {
     if (!cJSON_IsString(dnn)) {
         ogs_error("OpenAPI_smf_selection_data_parseFromJSON() failed [dnn]");
         goto end;

@@ -64,7 +64,7 @@ OpenAPI_tscai_input_container_t *OpenAPI_tscai_input_container_parseFromJSON(cJS
     OpenAPI_tscai_input_container_t *tscai_input_container_local_var = NULL;
     cJSON *periodicity = cJSON_GetObjectItemCaseSensitive(tscai_input_containerJSON, "periodicity");
 
-    if (periodicity) { 
+    if (periodicity) {
     if (!cJSON_IsNumber(periodicity)) {
         ogs_error("OpenAPI_tscai_input_container_parseFromJSON() failed [periodicity]");
         goto end;
@@ -73,7 +73,7 @@ OpenAPI_tscai_input_container_t *OpenAPI_tscai_input_container_parseFromJSON(cJS
 
     cJSON *burst_arrival_time = cJSON_GetObjectItemCaseSensitive(tscai_input_containerJSON, "burstArrivalTime");
 
-    if (burst_arrival_time) { 
+    if (burst_arrival_time) {
     if (!cJSON_IsString(burst_arrival_time)) {
         ogs_error("OpenAPI_tscai_input_container_parseFromJSON() failed [burst_arrival_time]");
         goto end;

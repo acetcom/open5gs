@@ -77,7 +77,7 @@ OpenAPI_requested_usage_data_t *OpenAPI_requested_usage_data_parseFromJSON(cJSON
     cJSON *ref_um_ids = cJSON_GetObjectItemCaseSensitive(requested_usage_dataJSON, "refUmIds");
 
     OpenAPI_list_t *ref_um_idsList;
-    if (ref_um_ids) { 
+    if (ref_um_ids) {
     cJSON *ref_um_ids_local;
     if (!cJSON_IsArray(ref_um_ids)) {
         ogs_error("OpenAPI_requested_usage_data_parseFromJSON() failed [ref_um_ids]");
@@ -91,12 +91,12 @@ OpenAPI_requested_usage_data_t *OpenAPI_requested_usage_data_parseFromJSON(cJSON
         goto end;
     }
     OpenAPI_list_add(ref_um_idsList , ogs_strdup_or_assert(ref_um_ids_local->valuestring));
-                    }
+    }
     }
 
     cJSON *all_um_ids = cJSON_GetObjectItemCaseSensitive(requested_usage_dataJSON, "allUmIds");
 
-    if (all_um_ids) { 
+    if (all_um_ids) {
     if (!cJSON_IsBool(all_um_ids)) {
         ogs_error("OpenAPI_requested_usage_data_parseFromJSON() failed [all_um_ids]");
         goto end;

@@ -111,7 +111,7 @@ OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_p
     OpenAPI_ue_initiated_resource_request_t *ue_initiated_resource_request_local_var = NULL;
     cJSON *pcc_rule_id = cJSON_GetObjectItemCaseSensitive(ue_initiated_resource_requestJSON, "pccRuleId");
 
-    if (pcc_rule_id) { 
+    if (pcc_rule_id) {
     if (!cJSON_IsString(pcc_rule_id)) {
         ogs_error("OpenAPI_ue_initiated_resource_request_parseFromJSON() failed [pcc_rule_id]");
         goto end;
@@ -125,7 +125,6 @@ OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_p
     }
 
     OpenAPI_rule_operation_e rule_opVariable;
-    
     if (!cJSON_IsString(rule_op)) {
         ogs_error("OpenAPI_ue_initiated_resource_request_parseFromJSON() failed [rule_op]");
         goto end;
@@ -134,7 +133,7 @@ OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_p
 
     cJSON *precedence = cJSON_GetObjectItemCaseSensitive(ue_initiated_resource_requestJSON, "precedence");
 
-    if (precedence) { 
+    if (precedence) {
     if (!cJSON_IsNumber(precedence)) {
         ogs_error("OpenAPI_ue_initiated_resource_request_parseFromJSON() failed [precedence]");
         goto end;
@@ -148,7 +147,6 @@ OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_p
     }
 
     OpenAPI_list_t *pack_filt_infoList;
-    
     cJSON *pack_filt_info_local_nonprimitive;
     if (!cJSON_IsArray(pack_filt_info)){
         ogs_error("OpenAPI_ue_initiated_resource_request_parseFromJSON() failed [pack_filt_info]");
@@ -170,7 +168,7 @@ OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_p
     cJSON *req_qos = cJSON_GetObjectItemCaseSensitive(ue_initiated_resource_requestJSON, "reqQos");
 
     OpenAPI_requested_qos_t *req_qos_local_nonprim = NULL;
-    if (req_qos) { 
+    if (req_qos) {
     req_qos_local_nonprim = OpenAPI_requested_qos_parseFromJSON(req_qos);
     }
 
