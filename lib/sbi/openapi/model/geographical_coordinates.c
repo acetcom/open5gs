@@ -80,7 +80,9 @@ OpenAPI_geographical_coordinates_t *OpenAPI_geographical_coordinates_parseFromJS
     }
 
     geographical_coordinates_local_var = OpenAPI_geographical_coordinates_create (
+        
         lon->valuedouble,
+        
         lat->valuedouble
     );
 

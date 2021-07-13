@@ -6,6 +6,7 @@
 
 OpenAPI_qos_flow_add_modify_request_item_t *OpenAPI_qos_flow_add_modify_request_item_create(
     int qfi,
+    bool is_ebi,
     int ebi,
     char qos_rules,
     char qos_flow_description,
@@ -18,6 +19,7 @@ OpenAPI_qos_flow_add_modify_request_item_t *OpenAPI_qos_flow_add_modify_request_
         return NULL;
     }
     qos_flow_add_modify_request_item_local_var->qfi = qfi;
+    qos_flow_add_modify_request_item_local_var->is_ebi = is_ebi;
     qos_flow_add_modify_request_item_local_var->ebi = ebi;
     qos_flow_add_modify_request_item_local_var->qos_rules = qos_rules;
     qos_flow_add_modify_request_item_local_var->qos_flow_description = qos_flow_description;
@@ -52,7 +54,7 @@ cJSON *OpenAPI_qos_flow_add_modify_request_item_convertToJSON(OpenAPI_qos_flow_a
         goto end;
     }
 
-    if (qos_flow_add_modify_request_item->ebi) {
+    if (qos_flow_add_modify_request_item->is_ebi) {
     if (cJSON_AddNumberToObject(item, "ebi", qos_flow_add_modify_request_item->ebi) == NULL) {
         ogs_error("OpenAPI_qos_flow_add_modify_request_item_convertToJSON() failed [ebi]");
         goto end;
@@ -158,7 +160,9 @@ OpenAPI_qos_flow_add_modify_request_item_t *OpenAPI_qos_flow_add_modify_request_
     }
 
     qos_flow_add_modify_request_item_local_var = OpenAPI_qos_flow_add_modify_request_item_create (
+        
         qfi->valuedouble,
+        ebi ? true : false,
         ebi ? ebi->valuedouble : 0,
         qos_rules ? qos_rules->valueint : 0,
         qos_flow_description ? qos_flow_description->valueint : 0,

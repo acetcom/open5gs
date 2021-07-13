@@ -11,6 +11,7 @@ OpenAPI_pcf_info_t *OpenAPI_pcf_info_create(
     OpenAPI_list_t *gpsi_ranges,
     char *rx_diam_host,
     char *rx_diam_realm,
+    bool is_v2x_support_ind,
     int v2x_support_ind
 )
 {
@@ -24,6 +25,7 @@ OpenAPI_pcf_info_t *OpenAPI_pcf_info_create(
     pcf_info_local_var->gpsi_ranges = gpsi_ranges;
     pcf_info_local_var->rx_diam_host = rx_diam_host;
     pcf_info_local_var->rx_diam_realm = rx_diam_realm;
+    pcf_info_local_var->is_v2x_support_ind = is_v2x_support_ind;
     pcf_info_local_var->v2x_support_ind = v2x_support_ind;
 
     return pcf_info_local_var;
@@ -140,7 +142,7 @@ cJSON *OpenAPI_pcf_info_convertToJSON(OpenAPI_pcf_info_t *pcf_info)
     }
     }
 
-    if (pcf_info->v2x_support_ind) {
+    if (pcf_info->is_v2x_support_ind) {
     if (cJSON_AddBoolToObject(item, "v2xSupportInd", pcf_info->v2x_support_ind) == NULL) {
         ogs_error("OpenAPI_pcf_info_convertToJSON() failed [v2x_support_ind]");
         goto end;
@@ -263,6 +265,7 @@ OpenAPI_pcf_info_t *OpenAPI_pcf_info_parseFromJSON(cJSON *pcf_infoJSON)
         gpsi_ranges ? gpsi_rangesList : NULL,
         rx_diam_host ? ogs_strdup_or_assert(rx_diam_host->valuestring) : NULL,
         rx_diam_realm ? ogs_strdup_or_assert(rx_diam_realm->valuestring) : NULL,
+        v2x_support_ind ? true : false,
         v2x_support_ind ? v2x_support_ind->valueint : 0
     );
 

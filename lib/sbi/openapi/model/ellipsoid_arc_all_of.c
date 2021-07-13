@@ -162,10 +162,15 @@ OpenAPI_ellipsoid_arc_all_of_t *OpenAPI_ellipsoid_arc_all_of_parseFromJSON(cJSON
 
     ellipsoid_arc_all_of_local_var = OpenAPI_ellipsoid_arc_all_of_create (
         point_local_nonprim,
+        
         inner_radius->valuedouble,
+        
         uncertainty_radius->valuedouble,
+        
         offset_angle->valuedouble,
+        
         included_angle->valuedouble,
+        
         confidence->valuedouble
     );
 

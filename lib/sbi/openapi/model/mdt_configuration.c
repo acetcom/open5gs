@@ -15,9 +15,13 @@ OpenAPI_mdt_configuration_t *OpenAPI_mdt_configuration_create(
     OpenAPI_report_interval_mdt_e report_interval,
     OpenAPI_report_interval_nr_mdt_e report_interval_nr,
     OpenAPI_report_amount_mdt_e report_amount,
+    bool is_event_threshold_rsrp,
     int event_threshold_rsrp,
+    bool is_event_threshold_rsrp_nr,
     int event_threshold_rsrp_nr,
+    bool is_event_threshold_rsrq,
     int event_threshold_rsrq,
+    bool is_event_threshold_rsrq_nr,
     int event_threshold_rsrq_nr,
     OpenAPI_list_t *event_list,
     OpenAPI_logging_interval_mdt_e logging_interval,
@@ -48,9 +52,13 @@ OpenAPI_mdt_configuration_t *OpenAPI_mdt_configuration_create(
     mdt_configuration_local_var->report_interval = report_interval;
     mdt_configuration_local_var->report_interval_nr = report_interval_nr;
     mdt_configuration_local_var->report_amount = report_amount;
+    mdt_configuration_local_var->is_event_threshold_rsrp = is_event_threshold_rsrp;
     mdt_configuration_local_var->event_threshold_rsrp = event_threshold_rsrp;
+    mdt_configuration_local_var->is_event_threshold_rsrp_nr = is_event_threshold_rsrp_nr;
     mdt_configuration_local_var->event_threshold_rsrp_nr = event_threshold_rsrp_nr;
+    mdt_configuration_local_var->is_event_threshold_rsrq = is_event_threshold_rsrq;
     mdt_configuration_local_var->event_threshold_rsrq = event_threshold_rsrq;
+    mdt_configuration_local_var->is_event_threshold_rsrq_nr = is_event_threshold_rsrq_nr;
     mdt_configuration_local_var->event_threshold_rsrq_nr = event_threshold_rsrq_nr;
     mdt_configuration_local_var->event_list = event_list;
     mdt_configuration_local_var->logging_interval = logging_interval;
@@ -213,28 +221,28 @@ cJSON *OpenAPI_mdt_configuration_convertToJSON(OpenAPI_mdt_configuration_t *mdt_
     }
     }
 
-    if (mdt_configuration->event_threshold_rsrp) {
+    if (mdt_configuration->is_event_threshold_rsrp) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrp", mdt_configuration->event_threshold_rsrp) == NULL) {
         ogs_error("OpenAPI_mdt_configuration_convertToJSON() failed [event_threshold_rsrp]");
         goto end;
     }
     }
 
-    if (mdt_configuration->event_threshold_rsrp_nr) {
+    if (mdt_configuration->is_event_threshold_rsrp_nr) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrpNr", mdt_configuration->event_threshold_rsrp_nr) == NULL) {
         ogs_error("OpenAPI_mdt_configuration_convertToJSON() failed [event_threshold_rsrp_nr]");
         goto end;
     }
     }
 
-    if (mdt_configuration->event_threshold_rsrq) {
+    if (mdt_configuration->is_event_threshold_rsrq) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrq", mdt_configuration->event_threshold_rsrq) == NULL) {
         ogs_error("OpenAPI_mdt_configuration_convertToJSON() failed [event_threshold_rsrq]");
         goto end;
     }
     }
 
-    if (mdt_configuration->event_threshold_rsrq_nr) {
+    if (mdt_configuration->is_event_threshold_rsrq_nr) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrqNr", mdt_configuration->event_threshold_rsrq_nr) == NULL) {
         ogs_error("OpenAPI_mdt_configuration_convertToJSON() failed [event_threshold_rsrq_nr]");
         goto end;
@@ -795,9 +803,13 @@ OpenAPI_mdt_configuration_t *OpenAPI_mdt_configuration_parseFromJSON(cJSON *mdt_
         report_interval ? report_intervalVariable : 0,
         report_interval_nr ? report_interval_nrVariable : 0,
         report_amount ? report_amountVariable : 0,
+        event_threshold_rsrp ? true : false,
         event_threshold_rsrp ? event_threshold_rsrp->valuedouble : 0,
+        event_threshold_rsrp_nr ? true : false,
         event_threshold_rsrp_nr ? event_threshold_rsrp_nr->valuedouble : 0,
+        event_threshold_rsrq ? true : false,
         event_threshold_rsrq ? event_threshold_rsrq->valuedouble : 0,
+        event_threshold_rsrq_nr ? true : false,
         event_threshold_rsrq_nr ? event_threshold_rsrq_nr->valuedouble : 0,
         event_list ? event_listList : NULL,
         logging_interval ? logging_intervalVariable : 0,

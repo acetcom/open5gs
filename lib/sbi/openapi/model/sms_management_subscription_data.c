@@ -6,11 +6,17 @@
 
 OpenAPI_sms_management_subscription_data_t *OpenAPI_sms_management_subscription_data_create(
     char *supported_features,
+    bool is_mt_sms_subscribed,
     int mt_sms_subscribed,
+    bool is_mt_sms_barring_all,
     int mt_sms_barring_all,
+    bool is_mt_sms_barring_roaming,
     int mt_sms_barring_roaming,
+    bool is_mo_sms_subscribed,
     int mo_sms_subscribed,
+    bool is_mo_sms_barring_all,
     int mo_sms_barring_all,
+    bool is_mo_sms_barring_roaming,
     int mo_sms_barring_roaming,
     OpenAPI_list_t *shared_sms_mng_data_ids,
     OpenAPI_trace_data_1_t *trace_data
@@ -21,11 +27,17 @@ OpenAPI_sms_management_subscription_data_t *OpenAPI_sms_management_subscription_
         return NULL;
     }
     sms_management_subscription_data_local_var->supported_features = supported_features;
+    sms_management_subscription_data_local_var->is_mt_sms_subscribed = is_mt_sms_subscribed;
     sms_management_subscription_data_local_var->mt_sms_subscribed = mt_sms_subscribed;
+    sms_management_subscription_data_local_var->is_mt_sms_barring_all = is_mt_sms_barring_all;
     sms_management_subscription_data_local_var->mt_sms_barring_all = mt_sms_barring_all;
+    sms_management_subscription_data_local_var->is_mt_sms_barring_roaming = is_mt_sms_barring_roaming;
     sms_management_subscription_data_local_var->mt_sms_barring_roaming = mt_sms_barring_roaming;
+    sms_management_subscription_data_local_var->is_mo_sms_subscribed = is_mo_sms_subscribed;
     sms_management_subscription_data_local_var->mo_sms_subscribed = mo_sms_subscribed;
+    sms_management_subscription_data_local_var->is_mo_sms_barring_all = is_mo_sms_barring_all;
     sms_management_subscription_data_local_var->mo_sms_barring_all = mo_sms_barring_all;
+    sms_management_subscription_data_local_var->is_mo_sms_barring_roaming = is_mo_sms_barring_roaming;
     sms_management_subscription_data_local_var->mo_sms_barring_roaming = mo_sms_barring_roaming;
     sms_management_subscription_data_local_var->shared_sms_mng_data_ids = shared_sms_mng_data_ids;
     sms_management_subscription_data_local_var->trace_data = trace_data;
@@ -65,42 +77,42 @@ cJSON *OpenAPI_sms_management_subscription_data_convertToJSON(OpenAPI_sms_manage
     }
     }
 
-    if (sms_management_subscription_data->mt_sms_subscribed) {
+    if (sms_management_subscription_data->is_mt_sms_subscribed) {
     if (cJSON_AddBoolToObject(item, "mtSmsSubscribed", sms_management_subscription_data->mt_sms_subscribed) == NULL) {
         ogs_error("OpenAPI_sms_management_subscription_data_convertToJSON() failed [mt_sms_subscribed]");
         goto end;
     }
     }
 
-    if (sms_management_subscription_data->mt_sms_barring_all) {
+    if (sms_management_subscription_data->is_mt_sms_barring_all) {
     if (cJSON_AddBoolToObject(item, "mtSmsBarringAll", sms_management_subscription_data->mt_sms_barring_all) == NULL) {
         ogs_error("OpenAPI_sms_management_subscription_data_convertToJSON() failed [mt_sms_barring_all]");
         goto end;
     }
     }
 
-    if (sms_management_subscription_data->mt_sms_barring_roaming) {
+    if (sms_management_subscription_data->is_mt_sms_barring_roaming) {
     if (cJSON_AddBoolToObject(item, "mtSmsBarringRoaming", sms_management_subscription_data->mt_sms_barring_roaming) == NULL) {
         ogs_error("OpenAPI_sms_management_subscription_data_convertToJSON() failed [mt_sms_barring_roaming]");
         goto end;
     }
     }
 
-    if (sms_management_subscription_data->mo_sms_subscribed) {
+    if (sms_management_subscription_data->is_mo_sms_subscribed) {
     if (cJSON_AddBoolToObject(item, "moSmsSubscribed", sms_management_subscription_data->mo_sms_subscribed) == NULL) {
         ogs_error("OpenAPI_sms_management_subscription_data_convertToJSON() failed [mo_sms_subscribed]");
         goto end;
     }
     }
 
-    if (sms_management_subscription_data->mo_sms_barring_all) {
+    if (sms_management_subscription_data->is_mo_sms_barring_all) {
     if (cJSON_AddBoolToObject(item, "moSmsBarringAll", sms_management_subscription_data->mo_sms_barring_all) == NULL) {
         ogs_error("OpenAPI_sms_management_subscription_data_convertToJSON() failed [mo_sms_barring_all]");
         goto end;
     }
     }
 
-    if (sms_management_subscription_data->mo_sms_barring_roaming) {
+    if (sms_management_subscription_data->is_mo_sms_barring_roaming) {
     if (cJSON_AddBoolToObject(item, "moSmsBarringRoaming", sms_management_subscription_data->mo_sms_barring_roaming) == NULL) {
         ogs_error("OpenAPI_sms_management_subscription_data_convertToJSON() failed [mo_sms_barring_roaming]");
         goto end;
@@ -235,11 +247,17 @@ OpenAPI_sms_management_subscription_data_t *OpenAPI_sms_management_subscription_
 
     sms_management_subscription_data_local_var = OpenAPI_sms_management_subscription_data_create (
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
+        mt_sms_subscribed ? true : false,
         mt_sms_subscribed ? mt_sms_subscribed->valueint : 0,
+        mt_sms_barring_all ? true : false,
         mt_sms_barring_all ? mt_sms_barring_all->valueint : 0,
+        mt_sms_barring_roaming ? true : false,
         mt_sms_barring_roaming ? mt_sms_barring_roaming->valueint : 0,
+        mo_sms_subscribed ? true : false,
         mo_sms_subscribed ? mo_sms_subscribed->valueint : 0,
+        mo_sms_barring_all ? true : false,
         mo_sms_barring_all ? mo_sms_barring_all->valueint : 0,
+        mo_sms_barring_roaming ? true : false,
         mo_sms_barring_roaming ? mo_sms_barring_roaming->valueint : 0,
         shared_sms_mng_data_ids ? shared_sms_mng_data_idsList : NULL,
         trace_data ? trace_data_local_nonprim : NULL

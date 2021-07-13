@@ -5,9 +5,13 @@
 #include "accumulated_usage.h"
 
 OpenAPI_accumulated_usage_t *OpenAPI_accumulated_usage_create(
+    bool is_duration,
     int duration,
+    bool is_total_volume,
     long total_volume,
+    bool is_downlink_volume,
     long downlink_volume,
+    bool is_uplink_volume,
     long uplink_volume
 )
 {
@@ -15,9 +19,13 @@ OpenAPI_accumulated_usage_t *OpenAPI_accumulated_usage_create(
     if (!accumulated_usage_local_var) {
         return NULL;
     }
+    accumulated_usage_local_var->is_duration = is_duration;
     accumulated_usage_local_var->duration = duration;
+    accumulated_usage_local_var->is_total_volume = is_total_volume;
     accumulated_usage_local_var->total_volume = total_volume;
+    accumulated_usage_local_var->is_downlink_volume = is_downlink_volume;
     accumulated_usage_local_var->downlink_volume = downlink_volume;
+    accumulated_usage_local_var->is_uplink_volume = is_uplink_volume;
     accumulated_usage_local_var->uplink_volume = uplink_volume;
 
     return accumulated_usage_local_var;
@@ -42,28 +50,28 @@ cJSON *OpenAPI_accumulated_usage_convertToJSON(OpenAPI_accumulated_usage_t *accu
     }
 
     item = cJSON_CreateObject();
-    if (accumulated_usage->duration) {
+    if (accumulated_usage->is_duration) {
     if (cJSON_AddNumberToObject(item, "duration", accumulated_usage->duration) == NULL) {
         ogs_error("OpenAPI_accumulated_usage_convertToJSON() failed [duration]");
         goto end;
     }
     }
 
-    if (accumulated_usage->total_volume) {
+    if (accumulated_usage->is_total_volume) {
     if (cJSON_AddNumberToObject(item, "totalVolume", accumulated_usage->total_volume) == NULL) {
         ogs_error("OpenAPI_accumulated_usage_convertToJSON() failed [total_volume]");
         goto end;
     }
     }
 
-    if (accumulated_usage->downlink_volume) {
+    if (accumulated_usage->is_downlink_volume) {
     if (cJSON_AddNumberToObject(item, "downlinkVolume", accumulated_usage->downlink_volume) == NULL) {
         ogs_error("OpenAPI_accumulated_usage_convertToJSON() failed [downlink_volume]");
         goto end;
     }
     }
 
-    if (accumulated_usage->uplink_volume) {
+    if (accumulated_usage->is_uplink_volume) {
     if (cJSON_AddNumberToObject(item, "uplinkVolume", accumulated_usage->uplink_volume) == NULL) {
         ogs_error("OpenAPI_accumulated_usage_convertToJSON() failed [uplink_volume]");
         goto end;
@@ -114,9 +122,13 @@ OpenAPI_accumulated_usage_t *OpenAPI_accumulated_usage_parseFromJSON(cJSON *accu
     }
 
     accumulated_usage_local_var = OpenAPI_accumulated_usage_create (
+        duration ? true : false,
         duration ? duration->valuedouble : 0,
+        total_volume ? true : false,
         total_volume ? total_volume->valuedouble : 0,
+        downlink_volume ? true : false,
         downlink_volume ? downlink_volume->valuedouble : 0,
+        uplink_volume ? true : false,
         uplink_volume ? uplink_volume->valuedouble : 0
     );
 

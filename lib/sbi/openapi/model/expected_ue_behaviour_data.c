@@ -6,7 +6,9 @@
 
 OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_create(
     OpenAPI_stationary_indication_e stationary_indication,
+    bool is_communication_duration_time,
     int communication_duration_time,
+    bool is_periodic_time,
     int periodic_time,
     OpenAPI_scheduled_communication_time_t *scheduled_communication_time,
     OpenAPI_scheduled_communication_type_e scheduled_communication_type,
@@ -21,7 +23,9 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_create(
         return NULL;
     }
     expected_ue_behaviour_data_local_var->stationary_indication = stationary_indication;
+    expected_ue_behaviour_data_local_var->is_communication_duration_time = is_communication_duration_time;
     expected_ue_behaviour_data_local_var->communication_duration_time = communication_duration_time;
+    expected_ue_behaviour_data_local_var->is_periodic_time = is_periodic_time;
     expected_ue_behaviour_data_local_var->periodic_time = periodic_time;
     expected_ue_behaviour_data_local_var->scheduled_communication_time = scheduled_communication_time;
     expected_ue_behaviour_data_local_var->scheduled_communication_type = scheduled_communication_type;
@@ -66,14 +70,14 @@ cJSON *OpenAPI_expected_ue_behaviour_data_convertToJSON(OpenAPI_expected_ue_beha
     }
     }
 
-    if (expected_ue_behaviour_data->communication_duration_time) {
+    if (expected_ue_behaviour_data->is_communication_duration_time) {
     if (cJSON_AddNumberToObject(item, "communicationDurationTime", expected_ue_behaviour_data->communication_duration_time) == NULL) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_convertToJSON() failed [communication_duration_time]");
         goto end;
     }
     }
 
-    if (expected_ue_behaviour_data->periodic_time) {
+    if (expected_ue_behaviour_data->is_periodic_time) {
     if (cJSON_AddNumberToObject(item, "periodicTime", expected_ue_behaviour_data->periodic_time) == NULL) {
         ogs_error("OpenAPI_expected_ue_behaviour_data_convertToJSON() failed [periodic_time]");
         goto end;
@@ -253,7 +257,9 @@ OpenAPI_expected_ue_behaviour_data_t *OpenAPI_expected_ue_behaviour_data_parseFr
 
     expected_ue_behaviour_data_local_var = OpenAPI_expected_ue_behaviour_data_create (
         stationary_indication ? stationary_indicationVariable : 0,
+        communication_duration_time ? true : false,
         communication_duration_time ? communication_duration_time->valuedouble : 0,
+        periodic_time ? true : false,
         periodic_time ? periodic_time->valuedouble : 0,
         scheduled_communication_time ? scheduled_communication_time_local_nonprim : NULL,
         scheduled_communication_type ? scheduled_communication_typeVariable : 0,

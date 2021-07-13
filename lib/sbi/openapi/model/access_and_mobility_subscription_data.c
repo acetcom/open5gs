@@ -15,21 +15,31 @@ OpenAPI_access_and_mobility_subscription_data_t *OpenAPI_access_and_mobility_sub
     OpenAPI_list_t *forbidden_areas,
     OpenAPI_service_area_restriction_t *service_area_restriction,
     OpenAPI_list_t *core_network_type_restrictions,
+    bool is_rfsp_index,
     int rfsp_index,
+    bool is_subs_reg_timer,
     int subs_reg_timer,
+    bool is_ue_usage_type,
     int ue_usage_type,
+    bool is_mps_priority,
     int mps_priority,
+    bool is_mcs_priority,
     int mcs_priority,
+    bool is_active_time,
     int active_time,
     OpenAPI_sor_info_t *sor_info,
+    bool is_sor_info_expect_ind,
     int sor_info_expect_ind,
+    bool is_soraf_retrieval,
     int soraf_retrieval,
     OpenAPI_list_t *sor_update_indicator_list,
     OpenAPI_upu_info_t *upu_info,
+    bool is_mico_allowed,
     int mico_allowed,
     OpenAPI_list_t *shared_am_data_ids,
     OpenAPI_odb_packet_services_e odb_packet_services,
     OpenAPI_list_t *subscribed_dnn_list,
+    bool is_service_gap_time,
     int service_gap_time,
     OpenAPI_mdt_user_consent_e mdt_user_consent,
     OpenAPI_mdt_configuration_t *mdt_configuration,
@@ -37,16 +47,20 @@ OpenAPI_access_and_mobility_subscription_data_t *OpenAPI_access_and_mobility_sub
     OpenAPI_cag_data_t *cag_data,
     char *stn_sr,
     char *c_msisdn,
+    bool is_nb_io_tue_priority,
     int nb_io_tue_priority,
+    bool is_nssai_inclusion_allowed,
     int nssai_inclusion_allowed,
     char *rg_wireline_characteristics,
     OpenAPI_ec_restriction_data_wb_t *ec_restriction_data_wb,
+    bool is_ec_restriction_data_nb,
     int ec_restriction_data_nb,
     OpenAPI_expected_ue_behaviour_data_t *expected_ue_behaviour_list,
     OpenAPI_list_t *primary_rat_restrictions,
     OpenAPI_list_t *secondary_rat_restrictions,
     OpenAPI_list_t *edrx_parameters_list,
     OpenAPI_list_t *ptw_parameters_list,
+    bool is_iab_operation_allowed,
     int iab_operation_allowed,
     OpenAPI_list_t *wireline_forbidden_areas,
     OpenAPI_wireline_service_area_restriction_t *wireline_service_area_restriction
@@ -66,21 +80,31 @@ OpenAPI_access_and_mobility_subscription_data_t *OpenAPI_access_and_mobility_sub
     access_and_mobility_subscription_data_local_var->forbidden_areas = forbidden_areas;
     access_and_mobility_subscription_data_local_var->service_area_restriction = service_area_restriction;
     access_and_mobility_subscription_data_local_var->core_network_type_restrictions = core_network_type_restrictions;
+    access_and_mobility_subscription_data_local_var->is_rfsp_index = is_rfsp_index;
     access_and_mobility_subscription_data_local_var->rfsp_index = rfsp_index;
+    access_and_mobility_subscription_data_local_var->is_subs_reg_timer = is_subs_reg_timer;
     access_and_mobility_subscription_data_local_var->subs_reg_timer = subs_reg_timer;
+    access_and_mobility_subscription_data_local_var->is_ue_usage_type = is_ue_usage_type;
     access_and_mobility_subscription_data_local_var->ue_usage_type = ue_usage_type;
+    access_and_mobility_subscription_data_local_var->is_mps_priority = is_mps_priority;
     access_and_mobility_subscription_data_local_var->mps_priority = mps_priority;
+    access_and_mobility_subscription_data_local_var->is_mcs_priority = is_mcs_priority;
     access_and_mobility_subscription_data_local_var->mcs_priority = mcs_priority;
+    access_and_mobility_subscription_data_local_var->is_active_time = is_active_time;
     access_and_mobility_subscription_data_local_var->active_time = active_time;
     access_and_mobility_subscription_data_local_var->sor_info = sor_info;
+    access_and_mobility_subscription_data_local_var->is_sor_info_expect_ind = is_sor_info_expect_ind;
     access_and_mobility_subscription_data_local_var->sor_info_expect_ind = sor_info_expect_ind;
+    access_and_mobility_subscription_data_local_var->is_soraf_retrieval = is_soraf_retrieval;
     access_and_mobility_subscription_data_local_var->soraf_retrieval = soraf_retrieval;
     access_and_mobility_subscription_data_local_var->sor_update_indicator_list = sor_update_indicator_list;
     access_and_mobility_subscription_data_local_var->upu_info = upu_info;
+    access_and_mobility_subscription_data_local_var->is_mico_allowed = is_mico_allowed;
     access_and_mobility_subscription_data_local_var->mico_allowed = mico_allowed;
     access_and_mobility_subscription_data_local_var->shared_am_data_ids = shared_am_data_ids;
     access_and_mobility_subscription_data_local_var->odb_packet_services = odb_packet_services;
     access_and_mobility_subscription_data_local_var->subscribed_dnn_list = subscribed_dnn_list;
+    access_and_mobility_subscription_data_local_var->is_service_gap_time = is_service_gap_time;
     access_and_mobility_subscription_data_local_var->service_gap_time = service_gap_time;
     access_and_mobility_subscription_data_local_var->mdt_user_consent = mdt_user_consent;
     access_and_mobility_subscription_data_local_var->mdt_configuration = mdt_configuration;
@@ -88,16 +112,20 @@ OpenAPI_access_and_mobility_subscription_data_t *OpenAPI_access_and_mobility_sub
     access_and_mobility_subscription_data_local_var->cag_data = cag_data;
     access_and_mobility_subscription_data_local_var->stn_sr = stn_sr;
     access_and_mobility_subscription_data_local_var->c_msisdn = c_msisdn;
+    access_and_mobility_subscription_data_local_var->is_nb_io_tue_priority = is_nb_io_tue_priority;
     access_and_mobility_subscription_data_local_var->nb_io_tue_priority = nb_io_tue_priority;
+    access_and_mobility_subscription_data_local_var->is_nssai_inclusion_allowed = is_nssai_inclusion_allowed;
     access_and_mobility_subscription_data_local_var->nssai_inclusion_allowed = nssai_inclusion_allowed;
     access_and_mobility_subscription_data_local_var->rg_wireline_characteristics = rg_wireline_characteristics;
     access_and_mobility_subscription_data_local_var->ec_restriction_data_wb = ec_restriction_data_wb;
+    access_and_mobility_subscription_data_local_var->is_ec_restriction_data_nb = is_ec_restriction_data_nb;
     access_and_mobility_subscription_data_local_var->ec_restriction_data_nb = ec_restriction_data_nb;
     access_and_mobility_subscription_data_local_var->expected_ue_behaviour_list = expected_ue_behaviour_list;
     access_and_mobility_subscription_data_local_var->primary_rat_restrictions = primary_rat_restrictions;
     access_and_mobility_subscription_data_local_var->secondary_rat_restrictions = secondary_rat_restrictions;
     access_and_mobility_subscription_data_local_var->edrx_parameters_list = edrx_parameters_list;
     access_and_mobility_subscription_data_local_var->ptw_parameters_list = ptw_parameters_list;
+    access_and_mobility_subscription_data_local_var->is_iab_operation_allowed = is_iab_operation_allowed;
     access_and_mobility_subscription_data_local_var->iab_operation_allowed = iab_operation_allowed;
     access_and_mobility_subscription_data_local_var->wireline_forbidden_areas = wireline_forbidden_areas;
     access_and_mobility_subscription_data_local_var->wireline_service_area_restriction = wireline_service_area_restriction;
@@ -325,42 +353,42 @@ cJSON *OpenAPI_access_and_mobility_subscription_data_convertToJSON(OpenAPI_acces
     }
     }
 
-    if (access_and_mobility_subscription_data->rfsp_index) {
+    if (access_and_mobility_subscription_data->is_rfsp_index) {
     if (cJSON_AddNumberToObject(item, "rfspIndex", access_and_mobility_subscription_data->rfsp_index) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [rfsp_index]");
         goto end;
     }
     }
 
-    if (access_and_mobility_subscription_data->subs_reg_timer) {
+    if (access_and_mobility_subscription_data->is_subs_reg_timer) {
     if (cJSON_AddNumberToObject(item, "subsRegTimer", access_and_mobility_subscription_data->subs_reg_timer) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [subs_reg_timer]");
         goto end;
     }
     }
 
-    if (access_and_mobility_subscription_data->ue_usage_type) {
+    if (access_and_mobility_subscription_data->is_ue_usage_type) {
     if (cJSON_AddNumberToObject(item, "ueUsageType", access_and_mobility_subscription_data->ue_usage_type) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [ue_usage_type]");
         goto end;
     }
     }
 
-    if (access_and_mobility_subscription_data->mps_priority) {
+    if (access_and_mobility_subscription_data->is_mps_priority) {
     if (cJSON_AddBoolToObject(item, "mpsPriority", access_and_mobility_subscription_data->mps_priority) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [mps_priority]");
         goto end;
     }
     }
 
-    if (access_and_mobility_subscription_data->mcs_priority) {
+    if (access_and_mobility_subscription_data->is_mcs_priority) {
     if (cJSON_AddBoolToObject(item, "mcsPriority", access_and_mobility_subscription_data->mcs_priority) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [mcs_priority]");
         goto end;
     }
     }
 
-    if (access_and_mobility_subscription_data->active_time) {
+    if (access_and_mobility_subscription_data->is_active_time) {
     if (cJSON_AddNumberToObject(item, "activeTime", access_and_mobility_subscription_data->active_time) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [active_time]");
         goto end;
@@ -380,14 +408,14 @@ cJSON *OpenAPI_access_and_mobility_subscription_data_convertToJSON(OpenAPI_acces
     }
     }
 
-    if (access_and_mobility_subscription_data->sor_info_expect_ind) {
+    if (access_and_mobility_subscription_data->is_sor_info_expect_ind) {
     if (cJSON_AddBoolToObject(item, "sorInfoExpectInd", access_and_mobility_subscription_data->sor_info_expect_ind) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [sor_info_expect_ind]");
         goto end;
     }
     }
 
-    if (access_and_mobility_subscription_data->soraf_retrieval) {
+    if (access_and_mobility_subscription_data->is_soraf_retrieval) {
     if (cJSON_AddBoolToObject(item, "sorafRetrieval", access_and_mobility_subscription_data->soraf_retrieval) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [soraf_retrieval]");
         goto end;
@@ -422,7 +450,7 @@ cJSON *OpenAPI_access_and_mobility_subscription_data_convertToJSON(OpenAPI_acces
     }
     }
 
-    if (access_and_mobility_subscription_data->mico_allowed) {
+    if (access_and_mobility_subscription_data->is_mico_allowed) {
     if (cJSON_AddBoolToObject(item, "micoAllowed", access_and_mobility_subscription_data->mico_allowed) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [mico_allowed]");
         goto end;
@@ -468,7 +496,7 @@ cJSON *OpenAPI_access_and_mobility_subscription_data_convertToJSON(OpenAPI_acces
                     }
     }
 
-    if (access_and_mobility_subscription_data->service_gap_time) {
+    if (access_and_mobility_subscription_data->is_service_gap_time) {
     if (cJSON_AddNumberToObject(item, "serviceGapTime", access_and_mobility_subscription_data->service_gap_time) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [service_gap_time]");
         goto end;
@@ -535,14 +563,14 @@ cJSON *OpenAPI_access_and_mobility_subscription_data_convertToJSON(OpenAPI_acces
     }
     }
 
-    if (access_and_mobility_subscription_data->nb_io_tue_priority) {
+    if (access_and_mobility_subscription_data->is_nb_io_tue_priority) {
     if (cJSON_AddNumberToObject(item, "nbIoTUePriority", access_and_mobility_subscription_data->nb_io_tue_priority) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [nb_io_tue_priority]");
         goto end;
     }
     }
 
-    if (access_and_mobility_subscription_data->nssai_inclusion_allowed) {
+    if (access_and_mobility_subscription_data->is_nssai_inclusion_allowed) {
     if (cJSON_AddBoolToObject(item, "nssaiInclusionAllowed", access_and_mobility_subscription_data->nssai_inclusion_allowed) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [nssai_inclusion_allowed]");
         goto end;
@@ -569,7 +597,7 @@ cJSON *OpenAPI_access_and_mobility_subscription_data_convertToJSON(OpenAPI_acces
     }
     }
 
-    if (access_and_mobility_subscription_data->ec_restriction_data_nb) {
+    if (access_and_mobility_subscription_data->is_ec_restriction_data_nb) {
     if (cJSON_AddBoolToObject(item, "ecRestrictionDataNb", access_and_mobility_subscription_data->ec_restriction_data_nb) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [ec_restriction_data_nb]");
         goto end;
@@ -659,7 +687,7 @@ cJSON *OpenAPI_access_and_mobility_subscription_data_convertToJSON(OpenAPI_acces
     }
     }
 
-    if (access_and_mobility_subscription_data->iab_operation_allowed) {
+    if (access_and_mobility_subscription_data->is_iab_operation_allowed) {
     if (cJSON_AddBoolToObject(item, "iabOperationAllowed", access_and_mobility_subscription_data->iab_operation_allowed) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_subscription_data_convertToJSON() failed [iab_operation_allowed]");
         goto end;
@@ -1277,21 +1305,31 @@ OpenAPI_access_and_mobility_subscription_data_t *OpenAPI_access_and_mobility_sub
         forbidden_areas ? forbidden_areasList : NULL,
         service_area_restriction ? service_area_restriction_local_nonprim : NULL,
         core_network_type_restrictions ? core_network_type_restrictionsList : NULL,
+        rfsp_index ? true : false,
         rfsp_index ? rfsp_index->valuedouble : 0,
+        subs_reg_timer ? true : false,
         subs_reg_timer ? subs_reg_timer->valuedouble : 0,
+        ue_usage_type ? true : false,
         ue_usage_type ? ue_usage_type->valuedouble : 0,
+        mps_priority ? true : false,
         mps_priority ? mps_priority->valueint : 0,
+        mcs_priority ? true : false,
         mcs_priority ? mcs_priority->valueint : 0,
+        active_time ? true : false,
         active_time ? active_time->valuedouble : 0,
         sor_info ? sor_info_local_nonprim : NULL,
+        sor_info_expect_ind ? true : false,
         sor_info_expect_ind ? sor_info_expect_ind->valueint : 0,
+        soraf_retrieval ? true : false,
         soraf_retrieval ? soraf_retrieval->valueint : 0,
         sor_update_indicator_list ? sor_update_indicator_listList : NULL,
         upu_info ? upu_info_local_nonprim : NULL,
+        mico_allowed ? true : false,
         mico_allowed ? mico_allowed->valueint : 0,
         shared_am_data_ids ? shared_am_data_idsList : NULL,
         odb_packet_services ? odb_packet_servicesVariable : 0,
         subscribed_dnn_list ? subscribed_dnn_listList : NULL,
+        service_gap_time ? true : false,
         service_gap_time ? service_gap_time->valuedouble : 0,
         mdt_user_consent ? mdt_user_consentVariable : 0,
         mdt_configuration ? mdt_configuration_local_nonprim : NULL,
@@ -1299,16 +1337,20 @@ OpenAPI_access_and_mobility_subscription_data_t *OpenAPI_access_and_mobility_sub
         cag_data ? cag_data_local_nonprim : NULL,
         stn_sr ? ogs_strdup_or_assert(stn_sr->valuestring) : NULL,
         c_msisdn ? ogs_strdup_or_assert(c_msisdn->valuestring) : NULL,
+        nb_io_tue_priority ? true : false,
         nb_io_tue_priority ? nb_io_tue_priority->valuedouble : 0,
+        nssai_inclusion_allowed ? true : false,
         nssai_inclusion_allowed ? nssai_inclusion_allowed->valueint : 0,
         rg_wireline_characteristics ? ogs_strdup_or_assert(rg_wireline_characteristics->valuestring) : NULL,
         ec_restriction_data_wb ? ec_restriction_data_wb_local_nonprim : NULL,
+        ec_restriction_data_nb ? true : false,
         ec_restriction_data_nb ? ec_restriction_data_nb->valueint : 0,
         expected_ue_behaviour_list ? expected_ue_behaviour_list_local_nonprim : NULL,
         primary_rat_restrictions ? primary_rat_restrictionsList : NULL,
         secondary_rat_restrictions ? secondary_rat_restrictionsList : NULL,
         edrx_parameters_list ? edrx_parameters_listList : NULL,
         ptw_parameters_list ? ptw_parameters_listList : NULL,
+        iab_operation_allowed ? true : false,
         iab_operation_allowed ? iab_operation_allowed->valueint : 0,
         wireline_forbidden_areas ? wireline_forbidden_areasList : NULL,
         wireline_service_area_restriction ? wireline_service_area_restriction_local_nonprim : NULL

@@ -10,6 +10,7 @@ OpenAPI_n2_sm_information_t *OpenAPI_n2_sm_information_create(
     OpenAPI_snssai_t *s_nssai,
     OpenAPI_snssai_t *home_plmn_snssai,
     OpenAPI_snssai_t *iwk_snssai,
+    bool is_subject_to_ho,
     int subject_to_ho
 )
 {
@@ -22,6 +23,7 @@ OpenAPI_n2_sm_information_t *OpenAPI_n2_sm_information_create(
     n2_sm_information_local_var->s_nssai = s_nssai;
     n2_sm_information_local_var->home_plmn_snssai = home_plmn_snssai;
     n2_sm_information_local_var->iwk_snssai = iwk_snssai;
+    n2_sm_information_local_var->is_subject_to_ho = is_subject_to_ho;
     n2_sm_information_local_var->subject_to_ho = subject_to_ho;
 
     return n2_sm_information_local_var;
@@ -107,7 +109,7 @@ cJSON *OpenAPI_n2_sm_information_convertToJSON(OpenAPI_n2_sm_information_t *n2_s
     }
     }
 
-    if (n2_sm_information->subject_to_ho) {
+    if (n2_sm_information->is_subject_to_ho) {
     if (cJSON_AddBoolToObject(item, "subjectToHo", n2_sm_information->subject_to_ho) == NULL) {
         ogs_error("OpenAPI_n2_sm_information_convertToJSON() failed [subject_to_ho]");
         goto end;
@@ -171,11 +173,13 @@ OpenAPI_n2_sm_information_t *OpenAPI_n2_sm_information_parseFromJSON(cJSON *n2_s
     }
 
     n2_sm_information_local_var = OpenAPI_n2_sm_information_create (
+        
         pdu_session_id->valuedouble,
         n2_info_content ? n2_info_content_local_nonprim : NULL,
         s_nssai ? s_nssai_local_nonprim : NULL,
         home_plmn_snssai ? home_plmn_snssai_local_nonprim : NULL,
         iwk_snssai ? iwk_snssai_local_nonprim : NULL,
+        subject_to_ho ? true : false,
         subject_to_ho ? subject_to_ho->valueint : 0
     );
 

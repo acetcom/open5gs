@@ -7,6 +7,7 @@
 OpenAPI_qos_flow_setup_item_t *OpenAPI_qos_flow_setup_item_create(
     int qfi,
     char qos_rules,
+    bool is_ebi,
     int ebi,
     char qos_flow_description,
     OpenAPI_qos_flow_profile_t *qos_flow_profile,
@@ -19,6 +20,7 @@ OpenAPI_qos_flow_setup_item_t *OpenAPI_qos_flow_setup_item_create(
     }
     qos_flow_setup_item_local_var->qfi = qfi;
     qos_flow_setup_item_local_var->qos_rules = qos_rules;
+    qos_flow_setup_item_local_var->is_ebi = is_ebi;
     qos_flow_setup_item_local_var->ebi = ebi;
     qos_flow_setup_item_local_var->qos_flow_description = qos_flow_description;
     qos_flow_setup_item_local_var->qos_flow_profile = qos_flow_profile;
@@ -57,7 +59,7 @@ cJSON *OpenAPI_qos_flow_setup_item_convertToJSON(OpenAPI_qos_flow_setup_item_t *
         goto end;
     }
 
-    if (qos_flow_setup_item->ebi) {
+    if (qos_flow_setup_item->is_ebi) {
     if (cJSON_AddNumberToObject(item, "ebi", qos_flow_setup_item->ebi) == NULL) {
         ogs_error("OpenAPI_qos_flow_setup_item_convertToJSON() failed [ebi]");
         goto end;
@@ -159,8 +161,10 @@ OpenAPI_qos_flow_setup_item_t *OpenAPI_qos_flow_setup_item_parseFromJSON(cJSON *
     }
 
     qos_flow_setup_item_local_var = OpenAPI_qos_flow_setup_item_create (
+        
         qfi->valuedouble,
         qos_rules->valueint,
+        ebi ? true : false,
         ebi ? ebi->valuedouble : 0,
         qos_flow_description ? qos_flow_description->valueint : 0,
         qos_flow_profile ? qos_flow_profile_local_nonprim : NULL,

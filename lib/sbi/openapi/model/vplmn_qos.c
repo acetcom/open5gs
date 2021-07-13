@@ -5,6 +5,7 @@
 #include "vplmn_qos.h"
 
 OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_create(
+    bool is__5qi,
     int _5qi,
     OpenAPI_arp_t *arp,
     OpenAPI_ambr_t *session_ambr,
@@ -18,6 +19,7 @@ OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_create(
     if (!vplmn_qos_local_var) {
         return NULL;
     }
+    vplmn_qos_local_var->is__5qi = is__5qi;
     vplmn_qos_local_var->_5qi = _5qi;
     vplmn_qos_local_var->arp = arp;
     vplmn_qos_local_var->session_ambr = session_ambr;
@@ -54,7 +56,7 @@ cJSON *OpenAPI_vplmn_qos_convertToJSON(OpenAPI_vplmn_qos_t *vplmn_qos)
     }
 
     item = cJSON_CreateObject();
-    if (vplmn_qos->_5qi) {
+    if (vplmn_qos->is__5qi) {
     if (cJSON_AddNumberToObject(item, "5qi", vplmn_qos->_5qi) == NULL) {
         ogs_error("OpenAPI_vplmn_qos_convertToJSON() failed [_5qi]");
         goto end;
@@ -182,6 +184,7 @@ OpenAPI_vplmn_qos_t *OpenAPI_vplmn_qos_parseFromJSON(cJSON *vplmn_qosJSON)
     }
 
     vplmn_qos_local_var = OpenAPI_vplmn_qos_create (
+        _5qi ? true : false,
         _5qi ? _5qi->valuedouble : 0,
         arp ? arp_local_nonprim : NULL,
         session_ambr ? session_ambr_local_nonprim : NULL,

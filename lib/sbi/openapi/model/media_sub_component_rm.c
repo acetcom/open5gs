@@ -271,6 +271,7 @@ OpenAPI_media_sub_component_rm_t *OpenAPI_media_sub_component_rm_parseFromJSON(c
     media_sub_component_rm_local_var = OpenAPI_media_sub_component_rm_create (
         af_sig_protocol ? af_sig_protocolVariable : 0,
         ethf_descs ? ethf_descsList : NULL,
+        
         f_num->valuedouble,
         f_descs ? f_descsList : NULL,
         f_status ? f_statusVariable : 0,

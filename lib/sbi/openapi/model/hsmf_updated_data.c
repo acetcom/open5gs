@@ -15,11 +15,13 @@ OpenAPI_hsmf_updated_data_t *OpenAPI_hsmf_updated_data_create(
     OpenAPI_up_security_t *up_security,
     OpenAPI_max_integrity_protected_data_rate_e max_integrity_protected_data_rate_ul,
     OpenAPI_max_integrity_protected_data_rate_e max_integrity_protected_data_rate_dl,
+    bool is_ipv6_multi_homing_ind,
     int ipv6_multi_homing_ind,
     OpenAPI_list_t *qos_flows_setup_list,
     OpenAPI_ambr_t *session_ambr,
     OpenAPI_eps_pdn_cnx_info_t *eps_pdn_cnx_info,
     OpenAPI_list_t *eps_bearer_info,
+    bool is_pti,
     int pti
 )
 {
@@ -37,11 +39,13 @@ OpenAPI_hsmf_updated_data_t *OpenAPI_hsmf_updated_data_create(
     hsmf_updated_data_local_var->up_security = up_security;
     hsmf_updated_data_local_var->max_integrity_protected_data_rate_ul = max_integrity_protected_data_rate_ul;
     hsmf_updated_data_local_var->max_integrity_protected_data_rate_dl = max_integrity_protected_data_rate_dl;
+    hsmf_updated_data_local_var->is_ipv6_multi_homing_ind = is_ipv6_multi_homing_ind;
     hsmf_updated_data_local_var->ipv6_multi_homing_ind = ipv6_multi_homing_ind;
     hsmf_updated_data_local_var->qos_flows_setup_list = qos_flows_setup_list;
     hsmf_updated_data_local_var->session_ambr = session_ambr;
     hsmf_updated_data_local_var->eps_pdn_cnx_info = eps_pdn_cnx_info;
     hsmf_updated_data_local_var->eps_bearer_info = eps_bearer_info;
+    hsmf_updated_data_local_var->is_pti = is_pti;
     hsmf_updated_data_local_var->pti = pti;
 
     return hsmf_updated_data_local_var;
@@ -202,7 +206,7 @@ cJSON *OpenAPI_hsmf_updated_data_convertToJSON(OpenAPI_hsmf_updated_data_t *hsmf
     }
     }
 
-    if (hsmf_updated_data->ipv6_multi_homing_ind) {
+    if (hsmf_updated_data->is_ipv6_multi_homing_ind) {
     if (cJSON_AddBoolToObject(item, "ipv6MultiHomingInd", hsmf_updated_data->ipv6_multi_homing_ind) == NULL) {
         ogs_error("OpenAPI_hsmf_updated_data_convertToJSON() failed [ipv6_multi_homing_ind]");
         goto end;
@@ -275,7 +279,7 @@ cJSON *OpenAPI_hsmf_updated_data_convertToJSON(OpenAPI_hsmf_updated_data_t *hsmf
     }
     }
 
-    if (hsmf_updated_data->pti) {
+    if (hsmf_updated_data->is_pti) {
     if (cJSON_AddNumberToObject(item, "pti", hsmf_updated_data->pti) == NULL) {
         ogs_error("OpenAPI_hsmf_updated_data_convertToJSON() failed [pti]");
         goto end;
@@ -471,11 +475,13 @@ OpenAPI_hsmf_updated_data_t *OpenAPI_hsmf_updated_data_parseFromJSON(cJSON *hsmf
         up_security ? up_security_local_nonprim : NULL,
         max_integrity_protected_data_rate_ul ? max_integrity_protected_data_rate_ulVariable : 0,
         max_integrity_protected_data_rate_dl ? max_integrity_protected_data_rate_dlVariable : 0,
+        ipv6_multi_homing_ind ? true : false,
         ipv6_multi_homing_ind ? ipv6_multi_homing_ind->valueint : 0,
         qos_flows_setup_list ? qos_flows_setup_listList : NULL,
         session_ambr ? session_ambr_local_nonprim : NULL,
         eps_pdn_cnx_info ? eps_pdn_cnx_info_local_nonprim : NULL,
         eps_bearer_info ? eps_bearer_infoList : NULL,
+        pti ? true : false,
         pti ? pti->valuedouble : 0
     );
 

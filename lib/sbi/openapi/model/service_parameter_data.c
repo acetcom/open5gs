@@ -13,6 +13,7 @@ OpenAPI_service_parameter_data_t *OpenAPI_service_parameter_data_create(
     char *ue_ipv4,
     char *ue_ipv6,
     char *ue_mac,
+    bool is_any_ue_ind,
     int any_ue_ind,
     char *param_over_pc5,
     char *param_over_uu,
@@ -32,6 +33,7 @@ OpenAPI_service_parameter_data_t *OpenAPI_service_parameter_data_create(
     service_parameter_data_local_var->ue_ipv4 = ue_ipv4;
     service_parameter_data_local_var->ue_ipv6 = ue_ipv6;
     service_parameter_data_local_var->ue_mac = ue_mac;
+    service_parameter_data_local_var->is_any_ue_ind = is_any_ue_ind;
     service_parameter_data_local_var->any_ue_ind = any_ue_ind;
     service_parameter_data_local_var->param_over_pc5 = param_over_pc5;
     service_parameter_data_local_var->param_over_uu = param_over_uu;
@@ -134,7 +136,7 @@ cJSON *OpenAPI_service_parameter_data_convertToJSON(OpenAPI_service_parameter_da
     }
     }
 
-    if (service_parameter_data->any_ue_ind) {
+    if (service_parameter_data->is_any_ue_ind) {
     if (cJSON_AddBoolToObject(item, "anyUeInd", service_parameter_data->any_ue_ind) == NULL) {
         ogs_error("OpenAPI_service_parameter_data_convertToJSON() failed [any_ue_ind]");
         goto end;
@@ -300,6 +302,7 @@ OpenAPI_service_parameter_data_t *OpenAPI_service_parameter_data_parseFromJSON(c
         ue_ipv4 ? ogs_strdup_or_assert(ue_ipv4->valuestring) : NULL,
         ue_ipv6 ? ogs_strdup_or_assert(ue_ipv6->valuestring) : NULL,
         ue_mac ? ogs_strdup_or_assert(ue_mac->valuestring) : NULL,
+        any_ue_ind ? true : false,
         any_ue_ind ? any_ue_ind->valueint : 0,
         param_over_pc5 ? ogs_strdup_or_assert(param_over_pc5->valuestring) : NULL,
         param_over_uu ? ogs_strdup_or_assert(param_over_uu->valuestring) : NULL,

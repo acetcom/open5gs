@@ -13,21 +13,26 @@ OpenAPI_vsmf_update_data_t *OpenAPI_vsmf_update_data_create(
     OpenAPI_list_t *assign_ebi_list,
     OpenAPI_list_t *revoke_ebi_list,
     OpenAPI_list_t *modified_ebi_list,
+    bool is_pti,
     int pti,
     OpenAPI_ref_to_binary_data_t *n1_sm_info_to_ue,
+    bool is_always_on_granted,
     int always_on_granted,
     char *hsmf_pdu_session_uri,
     char *supported_features,
     OpenAPI_cause_e cause,
     char *n1sm_cause,
+    bool is_back_off_timer,
     int back_off_timer,
     OpenAPI_ma_release_indication_e ma_release_ind,
+    bool is_ma_accepted_ind,
     int ma_accepted_ind,
     OpenAPI_tunnel_info_t *additional_cn_tunnel_info,
     OpenAPI_list_t *dnai_list,
     OpenAPI_n4_information_t *n4_info,
     OpenAPI_n4_information_t *n4_info_ext1,
     OpenAPI_n4_information_t *n4_info_ext2,
+    bool is_small_data_rate_control_enabled,
     int small_data_rate_control_enabled,
     OpenAPI_qos_monitoring_info_t *qos_monitoring_info
 )
@@ -44,21 +49,26 @@ OpenAPI_vsmf_update_data_t *OpenAPI_vsmf_update_data_create(
     vsmf_update_data_local_var->assign_ebi_list = assign_ebi_list;
     vsmf_update_data_local_var->revoke_ebi_list = revoke_ebi_list;
     vsmf_update_data_local_var->modified_ebi_list = modified_ebi_list;
+    vsmf_update_data_local_var->is_pti = is_pti;
     vsmf_update_data_local_var->pti = pti;
     vsmf_update_data_local_var->n1_sm_info_to_ue = n1_sm_info_to_ue;
+    vsmf_update_data_local_var->is_always_on_granted = is_always_on_granted;
     vsmf_update_data_local_var->always_on_granted = always_on_granted;
     vsmf_update_data_local_var->hsmf_pdu_session_uri = hsmf_pdu_session_uri;
     vsmf_update_data_local_var->supported_features = supported_features;
     vsmf_update_data_local_var->cause = cause;
     vsmf_update_data_local_var->n1sm_cause = n1sm_cause;
+    vsmf_update_data_local_var->is_back_off_timer = is_back_off_timer;
     vsmf_update_data_local_var->back_off_timer = back_off_timer;
     vsmf_update_data_local_var->ma_release_ind = ma_release_ind;
+    vsmf_update_data_local_var->is_ma_accepted_ind = is_ma_accepted_ind;
     vsmf_update_data_local_var->ma_accepted_ind = ma_accepted_ind;
     vsmf_update_data_local_var->additional_cn_tunnel_info = additional_cn_tunnel_info;
     vsmf_update_data_local_var->dnai_list = dnai_list;
     vsmf_update_data_local_var->n4_info = n4_info;
     vsmf_update_data_local_var->n4_info_ext1 = n4_info_ext1;
     vsmf_update_data_local_var->n4_info_ext2 = n4_info_ext2;
+    vsmf_update_data_local_var->is_small_data_rate_control_enabled = is_small_data_rate_control_enabled;
     vsmf_update_data_local_var->small_data_rate_control_enabled = small_data_rate_control_enabled;
     vsmf_update_data_local_var->qos_monitoring_info = qos_monitoring_info;
 
@@ -256,7 +266,7 @@ cJSON *OpenAPI_vsmf_update_data_convertToJSON(OpenAPI_vsmf_update_data_t *vsmf_u
     }
     }
 
-    if (vsmf_update_data->pti) {
+    if (vsmf_update_data->is_pti) {
     if (cJSON_AddNumberToObject(item, "pti", vsmf_update_data->pti) == NULL) {
         ogs_error("OpenAPI_vsmf_update_data_convertToJSON() failed [pti]");
         goto end;
@@ -276,7 +286,7 @@ cJSON *OpenAPI_vsmf_update_data_convertToJSON(OpenAPI_vsmf_update_data_t *vsmf_u
     }
     }
 
-    if (vsmf_update_data->always_on_granted) {
+    if (vsmf_update_data->is_always_on_granted) {
     if (cJSON_AddBoolToObject(item, "alwaysOnGranted", vsmf_update_data->always_on_granted) == NULL) {
         ogs_error("OpenAPI_vsmf_update_data_convertToJSON() failed [always_on_granted]");
         goto end;
@@ -311,7 +321,7 @@ cJSON *OpenAPI_vsmf_update_data_convertToJSON(OpenAPI_vsmf_update_data_t *vsmf_u
     }
     }
 
-    if (vsmf_update_data->back_off_timer) {
+    if (vsmf_update_data->is_back_off_timer) {
     if (cJSON_AddNumberToObject(item, "backOffTimer", vsmf_update_data->back_off_timer) == NULL) {
         ogs_error("OpenAPI_vsmf_update_data_convertToJSON() failed [back_off_timer]");
         goto end;
@@ -325,7 +335,7 @@ cJSON *OpenAPI_vsmf_update_data_convertToJSON(OpenAPI_vsmf_update_data_t *vsmf_u
     }
     }
 
-    if (vsmf_update_data->ma_accepted_ind) {
+    if (vsmf_update_data->is_ma_accepted_ind) {
     if (cJSON_AddBoolToObject(item, "maAcceptedInd", vsmf_update_data->ma_accepted_ind) == NULL) {
         ogs_error("OpenAPI_vsmf_update_data_convertToJSON() failed [ma_accepted_ind]");
         goto end;
@@ -400,7 +410,7 @@ cJSON *OpenAPI_vsmf_update_data_convertToJSON(OpenAPI_vsmf_update_data_t *vsmf_u
     }
     }
 
-    if (vsmf_update_data->small_data_rate_control_enabled) {
+    if (vsmf_update_data->is_small_data_rate_control_enabled) {
     if (cJSON_AddBoolToObject(item, "smallDataRateControlEnabled", vsmf_update_data->small_data_rate_control_enabled) == NULL) {
         ogs_error("OpenAPI_vsmf_update_data_convertToJSON() failed [small_data_rate_control_enabled]");
         goto end;
@@ -748,21 +758,26 @@ OpenAPI_vsmf_update_data_t *OpenAPI_vsmf_update_data_parseFromJSON(cJSON *vsmf_u
         assign_ebi_list ? assign_ebi_listList : NULL,
         revoke_ebi_list ? revoke_ebi_listList : NULL,
         modified_ebi_list ? modified_ebi_listList : NULL,
+        pti ? true : false,
         pti ? pti->valuedouble : 0,
         n1_sm_info_to_ue ? n1_sm_info_to_ue_local_nonprim : NULL,
+        always_on_granted ? true : false,
         always_on_granted ? always_on_granted->valueint : 0,
         hsmf_pdu_session_uri ? ogs_strdup_or_assert(hsmf_pdu_session_uri->valuestring) : NULL,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
         cause ? causeVariable : 0,
         n1sm_cause ? ogs_strdup_or_assert(n1sm_cause->valuestring) : NULL,
+        back_off_timer ? true : false,
         back_off_timer ? back_off_timer->valuedouble : 0,
         ma_release_ind ? ma_release_indVariable : 0,
+        ma_accepted_ind ? true : false,
         ma_accepted_ind ? ma_accepted_ind->valueint : 0,
         additional_cn_tunnel_info ? additional_cn_tunnel_info_local_nonprim : NULL,
         dnai_list ? dnai_listList : NULL,
         n4_info ? n4_info_local_nonprim : NULL,
         n4_info_ext1 ? n4_info_ext1_local_nonprim : NULL,
         n4_info_ext2 ? n4_info_ext2_local_nonprim : NULL,
+        small_data_rate_control_enabled ? true : false,
         small_data_rate_control_enabled ? small_data_rate_control_enabled->valueint : 0,
         qos_monitoring_info ? qos_monitoring_info_local_nonprim : NULL
     );

@@ -99,6 +99,7 @@ OpenAPI_requested_qos_t *OpenAPI_requested_qos_parseFromJSON(cJSON *requested_qo
     }
 
     requested_qos_local_var = OpenAPI_requested_qos_create (
+        
         _5qi->valuedouble,
         gbr_ul ? ogs_strdup_or_assert(gbr_ul->valuestring) : NULL,
         gbr_dl ? ogs_strdup_or_assert(gbr_dl->valuestring) : NULL

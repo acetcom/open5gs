@@ -101,6 +101,7 @@ OpenAPI_rg_authentication_info_t *OpenAPI_rg_authentication_info_parseFromJSON(c
 
     rg_authentication_info_local_var = OpenAPI_rg_authentication_info_create (
         ogs_strdup_or_assert(suci->valuestring),
+        
         authenticated_ind->valueint,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL
     );

@@ -5,6 +5,7 @@
 #include "sms_subscription_data.h"
 
 OpenAPI_sms_subscription_data_t *OpenAPI_sms_subscription_data_create(
+    bool is_sms_subscribed,
     int sms_subscribed,
     char *shared_sms_subs_data_id
 )
@@ -13,6 +14,7 @@ OpenAPI_sms_subscription_data_t *OpenAPI_sms_subscription_data_create(
     if (!sms_subscription_data_local_var) {
         return NULL;
     }
+    sms_subscription_data_local_var->is_sms_subscribed = is_sms_subscribed;
     sms_subscription_data_local_var->sms_subscribed = sms_subscribed;
     sms_subscription_data_local_var->shared_sms_subs_data_id = shared_sms_subs_data_id;
 
@@ -39,7 +41,7 @@ cJSON *OpenAPI_sms_subscription_data_convertToJSON(OpenAPI_sms_subscription_data
     }
 
     item = cJSON_CreateObject();
-    if (sms_subscription_data->sms_subscribed) {
+    if (sms_subscription_data->is_sms_subscribed) {
     if (cJSON_AddBoolToObject(item, "smsSubscribed", sms_subscription_data->sms_subscribed) == NULL) {
         ogs_error("OpenAPI_sms_subscription_data_convertToJSON() failed [sms_subscribed]");
         goto end;
@@ -79,6 +81,7 @@ OpenAPI_sms_subscription_data_t *OpenAPI_sms_subscription_data_parseFromJSON(cJS
     }
 
     sms_subscription_data_local_var = OpenAPI_sms_subscription_data_create (
+        sms_subscribed ? true : false,
         sms_subscribed ? sms_subscribed->valueint : 0,
         shared_sms_subs_data_id ? ogs_strdup_or_assert(shared_sms_subs_data_id->valuestring) : NULL
     );

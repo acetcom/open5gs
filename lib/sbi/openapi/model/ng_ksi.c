@@ -83,6 +83,7 @@ OpenAPI_ng_ksi_t *OpenAPI_ng_ksi_parseFromJSON(cJSON *ng_ksiJSON)
 
     ng_ksi_local_var = OpenAPI_ng_ksi_create (
         tscVariable,
+        
         ksi->valuedouble
     );
 

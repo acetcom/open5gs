@@ -7,6 +7,7 @@
 OpenAPI_pc5_qos_flow_item_t *OpenAPI_pc5_qos_flow_item_create(
     int pqi,
     OpenAPI_pc5_flow_bit_rates_t *pc5_flow_bit_rates,
+    bool is_range,
     int range
 )
 {
@@ -16,6 +17,7 @@ OpenAPI_pc5_qos_flow_item_t *OpenAPI_pc5_qos_flow_item_create(
     }
     pc5_qos_flow_item_local_var->pqi = pqi;
     pc5_qos_flow_item_local_var->pc5_flow_bit_rates = pc5_flow_bit_rates;
+    pc5_qos_flow_item_local_var->is_range = is_range;
     pc5_qos_flow_item_local_var->range = range;
 
     return pc5_qos_flow_item_local_var;
@@ -59,7 +61,7 @@ cJSON *OpenAPI_pc5_qos_flow_item_convertToJSON(OpenAPI_pc5_qos_flow_item_t *pc5_
     }
     }
 
-    if (pc5_qos_flow_item->range) {
+    if (pc5_qos_flow_item->is_range) {
     if (cJSON_AddNumberToObject(item, "range", pc5_qos_flow_item->range) == NULL) {
         ogs_error("OpenAPI_pc5_qos_flow_item_convertToJSON() failed [range]");
         goto end;
@@ -102,8 +104,10 @@ OpenAPI_pc5_qos_flow_item_t *OpenAPI_pc5_qos_flow_item_parseFromJSON(cJSON *pc5_
     }
 
     pc5_qos_flow_item_local_var = OpenAPI_pc5_qos_flow_item_create (
+        
         pqi->valuedouble,
         pc5_flow_bit_rates ? pc5_flow_bit_rates_local_nonprim : NULL,
+        range ? true : false,
         range ? range->valuedouble : 0
     );
 

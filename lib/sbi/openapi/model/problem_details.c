@@ -7,6 +7,7 @@
 OpenAPI_problem_details_t *OpenAPI_problem_details_create(
     char *type,
     char *title,
+    bool is_status,
     int status,
     char *detail,
     char *instance,
@@ -24,6 +25,7 @@ OpenAPI_problem_details_t *OpenAPI_problem_details_create(
     }
     problem_details_local_var->type = type;
     problem_details_local_var->title = title;
+    problem_details_local_var->is_status = is_status;
     problem_details_local_var->status = status;
     problem_details_local_var->detail = detail;
     problem_details_local_var->instance = instance;
@@ -83,7 +85,7 @@ cJSON *OpenAPI_problem_details_convertToJSON(OpenAPI_problem_details_t *problem_
     }
     }
 
-    if (problem_details->status) {
+    if (problem_details->is_status) {
     if (cJSON_AddNumberToObject(item, "status", problem_details->status) == NULL) {
         ogs_error("OpenAPI_problem_details_convertToJSON() failed [status]");
         goto end;
@@ -290,6 +292,7 @@ OpenAPI_problem_details_t *OpenAPI_problem_details_parseFromJSON(cJSON *problem_
     problem_details_local_var = OpenAPI_problem_details_create (
         type ? ogs_strdup_or_assert(type->valuestring) : NULL,
         title ? ogs_strdup_or_assert(title->valuestring) : NULL,
+        status ? true : false,
         status ? status->valuedouble : 0,
         detail ? ogs_strdup_or_assert(detail->valuestring) : NULL,
         instance ? ogs_strdup_or_assert(instance->valuestring) : NULL,

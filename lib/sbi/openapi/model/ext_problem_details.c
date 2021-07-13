@@ -7,6 +7,7 @@
 OpenAPI_ext_problem_details_t *OpenAPI_ext_problem_details_create(
     char *type,
     char *title,
+    bool is_status,
     int status,
     char *detail,
     char *instance,
@@ -16,6 +17,7 @@ OpenAPI_ext_problem_details_t *OpenAPI_ext_problem_details_create(
     OpenAPI_access_token_err_t *access_token_error,
     OpenAPI_access_token_req_t *access_token_request,
     char *nrf_id,
+    bool is_remote_error,
     int remote_error
 )
 {
@@ -25,6 +27,7 @@ OpenAPI_ext_problem_details_t *OpenAPI_ext_problem_details_create(
     }
     ext_problem_details_local_var->type = type;
     ext_problem_details_local_var->title = title;
+    ext_problem_details_local_var->is_status = is_status;
     ext_problem_details_local_var->status = status;
     ext_problem_details_local_var->detail = detail;
     ext_problem_details_local_var->instance = instance;
@@ -34,6 +37,7 @@ OpenAPI_ext_problem_details_t *OpenAPI_ext_problem_details_create(
     ext_problem_details_local_var->access_token_error = access_token_error;
     ext_problem_details_local_var->access_token_request = access_token_request;
     ext_problem_details_local_var->nrf_id = nrf_id;
+    ext_problem_details_local_var->is_remote_error = is_remote_error;
     ext_problem_details_local_var->remote_error = remote_error;
 
     return ext_problem_details_local_var;
@@ -85,7 +89,7 @@ cJSON *OpenAPI_ext_problem_details_convertToJSON(OpenAPI_ext_problem_details_t *
     }
     }
 
-    if (ext_problem_details->status) {
+    if (ext_problem_details->is_status) {
     if (cJSON_AddNumberToObject(item, "status", ext_problem_details->status) == NULL) {
         ogs_error("OpenAPI_ext_problem_details_convertToJSON() failed [status]");
         goto end;
@@ -173,7 +177,7 @@ cJSON *OpenAPI_ext_problem_details_convertToJSON(OpenAPI_ext_problem_details_t *
     }
     }
 
-    if (ext_problem_details->remote_error) {
+    if (ext_problem_details->is_remote_error) {
     if (cJSON_AddBoolToObject(item, "remoteError", ext_problem_details->remote_error) == NULL) {
         ogs_error("OpenAPI_ext_problem_details_convertToJSON() failed [remote_error]");
         goto end;
@@ -308,6 +312,7 @@ OpenAPI_ext_problem_details_t *OpenAPI_ext_problem_details_parseFromJSON(cJSON *
     ext_problem_details_local_var = OpenAPI_ext_problem_details_create (
         type ? ogs_strdup_or_assert(type->valuestring) : NULL,
         title ? ogs_strdup_or_assert(title->valuestring) : NULL,
+        status ? true : false,
         status ? status->valuedouble : 0,
         detail ? ogs_strdup_or_assert(detail->valuestring) : NULL,
         instance ? ogs_strdup_or_assert(instance->valuestring) : NULL,
@@ -317,6 +322,7 @@ OpenAPI_ext_problem_details_t *OpenAPI_ext_problem_details_parseFromJSON(cJSON *
         access_token_error ? access_token_error_local_nonprim : NULL,
         access_token_request ? access_token_request_local_nonprim : NULL,
         nrf_id ? ogs_strdup_or_assert(nrf_id->valuestring) : NULL,
+        remote_error ? true : false,
         remote_error ? remote_error->valueint : 0
     );
 

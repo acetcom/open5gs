@@ -10,8 +10,10 @@ OpenAPI_slice_info_for_registration_t *OpenAPI_slice_info_for_registration_creat
     OpenAPI_allowed_nssai_t *allowed_nssai_other_access,
     OpenAPI_list_t *s_nssai_for_mapping,
     OpenAPI_list_t *requested_nssai,
+    bool is_default_configured_snssai_ind,
     int default_configured_snssai_ind,
     OpenAPI_list_t *mapping_of_nssai,
+    bool is_request_mapping,
     int request_mapping
 )
 {
@@ -24,8 +26,10 @@ OpenAPI_slice_info_for_registration_t *OpenAPI_slice_info_for_registration_creat
     slice_info_for_registration_local_var->allowed_nssai_other_access = allowed_nssai_other_access;
     slice_info_for_registration_local_var->s_nssai_for_mapping = s_nssai_for_mapping;
     slice_info_for_registration_local_var->requested_nssai = requested_nssai;
+    slice_info_for_registration_local_var->is_default_configured_snssai_ind = is_default_configured_snssai_ind;
     slice_info_for_registration_local_var->default_configured_snssai_ind = default_configured_snssai_ind;
     slice_info_for_registration_local_var->mapping_of_nssai = mapping_of_nssai;
+    slice_info_for_registration_local_var->is_request_mapping = is_request_mapping;
     slice_info_for_registration_local_var->request_mapping = request_mapping;
 
     return slice_info_for_registration_local_var;
@@ -154,7 +158,7 @@ cJSON *OpenAPI_slice_info_for_registration_convertToJSON(OpenAPI_slice_info_for_
     }
     }
 
-    if (slice_info_for_registration->default_configured_snssai_ind) {
+    if (slice_info_for_registration->is_default_configured_snssai_ind) {
     if (cJSON_AddBoolToObject(item, "defaultConfiguredSnssaiInd", slice_info_for_registration->default_configured_snssai_ind) == NULL) {
         ogs_error("OpenAPI_slice_info_for_registration_convertToJSON() failed [default_configured_snssai_ind]");
         goto end;
@@ -181,7 +185,7 @@ cJSON *OpenAPI_slice_info_for_registration_convertToJSON(OpenAPI_slice_info_for_
     }
     }
 
-    if (slice_info_for_registration->request_mapping) {
+    if (slice_info_for_registration->is_request_mapping) {
     if (cJSON_AddBoolToObject(item, "requestMapping", slice_info_for_registration->request_mapping) == NULL) {
         ogs_error("OpenAPI_slice_info_for_registration_convertToJSON() failed [request_mapping]");
         goto end;
@@ -325,8 +329,10 @@ OpenAPI_slice_info_for_registration_t *OpenAPI_slice_info_for_registration_parse
         allowed_nssai_other_access ? allowed_nssai_other_access_local_nonprim : NULL,
         s_nssai_for_mapping ? s_nssai_for_mappingList : NULL,
         requested_nssai ? requested_nssaiList : NULL,
+        default_configured_snssai_ind ? true : false,
         default_configured_snssai_ind ? default_configured_snssai_ind->valueint : 0,
         mapping_of_nssai ? mapping_of_nssaiList : NULL,
+        request_mapping ? true : false,
         request_mapping ? request_mapping->valueint : 0
     );
 

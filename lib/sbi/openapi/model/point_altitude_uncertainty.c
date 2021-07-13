@@ -173,9 +173,12 @@ OpenAPI_point_altitude_uncertainty_t *OpenAPI_point_altitude_uncertainty_parseFr
     point_altitude_uncertainty_local_var = OpenAPI_point_altitude_uncertainty_create (
         shape_local_nonprim,
         point_local_nonprim,
+        
         altitude->valuedouble,
         uncertainty_ellipse_local_nonprim,
+        
         uncertainty_altitude->valuedouble,
+        
         confidence->valuedouble
     );
 

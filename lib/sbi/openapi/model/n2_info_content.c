@@ -5,6 +5,7 @@
 #include "n2_info_content.h"
 
 OpenAPI_n2_info_content_t *OpenAPI_n2_info_content_create(
+    bool is_ngap_message_type,
     int ngap_message_type,
     OpenAPI_ngap_ie_type_e ngap_ie_type,
     OpenAPI_ref_to_binary_data_t *ngap_data
@@ -14,6 +15,7 @@ OpenAPI_n2_info_content_t *OpenAPI_n2_info_content_create(
     if (!n2_info_content_local_var) {
         return NULL;
     }
+    n2_info_content_local_var->is_ngap_message_type = is_ngap_message_type;
     n2_info_content_local_var->ngap_message_type = ngap_message_type;
     n2_info_content_local_var->ngap_ie_type = ngap_ie_type;
     n2_info_content_local_var->ngap_data = ngap_data;
@@ -41,7 +43,7 @@ cJSON *OpenAPI_n2_info_content_convertToJSON(OpenAPI_n2_info_content_t *n2_info_
     }
 
     item = cJSON_CreateObject();
-    if (n2_info_content->ngap_message_type) {
+    if (n2_info_content->is_ngap_message_type) {
     if (cJSON_AddNumberToObject(item, "ngapMessageType", n2_info_content->ngap_message_type) == NULL) {
         ogs_error("OpenAPI_n2_info_content_convertToJSON() failed [ngap_message_type]");
         goto end;
@@ -104,6 +106,7 @@ OpenAPI_n2_info_content_t *OpenAPI_n2_info_content_parseFromJSON(cJSON *n2_info_
     ngap_data_local_nonprim = OpenAPI_ref_to_binary_data_parseFromJSON(ngap_data);
 
     n2_info_content_local_var = OpenAPI_n2_info_content_create (
+        ngap_message_type ? true : false,
         ngap_message_type ? ngap_message_type->valuedouble : 0,
         ngap_ie_type ? ngap_ie_typeVariable : 0,
         ngap_data_local_nonprim

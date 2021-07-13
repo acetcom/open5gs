@@ -8,17 +8,23 @@ OpenAPI_media_component_t *OpenAPI_media_component_create(
     char *af_app_id,
     OpenAPI_af_routing_requirement_t *af_rout_req,
     char *qos_reference,
+    bool is_dis_ue_notif,
     int dis_ue_notif,
     OpenAPI_list_t *alt_ser_reqs,
+    bool is_cont_ver,
     int cont_ver,
     OpenAPI_list_t *codecs,
+    bool is_des_max_latency,
     float des_max_latency,
+    bool is_des_max_loss,
     float des_max_loss,
     char *flus_id,
     OpenAPI_flow_status_e f_status,
     char *mar_bw_dl,
     char *mar_bw_ul,
+    bool is_max_packet_loss_rate_dl,
     int max_packet_loss_rate_dl,
+    bool is_max_packet_loss_rate_ul,
     int max_packet_loss_rate_ul,
     char *max_supp_bw_dl,
     char *max_supp_bw_ul,
@@ -35,7 +41,9 @@ OpenAPI_media_component_t *OpenAPI_media_component_create(
     OpenAPI_reserv_priority_e res_prio,
     char *rr_bw,
     char *rs_bw,
+    bool is_sharing_key_dl,
     int sharing_key_dl,
+    bool is_sharing_key_ul,
     int sharing_key_ul,
     OpenAPI_tsn_qos_container_t *tsn_qos,
     OpenAPI_tscai_input_container_t *tscai_input_dl,
@@ -49,17 +57,23 @@ OpenAPI_media_component_t *OpenAPI_media_component_create(
     media_component_local_var->af_app_id = af_app_id;
     media_component_local_var->af_rout_req = af_rout_req;
     media_component_local_var->qos_reference = qos_reference;
+    media_component_local_var->is_dis_ue_notif = is_dis_ue_notif;
     media_component_local_var->dis_ue_notif = dis_ue_notif;
     media_component_local_var->alt_ser_reqs = alt_ser_reqs;
+    media_component_local_var->is_cont_ver = is_cont_ver;
     media_component_local_var->cont_ver = cont_ver;
     media_component_local_var->codecs = codecs;
+    media_component_local_var->is_des_max_latency = is_des_max_latency;
     media_component_local_var->des_max_latency = des_max_latency;
+    media_component_local_var->is_des_max_loss = is_des_max_loss;
     media_component_local_var->des_max_loss = des_max_loss;
     media_component_local_var->flus_id = flus_id;
     media_component_local_var->f_status = f_status;
     media_component_local_var->mar_bw_dl = mar_bw_dl;
     media_component_local_var->mar_bw_ul = mar_bw_ul;
+    media_component_local_var->is_max_packet_loss_rate_dl = is_max_packet_loss_rate_dl;
     media_component_local_var->max_packet_loss_rate_dl = max_packet_loss_rate_dl;
+    media_component_local_var->is_max_packet_loss_rate_ul = is_max_packet_loss_rate_ul;
     media_component_local_var->max_packet_loss_rate_ul = max_packet_loss_rate_ul;
     media_component_local_var->max_supp_bw_dl = max_supp_bw_dl;
     media_component_local_var->max_supp_bw_ul = max_supp_bw_ul;
@@ -76,7 +90,9 @@ OpenAPI_media_component_t *OpenAPI_media_component_create(
     media_component_local_var->res_prio = res_prio;
     media_component_local_var->rr_bw = rr_bw;
     media_component_local_var->rs_bw = rs_bw;
+    media_component_local_var->is_sharing_key_dl = is_sharing_key_dl;
     media_component_local_var->sharing_key_dl = sharing_key_dl;
+    media_component_local_var->is_sharing_key_ul = is_sharing_key_ul;
     media_component_local_var->sharing_key_ul = sharing_key_ul;
     media_component_local_var->tsn_qos = tsn_qos;
     media_component_local_var->tscai_input_dl = tscai_input_dl;
@@ -162,7 +178,7 @@ cJSON *OpenAPI_media_component_convertToJSON(OpenAPI_media_component_t *media_co
     }
     }
 
-    if (media_component->dis_ue_notif) {
+    if (media_component->is_dis_ue_notif) {
     if (cJSON_AddBoolToObject(item, "disUeNotif", media_component->dis_ue_notif) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [dis_ue_notif]");
         goto end;
@@ -185,7 +201,7 @@ cJSON *OpenAPI_media_component_convertToJSON(OpenAPI_media_component_t *media_co
                     }
     }
 
-    if (media_component->cont_ver) {
+    if (media_component->is_cont_ver) {
     if (cJSON_AddNumberToObject(item, "contVer", media_component->cont_ver) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [cont_ver]");
         goto end;
@@ -208,14 +224,14 @@ cJSON *OpenAPI_media_component_convertToJSON(OpenAPI_media_component_t *media_co
                     }
     }
 
-    if (media_component->des_max_latency) {
+    if (media_component->is_des_max_latency) {
     if (cJSON_AddNumberToObject(item, "desMaxLatency", media_component->des_max_latency) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [des_max_latency]");
         goto end;
     }
     }
 
-    if (media_component->des_max_loss) {
+    if (media_component->is_des_max_loss) {
     if (cJSON_AddNumberToObject(item, "desMaxLoss", media_component->des_max_loss) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [des_max_loss]");
         goto end;
@@ -250,14 +266,14 @@ cJSON *OpenAPI_media_component_convertToJSON(OpenAPI_media_component_t *media_co
     }
     }
 
-    if (media_component->max_packet_loss_rate_dl) {
+    if (media_component->is_max_packet_loss_rate_dl) {
     if (cJSON_AddNumberToObject(item, "maxPacketLossRateDl", media_component->max_packet_loss_rate_dl) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [max_packet_loss_rate_dl]");
         goto end;
     }
     }
 
-    if (media_component->max_packet_loss_rate_ul) {
+    if (media_component->is_max_packet_loss_rate_ul) {
     if (cJSON_AddNumberToObject(item, "maxPacketLossRateUl", media_component->max_packet_loss_rate_ul) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [max_packet_loss_rate_ul]");
         goto end;
@@ -381,14 +397,14 @@ cJSON *OpenAPI_media_component_convertToJSON(OpenAPI_media_component_t *media_co
     }
     }
 
-    if (media_component->sharing_key_dl) {
+    if (media_component->is_sharing_key_dl) {
     if (cJSON_AddNumberToObject(item, "sharingKeyDl", media_component->sharing_key_dl) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [sharing_key_dl]");
         goto end;
     }
     }
 
-    if (media_component->sharing_key_ul) {
+    if (media_component->is_sharing_key_ul) {
     if (cJSON_AddNumberToObject(item, "sharingKeyUl", media_component->sharing_key_ul) == NULL) {
         ogs_error("OpenAPI_media_component_convertToJSON() failed [sharing_key_ul]");
         goto end;
@@ -803,20 +819,27 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
         af_app_id ? ogs_strdup_or_assert(af_app_id->valuestring) : NULL,
         af_rout_req ? af_rout_req_local_nonprim : NULL,
         qos_reference ? ogs_strdup_or_assert(qos_reference->valuestring) : NULL,
+        dis_ue_notif ? true : false,
         dis_ue_notif ? dis_ue_notif->valueint : 0,
         alt_ser_reqs ? alt_ser_reqsList : NULL,
+        cont_ver ? true : false,
         cont_ver ? cont_ver->valuedouble : 0,
         codecs ? codecsList : NULL,
+        des_max_latency ? true : false,
         des_max_latency ? des_max_latency->valuedouble : 0,
+        des_max_loss ? true : false,
         des_max_loss ? des_max_loss->valuedouble : 0,
         flus_id ? ogs_strdup_or_assert(flus_id->valuestring) : NULL,
         f_status ? f_statusVariable : 0,
         mar_bw_dl ? ogs_strdup_or_assert(mar_bw_dl->valuestring) : NULL,
         mar_bw_ul ? ogs_strdup_or_assert(mar_bw_ul->valuestring) : NULL,
+        max_packet_loss_rate_dl ? true : false,
         max_packet_loss_rate_dl ? max_packet_loss_rate_dl->valuedouble : 0,
+        max_packet_loss_rate_ul ? true : false,
         max_packet_loss_rate_ul ? max_packet_loss_rate_ul->valuedouble : 0,
         max_supp_bw_dl ? ogs_strdup_or_assert(max_supp_bw_dl->valuestring) : NULL,
         max_supp_bw_ul ? ogs_strdup_or_assert(max_supp_bw_ul->valuestring) : NULL,
+        
         med_comp_n->valuedouble,
         med_sub_comps ? med_sub_compsList : NULL,
         med_type ? med_typeVariable : 0,
@@ -830,7 +853,9 @@ OpenAPI_media_component_t *OpenAPI_media_component_parseFromJSON(cJSON *media_co
         res_prio ? res_prioVariable : 0,
         rr_bw ? ogs_strdup_or_assert(rr_bw->valuestring) : NULL,
         rs_bw ? ogs_strdup_or_assert(rs_bw->valuestring) : NULL,
+        sharing_key_dl ? true : false,
         sharing_key_dl ? sharing_key_dl->valuedouble : 0,
+        sharing_key_ul ? true : false,
         sharing_key_ul ? sharing_key_ul->valuedouble : 0,
         tsn_qos ? tsn_qos_local_nonprim : NULL,
         tscai_input_dl ? tscai_input_dl_local_nonprim : NULL,

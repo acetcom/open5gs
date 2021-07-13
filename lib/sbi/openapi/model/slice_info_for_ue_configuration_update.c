@@ -8,6 +8,7 @@ OpenAPI_slice_info_for_ue_configuration_update_t *OpenAPI_slice_info_for_ue_conf
     OpenAPI_list_t *subscribed_nssai,
     OpenAPI_allowed_nssai_t *allowed_nssai_current_access,
     OpenAPI_allowed_nssai_t *allowed_nssai_other_access,
+    bool is_default_configured_snssai_ind,
     int default_configured_snssai_ind,
     OpenAPI_list_t *requested_nssai,
     OpenAPI_list_t *mapping_of_nssai
@@ -20,6 +21,7 @@ OpenAPI_slice_info_for_ue_configuration_update_t *OpenAPI_slice_info_for_ue_conf
     slice_info_for_ue_configuration_update_local_var->subscribed_nssai = subscribed_nssai;
     slice_info_for_ue_configuration_update_local_var->allowed_nssai_current_access = allowed_nssai_current_access;
     slice_info_for_ue_configuration_update_local_var->allowed_nssai_other_access = allowed_nssai_other_access;
+    slice_info_for_ue_configuration_update_local_var->is_default_configured_snssai_ind = is_default_configured_snssai_ind;
     slice_info_for_ue_configuration_update_local_var->default_configured_snssai_ind = default_configured_snssai_ind;
     slice_info_for_ue_configuration_update_local_var->requested_nssai = requested_nssai;
     slice_info_for_ue_configuration_update_local_var->mapping_of_nssai = mapping_of_nssai;
@@ -106,7 +108,7 @@ cJSON *OpenAPI_slice_info_for_ue_configuration_update_convertToJSON(OpenAPI_slic
     }
     }
 
-    if (slice_info_for_ue_configuration_update->default_configured_snssai_ind) {
+    if (slice_info_for_ue_configuration_update->is_default_configured_snssai_ind) {
     if (cJSON_AddBoolToObject(item, "defaultConfiguredSnssaiInd", slice_info_for_ue_configuration_update->default_configured_snssai_ind) == NULL) {
         ogs_error("OpenAPI_slice_info_for_ue_configuration_update_convertToJSON() failed [default_configured_snssai_ind]");
         goto end;
@@ -256,6 +258,7 @@ OpenAPI_slice_info_for_ue_configuration_update_t *OpenAPI_slice_info_for_ue_conf
         subscribed_nssai ? subscribed_nssaiList : NULL,
         allowed_nssai_current_access ? allowed_nssai_current_access_local_nonprim : NULL,
         allowed_nssai_other_access ? allowed_nssai_other_access_local_nonprim : NULL,
+        default_configured_snssai_ind ? true : false,
         default_configured_snssai_ind ? default_configured_snssai_ind->valueint : 0,
         requested_nssai ? requested_nssaiList : NULL,
         mapping_of_nssai ? mapping_of_nssaiList : NULL

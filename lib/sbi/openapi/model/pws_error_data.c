@@ -61,6 +61,7 @@ OpenAPI_pws_error_data_t *OpenAPI_pws_error_data_parseFromJSON(cJSON *pws_error_
     }
 
     pws_error_data_local_var = OpenAPI_pws_error_data_create (
+        
         namf_cause->valuedouble
     );
 

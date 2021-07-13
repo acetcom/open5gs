@@ -138,8 +138,10 @@ OpenAPI_pp_subs_reg_timer_t *OpenAPI_pp_subs_reg_timer_parseFromJSON(cJSON *pp_s
     }
 
     pp_subs_reg_timer_local_var = OpenAPI_pp_subs_reg_timer_create (
+        
         subs_reg_timer->valuedouble,
         ogs_strdup_or_assert(af_instance_id->valuestring),
+        
         reference_id->valuedouble,
         validity_time ? ogs_strdup_or_assert(validity_time->valuestring) : NULL,
         mtc_provider_information ? ogs_strdup_or_assert(mtc_provider_information->valuestring) : NULL

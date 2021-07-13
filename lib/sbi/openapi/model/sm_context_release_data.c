@@ -7,13 +7,16 @@
 OpenAPI_sm_context_release_data_t *OpenAPI_sm_context_release_data_create(
     OpenAPI_cause_e cause,
     OpenAPI_ng_ap_cause_t *ng_ap_cause,
+    bool is__5g_mm_cause_value,
     int _5g_mm_cause_value,
     OpenAPI_user_location_t *ue_location,
     char *ue_time_zone,
     OpenAPI_user_location_t *add_ue_location,
+    bool is_vsmf_release_only,
     int vsmf_release_only,
     OpenAPI_ref_to_binary_data_t *n2_sm_info,
     OpenAPI_n2_sm_info_type_e n2_sm_info_type,
+    bool is_ismf_release_only,
     int ismf_release_only
 )
 {
@@ -23,13 +26,16 @@ OpenAPI_sm_context_release_data_t *OpenAPI_sm_context_release_data_create(
     }
     sm_context_release_data_local_var->cause = cause;
     sm_context_release_data_local_var->ng_ap_cause = ng_ap_cause;
+    sm_context_release_data_local_var->is__5g_mm_cause_value = is__5g_mm_cause_value;
     sm_context_release_data_local_var->_5g_mm_cause_value = _5g_mm_cause_value;
     sm_context_release_data_local_var->ue_location = ue_location;
     sm_context_release_data_local_var->ue_time_zone = ue_time_zone;
     sm_context_release_data_local_var->add_ue_location = add_ue_location;
+    sm_context_release_data_local_var->is_vsmf_release_only = is_vsmf_release_only;
     sm_context_release_data_local_var->vsmf_release_only = vsmf_release_only;
     sm_context_release_data_local_var->n2_sm_info = n2_sm_info;
     sm_context_release_data_local_var->n2_sm_info_type = n2_sm_info_type;
+    sm_context_release_data_local_var->is_ismf_release_only = is_ismf_release_only;
     sm_context_release_data_local_var->ismf_release_only = ismf_release_only;
 
     return sm_context_release_data_local_var;
@@ -79,7 +85,7 @@ cJSON *OpenAPI_sm_context_release_data_convertToJSON(OpenAPI_sm_context_release_
     }
     }
 
-    if (sm_context_release_data->_5g_mm_cause_value) {
+    if (sm_context_release_data->is__5g_mm_cause_value) {
     if (cJSON_AddNumberToObject(item, "5gMmCauseValue", sm_context_release_data->_5g_mm_cause_value) == NULL) {
         ogs_error("OpenAPI_sm_context_release_data_convertToJSON() failed [_5g_mm_cause_value]");
         goto end;
@@ -119,7 +125,7 @@ cJSON *OpenAPI_sm_context_release_data_convertToJSON(OpenAPI_sm_context_release_
     }
     }
 
-    if (sm_context_release_data->vsmf_release_only) {
+    if (sm_context_release_data->is_vsmf_release_only) {
     if (cJSON_AddBoolToObject(item, "vsmfReleaseOnly", sm_context_release_data->vsmf_release_only) == NULL) {
         ogs_error("OpenAPI_sm_context_release_data_convertToJSON() failed [vsmf_release_only]");
         goto end;
@@ -146,7 +152,7 @@ cJSON *OpenAPI_sm_context_release_data_convertToJSON(OpenAPI_sm_context_release_
     }
     }
 
-    if (sm_context_release_data->ismf_release_only) {
+    if (sm_context_release_data->is_ismf_release_only) {
     if (cJSON_AddBoolToObject(item, "ismfReleaseOnly", sm_context_release_data->ismf_release_only) == NULL) {
         ogs_error("OpenAPI_sm_context_release_data_convertToJSON() failed [ismf_release_only]");
         goto end;
@@ -249,13 +255,16 @@ OpenAPI_sm_context_release_data_t *OpenAPI_sm_context_release_data_parseFromJSON
     sm_context_release_data_local_var = OpenAPI_sm_context_release_data_create (
         cause ? causeVariable : 0,
         ng_ap_cause ? ng_ap_cause_local_nonprim : NULL,
+        _5g_mm_cause_value ? true : false,
         _5g_mm_cause_value ? _5g_mm_cause_value->valuedouble : 0,
         ue_location ? ue_location_local_nonprim : NULL,
         ue_time_zone ? ogs_strdup_or_assert(ue_time_zone->valuestring) : NULL,
         add_ue_location ? add_ue_location_local_nonprim : NULL,
+        vsmf_release_only ? true : false,
         vsmf_release_only ? vsmf_release_only->valueint : 0,
         n2_sm_info ? n2_sm_info_local_nonprim : NULL,
         n2_sm_info_type ? n2_sm_info_typeVariable : 0,
+        ismf_release_only ? true : false,
         ismf_release_only ? ismf_release_only->valueint : 0
     );
 

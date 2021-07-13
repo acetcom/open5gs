@@ -61,6 +61,7 @@ OpenAPI_ce_mode_b_ind_t *OpenAPI_ce_mode_b_ind_parseFromJSON(cJSON *ce_mode_b_in
     }
 
     ce_mode_b_ind_local_var = OpenAPI_ce_mode_b_ind_create (
+        
         ce_mode_b_support_ind->valueint
     );
 

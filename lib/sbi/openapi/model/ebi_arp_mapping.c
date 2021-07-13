@@ -85,6 +85,7 @@ OpenAPI_ebi_arp_mapping_t *OpenAPI_ebi_arp_mapping_parseFromJSON(cJSON *ebi_arp_
     arp_local_nonprim = OpenAPI_arp_parseFromJSON(arp);
 
     ebi_arp_mapping_local_var = OpenAPI_ebi_arp_mapping_create (
+        
         eps_bearer_id->valuedouble,
         arp_local_nonprim
     );

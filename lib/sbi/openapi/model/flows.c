@@ -147,6 +147,7 @@ OpenAPI_flows_t *OpenAPI_flows_parseFromJSON(cJSON *flowsJSON)
     flows_local_var = OpenAPI_flows_create (
         cont_vers ? cont_versList : NULL,
         f_nums ? f_numsList : NULL,
+        
         med_comp_n->valuedouble
     );
 

@@ -8,6 +8,7 @@ OpenAPI_pgw_info_1_t *OpenAPI_pgw_info_1_create(
     char *dnn,
     char *pgw_fqdn,
     OpenAPI_plmn_id_1_t *plmn_id,
+    bool is_epdg_ind,
     int epdg_ind
 )
 {
@@ -18,6 +19,7 @@ OpenAPI_pgw_info_1_t *OpenAPI_pgw_info_1_create(
     pgw_info_1_local_var->dnn = dnn;
     pgw_info_1_local_var->pgw_fqdn = pgw_fqdn;
     pgw_info_1_local_var->plmn_id = plmn_id;
+    pgw_info_1_local_var->is_epdg_ind = is_epdg_ind;
     pgw_info_1_local_var->epdg_ind = epdg_ind;
 
     return pgw_info_1_local_var;
@@ -68,7 +70,7 @@ cJSON *OpenAPI_pgw_info_1_convertToJSON(OpenAPI_pgw_info_1_t *pgw_info_1)
     }
     }
 
-    if (pgw_info_1->epdg_ind) {
+    if (pgw_info_1->is_epdg_ind) {
     if (cJSON_AddBoolToObject(item, "epdgInd", pgw_info_1->epdg_ind) == NULL) {
         ogs_error("OpenAPI_pgw_info_1_convertToJSON() failed [epdg_ind]");
         goto end;
@@ -126,6 +128,7 @@ OpenAPI_pgw_info_1_t *OpenAPI_pgw_info_1_parseFromJSON(cJSON *pgw_info_1JSON)
         ogs_strdup_or_assert(dnn->valuestring),
         ogs_strdup_or_assert(pgw_fqdn->valuestring),
         plmn_id ? plmn_id_local_nonprim : NULL,
+        epdg_ind ? true : false,
         epdg_ind ? epdg_ind->valueint : 0
     );
 

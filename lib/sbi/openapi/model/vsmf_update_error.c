@@ -6,12 +6,14 @@
 
 OpenAPI_vsmf_update_error_t *OpenAPI_vsmf_update_error_create(
     OpenAPI_problem_details_t *error,
+    bool is_pti,
     int pti,
     char *n1sm_cause,
     OpenAPI_ref_to_binary_data_t *n1_sm_info_from_ue,
     OpenAPI_ref_to_binary_data_t *unknown_n1_sm_info,
     OpenAPI_list_t *failed_to_assign_ebi_list,
     OpenAPI_ng_ap_cause_t *ng_ap_cause,
+    bool is__5g_mm_cause_value,
     int _5g_mm_cause_value,
     char *recovery_time,
     OpenAPI_n4_information_t *n4_info,
@@ -24,12 +26,14 @@ OpenAPI_vsmf_update_error_t *OpenAPI_vsmf_update_error_create(
         return NULL;
     }
     vsmf_update_error_local_var->error = error;
+    vsmf_update_error_local_var->is_pti = is_pti;
     vsmf_update_error_local_var->pti = pti;
     vsmf_update_error_local_var->n1sm_cause = n1sm_cause;
     vsmf_update_error_local_var->n1_sm_info_from_ue = n1_sm_info_from_ue;
     vsmf_update_error_local_var->unknown_n1_sm_info = unknown_n1_sm_info;
     vsmf_update_error_local_var->failed_to_assign_ebi_list = failed_to_assign_ebi_list;
     vsmf_update_error_local_var->ng_ap_cause = ng_ap_cause;
+    vsmf_update_error_local_var->is__5g_mm_cause_value = is__5g_mm_cause_value;
     vsmf_update_error_local_var->_5g_mm_cause_value = _5g_mm_cause_value;
     vsmf_update_error_local_var->recovery_time = recovery_time;
     vsmf_update_error_local_var->n4_info = n4_info;
@@ -82,7 +86,7 @@ cJSON *OpenAPI_vsmf_update_error_convertToJSON(OpenAPI_vsmf_update_error_t *vsmf
         goto end;
     }
 
-    if (vsmf_update_error->pti) {
+    if (vsmf_update_error->is_pti) {
     if (cJSON_AddNumberToObject(item, "pti", vsmf_update_error->pti) == NULL) {
         ogs_error("OpenAPI_vsmf_update_error_convertToJSON() failed [pti]");
         goto end;
@@ -155,7 +159,7 @@ cJSON *OpenAPI_vsmf_update_error_convertToJSON(OpenAPI_vsmf_update_error_t *vsmf
     }
     }
 
-    if (vsmf_update_error->_5g_mm_cause_value) {
+    if (vsmf_update_error->is__5g_mm_cause_value) {
     if (cJSON_AddNumberToObject(item, "5gMmCauseValue", vsmf_update_error->_5g_mm_cause_value) == NULL) {
         ogs_error("OpenAPI_vsmf_update_error_convertToJSON() failed [_5g_mm_cause_value]");
         goto end;
@@ -328,12 +332,14 @@ OpenAPI_vsmf_update_error_t *OpenAPI_vsmf_update_error_parseFromJSON(cJSON *vsmf
 
     vsmf_update_error_local_var = OpenAPI_vsmf_update_error_create (
         error_local_nonprim,
+        pti ? true : false,
         pti ? pti->valuedouble : 0,
         n1sm_cause ? ogs_strdup_or_assert(n1sm_cause->valuestring) : NULL,
         n1_sm_info_from_ue ? n1_sm_info_from_ue_local_nonprim : NULL,
         unknown_n1_sm_info ? unknown_n1_sm_info_local_nonprim : NULL,
         failed_to_assign_ebi_list ? failed_to_assign_ebi_listList : NULL,
         ng_ap_cause ? ng_ap_cause_local_nonprim : NULL,
+        _5g_mm_cause_value ? true : false,
         _5g_mm_cause_value ? _5g_mm_cause_value->valuedouble : 0,
         recovery_time ? ogs_strdup_or_assert(recovery_time->valuestring) : NULL,
         n4_info ? n4_info_local_nonprim : NULL,

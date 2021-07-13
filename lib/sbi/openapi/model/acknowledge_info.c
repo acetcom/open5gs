@@ -9,6 +9,7 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_create(
     char *upu_mac_iue,
     char *secured_packet,
     char *provisioning_time,
+    bool is_ue_not_reachable,
     int ue_not_reachable
 )
 {
@@ -20,6 +21,7 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_create(
     acknowledge_info_local_var->upu_mac_iue = upu_mac_iue;
     acknowledge_info_local_var->secured_packet = secured_packet;
     acknowledge_info_local_var->provisioning_time = provisioning_time;
+    acknowledge_info_local_var->is_ue_not_reachable = is_ue_not_reachable;
     acknowledge_info_local_var->ue_not_reachable = ue_not_reachable;
 
     return acknowledge_info_local_var;
@@ -74,7 +76,7 @@ cJSON *OpenAPI_acknowledge_info_convertToJSON(OpenAPI_acknowledge_info_t *acknow
         goto end;
     }
 
-    if (acknowledge_info->ue_not_reachable) {
+    if (acknowledge_info->is_ue_not_reachable) {
     if (cJSON_AddBoolToObject(item, "ueNotReachable", acknowledge_info->ue_not_reachable) == NULL) {
         ogs_error("OpenAPI_acknowledge_info_convertToJSON() failed [ue_not_reachable]");
         goto end;
@@ -141,6 +143,7 @@ OpenAPI_acknowledge_info_t *OpenAPI_acknowledge_info_parseFromJSON(cJSON *acknow
         upu_mac_iue ? ogs_strdup_or_assert(upu_mac_iue->valuestring) : NULL,
         secured_packet ? ogs_strdup_or_assert(secured_packet->valuestring) : NULL,
         ogs_strdup_or_assert(provisioning_time->valuestring),
+        ue_not_reachable ? true : false,
         ue_not_reachable ? ue_not_reachable->valueint : 0
     );
 

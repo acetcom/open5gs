@@ -9,6 +9,7 @@ OpenAPI_pws_information_t *OpenAPI_pws_information_create(
     int serial_number,
     OpenAPI_n2_info_content_t *pws_container,
     OpenAPI_list_t *bc_empty_area_list,
+    bool is_send_ran_response,
     int send_ran_response,
     char *omc_id
 )
@@ -21,6 +22,7 @@ OpenAPI_pws_information_t *OpenAPI_pws_information_create(
     pws_information_local_var->serial_number = serial_number;
     pws_information_local_var->pws_container = pws_container;
     pws_information_local_var->bc_empty_area_list = bc_empty_area_list;
+    pws_information_local_var->is_send_ran_response = is_send_ran_response;
     pws_information_local_var->send_ran_response = send_ran_response;
     pws_information_local_var->omc_id = omc_id;
 
@@ -93,7 +95,7 @@ cJSON *OpenAPI_pws_information_convertToJSON(OpenAPI_pws_information_t *pws_info
     }
     }
 
-    if (pws_information->send_ran_response) {
+    if (pws_information->is_send_ran_response) {
     if (cJSON_AddBoolToObject(item, "sendRanResponse", pws_information->send_ran_response) == NULL) {
         ogs_error("OpenAPI_pws_information_convertToJSON() failed [send_ran_response]");
         goto end;
@@ -190,10 +192,13 @@ OpenAPI_pws_information_t *OpenAPI_pws_information_parseFromJSON(cJSON *pws_info
     }
 
     pws_information_local_var = OpenAPI_pws_information_create (
+        
         message_identifier->valuedouble,
+        
         serial_number->valuedouble,
         pws_container_local_nonprim,
         bc_empty_area_list ? bc_empty_area_listList : NULL,
+        send_ran_response ? true : false,
         send_ran_response ? send_ran_response->valueint : 0,
         omc_id ? ogs_strdup_or_assert(omc_id->valuestring) : NULL
     );

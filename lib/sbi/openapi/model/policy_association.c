@@ -9,6 +9,7 @@ OpenAPI_policy_association_t *OpenAPI_policy_association_create(
     OpenAPI_list_t *triggers,
     OpenAPI_service_area_restriction_t *serv_area_res,
     OpenAPI_wireline_service_area_restriction_t *wl_serv_area_res,
+    bool is_rfsp,
     int rfsp,
     OpenAPI_smf_selection_data_t *smf_sel_info,
     OpenAPI_ambr_t *ue_ambr,
@@ -24,6 +25,7 @@ OpenAPI_policy_association_t *OpenAPI_policy_association_create(
     policy_association_local_var->triggers = triggers;
     policy_association_local_var->serv_area_res = serv_area_res;
     policy_association_local_var->wl_serv_area_res = wl_serv_area_res;
+    policy_association_local_var->is_rfsp = is_rfsp;
     policy_association_local_var->rfsp = rfsp;
     policy_association_local_var->smf_sel_info = smf_sel_info;
     policy_association_local_var->ue_ambr = ue_ambr;
@@ -119,7 +121,7 @@ cJSON *OpenAPI_policy_association_convertToJSON(OpenAPI_policy_association_t *po
     }
     }
 
-    if (policy_association->rfsp) {
+    if (policy_association->is_rfsp) {
     if (cJSON_AddNumberToObject(item, "rfsp", policy_association->rfsp) == NULL) {
         ogs_error("OpenAPI_policy_association_convertToJSON() failed [rfsp]");
         goto end;
@@ -291,6 +293,7 @@ OpenAPI_policy_association_t *OpenAPI_policy_association_parseFromJSON(cJSON *po
         triggers ? triggersList : NULL,
         serv_area_res ? serv_area_res_local_nonprim : NULL,
         wl_serv_area_res ? wl_serv_area_res_local_nonprim : NULL,
+        rfsp ? true : false,
         rfsp ? rfsp->valuedouble : 0,
         smf_sel_info ? smf_sel_info_local_nonprim : NULL,
         ue_ambr ? ue_ambr_local_nonprim : NULL,

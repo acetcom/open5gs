@@ -6,6 +6,7 @@
 
 OpenAPI_location_reporting_configuration_t *OpenAPI_location_reporting_configuration_create(
     int current_location,
+    bool is_one_time,
     int one_time,
     OpenAPI_location_accuracy_t *accuracy,
     OpenAPI_location_accuracy_t *n3gpp_accuracy
@@ -16,6 +17,7 @@ OpenAPI_location_reporting_configuration_t *OpenAPI_location_reporting_configura
         return NULL;
     }
     location_reporting_configuration_local_var->current_location = current_location;
+    location_reporting_configuration_local_var->is_one_time = is_one_time;
     location_reporting_configuration_local_var->one_time = one_time;
     location_reporting_configuration_local_var->accuracy = accuracy;
     location_reporting_configuration_local_var->n3gpp_accuracy = n3gpp_accuracy;
@@ -49,7 +51,7 @@ cJSON *OpenAPI_location_reporting_configuration_convertToJSON(OpenAPI_location_r
         goto end;
     }
 
-    if (location_reporting_configuration->one_time) {
+    if (location_reporting_configuration->is_one_time) {
     if (cJSON_AddBoolToObject(item, "oneTime", location_reporting_configuration->one_time) == NULL) {
         ogs_error("OpenAPI_location_reporting_configuration_convertToJSON() failed [one_time]");
         goto end;
@@ -125,7 +127,9 @@ OpenAPI_location_reporting_configuration_t *OpenAPI_location_reporting_configura
     }
 
     location_reporting_configuration_local_var = OpenAPI_location_reporting_configuration_create (
+        
         current_location->valueint,
+        one_time ? true : false,
         one_time ? one_time->valueint : 0,
         accuracy ? accuracy_local_nonprim : NULL,
         n3gpp_accuracy ? n3gpp_accuracy_local_nonprim : NULL

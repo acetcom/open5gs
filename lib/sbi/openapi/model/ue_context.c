@@ -6,6 +6,7 @@
 
 OpenAPI_ue_context_t *OpenAPI_ue_context_create(
     char *supi,
+    bool is_supi_unauth_ind,
     int supi_unauth_ind,
     OpenAPI_list_t *gpsi_list,
     char *pei,
@@ -15,7 +16,9 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_create(
     char *routing_indicator,
     OpenAPI_list_t *group_list,
     char drx_parameter,
+    bool is_sub_rfsp,
     int sub_rfsp,
+    bool is_used_rfsp,
     int used_rfsp,
     OpenAPI_ambr_t *sub_ue_ambr,
     char *smsf_id,
@@ -49,13 +52,17 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_create(
     OpenAPI_list_t *restricted_primary_rat_list,
     OpenAPI_list_t *restricted_secondary_rat_list,
     OpenAPI_v2x_context_t *v2x_context,
+    bool is_lte_cat_m_ind,
     int lte_cat_m_ind,
     OpenAPI_mo_exp_data_counter_t *mo_exp_data_counter,
     OpenAPI_cag_data_t *cag_data,
+    bool is_management_mdt_ind,
     int management_mdt_ind,
     OpenAPI_immediate_mdt_conf_t *immediate_mdt_conf,
     OpenAPI_ec_restriction_data_wb_t *ec_restriction_data_wb,
+    bool is_ec_restriction_data_nb,
     int ec_restriction_data_nb,
+    bool is_iab_operation_allowed,
     int iab_operation_allowed
 )
 {
@@ -64,6 +71,7 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_create(
         return NULL;
     }
     ue_context_local_var->supi = supi;
+    ue_context_local_var->is_supi_unauth_ind = is_supi_unauth_ind;
     ue_context_local_var->supi_unauth_ind = supi_unauth_ind;
     ue_context_local_var->gpsi_list = gpsi_list;
     ue_context_local_var->pei = pei;
@@ -73,7 +81,9 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_create(
     ue_context_local_var->routing_indicator = routing_indicator;
     ue_context_local_var->group_list = group_list;
     ue_context_local_var->drx_parameter = drx_parameter;
+    ue_context_local_var->is_sub_rfsp = is_sub_rfsp;
     ue_context_local_var->sub_rfsp = sub_rfsp;
+    ue_context_local_var->is_used_rfsp = is_used_rfsp;
     ue_context_local_var->used_rfsp = used_rfsp;
     ue_context_local_var->sub_ue_ambr = sub_ue_ambr;
     ue_context_local_var->smsf_id = smsf_id;
@@ -107,13 +117,17 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_create(
     ue_context_local_var->restricted_primary_rat_list = restricted_primary_rat_list;
     ue_context_local_var->restricted_secondary_rat_list = restricted_secondary_rat_list;
     ue_context_local_var->v2x_context = v2x_context;
+    ue_context_local_var->is_lte_cat_m_ind = is_lte_cat_m_ind;
     ue_context_local_var->lte_cat_m_ind = lte_cat_m_ind;
     ue_context_local_var->mo_exp_data_counter = mo_exp_data_counter;
     ue_context_local_var->cag_data = cag_data;
+    ue_context_local_var->is_management_mdt_ind = is_management_mdt_ind;
     ue_context_local_var->management_mdt_ind = management_mdt_ind;
     ue_context_local_var->immediate_mdt_conf = immediate_mdt_conf;
     ue_context_local_var->ec_restriction_data_wb = ec_restriction_data_wb;
+    ue_context_local_var->is_ec_restriction_data_nb = is_ec_restriction_data_nb;
     ue_context_local_var->ec_restriction_data_nb = ec_restriction_data_nb;
+    ue_context_local_var->is_iab_operation_allowed = is_iab_operation_allowed;
     ue_context_local_var->iab_operation_allowed = iab_operation_allowed;
 
     return ue_context_local_var;
@@ -210,7 +224,7 @@ cJSON *OpenAPI_ue_context_convertToJSON(OpenAPI_ue_context_t *ue_context)
     }
     }
 
-    if (ue_context->supi_unauth_ind) {
+    if (ue_context->is_supi_unauth_ind) {
     if (cJSON_AddBoolToObject(item, "supiUnauthInd", ue_context->supi_unauth_ind) == NULL) {
         ogs_error("OpenAPI_ue_context_convertToJSON() failed [supi_unauth_ind]");
         goto end;
@@ -291,14 +305,14 @@ cJSON *OpenAPI_ue_context_convertToJSON(OpenAPI_ue_context_t *ue_context)
     }
     }
 
-    if (ue_context->sub_rfsp) {
+    if (ue_context->is_sub_rfsp) {
     if (cJSON_AddNumberToObject(item, "subRfsp", ue_context->sub_rfsp) == NULL) {
         ogs_error("OpenAPI_ue_context_convertToJSON() failed [sub_rfsp]");
         goto end;
     }
     }
 
-    if (ue_context->used_rfsp) {
+    if (ue_context->is_used_rfsp) {
     if (cJSON_AddNumberToObject(item, "usedRfsp", ue_context->used_rfsp) == NULL) {
         ogs_error("OpenAPI_ue_context_convertToJSON() failed [used_rfsp]");
         goto end;
@@ -677,7 +691,7 @@ cJSON *OpenAPI_ue_context_convertToJSON(OpenAPI_ue_context_t *ue_context)
     }
     }
 
-    if (ue_context->lte_cat_m_ind) {
+    if (ue_context->is_lte_cat_m_ind) {
     if (cJSON_AddBoolToObject(item, "lteCatMInd", ue_context->lte_cat_m_ind) == NULL) {
         ogs_error("OpenAPI_ue_context_convertToJSON() failed [lte_cat_m_ind]");
         goto end;
@@ -710,7 +724,7 @@ cJSON *OpenAPI_ue_context_convertToJSON(OpenAPI_ue_context_t *ue_context)
     }
     }
 
-    if (ue_context->management_mdt_ind) {
+    if (ue_context->is_management_mdt_ind) {
     if (cJSON_AddBoolToObject(item, "managementMdtInd", ue_context->management_mdt_ind) == NULL) {
         ogs_error("OpenAPI_ue_context_convertToJSON() failed [management_mdt_ind]");
         goto end;
@@ -743,14 +757,14 @@ cJSON *OpenAPI_ue_context_convertToJSON(OpenAPI_ue_context_t *ue_context)
     }
     }
 
-    if (ue_context->ec_restriction_data_nb) {
+    if (ue_context->is_ec_restriction_data_nb) {
     if (cJSON_AddBoolToObject(item, "ecRestrictionDataNb", ue_context->ec_restriction_data_nb) == NULL) {
         ogs_error("OpenAPI_ue_context_convertToJSON() failed [ec_restriction_data_nb]");
         goto end;
     }
     }
 
-    if (ue_context->iab_operation_allowed) {
+    if (ue_context->is_iab_operation_allowed) {
     if (cJSON_AddBoolToObject(item, "iabOperationAllowed", ue_context->iab_operation_allowed) == NULL) {
         ogs_error("OpenAPI_ue_context_convertToJSON() failed [iab_operation_allowed]");
         goto end;
@@ -1394,6 +1408,7 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_parseFromJSON(cJSON *ue_contextJSON)
 
     ue_context_local_var = OpenAPI_ue_context_create (
         supi ? ogs_strdup_or_assert(supi->valuestring) : NULL,
+        supi_unauth_ind ? true : false,
         supi_unauth_ind ? supi_unauth_ind->valueint : 0,
         gpsi_list ? gpsi_listList : NULL,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
@@ -1403,7 +1418,9 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_parseFromJSON(cJSON *ue_contextJSON)
         routing_indicator ? ogs_strdup_or_assert(routing_indicator->valuestring) : NULL,
         group_list ? group_listList : NULL,
         drx_parameter ? drx_parameter->valueint : 0,
+        sub_rfsp ? true : false,
         sub_rfsp ? sub_rfsp->valuedouble : 0,
+        used_rfsp ? true : false,
         used_rfsp ? used_rfsp->valuedouble : 0,
         sub_ue_ambr ? sub_ue_ambr_local_nonprim : NULL,
         smsf_id ? ogs_strdup_or_assert(smsf_id->valuestring) : NULL,
@@ -1437,13 +1454,17 @@ OpenAPI_ue_context_t *OpenAPI_ue_context_parseFromJSON(cJSON *ue_contextJSON)
         restricted_primary_rat_list ? restricted_primary_rat_listList : NULL,
         restricted_secondary_rat_list ? restricted_secondary_rat_listList : NULL,
         v2x_context ? v2x_context_local_nonprim : NULL,
+        lte_cat_m_ind ? true : false,
         lte_cat_m_ind ? lte_cat_m_ind->valueint : 0,
         mo_exp_data_counter ? mo_exp_data_counter_local_nonprim : NULL,
         cag_data ? cag_data_local_nonprim : NULL,
+        management_mdt_ind ? true : false,
         management_mdt_ind ? management_mdt_ind->valueint : 0,
         immediate_mdt_conf ? immediate_mdt_conf_local_nonprim : NULL,
         ec_restriction_data_wb ? ec_restriction_data_wb_local_nonprim : NULL,
+        ec_restriction_data_nb ? true : false,
         ec_restriction_data_nb ? ec_restriction_data_nb->valueint : 0,
+        iab_operation_allowed ? true : false,
         iab_operation_allowed ? iab_operation_allowed->valueint : 0
     );
 

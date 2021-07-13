@@ -189,6 +189,7 @@ OpenAPI_hss_authentication_info_request_t *OpenAPI_hss_authentication_info_reque
     hss_authentication_info_request_local_var = OpenAPI_hss_authentication_info_request_create (
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
         hss_auth_typeVariable,
+        
         num_of_requested_vectors->valuedouble,
         requesting_node_type ? requesting_node_typeVariable : 0,
         serving_network_id ? serving_network_id_local_nonprim : NULL,

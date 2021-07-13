@@ -80,7 +80,9 @@ OpenAPI_ng_ap_cause_t *OpenAPI_ng_ap_cause_parseFromJSON(cJSON *ng_ap_causeJSON)
     }
 
     ng_ap_cause_local_var = OpenAPI_ng_ap_cause_create (
+        
         group->valuedouble,
+        
         value->valuedouble
     );
 

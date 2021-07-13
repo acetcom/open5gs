@@ -6,7 +6,9 @@
 
 OpenAPI_dnai_information_t *OpenAPI_dnai_information_create(
     char *dnai,
+    bool is_no_dnai_change_ind,
     int no_dnai_change_ind,
+    bool is_no_local_psa_change_ind,
     int no_local_psa_change_ind
 )
 {
@@ -15,7 +17,9 @@ OpenAPI_dnai_information_t *OpenAPI_dnai_information_create(
         return NULL;
     }
     dnai_information_local_var->dnai = dnai;
+    dnai_information_local_var->is_no_dnai_change_ind = is_no_dnai_change_ind;
     dnai_information_local_var->no_dnai_change_ind = no_dnai_change_ind;
+    dnai_information_local_var->is_no_local_psa_change_ind = is_no_local_psa_change_ind;
     dnai_information_local_var->no_local_psa_change_ind = no_local_psa_change_ind;
 
     return dnai_information_local_var;
@@ -46,14 +50,14 @@ cJSON *OpenAPI_dnai_information_convertToJSON(OpenAPI_dnai_information_t *dnai_i
         goto end;
     }
 
-    if (dnai_information->no_dnai_change_ind) {
+    if (dnai_information->is_no_dnai_change_ind) {
     if (cJSON_AddBoolToObject(item, "noDnaiChangeInd", dnai_information->no_dnai_change_ind) == NULL) {
         ogs_error("OpenAPI_dnai_information_convertToJSON() failed [no_dnai_change_ind]");
         goto end;
     }
     }
 
-    if (dnai_information->no_local_psa_change_ind) {
+    if (dnai_information->is_no_local_psa_change_ind) {
     if (cJSON_AddBoolToObject(item, "noLocalPsaChangeInd", dnai_information->no_local_psa_change_ind) == NULL) {
         ogs_error("OpenAPI_dnai_information_convertToJSON() failed [no_local_psa_change_ind]");
         goto end;
@@ -99,7 +103,9 @@ OpenAPI_dnai_information_t *OpenAPI_dnai_information_parseFromJSON(cJSON *dnai_i
 
     dnai_information_local_var = OpenAPI_dnai_information_create (
         ogs_strdup_or_assert(dnai->valuestring),
+        no_dnai_change_ind ? true : false,
         no_dnai_change_ind ? no_dnai_change_ind->valueint : 0,
+        no_local_psa_change_ind ? true : false,
         no_local_psa_change_ind ? no_local_psa_change_ind->valueint : 0
     );
 

@@ -7,6 +7,7 @@
 OpenAPI_communication_characteristics_t *OpenAPI_communication_characteristics_create(
     OpenAPI_pp_subs_reg_timer_t *pp_subs_reg_timer,
     OpenAPI_pp_active_time_t *pp_active_time,
+    bool is_pp_dl_packet_count,
     int pp_dl_packet_count,
     OpenAPI_pp_dl_packet_count_ext_t *pp_dl_packet_count_ext,
     OpenAPI_pp_maximum_response_time_t *pp_maximum_response_time,
@@ -19,6 +20,7 @@ OpenAPI_communication_characteristics_t *OpenAPI_communication_characteristics_c
     }
     communication_characteristics_local_var->pp_subs_reg_timer = pp_subs_reg_timer;
     communication_characteristics_local_var->pp_active_time = pp_active_time;
+    communication_characteristics_local_var->is_pp_dl_packet_count = is_pp_dl_packet_count;
     communication_characteristics_local_var->pp_dl_packet_count = pp_dl_packet_count;
     communication_characteristics_local_var->pp_dl_packet_count_ext = pp_dl_packet_count_ext;
     communication_characteristics_local_var->pp_maximum_response_time = pp_maximum_response_time;
@@ -77,7 +79,7 @@ cJSON *OpenAPI_communication_characteristics_convertToJSON(OpenAPI_communication
     }
     }
 
-    if (communication_characteristics->pp_dl_packet_count) {
+    if (communication_characteristics->is_pp_dl_packet_count) {
     if (cJSON_AddNumberToObject(item, "ppDlPacketCount", communication_characteristics->pp_dl_packet_count) == NULL) {
         ogs_error("OpenAPI_communication_characteristics_convertToJSON() failed [pp_dl_packet_count]");
         goto end;
@@ -177,6 +179,7 @@ OpenAPI_communication_characteristics_t *OpenAPI_communication_characteristics_p
     communication_characteristics_local_var = OpenAPI_communication_characteristics_create (
         pp_subs_reg_timer ? pp_subs_reg_timer_local_nonprim : NULL,
         pp_active_time ? pp_active_time_local_nonprim : NULL,
+        pp_dl_packet_count ? true : false,
         pp_dl_packet_count ? pp_dl_packet_count->valuedouble : 0,
         pp_dl_packet_count_ext ? pp_dl_packet_count_ext_local_nonprim : NULL,
         pp_maximum_response_time ? pp_maximum_response_time_local_nonprim : NULL,

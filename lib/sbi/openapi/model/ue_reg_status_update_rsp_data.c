@@ -61,6 +61,7 @@ OpenAPI_ue_reg_status_update_rsp_data_t *OpenAPI_ue_reg_status_update_rsp_data_p
     }
 
     ue_reg_status_update_rsp_data_local_var = OpenAPI_ue_reg_status_update_rsp_data_create (
+        
         reg_status_transfer_complete->valueint
     );
 

@@ -5,6 +5,7 @@
 #include "tscai_input_container.h"
 
 OpenAPI_tscai_input_container_t *OpenAPI_tscai_input_container_create(
+    bool is_periodicity,
     int periodicity,
     char *burst_arrival_time
 )
@@ -13,6 +14,7 @@ OpenAPI_tscai_input_container_t *OpenAPI_tscai_input_container_create(
     if (!tscai_input_container_local_var) {
         return NULL;
     }
+    tscai_input_container_local_var->is_periodicity = is_periodicity;
     tscai_input_container_local_var->periodicity = periodicity;
     tscai_input_container_local_var->burst_arrival_time = burst_arrival_time;
 
@@ -39,7 +41,7 @@ cJSON *OpenAPI_tscai_input_container_convertToJSON(OpenAPI_tscai_input_container
     }
 
     item = cJSON_CreateObject();
-    if (tscai_input_container->periodicity) {
+    if (tscai_input_container->is_periodicity) {
     if (cJSON_AddNumberToObject(item, "periodicity", tscai_input_container->periodicity) == NULL) {
         ogs_error("OpenAPI_tscai_input_container_convertToJSON() failed [periodicity]");
         goto end;
@@ -79,6 +81,7 @@ OpenAPI_tscai_input_container_t *OpenAPI_tscai_input_container_parseFromJSON(cJS
     }
 
     tscai_input_container_local_var = OpenAPI_tscai_input_container_create (
+        periodicity ? true : false,
         periodicity ? periodicity->valuedouble : 0,
         burst_arrival_time ? ogs_strdup_or_assert(burst_arrival_time->valuestring) : NULL
     );

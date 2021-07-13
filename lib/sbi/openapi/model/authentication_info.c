@@ -13,6 +13,7 @@ OpenAPI_authentication_info_t *OpenAPI_authentication_info_create(
     char *udm_group_id,
     char *routing_indicator,
     OpenAPI_list_t *cell_cag_info,
+    bool is_n5gc_ind,
     int n5gc_ind,
     char *supported_features
 )
@@ -29,6 +30,7 @@ OpenAPI_authentication_info_t *OpenAPI_authentication_info_create(
     authentication_info_local_var->udm_group_id = udm_group_id;
     authentication_info_local_var->routing_indicator = routing_indicator;
     authentication_info_local_var->cell_cag_info = cell_cag_info;
+    authentication_info_local_var->is_n5gc_ind = is_n5gc_ind;
     authentication_info_local_var->n5gc_ind = n5gc_ind;
     authentication_info_local_var->supported_features = supported_features;
 
@@ -139,7 +141,7 @@ cJSON *OpenAPI_authentication_info_convertToJSON(OpenAPI_authentication_info_t *
                     }
     }
 
-    if (authentication_info->n5gc_ind) {
+    if (authentication_info->is_n5gc_ind) {
     if (cJSON_AddBoolToObject(item, "n5gcInd", authentication_info->n5gc_ind) == NULL) {
         ogs_error("OpenAPI_authentication_info_convertToJSON() failed [n5gc_ind]");
         goto end;
@@ -272,6 +274,7 @@ OpenAPI_authentication_info_t *OpenAPI_authentication_info_parseFromJSON(cJSON *
         udm_group_id ? ogs_strdup_or_assert(udm_group_id->valuestring) : NULL,
         routing_indicator ? ogs_strdup_or_assert(routing_indicator->valuestring) : NULL,
         cell_cag_info ? cell_cag_infoList : NULL,
+        n5gc_ind ? true : false,
         n5gc_ind ? n5gc_ind->valueint : 0,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL
     );

@@ -97,6 +97,7 @@ OpenAPI_qos_flow_release_request_item_t *OpenAPI_qos_flow_release_request_item_p
     }
 
     qos_flow_release_request_item_local_var = OpenAPI_qos_flow_release_request_item_create (
+        
         qfi->valuedouble,
         qos_rules ? qos_rules->valueint : 0,
         qos_flow_description ? qos_flow_description->valueint : 0

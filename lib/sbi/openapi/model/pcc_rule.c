@@ -8,10 +8,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_create(
     OpenAPI_list_t *flow_infos,
     char *app_id,
     char app_descriptor,
+    bool is_cont_ver,
     int cont_ver,
     char *pcc_rule_id,
+    bool is_precedence,
     int precedence,
     OpenAPI_af_sig_protocol_e af_sig_protocol,
+    bool is_app_reloc,
     int app_reloc,
     OpenAPI_list_t *ref_qos_data,
     OpenAPI_list_t *ref_alt_qos_params,
@@ -22,11 +25,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_create(
     OpenAPI_list_t *ref_um_n3g_data,
     char *ref_cond_data,
     OpenAPI_list_t *ref_qos_mon,
+    bool is_addr_preser_ind,
     int addr_preser_ind,
     OpenAPI_tscai_input_container_t *tscai_input_dl,
     OpenAPI_tscai_input_container_t *tscai_input_ul,
     OpenAPI_downlink_data_notification_control_t *dd_notif_ctrl,
     OpenAPI_downlink_data_notification_control_rm_t *dd_notif_ctrl2,
+    bool is_dis_ue_notif,
     int dis_ue_notif
 )
 {
@@ -37,10 +42,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_create(
     pcc_rule_local_var->flow_infos = flow_infos;
     pcc_rule_local_var->app_id = app_id;
     pcc_rule_local_var->app_descriptor = app_descriptor;
+    pcc_rule_local_var->is_cont_ver = is_cont_ver;
     pcc_rule_local_var->cont_ver = cont_ver;
     pcc_rule_local_var->pcc_rule_id = pcc_rule_id;
+    pcc_rule_local_var->is_precedence = is_precedence;
     pcc_rule_local_var->precedence = precedence;
     pcc_rule_local_var->af_sig_protocol = af_sig_protocol;
+    pcc_rule_local_var->is_app_reloc = is_app_reloc;
     pcc_rule_local_var->app_reloc = app_reloc;
     pcc_rule_local_var->ref_qos_data = ref_qos_data;
     pcc_rule_local_var->ref_alt_qos_params = ref_alt_qos_params;
@@ -51,11 +59,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_create(
     pcc_rule_local_var->ref_um_n3g_data = ref_um_n3g_data;
     pcc_rule_local_var->ref_cond_data = ref_cond_data;
     pcc_rule_local_var->ref_qos_mon = ref_qos_mon;
+    pcc_rule_local_var->is_addr_preser_ind = is_addr_preser_ind;
     pcc_rule_local_var->addr_preser_ind = addr_preser_ind;
     pcc_rule_local_var->tscai_input_dl = tscai_input_dl;
     pcc_rule_local_var->tscai_input_ul = tscai_input_ul;
     pcc_rule_local_var->dd_notif_ctrl = dd_notif_ctrl;
     pcc_rule_local_var->dd_notif_ctrl2 = dd_notif_ctrl2;
+    pcc_rule_local_var->is_dis_ue_notif = is_dis_ue_notif;
     pcc_rule_local_var->dis_ue_notif = dis_ue_notif;
 
     return pcc_rule_local_var;
@@ -157,7 +167,7 @@ cJSON *OpenAPI_pcc_rule_convertToJSON(OpenAPI_pcc_rule_t *pcc_rule)
     }
     }
 
-    if (pcc_rule->cont_ver) {
+    if (pcc_rule->is_cont_ver) {
     if (cJSON_AddNumberToObject(item, "contVer", pcc_rule->cont_ver) == NULL) {
         ogs_error("OpenAPI_pcc_rule_convertToJSON() failed [cont_ver]");
         goto end;
@@ -169,7 +179,7 @@ cJSON *OpenAPI_pcc_rule_convertToJSON(OpenAPI_pcc_rule_t *pcc_rule)
         goto end;
     }
 
-    if (pcc_rule->precedence) {
+    if (pcc_rule->is_precedence) {
     if (cJSON_AddNumberToObject(item, "precedence", pcc_rule->precedence) == NULL) {
         ogs_error("OpenAPI_pcc_rule_convertToJSON() failed [precedence]");
         goto end;
@@ -183,7 +193,7 @@ cJSON *OpenAPI_pcc_rule_convertToJSON(OpenAPI_pcc_rule_t *pcc_rule)
     }
     }
 
-    if (pcc_rule->app_reloc) {
+    if (pcc_rule->is_app_reloc) {
     if (cJSON_AddBoolToObject(item, "appReloc", pcc_rule->app_reloc) == NULL) {
         ogs_error("OpenAPI_pcc_rule_convertToJSON() failed [app_reloc]");
         goto end;
@@ -325,7 +335,7 @@ cJSON *OpenAPI_pcc_rule_convertToJSON(OpenAPI_pcc_rule_t *pcc_rule)
                     }
     }
 
-    if (pcc_rule->addr_preser_ind) {
+    if (pcc_rule->is_addr_preser_ind) {
     if (cJSON_AddBoolToObject(item, "addrPreserInd", pcc_rule->addr_preser_ind) == NULL) {
         ogs_error("OpenAPI_pcc_rule_convertToJSON() failed [addr_preser_ind]");
         goto end;
@@ -384,7 +394,7 @@ cJSON *OpenAPI_pcc_rule_convertToJSON(OpenAPI_pcc_rule_t *pcc_rule)
     }
     }
 
-    if (pcc_rule->dis_ue_notif) {
+    if (pcc_rule->is_dis_ue_notif) {
     if (cJSON_AddBoolToObject(item, "disUeNotif", pcc_rule->dis_ue_notif) == NULL) {
         ogs_error("OpenAPI_pcc_rule_convertToJSON() failed [dis_ue_notif]");
         goto end;
@@ -708,10 +718,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         flow_infos ? flow_infosList : NULL,
         app_id ? ogs_strdup_or_assert(app_id->valuestring) : NULL,
         app_descriptor ? app_descriptor->valueint : 0,
+        cont_ver ? true : false,
         cont_ver ? cont_ver->valuedouble : 0,
         ogs_strdup_or_assert(pcc_rule_id->valuestring),
+        precedence ? true : false,
         precedence ? precedence->valuedouble : 0,
         af_sig_protocol ? af_sig_protocolVariable : 0,
+        app_reloc ? true : false,
         app_reloc ? app_reloc->valueint : 0,
         ref_qos_data ? ref_qos_dataList : NULL,
         ref_alt_qos_params ? ref_alt_qos_paramsList : NULL,
@@ -722,11 +735,13 @@ OpenAPI_pcc_rule_t *OpenAPI_pcc_rule_parseFromJSON(cJSON *pcc_ruleJSON)
         ref_um_n3g_data ? ref_um_n3g_dataList : NULL,
         ref_cond_data ? ogs_strdup_or_assert(ref_cond_data->valuestring) : NULL,
         ref_qos_mon ? ref_qos_monList : NULL,
+        addr_preser_ind ? true : false,
         addr_preser_ind ? addr_preser_ind->valueint : 0,
         tscai_input_dl ? tscai_input_dl_local_nonprim : NULL,
         tscai_input_ul ? tscai_input_ul_local_nonprim : NULL,
         dd_notif_ctrl ? dd_notif_ctrl_local_nonprim : NULL,
         dd_notif_ctrl2 ? dd_notif_ctrl2_local_nonprim : NULL,
+        dis_ue_notif ? true : false,
         dis_ue_notif ? dis_ue_notif->valueint : 0
     );
 

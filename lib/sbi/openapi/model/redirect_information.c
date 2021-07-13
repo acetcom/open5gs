@@ -5,6 +5,7 @@
 #include "redirect_information.h"
 
 OpenAPI_redirect_information_t *OpenAPI_redirect_information_create(
+    bool is_redirect_enabled,
     int redirect_enabled,
     OpenAPI_redirect_address_type_e redirect_address_type,
     char *redirect_server_address
@@ -14,6 +15,7 @@ OpenAPI_redirect_information_t *OpenAPI_redirect_information_create(
     if (!redirect_information_local_var) {
         return NULL;
     }
+    redirect_information_local_var->is_redirect_enabled = is_redirect_enabled;
     redirect_information_local_var->redirect_enabled = redirect_enabled;
     redirect_information_local_var->redirect_address_type = redirect_address_type;
     redirect_information_local_var->redirect_server_address = redirect_server_address;
@@ -41,7 +43,7 @@ cJSON *OpenAPI_redirect_information_convertToJSON(OpenAPI_redirect_information_t
     }
 
     item = cJSON_CreateObject();
-    if (redirect_information->redirect_enabled) {
+    if (redirect_information->is_redirect_enabled) {
     if (cJSON_AddBoolToObject(item, "redirectEnabled", redirect_information->redirect_enabled) == NULL) {
         ogs_error("OpenAPI_redirect_information_convertToJSON() failed [redirect_enabled]");
         goto end;
@@ -99,6 +101,7 @@ OpenAPI_redirect_information_t *OpenAPI_redirect_information_parseFromJSON(cJSON
     }
 
     redirect_information_local_var = OpenAPI_redirect_information_create (
+        redirect_enabled ? true : false,
         redirect_enabled ? redirect_enabled->valueint : 0,
         redirect_address_type ? redirect_address_typeVariable : 0,
         redirect_server_address ? ogs_strdup_or_assert(redirect_server_address->valuestring) : NULL

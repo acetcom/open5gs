@@ -175,6 +175,7 @@ OpenAPI_assign_ebi_data_t *OpenAPI_assign_ebi_data_parseFromJSON(cJSON *assign_e
     }
 
     assign_ebi_data_local_var = OpenAPI_assign_ebi_data_create (
+        
         pdu_session_id->valuedouble,
         arp_list ? arp_listList : NULL,
         released_ebi_list ? released_ebi_listList : NULL,

@@ -9,6 +9,7 @@ OpenAPI_bdt_data_t *OpenAPI_bdt_data_create(
     OpenAPI_transfer_policy_t *trans_policy,
     char *bdt_ref_id,
     OpenAPI_network_area_info_1_t *nw_area_info,
+    bool is_num_of_ues,
     int num_of_ues,
     OpenAPI_usage_threshold_t *vol_per_ue,
     char *dnn,
@@ -26,6 +27,7 @@ OpenAPI_bdt_data_t *OpenAPI_bdt_data_create(
     bdt_data_local_var->trans_policy = trans_policy;
     bdt_data_local_var->bdt_ref_id = bdt_ref_id;
     bdt_data_local_var->nw_area_info = nw_area_info;
+    bdt_data_local_var->is_num_of_ues = is_num_of_ues;
     bdt_data_local_var->num_of_ues = num_of_ues;
     bdt_data_local_var->vol_per_ue = vol_per_ue;
     bdt_data_local_var->dnn = dnn;
@@ -102,7 +104,7 @@ cJSON *OpenAPI_bdt_data_convertToJSON(OpenAPI_bdt_data_t *bdt_data)
     }
     }
 
-    if (bdt_data->num_of_ues) {
+    if (bdt_data->is_num_of_ues) {
     if (cJSON_AddNumberToObject(item, "numOfUes", bdt_data->num_of_ues) == NULL) {
         ogs_error("OpenAPI_bdt_data_convertToJSON() failed [num_of_ues]");
         goto end;
@@ -276,6 +278,7 @@ OpenAPI_bdt_data_t *OpenAPI_bdt_data_parseFromJSON(cJSON *bdt_dataJSON)
         trans_policy_local_nonprim,
         bdt_ref_id ? ogs_strdup_or_assert(bdt_ref_id->valuestring) : NULL,
         nw_area_info ? nw_area_info_local_nonprim : NULL,
+        num_of_ues ? true : false,
         num_of_ues ? num_of_ues->valuedouble : 0,
         vol_per_ue ? vol_per_ue_local_nonprim : NULL,
         dnn ? ogs_strdup_or_assert(dnn->valuestring) : NULL,

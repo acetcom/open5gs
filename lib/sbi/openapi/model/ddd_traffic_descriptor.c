@@ -7,6 +7,7 @@
 OpenAPI_ddd_traffic_descriptor_t *OpenAPI_ddd_traffic_descriptor_create(
     char *ipv4_addr,
     char *ipv6_addr,
+    bool is_port_number,
     int port_number,
     char *mac_addr
 )
@@ -17,6 +18,7 @@ OpenAPI_ddd_traffic_descriptor_t *OpenAPI_ddd_traffic_descriptor_create(
     }
     ddd_traffic_descriptor_local_var->ipv4_addr = ipv4_addr;
     ddd_traffic_descriptor_local_var->ipv6_addr = ipv6_addr;
+    ddd_traffic_descriptor_local_var->is_port_number = is_port_number;
     ddd_traffic_descriptor_local_var->port_number = port_number;
     ddd_traffic_descriptor_local_var->mac_addr = mac_addr;
 
@@ -59,7 +61,7 @@ cJSON *OpenAPI_ddd_traffic_descriptor_convertToJSON(OpenAPI_ddd_traffic_descript
     }
     }
 
-    if (ddd_traffic_descriptor->port_number) {
+    if (ddd_traffic_descriptor->is_port_number) {
     if (cJSON_AddNumberToObject(item, "portNumber", ddd_traffic_descriptor->port_number) == NULL) {
         ogs_error("OpenAPI_ddd_traffic_descriptor_convertToJSON() failed [port_number]");
         goto end;
@@ -119,6 +121,7 @@ OpenAPI_ddd_traffic_descriptor_t *OpenAPI_ddd_traffic_descriptor_parseFromJSON(c
     ddd_traffic_descriptor_local_var = OpenAPI_ddd_traffic_descriptor_create (
         ipv4_addr ? ogs_strdup_or_assert(ipv4_addr->valuestring) : NULL,
         ipv6_addr ? ogs_strdup_or_assert(ipv6_addr->valuestring) : NULL,
+        port_number ? true : false,
         port_number ? port_number->valuedouble : 0,
         mac_addr ? ogs_strdup_or_assert(mac_addr->valuestring) : NULL
     );

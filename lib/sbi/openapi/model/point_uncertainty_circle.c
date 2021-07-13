@@ -111,6 +111,7 @@ OpenAPI_point_uncertainty_circle_t *OpenAPI_point_uncertainty_circle_parseFromJS
     point_uncertainty_circle_local_var = OpenAPI_point_uncertainty_circle_create (
         shape_local_nonprim,
         point_local_nonprim,
+        
         uncertainty->valuedouble
     );
 

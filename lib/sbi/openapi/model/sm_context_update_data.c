@@ -20,7 +20,9 @@ OpenAPI_sm_context_update_data_t *OpenAPI_sm_context_update_data_create(
     OpenAPI_user_location_t *add_ue_location,
     OpenAPI_up_cnx_state_e up_cnx_state,
     OpenAPI_ho_state_e ho_state,
+    bool is_to_be_switched,
     int to_be_switched,
+    bool is_failed_to_be_switched,
     int failed_to_be_switched,
     OpenAPI_ref_to_binary_data_t *n1_sm_msg,
     OpenAPI_ref_to_binary_data_t *n2_sm_info,
@@ -28,28 +30,35 @@ OpenAPI_sm_context_update_data_t *OpenAPI_sm_context_update_data_create(
     OpenAPI_ng_ran_target_id_t *target_id,
     char *target_serving_nf_id,
     char *sm_context_status_uri,
+    bool is_data_forwarding,
     int data_forwarding,
     OpenAPI_tunnel_info_t *n9_forwarding_tunnel,
     OpenAPI_list_t *n9_dl_forwarding_tnl_list,
     OpenAPI_list_t *n9_ul_forwarding_tnl_list,
     OpenAPI_list_t *eps_bearer_setup,
     OpenAPI_list_t *revoke_ebi_list,
+    bool is_release,
     int release,
     OpenAPI_cause_e cause,
     OpenAPI_ng_ap_cause_t *ng_ap_cause,
+    bool is__5g_mm_cause_value,
     int _5g_mm_cause_value,
     OpenAPI_snssai_t *s_nssai,
     OpenAPI_trace_data_t *trace_data,
     OpenAPI_eps_interworking_indication_e eps_interworking_ind,
+    bool is_an_type_can_be_changed,
     int an_type_can_be_changed,
     OpenAPI_ref_to_binary_data_t *n2_sm_info_ext1,
     OpenAPI_n2_sm_info_type_e n2_sm_info_type_ext1,
     OpenAPI_ma_release_indication_e ma_release_ind,
+    bool is_ma_nw_upgrade_ind,
     int ma_nw_upgrade_ind,
+    bool is_ma_request_ind,
     int ma_request_ind,
     OpenAPI_exemption_ind_t *exemption_ind,
     char *supported_features,
     OpenAPI_mo_exp_data_counter_t *mo_exp_data_counter,
+    bool is_extended_nas_sm_timer_ind,
     int extended_nas_sm_timer_ind,
     char forwarding_f_teid,
     OpenAPI_list_t *forwarding_bearer_contexts,
@@ -75,7 +84,9 @@ OpenAPI_sm_context_update_data_t *OpenAPI_sm_context_update_data_create(
     sm_context_update_data_local_var->add_ue_location = add_ue_location;
     sm_context_update_data_local_var->up_cnx_state = up_cnx_state;
     sm_context_update_data_local_var->ho_state = ho_state;
+    sm_context_update_data_local_var->is_to_be_switched = is_to_be_switched;
     sm_context_update_data_local_var->to_be_switched = to_be_switched;
+    sm_context_update_data_local_var->is_failed_to_be_switched = is_failed_to_be_switched;
     sm_context_update_data_local_var->failed_to_be_switched = failed_to_be_switched;
     sm_context_update_data_local_var->n1_sm_msg = n1_sm_msg;
     sm_context_update_data_local_var->n2_sm_info = n2_sm_info;
@@ -83,28 +94,35 @@ OpenAPI_sm_context_update_data_t *OpenAPI_sm_context_update_data_create(
     sm_context_update_data_local_var->target_id = target_id;
     sm_context_update_data_local_var->target_serving_nf_id = target_serving_nf_id;
     sm_context_update_data_local_var->sm_context_status_uri = sm_context_status_uri;
+    sm_context_update_data_local_var->is_data_forwarding = is_data_forwarding;
     sm_context_update_data_local_var->data_forwarding = data_forwarding;
     sm_context_update_data_local_var->n9_forwarding_tunnel = n9_forwarding_tunnel;
     sm_context_update_data_local_var->n9_dl_forwarding_tnl_list = n9_dl_forwarding_tnl_list;
     sm_context_update_data_local_var->n9_ul_forwarding_tnl_list = n9_ul_forwarding_tnl_list;
     sm_context_update_data_local_var->eps_bearer_setup = eps_bearer_setup;
     sm_context_update_data_local_var->revoke_ebi_list = revoke_ebi_list;
+    sm_context_update_data_local_var->is_release = is_release;
     sm_context_update_data_local_var->release = release;
     sm_context_update_data_local_var->cause = cause;
     sm_context_update_data_local_var->ng_ap_cause = ng_ap_cause;
+    sm_context_update_data_local_var->is__5g_mm_cause_value = is__5g_mm_cause_value;
     sm_context_update_data_local_var->_5g_mm_cause_value = _5g_mm_cause_value;
     sm_context_update_data_local_var->s_nssai = s_nssai;
     sm_context_update_data_local_var->trace_data = trace_data;
     sm_context_update_data_local_var->eps_interworking_ind = eps_interworking_ind;
+    sm_context_update_data_local_var->is_an_type_can_be_changed = is_an_type_can_be_changed;
     sm_context_update_data_local_var->an_type_can_be_changed = an_type_can_be_changed;
     sm_context_update_data_local_var->n2_sm_info_ext1 = n2_sm_info_ext1;
     sm_context_update_data_local_var->n2_sm_info_type_ext1 = n2_sm_info_type_ext1;
     sm_context_update_data_local_var->ma_release_ind = ma_release_ind;
+    sm_context_update_data_local_var->is_ma_nw_upgrade_ind = is_ma_nw_upgrade_ind;
     sm_context_update_data_local_var->ma_nw_upgrade_ind = ma_nw_upgrade_ind;
+    sm_context_update_data_local_var->is_ma_request_ind = is_ma_request_ind;
     sm_context_update_data_local_var->ma_request_ind = ma_request_ind;
     sm_context_update_data_local_var->exemption_ind = exemption_ind;
     sm_context_update_data_local_var->supported_features = supported_features;
     sm_context_update_data_local_var->mo_exp_data_counter = mo_exp_data_counter;
+    sm_context_update_data_local_var->is_extended_nas_sm_timer_ind = is_extended_nas_sm_timer_ind;
     sm_context_update_data_local_var->extended_nas_sm_timer_ind = extended_nas_sm_timer_ind;
     sm_context_update_data_local_var->forwarding_f_teid = forwarding_f_teid;
     sm_context_update_data_local_var->forwarding_bearer_contexts = forwarding_bearer_contexts;
@@ -319,14 +337,14 @@ cJSON *OpenAPI_sm_context_update_data_convertToJSON(OpenAPI_sm_context_update_da
     }
     }
 
-    if (sm_context_update_data->to_be_switched) {
+    if (sm_context_update_data->is_to_be_switched) {
     if (cJSON_AddBoolToObject(item, "toBeSwitched", sm_context_update_data->to_be_switched) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [to_be_switched]");
         goto end;
     }
     }
 
-    if (sm_context_update_data->failed_to_be_switched) {
+    if (sm_context_update_data->is_failed_to_be_switched) {
     if (cJSON_AddBoolToObject(item, "failedToBeSwitched", sm_context_update_data->failed_to_be_switched) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [failed_to_be_switched]");
         goto end;
@@ -393,7 +411,7 @@ cJSON *OpenAPI_sm_context_update_data_convertToJSON(OpenAPI_sm_context_update_da
     }
     }
 
-    if (sm_context_update_data->data_forwarding) {
+    if (sm_context_update_data->is_data_forwarding) {
     if (cJSON_AddBoolToObject(item, "dataForwarding", sm_context_update_data->data_forwarding) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [data_forwarding]");
         goto end;
@@ -485,7 +503,7 @@ cJSON *OpenAPI_sm_context_update_data_convertToJSON(OpenAPI_sm_context_update_da
                     }
     }
 
-    if (sm_context_update_data->release) {
+    if (sm_context_update_data->is_release) {
     if (cJSON_AddBoolToObject(item, "release", sm_context_update_data->release) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [release]");
         goto end;
@@ -512,7 +530,7 @@ cJSON *OpenAPI_sm_context_update_data_convertToJSON(OpenAPI_sm_context_update_da
     }
     }
 
-    if (sm_context_update_data->_5g_mm_cause_value) {
+    if (sm_context_update_data->is__5g_mm_cause_value) {
     if (cJSON_AddNumberToObject(item, "5gMmCauseValue", sm_context_update_data->_5g_mm_cause_value) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [_5g_mm_cause_value]");
         goto end;
@@ -552,7 +570,7 @@ cJSON *OpenAPI_sm_context_update_data_convertToJSON(OpenAPI_sm_context_update_da
     }
     }
 
-    if (sm_context_update_data->an_type_can_be_changed) {
+    if (sm_context_update_data->is_an_type_can_be_changed) {
     if (cJSON_AddBoolToObject(item, "anTypeCanBeChanged", sm_context_update_data->an_type_can_be_changed) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [an_type_can_be_changed]");
         goto end;
@@ -586,14 +604,14 @@ cJSON *OpenAPI_sm_context_update_data_convertToJSON(OpenAPI_sm_context_update_da
     }
     }
 
-    if (sm_context_update_data->ma_nw_upgrade_ind) {
+    if (sm_context_update_data->is_ma_nw_upgrade_ind) {
     if (cJSON_AddBoolToObject(item, "maNwUpgradeInd", sm_context_update_data->ma_nw_upgrade_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [ma_nw_upgrade_ind]");
         goto end;
     }
     }
 
-    if (sm_context_update_data->ma_request_ind) {
+    if (sm_context_update_data->is_ma_request_ind) {
     if (cJSON_AddBoolToObject(item, "maRequestInd", sm_context_update_data->ma_request_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [ma_request_ind]");
         goto end;
@@ -633,7 +651,7 @@ cJSON *OpenAPI_sm_context_update_data_convertToJSON(OpenAPI_sm_context_update_da
     }
     }
 
-    if (sm_context_update_data->extended_nas_sm_timer_ind) {
+    if (sm_context_update_data->is_extended_nas_sm_timer_ind) {
     if (cJSON_AddBoolToObject(item, "extendedNasSmTimerInd", sm_context_update_data->extended_nas_sm_timer_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_update_data_convertToJSON() failed [extended_nas_sm_timer_ind]");
         goto end;
@@ -1209,7 +1227,9 @@ OpenAPI_sm_context_update_data_t *OpenAPI_sm_context_update_data_parseFromJSON(c
         add_ue_location ? add_ue_location_local_nonprim : NULL,
         up_cnx_state ? up_cnx_stateVariable : 0,
         ho_state ? ho_stateVariable : 0,
+        to_be_switched ? true : false,
         to_be_switched ? to_be_switched->valueint : 0,
+        failed_to_be_switched ? true : false,
         failed_to_be_switched ? failed_to_be_switched->valueint : 0,
         n1_sm_msg ? n1_sm_msg_local_nonprim : NULL,
         n2_sm_info ? n2_sm_info_local_nonprim : NULL,
@@ -1217,28 +1237,35 @@ OpenAPI_sm_context_update_data_t *OpenAPI_sm_context_update_data_parseFromJSON(c
         target_id ? target_id_local_nonprim : NULL,
         target_serving_nf_id ? ogs_strdup_or_assert(target_serving_nf_id->valuestring) : NULL,
         sm_context_status_uri ? ogs_strdup_or_assert(sm_context_status_uri->valuestring) : NULL,
+        data_forwarding ? true : false,
         data_forwarding ? data_forwarding->valueint : 0,
         n9_forwarding_tunnel ? n9_forwarding_tunnel_local_nonprim : NULL,
         n9_dl_forwarding_tnl_list ? n9_dl_forwarding_tnl_listList : NULL,
         n9_ul_forwarding_tnl_list ? n9_ul_forwarding_tnl_listList : NULL,
         eps_bearer_setup ? eps_bearer_setupList : NULL,
         revoke_ebi_list ? revoke_ebi_listList : NULL,
+        release ? true : false,
         release ? release->valueint : 0,
         cause ? causeVariable : 0,
         ng_ap_cause ? ng_ap_cause_local_nonprim : NULL,
+        _5g_mm_cause_value ? true : false,
         _5g_mm_cause_value ? _5g_mm_cause_value->valuedouble : 0,
         s_nssai ? s_nssai_local_nonprim : NULL,
         trace_data ? trace_data_local_nonprim : NULL,
         eps_interworking_ind ? eps_interworking_indVariable : 0,
+        an_type_can_be_changed ? true : false,
         an_type_can_be_changed ? an_type_can_be_changed->valueint : 0,
         n2_sm_info_ext1 ? n2_sm_info_ext1_local_nonprim : NULL,
         n2_sm_info_type_ext1 ? n2_sm_info_type_ext1Variable : 0,
         ma_release_ind ? ma_release_indVariable : 0,
+        ma_nw_upgrade_ind ? true : false,
         ma_nw_upgrade_ind ? ma_nw_upgrade_ind->valueint : 0,
+        ma_request_ind ? true : false,
         ma_request_ind ? ma_request_ind->valueint : 0,
         exemption_ind ? exemption_ind_local_nonprim : NULL,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
         mo_exp_data_counter ? mo_exp_data_counter_local_nonprim : NULL,
+        extended_nas_sm_timer_ind ? true : false,
         extended_nas_sm_timer_ind ? extended_nas_sm_timer_ind->valueint : 0,
         forwarding_f_teid ? forwarding_f_teid->valueint : 0,
         forwarding_bearer_contexts ? forwarding_bearer_contextsList : NULL,

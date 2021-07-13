@@ -10,6 +10,7 @@ OpenAPI_authentication_info_request_t *OpenAPI_authentication_info_request_creat
     OpenAPI_resynchronization_info_t *resynchronization_info,
     char *ausf_instance_id,
     OpenAPI_list_t *cell_cag_info,
+    bool is_n5gc_ind,
     int n5gc_ind
 )
 {
@@ -22,6 +23,7 @@ OpenAPI_authentication_info_request_t *OpenAPI_authentication_info_request_creat
     authentication_info_request_local_var->resynchronization_info = resynchronization_info;
     authentication_info_request_local_var->ausf_instance_id = ausf_instance_id;
     authentication_info_request_local_var->cell_cag_info = cell_cag_info;
+    authentication_info_request_local_var->is_n5gc_ind = is_n5gc_ind;
     authentication_info_request_local_var->n5gc_ind = n5gc_ind;
 
     return authentication_info_request_local_var;
@@ -100,7 +102,7 @@ cJSON *OpenAPI_authentication_info_request_convertToJSON(OpenAPI_authentication_
                     }
     }
 
-    if (authentication_info_request->n5gc_ind) {
+    if (authentication_info_request->is_n5gc_ind) {
     if (cJSON_AddBoolToObject(item, "n5gcInd", authentication_info_request->n5gc_ind) == NULL) {
         ogs_error("OpenAPI_authentication_info_request_convertToJSON() failed [n5gc_ind]");
         goto end;
@@ -189,6 +191,7 @@ OpenAPI_authentication_info_request_t *OpenAPI_authentication_info_request_parse
         resynchronization_info ? resynchronization_info_local_nonprim : NULL,
         ogs_strdup_or_assert(ausf_instance_id->valuestring),
         cell_cag_info ? cell_cag_infoList : NULL,
+        n5gc_ind ? true : false,
         n5gc_ind ? n5gc_ind->valueint : 0
     );
 

@@ -7,6 +7,7 @@
 OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_create(
     char *amf_instance_id,
     char *supported_features,
+    bool is_purge_flag,
     int purge_flag,
     char *pei,
     OpenAPI_ims_vo_ps_e ims_vo_ps,
@@ -14,18 +15,23 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_cre
     char *amf_service_name_dereg,
     char *pcscf_restoration_callback_uri,
     char *amf_service_name_pcscf_rest,
+    bool is_initial_registration_ind,
     int initial_registration_ind,
     OpenAPI_guami_t *guami,
     OpenAPI_list_t *backup_amf_info,
+    bool is_dr_flag,
     int dr_flag,
     OpenAPI_rat_type_e rat_type,
+    bool is_urrp_indicator,
     int urrp_indicator,
     char *amf_ee_subscription_id,
     OpenAPI_eps_interworking_info_t *eps_interworking_info,
+    bool is_ue_srvcc_capability,
     int ue_srvcc_capability,
     char *registration_time,
     OpenAPI_vgmlc_address_t *vgmlc_address,
     OpenAPI_context_info_t *context_info,
+    bool is_no_ee_subscription_ind,
     int no_ee_subscription_ind,
     char *supi
 )
@@ -36,6 +42,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_cre
     }
     amf3_gpp_access_registration_local_var->amf_instance_id = amf_instance_id;
     amf3_gpp_access_registration_local_var->supported_features = supported_features;
+    amf3_gpp_access_registration_local_var->is_purge_flag = is_purge_flag;
     amf3_gpp_access_registration_local_var->purge_flag = purge_flag;
     amf3_gpp_access_registration_local_var->pei = pei;
     amf3_gpp_access_registration_local_var->ims_vo_ps = ims_vo_ps;
@@ -43,18 +50,23 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_cre
     amf3_gpp_access_registration_local_var->amf_service_name_dereg = amf_service_name_dereg;
     amf3_gpp_access_registration_local_var->pcscf_restoration_callback_uri = pcscf_restoration_callback_uri;
     amf3_gpp_access_registration_local_var->amf_service_name_pcscf_rest = amf_service_name_pcscf_rest;
+    amf3_gpp_access_registration_local_var->is_initial_registration_ind = is_initial_registration_ind;
     amf3_gpp_access_registration_local_var->initial_registration_ind = initial_registration_ind;
     amf3_gpp_access_registration_local_var->guami = guami;
     amf3_gpp_access_registration_local_var->backup_amf_info = backup_amf_info;
+    amf3_gpp_access_registration_local_var->is_dr_flag = is_dr_flag;
     amf3_gpp_access_registration_local_var->dr_flag = dr_flag;
     amf3_gpp_access_registration_local_var->rat_type = rat_type;
+    amf3_gpp_access_registration_local_var->is_urrp_indicator = is_urrp_indicator;
     amf3_gpp_access_registration_local_var->urrp_indicator = urrp_indicator;
     amf3_gpp_access_registration_local_var->amf_ee_subscription_id = amf_ee_subscription_id;
     amf3_gpp_access_registration_local_var->eps_interworking_info = eps_interworking_info;
+    amf3_gpp_access_registration_local_var->is_ue_srvcc_capability = is_ue_srvcc_capability;
     amf3_gpp_access_registration_local_var->ue_srvcc_capability = ue_srvcc_capability;
     amf3_gpp_access_registration_local_var->registration_time = registration_time;
     amf3_gpp_access_registration_local_var->vgmlc_address = vgmlc_address;
     amf3_gpp_access_registration_local_var->context_info = context_info;
+    amf3_gpp_access_registration_local_var->is_no_ee_subscription_ind = is_no_ee_subscription_ind;
     amf3_gpp_access_registration_local_var->no_ee_subscription_ind = no_ee_subscription_ind;
     amf3_gpp_access_registration_local_var->supi = supi;
 
@@ -110,7 +122,7 @@ cJSON *OpenAPI_amf3_gpp_access_registration_convertToJSON(OpenAPI_amf3_gpp_acces
     }
     }
 
-    if (amf3_gpp_access_registration->purge_flag) {
+    if (amf3_gpp_access_registration->is_purge_flag) {
     if (cJSON_AddBoolToObject(item, "purgeFlag", amf3_gpp_access_registration->purge_flag) == NULL) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_convertToJSON() failed [purge_flag]");
         goto end;
@@ -157,7 +169,7 @@ cJSON *OpenAPI_amf3_gpp_access_registration_convertToJSON(OpenAPI_amf3_gpp_acces
     }
     }
 
-    if (amf3_gpp_access_registration->initial_registration_ind) {
+    if (amf3_gpp_access_registration->is_initial_registration_ind) {
     if (cJSON_AddBoolToObject(item, "initialRegistrationInd", amf3_gpp_access_registration->initial_registration_ind) == NULL) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_convertToJSON() failed [initial_registration_ind]");
         goto end;
@@ -195,7 +207,7 @@ cJSON *OpenAPI_amf3_gpp_access_registration_convertToJSON(OpenAPI_amf3_gpp_acces
     }
     }
 
-    if (amf3_gpp_access_registration->dr_flag) {
+    if (amf3_gpp_access_registration->is_dr_flag) {
     if (cJSON_AddBoolToObject(item, "drFlag", amf3_gpp_access_registration->dr_flag) == NULL) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_convertToJSON() failed [dr_flag]");
         goto end;
@@ -207,7 +219,7 @@ cJSON *OpenAPI_amf3_gpp_access_registration_convertToJSON(OpenAPI_amf3_gpp_acces
         goto end;
     }
 
-    if (amf3_gpp_access_registration->urrp_indicator) {
+    if (amf3_gpp_access_registration->is_urrp_indicator) {
     if (cJSON_AddBoolToObject(item, "urrpIndicator", amf3_gpp_access_registration->urrp_indicator) == NULL) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_convertToJSON() failed [urrp_indicator]");
         goto end;
@@ -234,7 +246,7 @@ cJSON *OpenAPI_amf3_gpp_access_registration_convertToJSON(OpenAPI_amf3_gpp_acces
     }
     }
 
-    if (amf3_gpp_access_registration->ue_srvcc_capability) {
+    if (amf3_gpp_access_registration->is_ue_srvcc_capability) {
     if (cJSON_AddBoolToObject(item, "ueSrvccCapability", amf3_gpp_access_registration->ue_srvcc_capability) == NULL) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_convertToJSON() failed [ue_srvcc_capability]");
         goto end;
@@ -274,7 +286,7 @@ cJSON *OpenAPI_amf3_gpp_access_registration_convertToJSON(OpenAPI_amf3_gpp_acces
     }
     }
 
-    if (amf3_gpp_access_registration->no_ee_subscription_ind) {
+    if (amf3_gpp_access_registration->is_no_ee_subscription_ind) {
     if (cJSON_AddBoolToObject(item, "noEeSubscriptionInd", amf3_gpp_access_registration->no_ee_subscription_ind) == NULL) {
         ogs_error("OpenAPI_amf3_gpp_access_registration_convertToJSON() failed [no_ee_subscription_ind]");
         goto end;
@@ -527,6 +539,7 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
     amf3_gpp_access_registration_local_var = OpenAPI_amf3_gpp_access_registration_create (
         ogs_strdup_or_assert(amf_instance_id->valuestring),
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
+        purge_flag ? true : false,
         purge_flag ? purge_flag->valueint : 0,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
         ims_vo_ps ? ims_vo_psVariable : 0,
@@ -534,18 +547,23 @@ OpenAPI_amf3_gpp_access_registration_t *OpenAPI_amf3_gpp_access_registration_par
         amf_service_name_dereg ? ogs_strdup_or_assert(amf_service_name_dereg->valuestring) : NULL,
         pcscf_restoration_callback_uri ? ogs_strdup_or_assert(pcscf_restoration_callback_uri->valuestring) : NULL,
         amf_service_name_pcscf_rest ? ogs_strdup_or_assert(amf_service_name_pcscf_rest->valuestring) : NULL,
+        initial_registration_ind ? true : false,
         initial_registration_ind ? initial_registration_ind->valueint : 0,
         guami_local_nonprim,
         backup_amf_info ? backup_amf_infoList : NULL,
+        dr_flag ? true : false,
         dr_flag ? dr_flag->valueint : 0,
         rat_typeVariable,
+        urrp_indicator ? true : false,
         urrp_indicator ? urrp_indicator->valueint : 0,
         amf_ee_subscription_id ? ogs_strdup_or_assert(amf_ee_subscription_id->valuestring) : NULL,
         eps_interworking_info ? eps_interworking_info_local_nonprim : NULL,
+        ue_srvcc_capability ? true : false,
         ue_srvcc_capability ? ue_srvcc_capability->valueint : 0,
         registration_time ? ogs_strdup_or_assert(registration_time->valuestring) : NULL,
         vgmlc_address ? vgmlc_address_local_nonprim : NULL,
         context_info ? context_info_local_nonprim : NULL,
+        no_ee_subscription_ind ? true : false,
         no_ee_subscription_ind ? no_ee_subscription_ind->valueint : 0,
         supi ? ogs_strdup_or_assert(supi->valuestring) : NULL
     );

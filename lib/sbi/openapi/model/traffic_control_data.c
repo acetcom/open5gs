@@ -9,10 +9,12 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_create(
     OpenAPI_flow_status_e flow_status,
     OpenAPI_redirect_information_t *redirect_info,
     OpenAPI_list_t *add_redirect_info,
+    bool is_mute_notif,
     int mute_notif,
     char *traffic_steering_pol_id_dl,
     char *traffic_steering_pol_id_ul,
     OpenAPI_list_t *route_to_locs,
+    bool is_traff_corre_ind,
     int traff_corre_ind,
     OpenAPI_up_path_chg_event_t *up_path_chg_event,
     OpenAPI_steering_functionality_e steer_fun,
@@ -29,10 +31,12 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_create(
     traffic_control_data_local_var->flow_status = flow_status;
     traffic_control_data_local_var->redirect_info = redirect_info;
     traffic_control_data_local_var->add_redirect_info = add_redirect_info;
+    traffic_control_data_local_var->is_mute_notif = is_mute_notif;
     traffic_control_data_local_var->mute_notif = mute_notif;
     traffic_control_data_local_var->traffic_steering_pol_id_dl = traffic_steering_pol_id_dl;
     traffic_control_data_local_var->traffic_steering_pol_id_ul = traffic_steering_pol_id_ul;
     traffic_control_data_local_var->route_to_locs = route_to_locs;
+    traffic_control_data_local_var->is_traff_corre_ind = is_traff_corre_ind;
     traffic_control_data_local_var->traff_corre_ind = traff_corre_ind;
     traffic_control_data_local_var->up_path_chg_event = up_path_chg_event;
     traffic_control_data_local_var->steer_fun = steer_fun;
@@ -123,7 +127,7 @@ cJSON *OpenAPI_traffic_control_data_convertToJSON(OpenAPI_traffic_control_data_t
     }
     }
 
-    if (traffic_control_data->mute_notif) {
+    if (traffic_control_data->is_mute_notif) {
     if (cJSON_AddBoolToObject(item, "muteNotif", traffic_control_data->mute_notif) == NULL) {
         ogs_error("OpenAPI_traffic_control_data_convertToJSON() failed [mute_notif]");
         goto end;
@@ -164,7 +168,7 @@ cJSON *OpenAPI_traffic_control_data_convertToJSON(OpenAPI_traffic_control_data_t
     }
     }
 
-    if (traffic_control_data->traff_corre_ind) {
+    if (traffic_control_data->is_traff_corre_ind) {
     if (cJSON_AddBoolToObject(item, "traffCorreInd", traffic_control_data->traff_corre_ind) == NULL) {
         ogs_error("OpenAPI_traffic_control_data_convertToJSON() failed [traff_corre_ind]");
         goto end;
@@ -393,10 +397,12 @@ OpenAPI_traffic_control_data_t *OpenAPI_traffic_control_data_parseFromJSON(cJSON
         flow_status ? flow_statusVariable : 0,
         redirect_info ? redirect_info_local_nonprim : NULL,
         add_redirect_info ? add_redirect_infoList : NULL,
+        mute_notif ? true : false,
         mute_notif ? mute_notif->valueint : 0,
         traffic_steering_pol_id_dl ? ogs_strdup_or_assert(traffic_steering_pol_id_dl->valuestring) : NULL,
         traffic_steering_pol_id_ul ? ogs_strdup_or_assert(traffic_steering_pol_id_ul->valuestring) : NULL,
         route_to_locs ? route_to_locsList : NULL,
+        traff_corre_ind ? true : false,
         traff_corre_ind ? traff_corre_ind->valueint : 0,
         up_path_chg_event ? up_path_chg_event_local_nonprim : NULL,
         steer_fun ? steer_funVariable : 0,

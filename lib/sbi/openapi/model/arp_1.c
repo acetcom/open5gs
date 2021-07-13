@@ -103,6 +103,7 @@ OpenAPI_arp_1_t *OpenAPI_arp_1_parseFromJSON(cJSON *arp_1JSON)
     preempt_vulnVariable = OpenAPI_preemption_vulnerability_FromString(preempt_vuln->valuestring);
 
     arp_1_local_var = OpenAPI_arp_1_create (
+        
         priority_level->valuedouble,
         preempt_capVariable,
         preempt_vulnVariable

@@ -14,10 +14,12 @@ OpenAPI_sm_context_updated_data_t *OpenAPI_sm_context_updated_data_create(
     OpenAPI_ref_to_binary_data_t *n2_sm_info,
     OpenAPI_n2_sm_info_type_e n2_sm_info_type,
     OpenAPI_list_t *eps_bearer_setup,
+    bool is_data_forwarding,
     int data_forwarding,
     OpenAPI_list_t *n3_dl_forwarding_tnl_list,
     OpenAPI_list_t *n3_ul_forwarding_tnl_list,
     OpenAPI_cause_e cause,
+    bool is_ma_accepted_ind,
     int ma_accepted_ind,
     char *supported_features,
     char forwarding_f_teid,
@@ -39,10 +41,12 @@ OpenAPI_sm_context_updated_data_t *OpenAPI_sm_context_updated_data_create(
     sm_context_updated_data_local_var->n2_sm_info = n2_sm_info;
     sm_context_updated_data_local_var->n2_sm_info_type = n2_sm_info_type;
     sm_context_updated_data_local_var->eps_bearer_setup = eps_bearer_setup;
+    sm_context_updated_data_local_var->is_data_forwarding = is_data_forwarding;
     sm_context_updated_data_local_var->data_forwarding = data_forwarding;
     sm_context_updated_data_local_var->n3_dl_forwarding_tnl_list = n3_dl_forwarding_tnl_list;
     sm_context_updated_data_local_var->n3_ul_forwarding_tnl_list = n3_ul_forwarding_tnl_list;
     sm_context_updated_data_local_var->cause = cause;
+    sm_context_updated_data_local_var->is_ma_accepted_ind = is_ma_accepted_ind;
     sm_context_updated_data_local_var->ma_accepted_ind = ma_accepted_ind;
     sm_context_updated_data_local_var->supported_features = supported_features;
     sm_context_updated_data_local_var->forwarding_f_teid = forwarding_f_teid;
@@ -224,7 +228,7 @@ cJSON *OpenAPI_sm_context_updated_data_convertToJSON(OpenAPI_sm_context_updated_
                     }
     }
 
-    if (sm_context_updated_data->data_forwarding) {
+    if (sm_context_updated_data->is_data_forwarding) {
     if (cJSON_AddBoolToObject(item, "dataForwarding", sm_context_updated_data->data_forwarding) == NULL) {
         ogs_error("OpenAPI_sm_context_updated_data_convertToJSON() failed [data_forwarding]");
         goto end;
@@ -278,7 +282,7 @@ cJSON *OpenAPI_sm_context_updated_data_convertToJSON(OpenAPI_sm_context_updated_
     }
     }
 
-    if (sm_context_updated_data->ma_accepted_ind) {
+    if (sm_context_updated_data->is_ma_accepted_ind) {
     if (cJSON_AddBoolToObject(item, "maAcceptedInd", sm_context_updated_data->ma_accepted_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_updated_data_convertToJSON() failed [ma_accepted_ind]");
         goto end;
@@ -610,10 +614,12 @@ OpenAPI_sm_context_updated_data_t *OpenAPI_sm_context_updated_data_parseFromJSON
         n2_sm_info ? n2_sm_info_local_nonprim : NULL,
         n2_sm_info_type ? n2_sm_info_typeVariable : 0,
         eps_bearer_setup ? eps_bearer_setupList : NULL,
+        data_forwarding ? true : false,
         data_forwarding ? data_forwarding->valueint : 0,
         n3_dl_forwarding_tnl_list ? n3_dl_forwarding_tnl_listList : NULL,
         n3_ul_forwarding_tnl_list ? n3_ul_forwarding_tnl_listList : NULL,
         cause ? causeVariable : 0,
+        ma_accepted_ind ? true : false,
         ma_accepted_ind ? ma_accepted_ind->valueint : 0,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
         forwarding_f_teid ? forwarding_f_teid->valueint : 0,

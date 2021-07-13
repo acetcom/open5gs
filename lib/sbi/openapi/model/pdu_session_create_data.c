@@ -6,8 +6,10 @@
 
 OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_create(
     char *supi,
+    bool is_unauthenticated_supi,
     int unauthenticated_supi,
     char *pei,
+    bool is_pdu_session_id,
     int pdu_session_id,
     char *dnn,
     char *selected_dnn,
@@ -38,8 +40,10 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_create(
     char *pcf_id,
     char *pcf_group_id,
     char *pcf_set_id,
+    bool is_ho_preparation_indication,
     int ho_preparation_indication,
     OpenAPI_dnn_selection_mode_e sel_mode,
+    bool is_always_on_requested,
     int always_on_requested,
     char *udm_group_id,
     char *routing_indicator,
@@ -49,22 +53,29 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_create(
     char *recovery_time,
     OpenAPI_roaming_charging_profile_t *roaming_charging_profile,
     char *charging_id,
+    bool is_old_pdu_session_id,
     int old_pdu_session_id,
     char *eps_bearer_ctx_status,
     char *amf_nf_id,
     OpenAPI_guami_t *guami,
     OpenAPI_max_integrity_protected_data_rate_e max_integrity_protected_data_rate_ul,
     OpenAPI_max_integrity_protected_data_rate_e max_integrity_protected_data_rate_dl,
+    bool is_cp_ciot_enabled,
     int cp_ciot_enabled,
+    bool is_cp_only_ind,
     int cp_only_ind,
+    bool is_invoke_nef,
     int invoke_nef,
+    bool is_ma_request_ind,
     int ma_request_ind,
+    bool is_ma_nw_upgrade_ind,
     int ma_nw_upgrade_ind,
     OpenAPI_list_t *dnai_list,
     OpenAPI_presence_state_e presence_in_ladn,
     OpenAPI_list_t *secondary_rat_usage_info,
     OpenAPI_small_data_rate_status_t *small_data_rate_status,
     OpenAPI_apn_rate_status_t *apn_rate_status,
+    bool is_dl_serving_plmn_rate_ctl,
     int dl_serving_plmn_rate_ctl,
     OpenAPI_up_security_info_t *up_security_info,
     OpenAPI_vplmn_qos_t *vplmn_qos
@@ -75,8 +86,10 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_create(
         return NULL;
     }
     pdu_session_create_data_local_var->supi = supi;
+    pdu_session_create_data_local_var->is_unauthenticated_supi = is_unauthenticated_supi;
     pdu_session_create_data_local_var->unauthenticated_supi = unauthenticated_supi;
     pdu_session_create_data_local_var->pei = pei;
+    pdu_session_create_data_local_var->is_pdu_session_id = is_pdu_session_id;
     pdu_session_create_data_local_var->pdu_session_id = pdu_session_id;
     pdu_session_create_data_local_var->dnn = dnn;
     pdu_session_create_data_local_var->selected_dnn = selected_dnn;
@@ -107,8 +120,10 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_create(
     pdu_session_create_data_local_var->pcf_id = pcf_id;
     pdu_session_create_data_local_var->pcf_group_id = pcf_group_id;
     pdu_session_create_data_local_var->pcf_set_id = pcf_set_id;
+    pdu_session_create_data_local_var->is_ho_preparation_indication = is_ho_preparation_indication;
     pdu_session_create_data_local_var->ho_preparation_indication = ho_preparation_indication;
     pdu_session_create_data_local_var->sel_mode = sel_mode;
+    pdu_session_create_data_local_var->is_always_on_requested = is_always_on_requested;
     pdu_session_create_data_local_var->always_on_requested = always_on_requested;
     pdu_session_create_data_local_var->udm_group_id = udm_group_id;
     pdu_session_create_data_local_var->routing_indicator = routing_indicator;
@@ -118,22 +133,29 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_create(
     pdu_session_create_data_local_var->recovery_time = recovery_time;
     pdu_session_create_data_local_var->roaming_charging_profile = roaming_charging_profile;
     pdu_session_create_data_local_var->charging_id = charging_id;
+    pdu_session_create_data_local_var->is_old_pdu_session_id = is_old_pdu_session_id;
     pdu_session_create_data_local_var->old_pdu_session_id = old_pdu_session_id;
     pdu_session_create_data_local_var->eps_bearer_ctx_status = eps_bearer_ctx_status;
     pdu_session_create_data_local_var->amf_nf_id = amf_nf_id;
     pdu_session_create_data_local_var->guami = guami;
     pdu_session_create_data_local_var->max_integrity_protected_data_rate_ul = max_integrity_protected_data_rate_ul;
     pdu_session_create_data_local_var->max_integrity_protected_data_rate_dl = max_integrity_protected_data_rate_dl;
+    pdu_session_create_data_local_var->is_cp_ciot_enabled = is_cp_ciot_enabled;
     pdu_session_create_data_local_var->cp_ciot_enabled = cp_ciot_enabled;
+    pdu_session_create_data_local_var->is_cp_only_ind = is_cp_only_ind;
     pdu_session_create_data_local_var->cp_only_ind = cp_only_ind;
+    pdu_session_create_data_local_var->is_invoke_nef = is_invoke_nef;
     pdu_session_create_data_local_var->invoke_nef = invoke_nef;
+    pdu_session_create_data_local_var->is_ma_request_ind = is_ma_request_ind;
     pdu_session_create_data_local_var->ma_request_ind = ma_request_ind;
+    pdu_session_create_data_local_var->is_ma_nw_upgrade_ind = is_ma_nw_upgrade_ind;
     pdu_session_create_data_local_var->ma_nw_upgrade_ind = ma_nw_upgrade_ind;
     pdu_session_create_data_local_var->dnai_list = dnai_list;
     pdu_session_create_data_local_var->presence_in_ladn = presence_in_ladn;
     pdu_session_create_data_local_var->secondary_rat_usage_info = secondary_rat_usage_info;
     pdu_session_create_data_local_var->small_data_rate_status = small_data_rate_status;
     pdu_session_create_data_local_var->apn_rate_status = apn_rate_status;
+    pdu_session_create_data_local_var->is_dl_serving_plmn_rate_ctl = is_dl_serving_plmn_rate_ctl;
     pdu_session_create_data_local_var->dl_serving_plmn_rate_ctl = dl_serving_plmn_rate_ctl;
     pdu_session_create_data_local_var->up_security_info = up_security_info;
     pdu_session_create_data_local_var->vplmn_qos = vplmn_qos;
@@ -218,7 +240,7 @@ cJSON *OpenAPI_pdu_session_create_data_convertToJSON(OpenAPI_pdu_session_create_
     }
     }
 
-    if (pdu_session_create_data->unauthenticated_supi) {
+    if (pdu_session_create_data->is_unauthenticated_supi) {
     if (cJSON_AddBoolToObject(item, "unauthenticatedSupi", pdu_session_create_data->unauthenticated_supi) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [unauthenticated_supi]");
         goto end;
@@ -232,7 +254,7 @@ cJSON *OpenAPI_pdu_session_create_data_convertToJSON(OpenAPI_pdu_session_create_
     }
     }
 
-    if (pdu_session_create_data->pdu_session_id) {
+    if (pdu_session_create_data->is_pdu_session_id) {
     if (cJSON_AddNumberToObject(item, "pduSessionId", pdu_session_create_data->pdu_session_id) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [pdu_session_id]");
         goto end;
@@ -505,7 +527,7 @@ cJSON *OpenAPI_pdu_session_create_data_convertToJSON(OpenAPI_pdu_session_create_
     }
     }
 
-    if (pdu_session_create_data->ho_preparation_indication) {
+    if (pdu_session_create_data->is_ho_preparation_indication) {
     if (cJSON_AddBoolToObject(item, "hoPreparationIndication", pdu_session_create_data->ho_preparation_indication) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [ho_preparation_indication]");
         goto end;
@@ -519,7 +541,7 @@ cJSON *OpenAPI_pdu_session_create_data_convertToJSON(OpenAPI_pdu_session_create_
     }
     }
 
-    if (pdu_session_create_data->always_on_requested) {
+    if (pdu_session_create_data->is_always_on_requested) {
     if (cJSON_AddBoolToObject(item, "alwaysOnRequested", pdu_session_create_data->always_on_requested) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [always_on_requested]");
         goto end;
@@ -588,7 +610,7 @@ cJSON *OpenAPI_pdu_session_create_data_convertToJSON(OpenAPI_pdu_session_create_
     }
     }
 
-    if (pdu_session_create_data->old_pdu_session_id) {
+    if (pdu_session_create_data->is_old_pdu_session_id) {
     if (cJSON_AddNumberToObject(item, "oldPduSessionId", pdu_session_create_data->old_pdu_session_id) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [old_pdu_session_id]");
         goto end;
@@ -636,35 +658,35 @@ cJSON *OpenAPI_pdu_session_create_data_convertToJSON(OpenAPI_pdu_session_create_
     }
     }
 
-    if (pdu_session_create_data->cp_ciot_enabled) {
+    if (pdu_session_create_data->is_cp_ciot_enabled) {
     if (cJSON_AddBoolToObject(item, "cpCiotEnabled", pdu_session_create_data->cp_ciot_enabled) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [cp_ciot_enabled]");
         goto end;
     }
     }
 
-    if (pdu_session_create_data->cp_only_ind) {
+    if (pdu_session_create_data->is_cp_only_ind) {
     if (cJSON_AddBoolToObject(item, "cpOnlyInd", pdu_session_create_data->cp_only_ind) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [cp_only_ind]");
         goto end;
     }
     }
 
-    if (pdu_session_create_data->invoke_nef) {
+    if (pdu_session_create_data->is_invoke_nef) {
     if (cJSON_AddBoolToObject(item, "invokeNef", pdu_session_create_data->invoke_nef) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [invoke_nef]");
         goto end;
     }
     }
 
-    if (pdu_session_create_data->ma_request_ind) {
+    if (pdu_session_create_data->is_ma_request_ind) {
     if (cJSON_AddBoolToObject(item, "maRequestInd", pdu_session_create_data->ma_request_ind) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [ma_request_ind]");
         goto end;
     }
     }
 
-    if (pdu_session_create_data->ma_nw_upgrade_ind) {
+    if (pdu_session_create_data->is_ma_nw_upgrade_ind) {
     if (cJSON_AddBoolToObject(item, "maNwUpgradeInd", pdu_session_create_data->ma_nw_upgrade_ind) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [ma_nw_upgrade_ind]");
         goto end;
@@ -740,7 +762,7 @@ cJSON *OpenAPI_pdu_session_create_data_convertToJSON(OpenAPI_pdu_session_create_
     }
     }
 
-    if (pdu_session_create_data->dl_serving_plmn_rate_ctl) {
+    if (pdu_session_create_data->is_dl_serving_plmn_rate_ctl) {
     if (cJSON_AddNumberToObject(item, "dlServingPlmnRateCtl", pdu_session_create_data->dl_serving_plmn_rate_ctl) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_data_convertToJSON() failed [dl_serving_plmn_rate_ctl]");
         goto end;
@@ -1380,8 +1402,10 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_parseFromJSON
 
     pdu_session_create_data_local_var = OpenAPI_pdu_session_create_data_create (
         supi ? ogs_strdup_or_assert(supi->valuestring) : NULL,
+        unauthenticated_supi ? true : false,
         unauthenticated_supi ? unauthenticated_supi->valueint : 0,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
+        pdu_session_id ? true : false,
         pdu_session_id ? pdu_session_id->valuedouble : 0,
         ogs_strdup_or_assert(dnn->valuestring),
         selected_dnn ? ogs_strdup_or_assert(selected_dnn->valuestring) : NULL,
@@ -1412,8 +1436,10 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_parseFromJSON
         pcf_id ? ogs_strdup_or_assert(pcf_id->valuestring) : NULL,
         pcf_group_id ? ogs_strdup_or_assert(pcf_group_id->valuestring) : NULL,
         pcf_set_id ? ogs_strdup_or_assert(pcf_set_id->valuestring) : NULL,
+        ho_preparation_indication ? true : false,
         ho_preparation_indication ? ho_preparation_indication->valueint : 0,
         sel_mode ? sel_modeVariable : 0,
+        always_on_requested ? true : false,
         always_on_requested ? always_on_requested->valueint : 0,
         udm_group_id ? ogs_strdup_or_assert(udm_group_id->valuestring) : NULL,
         routing_indicator ? ogs_strdup_or_assert(routing_indicator->valuestring) : NULL,
@@ -1423,22 +1449,29 @@ OpenAPI_pdu_session_create_data_t *OpenAPI_pdu_session_create_data_parseFromJSON
         recovery_time ? ogs_strdup_or_assert(recovery_time->valuestring) : NULL,
         roaming_charging_profile ? roaming_charging_profile_local_nonprim : NULL,
         charging_id ? ogs_strdup_or_assert(charging_id->valuestring) : NULL,
+        old_pdu_session_id ? true : false,
         old_pdu_session_id ? old_pdu_session_id->valuedouble : 0,
         eps_bearer_ctx_status ? ogs_strdup_or_assert(eps_bearer_ctx_status->valuestring) : NULL,
         amf_nf_id ? ogs_strdup_or_assert(amf_nf_id->valuestring) : NULL,
         guami ? guami_local_nonprim : NULL,
         max_integrity_protected_data_rate_ul ? max_integrity_protected_data_rate_ulVariable : 0,
         max_integrity_protected_data_rate_dl ? max_integrity_protected_data_rate_dlVariable : 0,
+        cp_ciot_enabled ? true : false,
         cp_ciot_enabled ? cp_ciot_enabled->valueint : 0,
+        cp_only_ind ? true : false,
         cp_only_ind ? cp_only_ind->valueint : 0,
+        invoke_nef ? true : false,
         invoke_nef ? invoke_nef->valueint : 0,
+        ma_request_ind ? true : false,
         ma_request_ind ? ma_request_ind->valueint : 0,
+        ma_nw_upgrade_ind ? true : false,
         ma_nw_upgrade_ind ? ma_nw_upgrade_ind->valueint : 0,
         dnai_list ? dnai_listList : NULL,
         presence_in_ladn ? presence_in_ladnVariable : 0,
         secondary_rat_usage_info ? secondary_rat_usage_infoList : NULL,
         small_data_rate_status ? small_data_rate_status_local_nonprim : NULL,
         apn_rate_status ? apn_rate_status_local_nonprim : NULL,
+        dl_serving_plmn_rate_ctl ? true : false,
         dl_serving_plmn_rate_ctl ? dl_serving_plmn_rate_ctl->valuedouble : 0,
         up_security_info ? up_security_info_local_nonprim : NULL,
         vplmn_qos ? vplmn_qos_local_nonprim : NULL

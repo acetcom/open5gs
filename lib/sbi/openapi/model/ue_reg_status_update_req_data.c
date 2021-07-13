@@ -7,6 +7,7 @@
 OpenAPI_ue_reg_status_update_req_data_t *OpenAPI_ue_reg_status_update_req_data_create(
     OpenAPI_ue_context_transfer_status_e transfer_status,
     OpenAPI_list_t *to_release_session_list,
+    bool is_pcf_reselected_ind,
     int pcf_reselected_ind,
     OpenAPI_list_t *smf_change_info_list
 )
@@ -17,6 +18,7 @@ OpenAPI_ue_reg_status_update_req_data_t *OpenAPI_ue_reg_status_update_req_data_c
     }
     ue_reg_status_update_req_data_local_var->transfer_status = transfer_status;
     ue_reg_status_update_req_data_local_var->to_release_session_list = to_release_session_list;
+    ue_reg_status_update_req_data_local_var->is_pcf_reselected_ind = is_pcf_reselected_ind;
     ue_reg_status_update_req_data_local_var->pcf_reselected_ind = pcf_reselected_ind;
     ue_reg_status_update_req_data_local_var->smf_change_info_list = smf_change_info_list;
 
@@ -71,7 +73,7 @@ cJSON *OpenAPI_ue_reg_status_update_req_data_convertToJSON(OpenAPI_ue_reg_status
                     }
     }
 
-    if (ue_reg_status_update_req_data->pcf_reselected_ind) {
+    if (ue_reg_status_update_req_data->is_pcf_reselected_ind) {
     if (cJSON_AddBoolToObject(item, "pcfReselectedInd", ue_reg_status_update_req_data->pcf_reselected_ind) == NULL) {
         ogs_error("OpenAPI_ue_reg_status_update_req_data_convertToJSON() failed [pcf_reselected_ind]");
         goto end;
@@ -174,6 +176,7 @@ OpenAPI_ue_reg_status_update_req_data_t *OpenAPI_ue_reg_status_update_req_data_p
     ue_reg_status_update_req_data_local_var = OpenAPI_ue_reg_status_update_req_data_create (
         transfer_statusVariable,
         to_release_session_list ? to_release_session_listList : NULL,
+        pcf_reselected_ind ? true : false,
         pcf_reselected_ind ? pcf_reselected_ind->valueint : 0,
         smf_change_info_list ? smf_change_info_listList : NULL
     );

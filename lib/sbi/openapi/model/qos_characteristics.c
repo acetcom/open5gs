@@ -10,8 +10,11 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_create(
     int priority_level,
     int packet_delay_budget,
     char *packet_error_rate,
+    bool is_averaging_window,
     int averaging_window,
+    bool is_max_data_burst_vol,
     int max_data_burst_vol,
+    bool is_ext_max_data_burst_vol,
     int ext_max_data_burst_vol
 )
 {
@@ -24,8 +27,11 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_create(
     qos_characteristics_local_var->priority_level = priority_level;
     qos_characteristics_local_var->packet_delay_budget = packet_delay_budget;
     qos_characteristics_local_var->packet_error_rate = packet_error_rate;
+    qos_characteristics_local_var->is_averaging_window = is_averaging_window;
     qos_characteristics_local_var->averaging_window = averaging_window;
+    qos_characteristics_local_var->is_max_data_burst_vol = is_max_data_burst_vol;
     qos_characteristics_local_var->max_data_burst_vol = max_data_burst_vol;
+    qos_characteristics_local_var->is_ext_max_data_burst_vol = is_ext_max_data_burst_vol;
     qos_characteristics_local_var->ext_max_data_burst_vol = ext_max_data_burst_vol;
 
     return qos_characteristics_local_var;
@@ -76,21 +82,21 @@ cJSON *OpenAPI_qos_characteristics_convertToJSON(OpenAPI_qos_characteristics_t *
         goto end;
     }
 
-    if (qos_characteristics->averaging_window) {
+    if (qos_characteristics->is_averaging_window) {
     if (cJSON_AddNumberToObject(item, "averagingWindow", qos_characteristics->averaging_window) == NULL) {
         ogs_error("OpenAPI_qos_characteristics_convertToJSON() failed [averaging_window]");
         goto end;
     }
     }
 
-    if (qos_characteristics->max_data_burst_vol) {
+    if (qos_characteristics->is_max_data_burst_vol) {
     if (cJSON_AddNumberToObject(item, "maxDataBurstVol", qos_characteristics->max_data_burst_vol) == NULL) {
         ogs_error("OpenAPI_qos_characteristics_convertToJSON() failed [max_data_burst_vol]");
         goto end;
     }
     }
 
-    if (qos_characteristics->ext_max_data_burst_vol) {
+    if (qos_characteristics->is_ext_max_data_burst_vol) {
     if (cJSON_AddNumberToObject(item, "extMaxDataBurstVol", qos_characteristics->ext_max_data_burst_vol) == NULL) {
         ogs_error("OpenAPI_qos_characteristics_convertToJSON() failed [ext_max_data_burst_vol]");
         goto end;
@@ -194,13 +200,19 @@ OpenAPI_qos_characteristics_t *OpenAPI_qos_characteristics_parseFromJSON(cJSON *
     }
 
     qos_characteristics_local_var = OpenAPI_qos_characteristics_create (
+        
         _5qi->valuedouble,
         resource_typeVariable,
+        
         priority_level->valuedouble,
+        
         packet_delay_budget->valuedouble,
         ogs_strdup_or_assert(packet_error_rate->valuestring),
+        averaging_window ? true : false,
         averaging_window ? averaging_window->valuedouble : 0,
+        max_data_burst_vol ? true : false,
         max_data_burst_vol ? max_data_burst_vol->valuedouble : 0,
+        ext_max_data_burst_vol ? true : false,
         ext_max_data_burst_vol ? ext_max_data_burst_vol->valuedouble : 0
     );
 

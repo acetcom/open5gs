@@ -6,9 +6,11 @@
 
 OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
     char *supi,
+    bool is_unauthenticated_supi,
     int unauthenticated_supi,
     char *pei,
     char *gpsi,
+    bool is_pdu_session_id,
     int pdu_session_id,
     char *dnn,
     char *selected_dnn,
@@ -36,6 +38,7 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
     OpenAPI_list_t *additional_hsmf_id,
     OpenAPI_list_t *additional_smf_uri,
     OpenAPI_list_t *additional_smf_id,
+    bool is_old_pdu_session_id,
     int old_pdu_session_id,
     OpenAPI_list_t *pdu_sessions_activate_list,
     char *ue_eps_pdn_connection,
@@ -51,14 +54,21 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
     char *udm_group_id,
     char *routing_indicator,
     OpenAPI_eps_interworking_indication_e eps_interworking_ind,
+    bool is_indirect_forwarding_flag,
     int indirect_forwarding_flag,
+    bool is_direct_forwarding_flag,
     int direct_forwarding_flag,
     OpenAPI_ng_ran_target_id_t *target_id,
     char *eps_bearer_ctx_status,
+    bool is_cp_ciot_enabled,
     int cp_ciot_enabled,
+    bool is_cp_only_ind,
     int cp_only_ind,
+    bool is_invoke_nef,
     int invoke_nef,
+    bool is_ma_request_ind,
     int ma_request_ind,
+    bool is_ma_nw_upgrade_ind,
     int ma_nw_upgrade_ind,
     OpenAPI_ref_to_binary_data_t *n2_sm_info,
     OpenAPI_n2_sm_info_type_e n2_sm_info_type,
@@ -72,15 +82,19 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
     OpenAPI_up_cnx_state_e up_cnx_state,
     OpenAPI_small_data_rate_status_t *small_data_rate_status,
     OpenAPI_apn_rate_status_t *apn_rate_status,
+    bool is_extended_nas_sm_timer_ind,
     int extended_nas_sm_timer_ind,
+    bool is_dl_data_waiting_ind,
     int dl_data_waiting_ind,
     OpenAPI_ddn_failure_subs_t *ddn_failure_subs,
+    bool is_smf_transfer_ind,
     int smf_transfer_ind,
     char *old_smf_id,
     char *old_sm_context_ref,
     OpenAPI_w_agf_info_t *w_agf_info,
     OpenAPI_tngf_info_t *tngf_info,
     OpenAPI_twif_info_t *twif_info,
+    bool is_ran_unchanged_ind,
     int ran_unchanged_ind
 )
 {
@@ -89,9 +103,11 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
         return NULL;
     }
     sm_context_create_data_local_var->supi = supi;
+    sm_context_create_data_local_var->is_unauthenticated_supi = is_unauthenticated_supi;
     sm_context_create_data_local_var->unauthenticated_supi = unauthenticated_supi;
     sm_context_create_data_local_var->pei = pei;
     sm_context_create_data_local_var->gpsi = gpsi;
+    sm_context_create_data_local_var->is_pdu_session_id = is_pdu_session_id;
     sm_context_create_data_local_var->pdu_session_id = pdu_session_id;
     sm_context_create_data_local_var->dnn = dnn;
     sm_context_create_data_local_var->selected_dnn = selected_dnn;
@@ -119,6 +135,7 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
     sm_context_create_data_local_var->additional_hsmf_id = additional_hsmf_id;
     sm_context_create_data_local_var->additional_smf_uri = additional_smf_uri;
     sm_context_create_data_local_var->additional_smf_id = additional_smf_id;
+    sm_context_create_data_local_var->is_old_pdu_session_id = is_old_pdu_session_id;
     sm_context_create_data_local_var->old_pdu_session_id = old_pdu_session_id;
     sm_context_create_data_local_var->pdu_sessions_activate_list = pdu_sessions_activate_list;
     sm_context_create_data_local_var->ue_eps_pdn_connection = ue_eps_pdn_connection;
@@ -134,14 +151,21 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
     sm_context_create_data_local_var->udm_group_id = udm_group_id;
     sm_context_create_data_local_var->routing_indicator = routing_indicator;
     sm_context_create_data_local_var->eps_interworking_ind = eps_interworking_ind;
+    sm_context_create_data_local_var->is_indirect_forwarding_flag = is_indirect_forwarding_flag;
     sm_context_create_data_local_var->indirect_forwarding_flag = indirect_forwarding_flag;
+    sm_context_create_data_local_var->is_direct_forwarding_flag = is_direct_forwarding_flag;
     sm_context_create_data_local_var->direct_forwarding_flag = direct_forwarding_flag;
     sm_context_create_data_local_var->target_id = target_id;
     sm_context_create_data_local_var->eps_bearer_ctx_status = eps_bearer_ctx_status;
+    sm_context_create_data_local_var->is_cp_ciot_enabled = is_cp_ciot_enabled;
     sm_context_create_data_local_var->cp_ciot_enabled = cp_ciot_enabled;
+    sm_context_create_data_local_var->is_cp_only_ind = is_cp_only_ind;
     sm_context_create_data_local_var->cp_only_ind = cp_only_ind;
+    sm_context_create_data_local_var->is_invoke_nef = is_invoke_nef;
     sm_context_create_data_local_var->invoke_nef = invoke_nef;
+    sm_context_create_data_local_var->is_ma_request_ind = is_ma_request_ind;
     sm_context_create_data_local_var->ma_request_ind = ma_request_ind;
+    sm_context_create_data_local_var->is_ma_nw_upgrade_ind = is_ma_nw_upgrade_ind;
     sm_context_create_data_local_var->ma_nw_upgrade_ind = ma_nw_upgrade_ind;
     sm_context_create_data_local_var->n2_sm_info = n2_sm_info;
     sm_context_create_data_local_var->n2_sm_info_type = n2_sm_info_type;
@@ -155,15 +179,19 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_create(
     sm_context_create_data_local_var->up_cnx_state = up_cnx_state;
     sm_context_create_data_local_var->small_data_rate_status = small_data_rate_status;
     sm_context_create_data_local_var->apn_rate_status = apn_rate_status;
+    sm_context_create_data_local_var->is_extended_nas_sm_timer_ind = is_extended_nas_sm_timer_ind;
     sm_context_create_data_local_var->extended_nas_sm_timer_ind = extended_nas_sm_timer_ind;
+    sm_context_create_data_local_var->is_dl_data_waiting_ind = is_dl_data_waiting_ind;
     sm_context_create_data_local_var->dl_data_waiting_ind = dl_data_waiting_ind;
     sm_context_create_data_local_var->ddn_failure_subs = ddn_failure_subs;
+    sm_context_create_data_local_var->is_smf_transfer_ind = is_smf_transfer_ind;
     sm_context_create_data_local_var->smf_transfer_ind = smf_transfer_ind;
     sm_context_create_data_local_var->old_smf_id = old_smf_id;
     sm_context_create_data_local_var->old_sm_context_ref = old_sm_context_ref;
     sm_context_create_data_local_var->w_agf_info = w_agf_info;
     sm_context_create_data_local_var->tngf_info = tngf_info;
     sm_context_create_data_local_var->twif_info = twif_info;
+    sm_context_create_data_local_var->is_ran_unchanged_ind = is_ran_unchanged_ind;
     sm_context_create_data_local_var->ran_unchanged_ind = ran_unchanged_ind;
 
     return sm_context_create_data_local_var;
@@ -264,7 +292,7 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
     }
     }
 
-    if (sm_context_create_data->unauthenticated_supi) {
+    if (sm_context_create_data->is_unauthenticated_supi) {
     if (cJSON_AddBoolToObject(item, "unauthenticatedSupi", sm_context_create_data->unauthenticated_supi) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [unauthenticated_supi]");
         goto end;
@@ -285,7 +313,7 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
     }
     }
 
-    if (sm_context_create_data->pdu_session_id) {
+    if (sm_context_create_data->is_pdu_session_id) {
     if (cJSON_AddNumberToObject(item, "pduSessionId", sm_context_create_data->pdu_session_id) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [pdu_session_id]");
         goto end;
@@ -544,7 +572,7 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
                     }
     }
 
-    if (sm_context_create_data->old_pdu_session_id) {
+    if (sm_context_create_data->is_old_pdu_session_id) {
     if (cJSON_AddNumberToObject(item, "oldPduSessionId", sm_context_create_data->old_pdu_session_id) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [old_pdu_session_id]");
         goto end;
@@ -677,14 +705,14 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
     }
     }
 
-    if (sm_context_create_data->indirect_forwarding_flag) {
+    if (sm_context_create_data->is_indirect_forwarding_flag) {
     if (cJSON_AddBoolToObject(item, "indirectForwardingFlag", sm_context_create_data->indirect_forwarding_flag) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [indirect_forwarding_flag]");
         goto end;
     }
     }
 
-    if (sm_context_create_data->direct_forwarding_flag) {
+    if (sm_context_create_data->is_direct_forwarding_flag) {
     if (cJSON_AddBoolToObject(item, "directForwardingFlag", sm_context_create_data->direct_forwarding_flag) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [direct_forwarding_flag]");
         goto end;
@@ -711,35 +739,35 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
     }
     }
 
-    if (sm_context_create_data->cp_ciot_enabled) {
+    if (sm_context_create_data->is_cp_ciot_enabled) {
     if (cJSON_AddBoolToObject(item, "cpCiotEnabled", sm_context_create_data->cp_ciot_enabled) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [cp_ciot_enabled]");
         goto end;
     }
     }
 
-    if (sm_context_create_data->cp_only_ind) {
+    if (sm_context_create_data->is_cp_only_ind) {
     if (cJSON_AddBoolToObject(item, "cpOnlyInd", sm_context_create_data->cp_only_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [cp_only_ind]");
         goto end;
     }
     }
 
-    if (sm_context_create_data->invoke_nef) {
+    if (sm_context_create_data->is_invoke_nef) {
     if (cJSON_AddBoolToObject(item, "invokeNef", sm_context_create_data->invoke_nef) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [invoke_nef]");
         goto end;
     }
     }
 
-    if (sm_context_create_data->ma_request_ind) {
+    if (sm_context_create_data->is_ma_request_ind) {
     if (cJSON_AddBoolToObject(item, "maRequestInd", sm_context_create_data->ma_request_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [ma_request_ind]");
         goto end;
     }
     }
 
-    if (sm_context_create_data->ma_nw_upgrade_ind) {
+    if (sm_context_create_data->is_ma_nw_upgrade_ind) {
     if (cJSON_AddBoolToObject(item, "maNwUpgradeInd", sm_context_create_data->ma_nw_upgrade_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [ma_nw_upgrade_ind]");
         goto end;
@@ -854,14 +882,14 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
     }
     }
 
-    if (sm_context_create_data->extended_nas_sm_timer_ind) {
+    if (sm_context_create_data->is_extended_nas_sm_timer_ind) {
     if (cJSON_AddBoolToObject(item, "extendedNasSmTimerInd", sm_context_create_data->extended_nas_sm_timer_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [extended_nas_sm_timer_ind]");
         goto end;
     }
     }
 
-    if (sm_context_create_data->dl_data_waiting_ind) {
+    if (sm_context_create_data->is_dl_data_waiting_ind) {
     if (cJSON_AddBoolToObject(item, "dlDataWaitingInd", sm_context_create_data->dl_data_waiting_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [dl_data_waiting_ind]");
         goto end;
@@ -881,7 +909,7 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
     }
     }
 
-    if (sm_context_create_data->smf_transfer_ind) {
+    if (sm_context_create_data->is_smf_transfer_ind) {
     if (cJSON_AddBoolToObject(item, "smfTransferInd", sm_context_create_data->smf_transfer_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [smf_transfer_ind]");
         goto end;
@@ -941,7 +969,7 @@ cJSON *OpenAPI_sm_context_create_data_convertToJSON(OpenAPI_sm_context_create_da
     }
     }
 
-    if (sm_context_create_data->ran_unchanged_ind) {
+    if (sm_context_create_data->is_ran_unchanged_ind) {
     if (cJSON_AddBoolToObject(item, "ranUnchangedInd", sm_context_create_data->ran_unchanged_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_create_data_convertToJSON() failed [ran_unchanged_ind]");
         goto end;
@@ -1721,9 +1749,11 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_parseFromJSON(c
 
     sm_context_create_data_local_var = OpenAPI_sm_context_create_data_create (
         supi ? ogs_strdup_or_assert(supi->valuestring) : NULL,
+        unauthenticated_supi ? true : false,
         unauthenticated_supi ? unauthenticated_supi->valueint : 0,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
         gpsi ? ogs_strdup_or_assert(gpsi->valuestring) : NULL,
+        pdu_session_id ? true : false,
         pdu_session_id ? pdu_session_id->valuedouble : 0,
         dnn ? ogs_strdup_or_assert(dnn->valuestring) : NULL,
         selected_dnn ? ogs_strdup_or_assert(selected_dnn->valuestring) : NULL,
@@ -1751,6 +1781,7 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_parseFromJSON(c
         additional_hsmf_id ? additional_hsmf_idList : NULL,
         additional_smf_uri ? additional_smf_uriList : NULL,
         additional_smf_id ? additional_smf_idList : NULL,
+        old_pdu_session_id ? true : false,
         old_pdu_session_id ? old_pdu_session_id->valuedouble : 0,
         pdu_sessions_activate_list ? pdu_sessions_activate_listList : NULL,
         ue_eps_pdn_connection ? ogs_strdup_or_assert(ue_eps_pdn_connection->valuestring) : NULL,
@@ -1766,14 +1797,21 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_parseFromJSON(c
         udm_group_id ? ogs_strdup_or_assert(udm_group_id->valuestring) : NULL,
         routing_indicator ? ogs_strdup_or_assert(routing_indicator->valuestring) : NULL,
         eps_interworking_ind ? eps_interworking_indVariable : 0,
+        indirect_forwarding_flag ? true : false,
         indirect_forwarding_flag ? indirect_forwarding_flag->valueint : 0,
+        direct_forwarding_flag ? true : false,
         direct_forwarding_flag ? direct_forwarding_flag->valueint : 0,
         target_id ? target_id_local_nonprim : NULL,
         eps_bearer_ctx_status ? ogs_strdup_or_assert(eps_bearer_ctx_status->valuestring) : NULL,
+        cp_ciot_enabled ? true : false,
         cp_ciot_enabled ? cp_ciot_enabled->valueint : 0,
+        cp_only_ind ? true : false,
         cp_only_ind ? cp_only_ind->valueint : 0,
+        invoke_nef ? true : false,
         invoke_nef ? invoke_nef->valueint : 0,
+        ma_request_ind ? true : false,
         ma_request_ind ? ma_request_ind->valueint : 0,
+        ma_nw_upgrade_ind ? true : false,
         ma_nw_upgrade_ind ? ma_nw_upgrade_ind->valueint : 0,
         n2_sm_info ? n2_sm_info_local_nonprim : NULL,
         n2_sm_info_type ? n2_sm_info_typeVariable : 0,
@@ -1787,15 +1825,19 @@ OpenAPI_sm_context_create_data_t *OpenAPI_sm_context_create_data_parseFromJSON(c
         up_cnx_state ? up_cnx_stateVariable : 0,
         small_data_rate_status ? small_data_rate_status_local_nonprim : NULL,
         apn_rate_status ? apn_rate_status_local_nonprim : NULL,
+        extended_nas_sm_timer_ind ? true : false,
         extended_nas_sm_timer_ind ? extended_nas_sm_timer_ind->valueint : 0,
+        dl_data_waiting_ind ? true : false,
         dl_data_waiting_ind ? dl_data_waiting_ind->valueint : 0,
         ddn_failure_subs ? ddn_failure_subs_local_nonprim : NULL,
+        smf_transfer_ind ? true : false,
         smf_transfer_ind ? smf_transfer_ind->valueint : 0,
         old_smf_id ? ogs_strdup_or_assert(old_smf_id->valuestring) : NULL,
         old_sm_context_ref ? ogs_strdup_or_assert(old_sm_context_ref->valuestring) : NULL,
         w_agf_info ? w_agf_info_local_nonprim : NULL,
         tngf_info ? tngf_info_local_nonprim : NULL,
         twif_info ? twif_info_local_nonprim : NULL,
+        ran_unchanged_ind ? true : false,
         ran_unchanged_ind ? ran_unchanged_ind->valueint : 0
     );
 

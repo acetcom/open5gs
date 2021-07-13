@@ -9,6 +9,7 @@ OpenAPI_sm_policy_context_data_t *OpenAPI_sm_policy_context_data_create(
     OpenAPI_acc_net_charging_address_t *charg_entity_addr,
     char *gpsi,
     char *supi,
+    bool is_invalid_supi,
     int invalid_supi,
     OpenAPI_list_t *inter_grp_ids,
     int pdu_session_id,
@@ -31,10 +32,15 @@ OpenAPI_sm_policy_context_data_t *OpenAPI_sm_policy_context_data_create(
     char *auth_prof_index,
     OpenAPI_subscribed_default_qos_t *subs_def_qos,
     OpenAPI_vplmn_qos_t *vplmn_qos,
+    bool is_num_of_pack_filter,
     int num_of_pack_filter,
+    bool is_online,
     int online,
+    bool is_offline,
     int offline,
+    bool is__3gpp_ps_data_off_status,
     int _3gpp_ps_data_off_status,
+    bool is_ref_qos_indication,
     int ref_qos_indication,
     OpenAPI_trace_data_t *trace_req,
     OpenAPI_snssai_t *slice_info,
@@ -57,6 +63,7 @@ OpenAPI_sm_policy_context_data_t *OpenAPI_sm_policy_context_data_create(
     sm_policy_context_data_local_var->charg_entity_addr = charg_entity_addr;
     sm_policy_context_data_local_var->gpsi = gpsi;
     sm_policy_context_data_local_var->supi = supi;
+    sm_policy_context_data_local_var->is_invalid_supi = is_invalid_supi;
     sm_policy_context_data_local_var->invalid_supi = invalid_supi;
     sm_policy_context_data_local_var->inter_grp_ids = inter_grp_ids;
     sm_policy_context_data_local_var->pdu_session_id = pdu_session_id;
@@ -79,10 +86,15 @@ OpenAPI_sm_policy_context_data_t *OpenAPI_sm_policy_context_data_create(
     sm_policy_context_data_local_var->auth_prof_index = auth_prof_index;
     sm_policy_context_data_local_var->subs_def_qos = subs_def_qos;
     sm_policy_context_data_local_var->vplmn_qos = vplmn_qos;
+    sm_policy_context_data_local_var->is_num_of_pack_filter = is_num_of_pack_filter;
     sm_policy_context_data_local_var->num_of_pack_filter = num_of_pack_filter;
+    sm_policy_context_data_local_var->is_online = is_online;
     sm_policy_context_data_local_var->online = online;
+    sm_policy_context_data_local_var->is_offline = is_offline;
     sm_policy_context_data_local_var->offline = offline;
+    sm_policy_context_data_local_var->is__3gpp_ps_data_off_status = is__3gpp_ps_data_off_status;
     sm_policy_context_data_local_var->_3gpp_ps_data_off_status = _3gpp_ps_data_off_status;
+    sm_policy_context_data_local_var->is_ref_qos_indication = is_ref_qos_indication;
     sm_policy_context_data_local_var->ref_qos_indication = ref_qos_indication;
     sm_policy_context_data_local_var->trace_req = trace_req;
     sm_policy_context_data_local_var->slice_info = slice_info;
@@ -194,7 +206,7 @@ cJSON *OpenAPI_sm_policy_context_data_convertToJSON(OpenAPI_sm_policy_context_da
         goto end;
     }
 
-    if (sm_policy_context_data->invalid_supi) {
+    if (sm_policy_context_data->is_invalid_supi) {
     if (cJSON_AddBoolToObject(item, "invalidSupi", sm_policy_context_data->invalid_supi) == NULL) {
         ogs_error("OpenAPI_sm_policy_context_data_convertToJSON() failed [invalid_supi]");
         goto end;
@@ -385,35 +397,35 @@ cJSON *OpenAPI_sm_policy_context_data_convertToJSON(OpenAPI_sm_policy_context_da
     }
     }
 
-    if (sm_policy_context_data->num_of_pack_filter) {
+    if (sm_policy_context_data->is_num_of_pack_filter) {
     if (cJSON_AddNumberToObject(item, "numOfPackFilter", sm_policy_context_data->num_of_pack_filter) == NULL) {
         ogs_error("OpenAPI_sm_policy_context_data_convertToJSON() failed [num_of_pack_filter]");
         goto end;
     }
     }
 
-    if (sm_policy_context_data->online) {
+    if (sm_policy_context_data->is_online) {
     if (cJSON_AddBoolToObject(item, "online", sm_policy_context_data->online) == NULL) {
         ogs_error("OpenAPI_sm_policy_context_data_convertToJSON() failed [online]");
         goto end;
     }
     }
 
-    if (sm_policy_context_data->offline) {
+    if (sm_policy_context_data->is_offline) {
     if (cJSON_AddBoolToObject(item, "offline", sm_policy_context_data->offline) == NULL) {
         ogs_error("OpenAPI_sm_policy_context_data_convertToJSON() failed [offline]");
         goto end;
     }
     }
 
-    if (sm_policy_context_data->_3gpp_ps_data_off_status) {
+    if (sm_policy_context_data->is__3gpp_ps_data_off_status) {
     if (cJSON_AddBoolToObject(item, "3gppPsDataOffStatus", sm_policy_context_data->_3gpp_ps_data_off_status) == NULL) {
         ogs_error("OpenAPI_sm_policy_context_data_convertToJSON() failed [_3gpp_ps_data_off_status]");
         goto end;
     }
     }
 
-    if (sm_policy_context_data->ref_qos_indication) {
+    if (sm_policy_context_data->is_ref_qos_indication) {
     if (cJSON_AddBoolToObject(item, "refQosIndication", sm_policy_context_data->ref_qos_indication) == NULL) {
         ogs_error("OpenAPI_sm_policy_context_data_convertToJSON() failed [ref_qos_indication]");
         goto end;
@@ -966,8 +978,10 @@ OpenAPI_sm_policy_context_data_t *OpenAPI_sm_policy_context_data_parseFromJSON(c
         charg_entity_addr ? charg_entity_addr_local_nonprim : NULL,
         gpsi ? ogs_strdup_or_assert(gpsi->valuestring) : NULL,
         ogs_strdup_or_assert(supi->valuestring),
+        invalid_supi ? true : false,
         invalid_supi ? invalid_supi->valueint : 0,
         inter_grp_ids ? inter_grp_idsList : NULL,
+        
         pdu_session_id->valuedouble,
         pdu_session_typeVariable,
         chargingcharacteristics ? ogs_strdup_or_assert(chargingcharacteristics->valuestring) : NULL,
@@ -988,10 +1002,15 @@ OpenAPI_sm_policy_context_data_t *OpenAPI_sm_policy_context_data_parseFromJSON(c
         auth_prof_index ? ogs_strdup_or_assert(auth_prof_index->valuestring) : NULL,
         subs_def_qos ? subs_def_qos_local_nonprim : NULL,
         vplmn_qos ? vplmn_qos_local_nonprim : NULL,
+        num_of_pack_filter ? true : false,
         num_of_pack_filter ? num_of_pack_filter->valuedouble : 0,
+        online ? true : false,
         online ? online->valueint : 0,
+        offline ? true : false,
         offline ? offline->valueint : 0,
+        _3gpp_ps_data_off_status ? true : false,
         _3gpp_ps_data_off_status ? _3gpp_ps_data_off_status->valueint : 0,
+        ref_qos_indication ? true : false,
         ref_qos_indication ? ref_qos_indication->valueint : 0,
         trace_req ? trace_req_local_nonprim : NULL,
         slice_info_local_nonprim,

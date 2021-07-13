@@ -52,7 +52,11 @@ OpenAPI_nf_profile_t *ogs_nnrf_nfm_build_nf_profile(
                 OpenAPI_nf_status_ToString(nf_instance->nf_status),
                 nf_instance->num_of_ipv4, nf_instance->num_of_ipv6);
 
-    NFProfile->heart_beat_timer = nf_instance->time.heartbeat_interval;
+    if (nf_instance->time.heartbeat_interval) {
+        NFProfile->is_heart_beat_timer = true;
+        NFProfile->heart_beat_timer = nf_instance->time.heartbeat_interval;
+    }
+    NFProfile->is_nf_profile_changes_support_ind = true;
     NFProfile->nf_profile_changes_support_ind = true;
 
     if (strlen(nf_instance->fqdn)) {
@@ -185,6 +189,7 @@ OpenAPI_nf_profile_t *ogs_nnrf_nfm_build_nf_profile(
                     IpEndPoint->ipv6_address = ogs_ipstrdup(ipv6);
                     ogs_expect_or_return_val(IpEndPoint->ipv6_address, NULL);
                 }
+                IpEndPoint->is_port = true;
                 IpEndPoint->port = nf_service->addr[i].port;
                 OpenAPI_list_add(IpEndPointList, IpEndPoint);
             }

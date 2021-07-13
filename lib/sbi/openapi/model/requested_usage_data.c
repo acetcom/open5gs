@@ -6,6 +6,7 @@
 
 OpenAPI_requested_usage_data_t *OpenAPI_requested_usage_data_create(
     OpenAPI_list_t *ref_um_ids,
+    bool is_all_um_ids,
     int all_um_ids
 )
 {
@@ -14,6 +15,7 @@ OpenAPI_requested_usage_data_t *OpenAPI_requested_usage_data_create(
         return NULL;
     }
     requested_usage_data_local_var->ref_um_ids = ref_um_ids;
+    requested_usage_data_local_var->is_all_um_ids = is_all_um_ids;
     requested_usage_data_local_var->all_um_ids = all_um_ids;
 
     return requested_usage_data_local_var;
@@ -58,7 +60,7 @@ cJSON *OpenAPI_requested_usage_data_convertToJSON(OpenAPI_requested_usage_data_t
                     }
     }
 
-    if (requested_usage_data->all_um_ids) {
+    if (requested_usage_data->is_all_um_ids) {
     if (cJSON_AddBoolToObject(item, "allUmIds", requested_usage_data->all_um_ids) == NULL) {
         ogs_error("OpenAPI_requested_usage_data_convertToJSON() failed [all_um_ids]");
         goto end;
@@ -103,6 +105,7 @@ OpenAPI_requested_usage_data_t *OpenAPI_requested_usage_data_parseFromJSON(cJSON
 
     requested_usage_data_local_var = OpenAPI_requested_usage_data_create (
         ref_um_ids ? ref_um_idsList : NULL,
+        all_um_ids ? true : false,
         all_um_ids ? all_um_ids->valueint : 0
     );
 

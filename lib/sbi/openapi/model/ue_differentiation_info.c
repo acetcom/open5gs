@@ -6,6 +6,7 @@
 
 OpenAPI_ue_differentiation_info_t *OpenAPI_ue_differentiation_info_create(
     OpenAPI_periodic_communication_indicator_e periodic_com_ind,
+    bool is_periodic_time,
     int periodic_time,
     OpenAPI_scheduled_communication_time_t *scheduled_com_time,
     OpenAPI_stationary_indication_e stationary_ind,
@@ -19,6 +20,7 @@ OpenAPI_ue_differentiation_info_t *OpenAPI_ue_differentiation_info_create(
         return NULL;
     }
     ue_differentiation_info_local_var->periodic_com_ind = periodic_com_ind;
+    ue_differentiation_info_local_var->is_periodic_time = is_periodic_time;
     ue_differentiation_info_local_var->periodic_time = periodic_time;
     ue_differentiation_info_local_var->scheduled_com_time = scheduled_com_time;
     ue_differentiation_info_local_var->stationary_ind = stationary_ind;
@@ -58,7 +60,7 @@ cJSON *OpenAPI_ue_differentiation_info_convertToJSON(OpenAPI_ue_differentiation_
     }
     }
 
-    if (ue_differentiation_info->periodic_time) {
+    if (ue_differentiation_info->is_periodic_time) {
     if (cJSON_AddNumberToObject(item, "periodicTime", ue_differentiation_info->periodic_time) == NULL) {
         ogs_error("OpenAPI_ue_differentiation_info_convertToJSON() failed [periodic_time]");
         goto end;
@@ -186,6 +188,7 @@ OpenAPI_ue_differentiation_info_t *OpenAPI_ue_differentiation_info_parseFromJSON
 
     ue_differentiation_info_local_var = OpenAPI_ue_differentiation_info_create (
         periodic_com_ind ? periodic_com_indVariable : 0,
+        periodic_time ? true : false,
         periodic_time ? periodic_time->valuedouble : 0,
         scheduled_com_time ? scheduled_com_time_local_nonprim : NULL,
         stationary_ind ? stationary_indVariable : 0,

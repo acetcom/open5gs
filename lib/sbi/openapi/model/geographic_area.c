@@ -318,15 +318,23 @@ OpenAPI_geographic_area_t *OpenAPI_geographic_area_parseFromJSON(cJSON *geograph
     geographic_area_local_var = OpenAPI_geographic_area_create (
         shape_local_nonprim,
         point_local_nonprim,
+        
         uncertainty->valuedouble,
         uncertainty_ellipse_local_nonprim,
+        
         confidence->valuedouble,
         point_listList,
+        
         altitude->valuedouble,
+        
         uncertainty_altitude->valuedouble,
+        
         inner_radius->valuedouble,
+        
         uncertainty_radius->valuedouble,
+        
         offset_angle->valuedouble,
+        
         included_angle->valuedouble
     );
 

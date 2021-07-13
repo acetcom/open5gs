@@ -6,7 +6,9 @@
 
 OpenAPI_cn_assisted_ran_para_t *OpenAPI_cn_assisted_ran_para_create(
     OpenAPI_stationary_indication_e stationary_indication,
+    bool is_communication_duration_time,
     int communication_duration_time,
+    bool is_periodic_time,
     int periodic_time,
     OpenAPI_scheduled_communication_time_t *scheduled_communication_time,
     OpenAPI_scheduled_communication_type_e scheduled_communication_type,
@@ -19,7 +21,9 @@ OpenAPI_cn_assisted_ran_para_t *OpenAPI_cn_assisted_ran_para_create(
         return NULL;
     }
     cn_assisted_ran_para_local_var->stationary_indication = stationary_indication;
+    cn_assisted_ran_para_local_var->is_communication_duration_time = is_communication_duration_time;
     cn_assisted_ran_para_local_var->communication_duration_time = communication_duration_time;
+    cn_assisted_ran_para_local_var->is_periodic_time = is_periodic_time;
     cn_assisted_ran_para_local_var->periodic_time = periodic_time;
     cn_assisted_ran_para_local_var->scheduled_communication_time = scheduled_communication_time;
     cn_assisted_ran_para_local_var->scheduled_communication_type = scheduled_communication_type;
@@ -57,14 +61,14 @@ cJSON *OpenAPI_cn_assisted_ran_para_convertToJSON(OpenAPI_cn_assisted_ran_para_t
     }
     }
 
-    if (cn_assisted_ran_para->communication_duration_time) {
+    if (cn_assisted_ran_para->is_communication_duration_time) {
     if (cJSON_AddNumberToObject(item, "communicationDurationTime", cn_assisted_ran_para->communication_duration_time) == NULL) {
         ogs_error("OpenAPI_cn_assisted_ran_para_convertToJSON() failed [communication_duration_time]");
         goto end;
     }
     }
 
-    if (cn_assisted_ran_para->periodic_time) {
+    if (cn_assisted_ran_para->is_periodic_time) {
     if (cJSON_AddNumberToObject(item, "periodicTime", cn_assisted_ran_para->periodic_time) == NULL) {
         ogs_error("OpenAPI_cn_assisted_ran_para_convertToJSON() failed [periodic_time]");
         goto end;
@@ -185,7 +189,9 @@ OpenAPI_cn_assisted_ran_para_t *OpenAPI_cn_assisted_ran_para_parseFromJSON(cJSON
 
     cn_assisted_ran_para_local_var = OpenAPI_cn_assisted_ran_para_create (
         stationary_indication ? stationary_indicationVariable : 0,
+        communication_duration_time ? true : false,
         communication_duration_time ? communication_duration_time->valuedouble : 0,
+        periodic_time ? true : false,
         periodic_time ? periodic_time->valuedouble : 0,
         scheduled_communication_time ? scheduled_communication_time_local_nonprim : NULL,
         scheduled_communication_type ? scheduled_communication_typeVariable : 0,

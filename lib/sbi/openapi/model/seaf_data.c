@@ -8,8 +8,11 @@ OpenAPI_seaf_data_t *OpenAPI_seaf_data_create(
     OpenAPI_ng_ksi_t *ng_ksi,
     OpenAPI_key_amf_t *key_amf,
     char *nh,
+    bool is_ncc,
     int ncc,
+    bool is_key_amf_change_ind,
     int key_amf_change_ind,
+    bool is_key_amf_h_derivation_ind,
     int key_amf_h_derivation_ind
 )
 {
@@ -20,8 +23,11 @@ OpenAPI_seaf_data_t *OpenAPI_seaf_data_create(
     seaf_data_local_var->ng_ksi = ng_ksi;
     seaf_data_local_var->key_amf = key_amf;
     seaf_data_local_var->nh = nh;
+    seaf_data_local_var->is_ncc = is_ncc;
     seaf_data_local_var->ncc = ncc;
+    seaf_data_local_var->is_key_amf_change_ind = is_key_amf_change_ind;
     seaf_data_local_var->key_amf_change_ind = key_amf_change_ind;
+    seaf_data_local_var->is_key_amf_h_derivation_ind = is_key_amf_h_derivation_ind;
     seaf_data_local_var->key_amf_h_derivation_ind = key_amf_h_derivation_ind;
 
     return seaf_data_local_var;
@@ -78,21 +84,21 @@ cJSON *OpenAPI_seaf_data_convertToJSON(OpenAPI_seaf_data_t *seaf_data)
     }
     }
 
-    if (seaf_data->ncc) {
+    if (seaf_data->is_ncc) {
     if (cJSON_AddNumberToObject(item, "ncc", seaf_data->ncc) == NULL) {
         ogs_error("OpenAPI_seaf_data_convertToJSON() failed [ncc]");
         goto end;
     }
     }
 
-    if (seaf_data->key_amf_change_ind) {
+    if (seaf_data->is_key_amf_change_ind) {
     if (cJSON_AddBoolToObject(item, "keyAmfChangeInd", seaf_data->key_amf_change_ind) == NULL) {
         ogs_error("OpenAPI_seaf_data_convertToJSON() failed [key_amf_change_ind]");
         goto end;
     }
     }
 
-    if (seaf_data->key_amf_h_derivation_ind) {
+    if (seaf_data->is_key_amf_h_derivation_ind) {
     if (cJSON_AddBoolToObject(item, "keyAmfHDerivationInd", seaf_data->key_amf_h_derivation_ind) == NULL) {
         ogs_error("OpenAPI_seaf_data_convertToJSON() failed [key_amf_h_derivation_ind]");
         goto end;
@@ -166,8 +172,11 @@ OpenAPI_seaf_data_t *OpenAPI_seaf_data_parseFromJSON(cJSON *seaf_dataJSON)
         ng_ksi_local_nonprim,
         key_amf_local_nonprim,
         nh ? ogs_strdup_or_assert(nh->valuestring) : NULL,
+        ncc ? true : false,
         ncc ? ncc->valuedouble : 0,
+        key_amf_change_ind ? true : false,
         key_amf_change_ind ? key_amf_change_ind->valueint : 0,
+        key_amf_h_derivation_ind ? true : false,
         key_amf_h_derivation_ind ? key_amf_h_derivation_ind->valueint : 0
     );
 

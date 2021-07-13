@@ -13,6 +13,7 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_create(
     OpenAPI_reflective_qo_s_attribute_e rqa,
     OpenAPI_additional_qos_flow_info_e additional_qos_flow_info,
     OpenAPI_qos_monitoring_req_e qos_monitoring_req,
+    bool is_qos_rep_period,
     int qos_rep_period
 )
 {
@@ -28,6 +29,7 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_create(
     qos_flow_profile_local_var->rqa = rqa;
     qos_flow_profile_local_var->additional_qos_flow_info = additional_qos_flow_info;
     qos_flow_profile_local_var->qos_monitoring_req = qos_monitoring_req;
+    qos_flow_profile_local_var->is_qos_rep_period = is_qos_rep_period;
     qos_flow_profile_local_var->qos_rep_period = qos_rep_period;
 
     return qos_flow_profile_local_var;
@@ -134,7 +136,7 @@ cJSON *OpenAPI_qos_flow_profile_convertToJSON(OpenAPI_qos_flow_profile_t *qos_fl
     }
     }
 
-    if (qos_flow_profile->qos_rep_period) {
+    if (qos_flow_profile->is_qos_rep_period) {
     if (cJSON_AddNumberToObject(item, "qosRepPeriod", qos_flow_profile->qos_rep_period) == NULL) {
         ogs_error("OpenAPI_qos_flow_profile_convertToJSON() failed [qos_rep_period]");
         goto end;
@@ -231,6 +233,7 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_parseFromJSON(cJSON *qos_fl
     }
 
     qos_flow_profile_local_var = OpenAPI_qos_flow_profile_create (
+        
         _5qi->valuedouble,
         non_dynamic5_qi ? non_dynamic5_qi_local_nonprim : NULL,
         dynamic5_qi ? dynamic5_qi_local_nonprim : NULL,
@@ -239,6 +242,7 @@ OpenAPI_qos_flow_profile_t *OpenAPI_qos_flow_profile_parseFromJSON(cJSON *qos_fl
         rqa ? rqaVariable : 0,
         additional_qos_flow_info ? additional_qos_flow_infoVariable : 0,
         qos_monitoring_req ? qos_monitoring_reqVariable : 0,
+        qos_rep_period ? true : false,
         qos_rep_period ? qos_rep_period->valuedouble : 0
     );
 

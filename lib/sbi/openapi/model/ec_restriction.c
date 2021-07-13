@@ -150,6 +150,7 @@ OpenAPI_ec_restriction_t *OpenAPI_ec_restriction_parseFromJSON(cJSON *ec_restric
 
     ec_restriction_local_var = OpenAPI_ec_restriction_create (
         ogs_strdup_or_assert(af_instance_id->valuestring),
+        
         reference_id->valuedouble,
         plmn_ec_infos ? plmn_ec_infosList : NULL,
         mtc_provider_information ? ogs_strdup_or_assert(mtc_provider_information->valuestring) : NULL

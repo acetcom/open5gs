@@ -17,6 +17,7 @@ OpenAPI_pdu_session_management_data_t *OpenAPI_pdu_session_management_data_creat
     OpenAPI_pdu_session_type_e pdu_sess_type,
     char *ip_addr_ts,
     char *dnn,
+    bool is_pdu_session_id,
     int pdu_session_id,
     char *supp_feat
 )
@@ -37,6 +38,7 @@ OpenAPI_pdu_session_management_data_t *OpenAPI_pdu_session_management_data_creat
     pdu_session_management_data_local_var->pdu_sess_type = pdu_sess_type;
     pdu_session_management_data_local_var->ip_addr_ts = ip_addr_ts;
     pdu_session_management_data_local_var->dnn = dnn;
+    pdu_session_management_data_local_var->is_pdu_session_id = is_pdu_session_id;
     pdu_session_management_data_local_var->pdu_session_id = pdu_session_id;
     pdu_session_management_data_local_var->supp_feat = supp_feat;
 
@@ -204,7 +206,7 @@ cJSON *OpenAPI_pdu_session_management_data_convertToJSON(OpenAPI_pdu_session_man
     }
     }
 
-    if (pdu_session_management_data->pdu_session_id) {
+    if (pdu_session_management_data->is_pdu_session_id) {
     if (cJSON_AddNumberToObject(item, "pduSessionId", pdu_session_management_data->pdu_session_id) == NULL) {
         ogs_error("OpenAPI_pdu_session_management_data_convertToJSON() failed [pdu_session_id]");
         goto end;
@@ -400,6 +402,7 @@ OpenAPI_pdu_session_management_data_t *OpenAPI_pdu_session_management_data_parse
         pdu_sess_type ? pdu_sess_typeVariable : 0,
         ip_addr_ts ? ogs_strdup_or_assert(ip_addr_ts->valuestring) : NULL,
         dnn ? ogs_strdup_or_assert(dnn->valuestring) : NULL,
+        pdu_session_id ? true : false,
         pdu_session_id ? pdu_session_id->valuedouble : 0,
         supp_feat ? ogs_strdup_or_assert(supp_feat->valuestring) : NULL
     );

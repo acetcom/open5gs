@@ -6,6 +6,7 @@
 
 OpenAPI_amf_non3_gpp_access_registration_modification_t *OpenAPI_amf_non3_gpp_access_registration_modification_create(
     OpenAPI_guami_t *guami,
+    bool is_purge_flag,
     int purge_flag,
     char *pei,
     OpenAPI_ims_vo_ps_e ims_vo_ps,
@@ -17,6 +18,7 @@ OpenAPI_amf_non3_gpp_access_registration_modification_t *OpenAPI_amf_non3_gpp_ac
         return NULL;
     }
     amf_non3_gpp_access_registration_modification_local_var->guami = guami;
+    amf_non3_gpp_access_registration_modification_local_var->is_purge_flag = is_purge_flag;
     amf_non3_gpp_access_registration_modification_local_var->purge_flag = purge_flag;
     amf_non3_gpp_access_registration_modification_local_var->pei = pei;
     amf_non3_gpp_access_registration_modification_local_var->ims_vo_ps = ims_vo_ps;
@@ -61,7 +63,7 @@ cJSON *OpenAPI_amf_non3_gpp_access_registration_modification_convertToJSON(OpenA
         goto end;
     }
 
-    if (amf_non3_gpp_access_registration_modification->purge_flag) {
+    if (amf_non3_gpp_access_registration_modification->is_purge_flag) {
     if (cJSON_AddBoolToObject(item, "purgeFlag", amf_non3_gpp_access_registration_modification->purge_flag) == NULL) {
         ogs_error("OpenAPI_amf_non3_gpp_access_registration_modification_convertToJSON() failed [purge_flag]");
         goto end;
@@ -173,6 +175,7 @@ OpenAPI_amf_non3_gpp_access_registration_modification_t *OpenAPI_amf_non3_gpp_ac
 
     amf_non3_gpp_access_registration_modification_local_var = OpenAPI_amf_non3_gpp_access_registration_modification_create (
         guami_local_nonprim,
+        purge_flag ? true : false,
         purge_flag ? purge_flag->valueint : 0,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
         ims_vo_ps ? ims_vo_psVariable : 0,

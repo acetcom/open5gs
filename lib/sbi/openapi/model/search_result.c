@@ -5,9 +5,11 @@
 #include "search_result.h"
 
 OpenAPI_search_result_t *OpenAPI_search_result_create(
+    bool is_validity_period,
     int validity_period,
     OpenAPI_list_t *nf_instances,
     char *search_id,
+    bool is_num_nf_inst_complete,
     int num_nf_inst_complete,
     OpenAPI_preferred_search_t *preferred_search,
     char *nrf_supported_features
@@ -17,9 +19,11 @@ OpenAPI_search_result_t *OpenAPI_search_result_create(
     if (!search_result_local_var) {
         return NULL;
     }
+    search_result_local_var->is_validity_period = is_validity_period;
     search_result_local_var->validity_period = validity_period;
     search_result_local_var->nf_instances = nf_instances;
     search_result_local_var->search_id = search_id;
+    search_result_local_var->is_num_nf_inst_complete = is_num_nf_inst_complete;
     search_result_local_var->num_nf_inst_complete = num_nf_inst_complete;
     search_result_local_var->preferred_search = preferred_search;
     search_result_local_var->nrf_supported_features = nrf_supported_features;
@@ -53,7 +57,7 @@ cJSON *OpenAPI_search_result_convertToJSON(OpenAPI_search_result_t *search_resul
     }
 
     item = cJSON_CreateObject();
-    if (search_result->validity_period) {
+    if (search_result->is_validity_period) {
     if (cJSON_AddNumberToObject(item, "validityPeriod", search_result->validity_period) == NULL) {
         ogs_error("OpenAPI_search_result_convertToJSON() failed [validity_period]");
         goto end;
@@ -85,7 +89,7 @@ cJSON *OpenAPI_search_result_convertToJSON(OpenAPI_search_result_t *search_resul
     }
     }
 
-    if (search_result->num_nf_inst_complete) {
+    if (search_result->is_num_nf_inst_complete) {
     if (cJSON_AddNumberToObject(item, "numNfInstComplete", search_result->num_nf_inst_complete) == NULL) {
         ogs_error("OpenAPI_search_result_convertToJSON() failed [num_nf_inst_complete]");
         goto end;
@@ -189,9 +193,11 @@ OpenAPI_search_result_t *OpenAPI_search_result_parseFromJSON(cJSON *search_resul
     }
 
     search_result_local_var = OpenAPI_search_result_create (
+        validity_period ? true : false,
         validity_period ? validity_period->valuedouble : 0,
         nf_instancesList,
         search_id ? ogs_strdup_or_assert(search_id->valuestring) : NULL,
+        num_nf_inst_complete ? true : false,
         num_nf_inst_complete ? num_nf_inst_complete->valuedouble : 0,
         preferred_search ? preferred_search_local_nonprim : NULL,
         nrf_supported_features ? ogs_strdup_or_assert(nrf_supported_features->valuestring) : NULL

@@ -27,8 +27,10 @@ OpenAPI_sm_policy_update_context_data_t *OpenAPI_sm_policy_update_context_data_c
     char *auth_prof_index,
     OpenAPI_subscribed_default_qos_t *subs_def_qos,
     OpenAPI_vplmn_qos_t *vplmn_qos,
+    bool is_num_of_pack_filter,
     int num_of_pack_filter,
     OpenAPI_list_t *accu_usage_reports,
+    bool is__3gpp_ps_data_off_status,
     int _3gpp_ps_data_off_status,
     OpenAPI_list_t *app_detection_infos,
     OpenAPI_list_t *rule_reports,
@@ -38,6 +40,7 @@ OpenAPI_sm_policy_update_context_data_t *OpenAPI_sm_policy_update_context_data_c
     char *user_location_info_time,
     OpenAPI_list_t* rep_pra_infos,
     OpenAPI_ue_initiated_resource_request_t *ue_init_res_req,
+    bool is_ref_qos_indication,
     int ref_qos_indication,
     OpenAPI_qos_flow_usage_e qos_flow_usage,
     OpenAPI_credit_management_status_e credit_manage_status,
@@ -83,8 +86,10 @@ OpenAPI_sm_policy_update_context_data_t *OpenAPI_sm_policy_update_context_data_c
     sm_policy_update_context_data_local_var->auth_prof_index = auth_prof_index;
     sm_policy_update_context_data_local_var->subs_def_qos = subs_def_qos;
     sm_policy_update_context_data_local_var->vplmn_qos = vplmn_qos;
+    sm_policy_update_context_data_local_var->is_num_of_pack_filter = is_num_of_pack_filter;
     sm_policy_update_context_data_local_var->num_of_pack_filter = num_of_pack_filter;
     sm_policy_update_context_data_local_var->accu_usage_reports = accu_usage_reports;
+    sm_policy_update_context_data_local_var->is__3gpp_ps_data_off_status = is__3gpp_ps_data_off_status;
     sm_policy_update_context_data_local_var->_3gpp_ps_data_off_status = _3gpp_ps_data_off_status;
     sm_policy_update_context_data_local_var->app_detection_infos = app_detection_infos;
     sm_policy_update_context_data_local_var->rule_reports = rule_reports;
@@ -94,6 +99,7 @@ OpenAPI_sm_policy_update_context_data_t *OpenAPI_sm_policy_update_context_data_c
     sm_policy_update_context_data_local_var->user_location_info_time = user_location_info_time;
     sm_policy_update_context_data_local_var->rep_pra_infos = rep_pra_infos;
     sm_policy_update_context_data_local_var->ue_init_res_req = ue_init_res_req;
+    sm_policy_update_context_data_local_var->is_ref_qos_indication = is_ref_qos_indication;
     sm_policy_update_context_data_local_var->ref_qos_indication = ref_qos_indication;
     sm_policy_update_context_data_local_var->qos_flow_usage = qos_flow_usage;
     sm_policy_update_context_data_local_var->credit_manage_status = credit_manage_status;
@@ -431,7 +437,7 @@ cJSON *OpenAPI_sm_policy_update_context_data_convertToJSON(OpenAPI_sm_policy_upd
     }
     }
 
-    if (sm_policy_update_context_data->num_of_pack_filter) {
+    if (sm_policy_update_context_data->is_num_of_pack_filter) {
     if (cJSON_AddNumberToObject(item, "numOfPackFilter", sm_policy_update_context_data->num_of_pack_filter) == NULL) {
         ogs_error("OpenAPI_sm_policy_update_context_data_convertToJSON() failed [num_of_pack_filter]");
         goto end;
@@ -458,7 +464,7 @@ cJSON *OpenAPI_sm_policy_update_context_data_convertToJSON(OpenAPI_sm_policy_upd
     }
     }
 
-    if (sm_policy_update_context_data->_3gpp_ps_data_off_status) {
+    if (sm_policy_update_context_data->is__3gpp_ps_data_off_status) {
     if (cJSON_AddBoolToObject(item, "3gppPsDataOffStatus", sm_policy_update_context_data->_3gpp_ps_data_off_status) == NULL) {
         ogs_error("OpenAPI_sm_policy_update_context_data_convertToJSON() failed [_3gpp_ps_data_off_status]");
         goto end;
@@ -606,7 +612,7 @@ cJSON *OpenAPI_sm_policy_update_context_data_convertToJSON(OpenAPI_sm_policy_upd
     }
     }
 
-    if (sm_policy_update_context_data->ref_qos_indication) {
+    if (sm_policy_update_context_data->is_ref_qos_indication) {
     if (cJSON_AddBoolToObject(item, "refQosIndication", sm_policy_update_context_data->ref_qos_indication) == NULL) {
         ogs_error("OpenAPI_sm_policy_update_context_data_convertToJSON() failed [ref_qos_indication]");
         goto end;
@@ -1491,8 +1497,10 @@ OpenAPI_sm_policy_update_context_data_t *OpenAPI_sm_policy_update_context_data_p
         auth_prof_index ? ogs_strdup_or_assert(auth_prof_index->valuestring) : NULL,
         subs_def_qos ? subs_def_qos_local_nonprim : NULL,
         vplmn_qos ? vplmn_qos_local_nonprim : NULL,
+        num_of_pack_filter ? true : false,
         num_of_pack_filter ? num_of_pack_filter->valuedouble : 0,
         accu_usage_reports ? accu_usage_reportsList : NULL,
+        _3gpp_ps_data_off_status ? true : false,
         _3gpp_ps_data_off_status ? _3gpp_ps_data_off_status->valueint : 0,
         app_detection_infos ? app_detection_infosList : NULL,
         rule_reports ? rule_reportsList : NULL,
@@ -1502,6 +1510,7 @@ OpenAPI_sm_policy_update_context_data_t *OpenAPI_sm_policy_update_context_data_p
         user_location_info_time ? ogs_strdup_or_assert(user_location_info_time->valuestring) : NULL,
         rep_pra_infos ? rep_pra_infosList : NULL,
         ue_init_res_req ? ue_init_res_req_local_nonprim : NULL,
+        ref_qos_indication ? true : false,
         ref_qos_indication ? ref_qos_indication->valueint : 0,
         qos_flow_usage ? qos_flow_usageVariable : 0,
         credit_manage_status ? credit_manage_statusVariable : 0,

@@ -103,6 +103,7 @@ OpenAPI_flow_info_t *OpenAPI_flow_info_parseFromJSON(cJSON *flow_infoJSON)
     }
 
     flow_info_local_var = OpenAPI_flow_info_create (
+        
         flow_id->valuedouble,
         flow_descriptions ? flow_descriptionsList : NULL
     );

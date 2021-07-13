@@ -7,6 +7,7 @@
 OpenAPI_amf_non3_gpp_access_registration_t *OpenAPI_amf_non3_gpp_access_registration_create(
     char *amf_instance_id,
     char *supported_features,
+    bool is_purge_flag,
     int purge_flag,
     char *pei,
     OpenAPI_ims_vo_ps_e ims_vo_ps,
@@ -17,11 +18,13 @@ OpenAPI_amf_non3_gpp_access_registration_t *OpenAPI_amf_non3_gpp_access_registra
     OpenAPI_guami_t *guami,
     OpenAPI_list_t *backup_amf_info,
     OpenAPI_rat_type_e rat_type,
+    bool is_urrp_indicator,
     int urrp_indicator,
     char *amf_ee_subscription_id,
     char *registration_time,
     OpenAPI_vgmlc_address_t *vgmlc_address,
     OpenAPI_context_info_t *context_info,
+    bool is_no_ee_subscription_ind,
     int no_ee_subscription_ind,
     char *supi
 )
@@ -32,6 +35,7 @@ OpenAPI_amf_non3_gpp_access_registration_t *OpenAPI_amf_non3_gpp_access_registra
     }
     amf_non3_gpp_access_registration_local_var->amf_instance_id = amf_instance_id;
     amf_non3_gpp_access_registration_local_var->supported_features = supported_features;
+    amf_non3_gpp_access_registration_local_var->is_purge_flag = is_purge_flag;
     amf_non3_gpp_access_registration_local_var->purge_flag = purge_flag;
     amf_non3_gpp_access_registration_local_var->pei = pei;
     amf_non3_gpp_access_registration_local_var->ims_vo_ps = ims_vo_ps;
@@ -42,11 +46,13 @@ OpenAPI_amf_non3_gpp_access_registration_t *OpenAPI_amf_non3_gpp_access_registra
     amf_non3_gpp_access_registration_local_var->guami = guami;
     amf_non3_gpp_access_registration_local_var->backup_amf_info = backup_amf_info;
     amf_non3_gpp_access_registration_local_var->rat_type = rat_type;
+    amf_non3_gpp_access_registration_local_var->is_urrp_indicator = is_urrp_indicator;
     amf_non3_gpp_access_registration_local_var->urrp_indicator = urrp_indicator;
     amf_non3_gpp_access_registration_local_var->amf_ee_subscription_id = amf_ee_subscription_id;
     amf_non3_gpp_access_registration_local_var->registration_time = registration_time;
     amf_non3_gpp_access_registration_local_var->vgmlc_address = vgmlc_address;
     amf_non3_gpp_access_registration_local_var->context_info = context_info;
+    amf_non3_gpp_access_registration_local_var->is_no_ee_subscription_ind = is_no_ee_subscription_ind;
     amf_non3_gpp_access_registration_local_var->no_ee_subscription_ind = no_ee_subscription_ind;
     amf_non3_gpp_access_registration_local_var->supi = supi;
 
@@ -101,7 +107,7 @@ cJSON *OpenAPI_amf_non3_gpp_access_registration_convertToJSON(OpenAPI_amf_non3_g
     }
     }
 
-    if (amf_non3_gpp_access_registration->purge_flag) {
+    if (amf_non3_gpp_access_registration->is_purge_flag) {
     if (cJSON_AddBoolToObject(item, "purgeFlag", amf_non3_gpp_access_registration->purge_flag) == NULL) {
         ogs_error("OpenAPI_amf_non3_gpp_access_registration_convertToJSON() failed [purge_flag]");
         goto end;
@@ -182,7 +188,7 @@ cJSON *OpenAPI_amf_non3_gpp_access_registration_convertToJSON(OpenAPI_amf_non3_g
         goto end;
     }
 
-    if (amf_non3_gpp_access_registration->urrp_indicator) {
+    if (amf_non3_gpp_access_registration->is_urrp_indicator) {
     if (cJSON_AddBoolToObject(item, "urrpIndicator", amf_non3_gpp_access_registration->urrp_indicator) == NULL) {
         ogs_error("OpenAPI_amf_non3_gpp_access_registration_convertToJSON() failed [urrp_indicator]");
         goto end;
@@ -229,7 +235,7 @@ cJSON *OpenAPI_amf_non3_gpp_access_registration_convertToJSON(OpenAPI_amf_non3_g
     }
     }
 
-    if (amf_non3_gpp_access_registration->no_ee_subscription_ind) {
+    if (amf_non3_gpp_access_registration->is_no_ee_subscription_ind) {
     if (cJSON_AddBoolToObject(item, "noEeSubscriptionInd", amf_non3_gpp_access_registration->no_ee_subscription_ind) == NULL) {
         ogs_error("OpenAPI_amf_non3_gpp_access_registration_convertToJSON() failed [no_ee_subscription_ind]");
         goto end;
@@ -451,6 +457,7 @@ OpenAPI_amf_non3_gpp_access_registration_t *OpenAPI_amf_non3_gpp_access_registra
     amf_non3_gpp_access_registration_local_var = OpenAPI_amf_non3_gpp_access_registration_create (
         ogs_strdup_or_assert(amf_instance_id->valuestring),
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
+        purge_flag ? true : false,
         purge_flag ? purge_flag->valueint : 0,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
         ims_vo_psVariable,
@@ -461,11 +468,13 @@ OpenAPI_amf_non3_gpp_access_registration_t *OpenAPI_amf_non3_gpp_access_registra
         guami_local_nonprim,
         backup_amf_info ? backup_amf_infoList : NULL,
         rat_typeVariable,
+        urrp_indicator ? true : false,
         urrp_indicator ? urrp_indicator->valueint : 0,
         amf_ee_subscription_id ? ogs_strdup_or_assert(amf_ee_subscription_id->valuestring) : NULL,
         registration_time ? ogs_strdup_or_assert(registration_time->valuestring) : NULL,
         vgmlc_address ? vgmlc_address_local_nonprim : NULL,
         context_info ? context_info_local_nonprim : NULL,
+        no_ee_subscription_ind ? true : false,
         no_ee_subscription_ind ? no_ee_subscription_ind->valueint : 0,
         supi ? ogs_strdup_or_assert(supi->valuestring) : NULL
     );

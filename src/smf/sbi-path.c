@@ -223,7 +223,10 @@ void smf_sbi_send_sm_context_create_error(
     ogs_assert(stream);
 
     memset(&problem, 0, sizeof(problem));
-    problem.status = status;
+    if (status) {
+        problem.is_status = true;
+        problem.status = status;
+    }
     problem.title = (char*)title;
     problem.detail = (char*)detail;
 
@@ -338,7 +341,10 @@ void smf_sbi_send_sm_context_update_error(
     ogs_assert(stream);
 
     memset(&problem, 0, sizeof(problem));
-    problem.status = status;
+    if (status) {
+        problem.is_status = true;
+        problem.status = status;
+    }
     problem.title = (char*)title;
     problem.detail = (char*)detail;
 

@@ -7,6 +7,7 @@
 OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_create(
     char *h_smf_uri,
     char *smf_uri,
+    bool is_pdu_session_id,
     int pdu_session_id,
     OpenAPI_snssai_t *s_nssai,
     OpenAPI_up_cnx_state_e up_cnx_state,
@@ -28,6 +29,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_create(
     }
     sm_context_created_data_local_var->h_smf_uri = h_smf_uri;
     sm_context_created_data_local_var->smf_uri = smf_uri;
+    sm_context_created_data_local_var->is_pdu_session_id = is_pdu_session_id;
     sm_context_created_data_local_var->pdu_session_id = pdu_session_id;
     sm_context_created_data_local_var->s_nssai = s_nssai;
     sm_context_created_data_local_var->up_cnx_state = up_cnx_state;
@@ -92,7 +94,7 @@ cJSON *OpenAPI_sm_context_created_data_convertToJSON(OpenAPI_sm_context_created_
     }
     }
 
-    if (sm_context_created_data->pdu_session_id) {
+    if (sm_context_created_data->is_pdu_session_id) {
     if (cJSON_AddNumberToObject(item, "pduSessionId", sm_context_created_data->pdu_session_id) == NULL) {
         ogs_error("OpenAPI_sm_context_created_data_convertToJSON() failed [pdu_session_id]");
         goto end;
@@ -369,6 +371,7 @@ OpenAPI_sm_context_created_data_t *OpenAPI_sm_context_created_data_parseFromJSON
     sm_context_created_data_local_var = OpenAPI_sm_context_created_data_create (
         h_smf_uri ? ogs_strdup_or_assert(h_smf_uri->valuestring) : NULL,
         smf_uri ? ogs_strdup_or_assert(smf_uri->valuestring) : NULL,
+        pdu_session_id ? true : false,
         pdu_session_id ? pdu_session_id->valuedouble : 0,
         s_nssai ? s_nssai_local_nonprim : NULL,
         up_cnx_state ? up_cnx_stateVariable : 0,

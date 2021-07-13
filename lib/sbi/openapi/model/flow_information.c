@@ -8,6 +8,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_create(
     char *flow_description,
     OpenAPI_eth_flow_description_t *eth_flow_description,
     char *pack_filt_id,
+    bool is_packet_filter_usage,
     int packet_filter_usage,
     char *tos_traffic_class,
     char *spi,
@@ -22,6 +23,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_create(
     flow_information_local_var->flow_description = flow_description;
     flow_information_local_var->eth_flow_description = eth_flow_description;
     flow_information_local_var->pack_filt_id = pack_filt_id;
+    flow_information_local_var->is_packet_filter_usage = is_packet_filter_usage;
     flow_information_local_var->packet_filter_usage = packet_filter_usage;
     flow_information_local_var->tos_traffic_class = tos_traffic_class;
     flow_information_local_var->spi = spi;
@@ -83,7 +85,7 @@ cJSON *OpenAPI_flow_information_convertToJSON(OpenAPI_flow_information_t *flow_i
     }
     }
 
-    if (flow_information->packet_filter_usage) {
+    if (flow_information->is_packet_filter_usage) {
     if (cJSON_AddBoolToObject(item, "packetFilterUsage", flow_information->packet_filter_usage) == NULL) {
         ogs_error("OpenAPI_flow_information_convertToJSON() failed [packet_filter_usage]");
         goto end;
@@ -201,6 +203,7 @@ OpenAPI_flow_information_t *OpenAPI_flow_information_parseFromJSON(cJSON *flow_i
         flow_description ? ogs_strdup_or_assert(flow_description->valuestring) : NULL,
         eth_flow_description ? eth_flow_description_local_nonprim : NULL,
         pack_filt_id ? ogs_strdup_or_assert(pack_filt_id->valuestring) : NULL,
+        packet_filter_usage ? true : false,
         packet_filter_usage ? packet_filter_usage->valueint : 0,
         tos_traffic_class ? ogs_strdup_or_assert(tos_traffic_class->valuestring) : NULL,
         spi ? ogs_strdup_or_assert(spi->valuestring) : NULL,

@@ -10,6 +10,7 @@ OpenAPI_ue_context_created_data_t *OpenAPI_ue_context_created_data_create(
     OpenAPI_list_t *pdu_session_list,
     OpenAPI_list_t *failed_session_list,
     char *supported_features,
+    bool is_pcf_reselected_ind,
     int pcf_reselected_ind
 )
 {
@@ -22,6 +23,7 @@ OpenAPI_ue_context_created_data_t *OpenAPI_ue_context_created_data_create(
     ue_context_created_data_local_var->pdu_session_list = pdu_session_list;
     ue_context_created_data_local_var->failed_session_list = failed_session_list;
     ue_context_created_data_local_var->supported_features = supported_features;
+    ue_context_created_data_local_var->is_pcf_reselected_ind = is_pcf_reselected_ind;
     ue_context_created_data_local_var->pcf_reselected_ind = pcf_reselected_ind;
 
     return ue_context_created_data_local_var;
@@ -124,7 +126,7 @@ cJSON *OpenAPI_ue_context_created_data_convertToJSON(OpenAPI_ue_context_created_
     }
     }
 
-    if (ue_context_created_data->pcf_reselected_ind) {
+    if (ue_context_created_data->is_pcf_reselected_ind) {
     if (cJSON_AddBoolToObject(item, "pcfReselectedInd", ue_context_created_data->pcf_reselected_ind) == NULL) {
         ogs_error("OpenAPI_ue_context_created_data_convertToJSON() failed [pcf_reselected_ind]");
         goto end;
@@ -231,6 +233,7 @@ OpenAPI_ue_context_created_data_t *OpenAPI_ue_context_created_data_parseFromJSON
         pdu_session_listList,
         failed_session_list ? failed_session_listList : NULL,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
+        pcf_reselected_ind ? true : false,
         pcf_reselected_ind ? pcf_reselected_ind->valueint : 0
     );
 

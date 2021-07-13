@@ -103,6 +103,7 @@ OpenAPI_inter_freq_target_info_t *OpenAPI_inter_freq_target_info_parseFromJSON(c
     }
 
     inter_freq_target_info_local_var = OpenAPI_inter_freq_target_info_create (
+        
         dl_carrier_freq->valuedouble,
         cell_id_list ? cell_id_listList : NULL
     );

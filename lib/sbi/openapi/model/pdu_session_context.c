@@ -27,6 +27,7 @@ OpenAPI_pdu_session_context_t *OpenAPI_pdu_session_context_create(
     OpenAPI_sbi_binding_level_e ismf_binding,
     char *ns_instance,
     char *smf_service_instance_id,
+    bool is_ma_pdu_session,
     int ma_pdu_session,
     OpenAPI_cn_assisted_ran_para_t *cn_assisted_ran_para
 )
@@ -57,6 +58,7 @@ OpenAPI_pdu_session_context_t *OpenAPI_pdu_session_context_create(
     pdu_session_context_local_var->ismf_binding = ismf_binding;
     pdu_session_context_local_var->ns_instance = ns_instance;
     pdu_session_context_local_var->smf_service_instance_id = smf_service_instance_id;
+    pdu_session_context_local_var->is_ma_pdu_session = is_ma_pdu_session;
     pdu_session_context_local_var->ma_pdu_session = ma_pdu_session;
     pdu_session_context_local_var->cn_assisted_ran_para = cn_assisted_ran_para;
 
@@ -265,7 +267,7 @@ cJSON *OpenAPI_pdu_session_context_convertToJSON(OpenAPI_pdu_session_context_t *
     }
     }
 
-    if (pdu_session_context->ma_pdu_session) {
+    if (pdu_session_context->is_ma_pdu_session) {
     if (cJSON_AddBoolToObject(item, "maPduSession", pdu_session_context->ma_pdu_session) == NULL) {
         ogs_error("OpenAPI_pdu_session_context_convertToJSON() failed [ma_pdu_session]");
         goto end;
@@ -544,6 +546,7 @@ OpenAPI_pdu_session_context_t *OpenAPI_pdu_session_context_parseFromJSON(cJSON *
     }
 
     pdu_session_context_local_var = OpenAPI_pdu_session_context_create (
+        
         pdu_session_id->valuedouble,
         ogs_strdup_or_assert(sm_context_ref->valuestring),
         s_nssai_local_nonprim,
@@ -566,6 +569,7 @@ OpenAPI_pdu_session_context_t *OpenAPI_pdu_session_context_parseFromJSON(cJSON *
         ismf_binding ? ismf_bindingVariable : 0,
         ns_instance ? ogs_strdup_or_assert(ns_instance->valuestring) : NULL,
         smf_service_instance_id ? ogs_strdup_or_assert(smf_service_instance_id->valuestring) : NULL,
+        ma_pdu_session ? true : false,
         ma_pdu_session ? ma_pdu_session->valueint : 0,
         cn_assisted_ran_para ? cn_assisted_ran_para_local_nonprim : NULL
     );

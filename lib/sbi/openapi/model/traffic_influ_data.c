@@ -6,6 +6,7 @@
 
 OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_create(
     char *up_path_chg_notif_corre_id,
+    bool is_app_relo_ind,
     int app_relo_ind,
     char *af_app_id,
     char *dnn,
@@ -15,6 +16,7 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_create(
     char *supi,
     OpenAPI_list_t *traffic_filters,
     OpenAPI_list_t *traffic_routes,
+    bool is_traff_corre_ind,
     int traff_corre_ind,
     char *valid_start_time,
     char *valid_end_time,
@@ -24,7 +26,9 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_create(
     OpenAPI_list_t *headers,
     OpenAPI_list_t *subscribed_events,
     OpenAPI_dnai_change_type_e dnai_chg_type,
+    bool is_af_ack_ind,
     int af_ack_ind,
+    bool is_addr_preser_ind,
     int addr_preser_ind,
     char *supported_features,
     char *res_uri
@@ -35,6 +39,7 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_create(
         return NULL;
     }
     traffic_influ_data_local_var->up_path_chg_notif_corre_id = up_path_chg_notif_corre_id;
+    traffic_influ_data_local_var->is_app_relo_ind = is_app_relo_ind;
     traffic_influ_data_local_var->app_relo_ind = app_relo_ind;
     traffic_influ_data_local_var->af_app_id = af_app_id;
     traffic_influ_data_local_var->dnn = dnn;
@@ -44,6 +49,7 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_create(
     traffic_influ_data_local_var->supi = supi;
     traffic_influ_data_local_var->traffic_filters = traffic_filters;
     traffic_influ_data_local_var->traffic_routes = traffic_routes;
+    traffic_influ_data_local_var->is_traff_corre_ind = is_traff_corre_ind;
     traffic_influ_data_local_var->traff_corre_ind = traff_corre_ind;
     traffic_influ_data_local_var->valid_start_time = valid_start_time;
     traffic_influ_data_local_var->valid_end_time = valid_end_time;
@@ -53,7 +59,9 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_create(
     traffic_influ_data_local_var->headers = headers;
     traffic_influ_data_local_var->subscribed_events = subscribed_events;
     traffic_influ_data_local_var->dnai_chg_type = dnai_chg_type;
+    traffic_influ_data_local_var->is_af_ack_ind = is_af_ack_ind;
     traffic_influ_data_local_var->af_ack_ind = af_ack_ind;
+    traffic_influ_data_local_var->is_addr_preser_ind = is_addr_preser_ind;
     traffic_influ_data_local_var->addr_preser_ind = addr_preser_ind;
     traffic_influ_data_local_var->supported_features = supported_features;
     traffic_influ_data_local_var->res_uri = res_uri;
@@ -123,7 +131,7 @@ cJSON *OpenAPI_traffic_influ_data_convertToJSON(OpenAPI_traffic_influ_data_t *tr
     }
     }
 
-    if (traffic_influ_data->app_relo_ind) {
+    if (traffic_influ_data->is_app_relo_ind) {
     if (cJSON_AddBoolToObject(item, "appReloInd", traffic_influ_data->app_relo_ind) == NULL) {
         ogs_error("OpenAPI_traffic_influ_data_convertToJSON() failed [app_relo_ind]");
         goto end;
@@ -231,7 +239,7 @@ cJSON *OpenAPI_traffic_influ_data_convertToJSON(OpenAPI_traffic_influ_data_t *tr
     }
     }
 
-    if (traffic_influ_data->traff_corre_ind) {
+    if (traffic_influ_data->is_traff_corre_ind) {
     if (cJSON_AddBoolToObject(item, "traffCorreInd", traffic_influ_data->traff_corre_ind) == NULL) {
         ogs_error("OpenAPI_traffic_influ_data_convertToJSON() failed [traff_corre_ind]");
         goto end;
@@ -335,14 +343,14 @@ cJSON *OpenAPI_traffic_influ_data_convertToJSON(OpenAPI_traffic_influ_data_t *tr
     }
     }
 
-    if (traffic_influ_data->af_ack_ind) {
+    if (traffic_influ_data->is_af_ack_ind) {
     if (cJSON_AddBoolToObject(item, "afAckInd", traffic_influ_data->af_ack_ind) == NULL) {
         ogs_error("OpenAPI_traffic_influ_data_convertToJSON() failed [af_ack_ind]");
         goto end;
     }
     }
 
-    if (traffic_influ_data->addr_preser_ind) {
+    if (traffic_influ_data->is_addr_preser_ind) {
     if (cJSON_AddBoolToObject(item, "addrPreserInd", traffic_influ_data->addr_preser_ind) == NULL) {
         ogs_error("OpenAPI_traffic_influ_data_convertToJSON() failed [addr_preser_ind]");
         goto end;
@@ -658,6 +666,7 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_parseFromJSON(cJSON *tr
 
     traffic_influ_data_local_var = OpenAPI_traffic_influ_data_create (
         up_path_chg_notif_corre_id ? ogs_strdup_or_assert(up_path_chg_notif_corre_id->valuestring) : NULL,
+        app_relo_ind ? true : false,
         app_relo_ind ? app_relo_ind->valueint : 0,
         af_app_id ? ogs_strdup_or_assert(af_app_id->valuestring) : NULL,
         dnn ? ogs_strdup_or_assert(dnn->valuestring) : NULL,
@@ -667,6 +676,7 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_parseFromJSON(cJSON *tr
         supi ? ogs_strdup_or_assert(supi->valuestring) : NULL,
         traffic_filters ? traffic_filtersList : NULL,
         traffic_routes ? traffic_routesList : NULL,
+        traff_corre_ind ? true : false,
         traff_corre_ind ? traff_corre_ind->valueint : 0,
         valid_start_time ? ogs_strdup_or_assert(valid_start_time->valuestring) : NULL,
         valid_end_time ? ogs_strdup_or_assert(valid_end_time->valuestring) : NULL,
@@ -676,7 +686,9 @@ OpenAPI_traffic_influ_data_t *OpenAPI_traffic_influ_data_parseFromJSON(cJSON *tr
         headers ? headersList : NULL,
         subscribed_events ? subscribed_eventsList : NULL,
         dnai_chg_type ? dnai_chg_typeVariable : 0,
+        af_ack_ind ? true : false,
         af_ack_ind ? af_ack_ind->valueint : 0,
+        addr_preser_ind ? true : false,
         addr_preser_ind ? addr_preser_ind->valueint : 0,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
         res_uri ? ogs_strdup_or_assert(res_uri->valuestring) : NULL

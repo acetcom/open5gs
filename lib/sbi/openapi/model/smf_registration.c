@@ -11,10 +11,12 @@ OpenAPI_smf_registration_t *OpenAPI_smf_registration_create(
     int pdu_session_id,
     OpenAPI_snssai_t *single_nssai,
     char *dnn,
+    bool is_emergency_services,
     int emergency_services,
     char *pcscf_restoration_callback_uri,
     OpenAPI_plmn_id_t *plmn_id,
     char *pgw_fqdn,
+    bool is_epdg_ind,
     int epdg_ind,
     char *dereg_callback_uri,
     OpenAPI_registration_reason_e registration_reason,
@@ -32,10 +34,12 @@ OpenAPI_smf_registration_t *OpenAPI_smf_registration_create(
     smf_registration_local_var->pdu_session_id = pdu_session_id;
     smf_registration_local_var->single_nssai = single_nssai;
     smf_registration_local_var->dnn = dnn;
+    smf_registration_local_var->is_emergency_services = is_emergency_services;
     smf_registration_local_var->emergency_services = emergency_services;
     smf_registration_local_var->pcscf_restoration_callback_uri = pcscf_restoration_callback_uri;
     smf_registration_local_var->plmn_id = plmn_id;
     smf_registration_local_var->pgw_fqdn = pgw_fqdn;
+    smf_registration_local_var->is_epdg_ind = is_epdg_ind;
     smf_registration_local_var->epdg_ind = epdg_ind;
     smf_registration_local_var->dereg_callback_uri = dereg_callback_uri;
     smf_registration_local_var->registration_reason = registration_reason;
@@ -117,7 +121,7 @@ cJSON *OpenAPI_smf_registration_convertToJSON(OpenAPI_smf_registration_t *smf_re
     }
     }
 
-    if (smf_registration->emergency_services) {
+    if (smf_registration->is_emergency_services) {
     if (cJSON_AddBoolToObject(item, "emergencyServices", smf_registration->emergency_services) == NULL) {
         ogs_error("OpenAPI_smf_registration_convertToJSON() failed [emergency_services]");
         goto end;
@@ -149,7 +153,7 @@ cJSON *OpenAPI_smf_registration_convertToJSON(OpenAPI_smf_registration_t *smf_re
     }
     }
 
-    if (smf_registration->epdg_ind) {
+    if (smf_registration->is_epdg_ind) {
     if (cJSON_AddBoolToObject(item, "epdgInd", smf_registration->epdg_ind) == NULL) {
         ogs_error("OpenAPI_smf_registration_convertToJSON() failed [epdg_ind]");
         goto end;
@@ -344,13 +348,16 @@ OpenAPI_smf_registration_t *OpenAPI_smf_registration_parseFromJSON(cJSON *smf_re
         ogs_strdup_or_assert(smf_instance_id->valuestring),
         smf_set_id ? ogs_strdup_or_assert(smf_set_id->valuestring) : NULL,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
+        
         pdu_session_id->valuedouble,
         single_nssai_local_nonprim,
         dnn ? ogs_strdup_or_assert(dnn->valuestring) : NULL,
+        emergency_services ? true : false,
         emergency_services ? emergency_services->valueint : 0,
         pcscf_restoration_callback_uri ? ogs_strdup_or_assert(pcscf_restoration_callback_uri->valuestring) : NULL,
         plmn_id_local_nonprim,
         pgw_fqdn ? ogs_strdup_or_assert(pgw_fqdn->valuestring) : NULL,
+        epdg_ind ? true : false,
         epdg_ind ? epdg_ind->valueint : 0,
         dereg_callback_uri ? ogs_strdup_or_assert(dereg_callback_uri->valuestring) : NULL,
         registration_reason ? registration_reasonVariable : 0,

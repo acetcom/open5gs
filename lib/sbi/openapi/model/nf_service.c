@@ -22,8 +22,11 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_create(
     OpenAPI_list_t *allowed_nssais,
     OpenAPI_list_t* allowed_operations_per_nf_type,
     OpenAPI_list_t* allowed_operations_per_nf_instance,
+    bool is_priority,
     int priority,
+    bool is_capacity,
     int capacity,
+    bool is_load,
     int load,
     char *load_time_stamp,
     char *recovery_time,
@@ -33,6 +36,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_create(
     OpenAPI_list_t *per_plmn_snssai_list,
     char *vendor_id,
     OpenAPI_list_t* supported_vendor_specific_features,
+    bool is_oauth2_required,
     int oauth2_required
 )
 {
@@ -57,8 +61,11 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_create(
     nf_service_local_var->allowed_nssais = allowed_nssais;
     nf_service_local_var->allowed_operations_per_nf_type = allowed_operations_per_nf_type;
     nf_service_local_var->allowed_operations_per_nf_instance = allowed_operations_per_nf_instance;
+    nf_service_local_var->is_priority = is_priority;
     nf_service_local_var->priority = priority;
+    nf_service_local_var->is_capacity = is_capacity;
     nf_service_local_var->capacity = capacity;
+    nf_service_local_var->is_load = is_load;
     nf_service_local_var->load = load;
     nf_service_local_var->load_time_stamp = load_time_stamp;
     nf_service_local_var->recovery_time = recovery_time;
@@ -68,6 +75,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_create(
     nf_service_local_var->per_plmn_snssai_list = per_plmn_snssai_list;
     nf_service_local_var->vendor_id = vendor_id;
     nf_service_local_var->supported_vendor_specific_features = supported_vendor_specific_features;
+    nf_service_local_var->is_oauth2_required = is_oauth2_required;
     nf_service_local_var->oauth2_required = oauth2_required;
 
     return nf_service_local_var;
@@ -380,21 +388,21 @@ cJSON *OpenAPI_nf_service_convertToJSON(OpenAPI_nf_service_t *nf_service)
         }
     }
 
-    if (nf_service->priority) {
+    if (nf_service->is_priority) {
     if (cJSON_AddNumberToObject(item, "priority", nf_service->priority) == NULL) {
         ogs_error("OpenAPI_nf_service_convertToJSON() failed [priority]");
         goto end;
     }
     }
 
-    if (nf_service->capacity) {
+    if (nf_service->is_capacity) {
     if (cJSON_AddNumberToObject(item, "capacity", nf_service->capacity) == NULL) {
         ogs_error("OpenAPI_nf_service_convertToJSON() failed [capacity]");
         goto end;
     }
     }
 
-    if (nf_service->load) {
+    if (nf_service->is_load) {
     if (cJSON_AddNumberToObject(item, "load", nf_service->load) == NULL) {
         ogs_error("OpenAPI_nf_service_convertToJSON() failed [load]");
         goto end;
@@ -500,7 +508,7 @@ cJSON *OpenAPI_nf_service_convertToJSON(OpenAPI_nf_service_t *nf_service)
         }
     }
 
-    if (nf_service->oauth2_required) {
+    if (nf_service->is_oauth2_required) {
     if (cJSON_AddBoolToObject(item, "oauth2Required", nf_service->oauth2_required) == NULL) {
         ogs_error("OpenAPI_nf_service_convertToJSON() failed [oauth2_required]");
         goto end;
@@ -983,8 +991,11 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
         allowed_nssais ? allowed_nssaisList : NULL,
         allowed_operations_per_nf_type ? allowed_operations_per_nf_typeList : NULL,
         allowed_operations_per_nf_instance ? allowed_operations_per_nf_instanceList : NULL,
+        priority ? true : false,
         priority ? priority->valuedouble : 0,
+        capacity ? true : false,
         capacity ? capacity->valuedouble : 0,
+        load ? true : false,
         load ? load->valuedouble : 0,
         load_time_stamp ? ogs_strdup_or_assert(load_time_stamp->valuestring) : NULL,
         recovery_time ? ogs_strdup_or_assert(recovery_time->valuestring) : NULL,
@@ -994,6 +1005,7 @@ OpenAPI_nf_service_t *OpenAPI_nf_service_parseFromJSON(cJSON *nf_serviceJSON)
         per_plmn_snssai_list ? per_plmn_snssai_listList : NULL,
         vendor_id ? ogs_strdup_or_assert(vendor_id->valuestring) : NULL,
         supported_vendor_specific_features ? supported_vendor_specific_featuresList : NULL,
+        oauth2_required ? true : false,
         oauth2_required ? oauth2_required->valueint : 0
     );
 

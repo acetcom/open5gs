@@ -6,12 +6,18 @@
 
 OpenAPI_dnn_info_t *OpenAPI_dnn_info_create(
     char *dnn,
+    bool is_default_dnn_indicator,
     int default_dnn_indicator,
+    bool is_lbo_roaming_allowed,
     int lbo_roaming_allowed,
+    bool is_iwk_eps_ind,
     int iwk_eps_ind,
+    bool is_dnn_barred,
     int dnn_barred,
+    bool is_invoke_nef_ind,
     int invoke_nef_ind,
     OpenAPI_list_t *smf_list,
+    bool is_same_smf_ind,
     int same_smf_ind
 )
 {
@@ -20,12 +26,18 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_create(
         return NULL;
     }
     dnn_info_local_var->dnn = dnn;
+    dnn_info_local_var->is_default_dnn_indicator = is_default_dnn_indicator;
     dnn_info_local_var->default_dnn_indicator = default_dnn_indicator;
+    dnn_info_local_var->is_lbo_roaming_allowed = is_lbo_roaming_allowed;
     dnn_info_local_var->lbo_roaming_allowed = lbo_roaming_allowed;
+    dnn_info_local_var->is_iwk_eps_ind = is_iwk_eps_ind;
     dnn_info_local_var->iwk_eps_ind = iwk_eps_ind;
+    dnn_info_local_var->is_dnn_barred = is_dnn_barred;
     dnn_info_local_var->dnn_barred = dnn_barred;
+    dnn_info_local_var->is_invoke_nef_ind = is_invoke_nef_ind;
     dnn_info_local_var->invoke_nef_ind = invoke_nef_ind;
     dnn_info_local_var->smf_list = smf_list;
+    dnn_info_local_var->is_same_smf_ind = is_same_smf_ind;
     dnn_info_local_var->same_smf_ind = same_smf_ind;
 
     return dnn_info_local_var;
@@ -60,35 +72,35 @@ cJSON *OpenAPI_dnn_info_convertToJSON(OpenAPI_dnn_info_t *dnn_info)
         goto end;
     }
 
-    if (dnn_info->default_dnn_indicator) {
+    if (dnn_info->is_default_dnn_indicator) {
     if (cJSON_AddBoolToObject(item, "defaultDnnIndicator", dnn_info->default_dnn_indicator) == NULL) {
         ogs_error("OpenAPI_dnn_info_convertToJSON() failed [default_dnn_indicator]");
         goto end;
     }
     }
 
-    if (dnn_info->lbo_roaming_allowed) {
+    if (dnn_info->is_lbo_roaming_allowed) {
     if (cJSON_AddBoolToObject(item, "lboRoamingAllowed", dnn_info->lbo_roaming_allowed) == NULL) {
         ogs_error("OpenAPI_dnn_info_convertToJSON() failed [lbo_roaming_allowed]");
         goto end;
     }
     }
 
-    if (dnn_info->iwk_eps_ind) {
+    if (dnn_info->is_iwk_eps_ind) {
     if (cJSON_AddBoolToObject(item, "iwkEpsInd", dnn_info->iwk_eps_ind) == NULL) {
         ogs_error("OpenAPI_dnn_info_convertToJSON() failed [iwk_eps_ind]");
         goto end;
     }
     }
 
-    if (dnn_info->dnn_barred) {
+    if (dnn_info->is_dnn_barred) {
     if (cJSON_AddBoolToObject(item, "dnnBarred", dnn_info->dnn_barred) == NULL) {
         ogs_error("OpenAPI_dnn_info_convertToJSON() failed [dnn_barred]");
         goto end;
     }
     }
 
-    if (dnn_info->invoke_nef_ind) {
+    if (dnn_info->is_invoke_nef_ind) {
     if (cJSON_AddBoolToObject(item, "invokeNefInd", dnn_info->invoke_nef_ind) == NULL) {
         ogs_error("OpenAPI_dnn_info_convertToJSON() failed [invoke_nef_ind]");
         goto end;
@@ -111,7 +123,7 @@ cJSON *OpenAPI_dnn_info_convertToJSON(OpenAPI_dnn_info_t *dnn_info)
                     }
     }
 
-    if (dnn_info->same_smf_ind) {
+    if (dnn_info->is_same_smf_ind) {
     if (cJSON_AddBoolToObject(item, "sameSmfInd", dnn_info->same_smf_ind) == NULL) {
         ogs_error("OpenAPI_dnn_info_convertToJSON() failed [same_smf_ind]");
         goto end;
@@ -213,12 +225,18 @@ OpenAPI_dnn_info_t *OpenAPI_dnn_info_parseFromJSON(cJSON *dnn_infoJSON)
 
     dnn_info_local_var = OpenAPI_dnn_info_create (
         ogs_strdup_or_assert(dnn->valuestring),
+        default_dnn_indicator ? true : false,
         default_dnn_indicator ? default_dnn_indicator->valueint : 0,
+        lbo_roaming_allowed ? true : false,
         lbo_roaming_allowed ? lbo_roaming_allowed->valueint : 0,
+        iwk_eps_ind ? true : false,
         iwk_eps_ind ? iwk_eps_ind->valueint : 0,
+        dnn_barred ? true : false,
         dnn_barred ? dnn_barred->valueint : 0,
+        invoke_nef_ind ? true : false,
         invoke_nef_ind ? invoke_nef_ind->valueint : 0,
         smf_list ? smf_listList : NULL,
+        same_smf_ind ? true : false,
         same_smf_ind ? same_smf_ind->valueint : 0
     );
 

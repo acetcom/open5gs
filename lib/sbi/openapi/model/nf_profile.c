@@ -9,6 +9,7 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_create(
     char *nf_instance_name,
     OpenAPI_nf_type_e nf_type,
     OpenAPI_nf_status_e nf_status,
+    bool is_heart_beat_timer,
     int heart_beat_timer,
     OpenAPI_list_t *plmn_list,
     OpenAPI_list_t *snpn_list,
@@ -24,8 +25,11 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_create(
     OpenAPI_list_t *allowed_nf_types,
     OpenAPI_list_t *allowed_nf_domains,
     OpenAPI_list_t *allowed_nssais,
+    bool is_priority,
     int priority,
+    bool is_capacity,
     int capacity,
+    bool is_load,
     int load,
     char *load_time_stamp,
     char *locality,
@@ -56,17 +60,22 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_create(
     OpenAPI_list_t* hss_info_list,
     OpenAPI_object_t *custom_info,
     char *recovery_time,
+    bool is_nf_service_persistence,
     int nf_service_persistence,
     OpenAPI_list_t *nf_services,
     OpenAPI_list_t* nf_service_list,
+    bool is_nf_profile_changes_support_ind,
     int nf_profile_changes_support_ind,
+    bool is_nf_profile_changes_ind,
     int nf_profile_changes_ind,
     OpenAPI_list_t *default_notification_subscriptions,
     OpenAPI_lmf_info_t *lmf_info,
     OpenAPI_gmlc_info_t *gmlc_info,
     OpenAPI_list_t *nf_set_id_list,
     OpenAPI_list_t *serving_scope,
+    bool is_lc_h_support_ind,
     int lc_h_support_ind,
+    bool is_olc_h_support_ind,
     int olc_h_support_ind,
     OpenAPI_list_t* nf_set_recovery_time_list,
     OpenAPI_list_t* service_set_recovery_time_list,
@@ -82,6 +91,7 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_create(
     nf_profile_local_var->nf_instance_name = nf_instance_name;
     nf_profile_local_var->nf_type = nf_type;
     nf_profile_local_var->nf_status = nf_status;
+    nf_profile_local_var->is_heart_beat_timer = is_heart_beat_timer;
     nf_profile_local_var->heart_beat_timer = heart_beat_timer;
     nf_profile_local_var->plmn_list = plmn_list;
     nf_profile_local_var->snpn_list = snpn_list;
@@ -97,8 +107,11 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_create(
     nf_profile_local_var->allowed_nf_types = allowed_nf_types;
     nf_profile_local_var->allowed_nf_domains = allowed_nf_domains;
     nf_profile_local_var->allowed_nssais = allowed_nssais;
+    nf_profile_local_var->is_priority = is_priority;
     nf_profile_local_var->priority = priority;
+    nf_profile_local_var->is_capacity = is_capacity;
     nf_profile_local_var->capacity = capacity;
+    nf_profile_local_var->is_load = is_load;
     nf_profile_local_var->load = load;
     nf_profile_local_var->load_time_stamp = load_time_stamp;
     nf_profile_local_var->locality = locality;
@@ -129,17 +142,22 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_create(
     nf_profile_local_var->hss_info_list = hss_info_list;
     nf_profile_local_var->custom_info = custom_info;
     nf_profile_local_var->recovery_time = recovery_time;
+    nf_profile_local_var->is_nf_service_persistence = is_nf_service_persistence;
     nf_profile_local_var->nf_service_persistence = nf_service_persistence;
     nf_profile_local_var->nf_services = nf_services;
     nf_profile_local_var->nf_service_list = nf_service_list;
+    nf_profile_local_var->is_nf_profile_changes_support_ind = is_nf_profile_changes_support_ind;
     nf_profile_local_var->nf_profile_changes_support_ind = nf_profile_changes_support_ind;
+    nf_profile_local_var->is_nf_profile_changes_ind = is_nf_profile_changes_ind;
     nf_profile_local_var->nf_profile_changes_ind = nf_profile_changes_ind;
     nf_profile_local_var->default_notification_subscriptions = default_notification_subscriptions;
     nf_profile_local_var->lmf_info = lmf_info;
     nf_profile_local_var->gmlc_info = gmlc_info;
     nf_profile_local_var->nf_set_id_list = nf_set_id_list;
     nf_profile_local_var->serving_scope = serving_scope;
+    nf_profile_local_var->is_lc_h_support_ind = is_lc_h_support_ind;
     nf_profile_local_var->lc_h_support_ind = lc_h_support_ind;
+    nf_profile_local_var->is_olc_h_support_ind = is_olc_h_support_ind;
     nf_profile_local_var->olc_h_support_ind = olc_h_support_ind;
     nf_profile_local_var->nf_set_recovery_time_list = nf_set_recovery_time_list;
     nf_profile_local_var->service_set_recovery_time_list = service_set_recovery_time_list;
@@ -369,7 +387,7 @@ cJSON *OpenAPI_nf_profile_convertToJSON(OpenAPI_nf_profile_t *nf_profile)
         goto end;
     }
 
-    if (nf_profile->heart_beat_timer) {
+    if (nf_profile->is_heart_beat_timer) {
     if (cJSON_AddNumberToObject(item, "heartBeatTimer", nf_profile->heart_beat_timer) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [heart_beat_timer]");
         goto end;
@@ -609,21 +627,21 @@ cJSON *OpenAPI_nf_profile_convertToJSON(OpenAPI_nf_profile_t *nf_profile)
     }
     }
 
-    if (nf_profile->priority) {
+    if (nf_profile->is_priority) {
     if (cJSON_AddNumberToObject(item, "priority", nf_profile->priority) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [priority]");
         goto end;
     }
     }
 
-    if (nf_profile->capacity) {
+    if (nf_profile->is_capacity) {
     if (cJSON_AddNumberToObject(item, "capacity", nf_profile->capacity) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [capacity]");
         goto end;
     }
     }
 
-    if (nf_profile->load) {
+    if (nf_profile->is_load) {
     if (cJSON_AddNumberToObject(item, "load", nf_profile->load) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [load]");
         goto end;
@@ -1085,7 +1103,7 @@ cJSON *OpenAPI_nf_profile_convertToJSON(OpenAPI_nf_profile_t *nf_profile)
     }
     }
 
-    if (nf_profile->nf_service_persistence) {
+    if (nf_profile->is_nf_service_persistence) {
     if (cJSON_AddBoolToObject(item, "nfServicePersistence", nf_profile->nf_service_persistence) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [nf_service_persistence]");
         goto end;
@@ -1133,14 +1151,14 @@ cJSON *OpenAPI_nf_profile_convertToJSON(OpenAPI_nf_profile_t *nf_profile)
         }
     }
 
-    if (nf_profile->nf_profile_changes_support_ind) {
+    if (nf_profile->is_nf_profile_changes_support_ind) {
     if (cJSON_AddBoolToObject(item, "nfProfileChangesSupportInd", nf_profile->nf_profile_changes_support_ind) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [nf_profile_changes_support_ind]");
         goto end;
     }
     }
 
-    if (nf_profile->nf_profile_changes_ind) {
+    if (nf_profile->is_nf_profile_changes_ind) {
     if (cJSON_AddBoolToObject(item, "nfProfileChangesInd", nf_profile->nf_profile_changes_ind) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [nf_profile_changes_ind]");
         goto end;
@@ -1225,14 +1243,14 @@ cJSON *OpenAPI_nf_profile_convertToJSON(OpenAPI_nf_profile_t *nf_profile)
                     }
     }
 
-    if (nf_profile->lc_h_support_ind) {
+    if (nf_profile->is_lc_h_support_ind) {
     if (cJSON_AddBoolToObject(item, "lcHSupportInd", nf_profile->lc_h_support_ind) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [lc_h_support_ind]");
         goto end;
     }
     }
 
-    if (nf_profile->olc_h_support_ind) {
+    if (nf_profile->is_olc_h_support_ind) {
     if (cJSON_AddBoolToObject(item, "olcHSupportInd", nf_profile->olc_h_support_ind) == NULL) {
         ogs_error("OpenAPI_nf_profile_convertToJSON() failed [olc_h_support_ind]");
         goto end;
@@ -2306,6 +2324,7 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_parseFromJSON(cJSON *nf_profileJSON)
         nf_instance_name ? ogs_strdup_or_assert(nf_instance_name->valuestring) : NULL,
         nf_typeVariable,
         nf_statusVariable,
+        heart_beat_timer ? true : false,
         heart_beat_timer ? heart_beat_timer->valuedouble : 0,
         plmn_list ? plmn_listList : NULL,
         snpn_list ? snpn_listList : NULL,
@@ -2321,8 +2340,11 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_parseFromJSON(cJSON *nf_profileJSON)
         allowed_nf_types ? allowed_nf_typesList : NULL,
         allowed_nf_domains ? allowed_nf_domainsList : NULL,
         allowed_nssais ? allowed_nssaisList : NULL,
+        priority ? true : false,
         priority ? priority->valuedouble : 0,
+        capacity ? true : false,
         capacity ? capacity->valuedouble : 0,
+        load ? true : false,
         load ? load->valuedouble : 0,
         load_time_stamp ? ogs_strdup_or_assert(load_time_stamp->valuestring) : NULL,
         locality ? ogs_strdup_or_assert(locality->valuestring) : NULL,
@@ -2353,17 +2375,22 @@ OpenAPI_nf_profile_t *OpenAPI_nf_profile_parseFromJSON(cJSON *nf_profileJSON)
         hss_info_list ? hss_info_listList : NULL,
         custom_info ? custom_info_local_object : NULL,
         recovery_time ? ogs_strdup_or_assert(recovery_time->valuestring) : NULL,
+        nf_service_persistence ? true : false,
         nf_service_persistence ? nf_service_persistence->valueint : 0,
         nf_services ? nf_servicesList : NULL,
         nf_service_list ? nf_service_listList : NULL,
+        nf_profile_changes_support_ind ? true : false,
         nf_profile_changes_support_ind ? nf_profile_changes_support_ind->valueint : 0,
+        nf_profile_changes_ind ? true : false,
         nf_profile_changes_ind ? nf_profile_changes_ind->valueint : 0,
         default_notification_subscriptions ? default_notification_subscriptionsList : NULL,
         lmf_info ? lmf_info_local_nonprim : NULL,
         gmlc_info ? gmlc_info_local_nonprim : NULL,
         nf_set_id_list ? nf_set_id_listList : NULL,
         serving_scope ? serving_scopeList : NULL,
+        lc_h_support_ind ? true : false,
         lc_h_support_ind ? lc_h_support_ind->valueint : 0,
+        olc_h_support_ind ? true : false,
         olc_h_support_ind ? olc_h_support_ind->valueint : 0,
         nf_set_recovery_time_list ? nf_set_recovery_time_listList : NULL,
         service_set_recovery_time_list ? service_set_recovery_time_listList : NULL,

@@ -6,9 +6,12 @@
 
 OpenAPI_eutra_location_t *OpenAPI_eutra_location_create(
     OpenAPI_tai_t *tai,
+    bool is_ignore_tai,
     int ignore_tai,
     OpenAPI_ecgi_t *ecgi,
+    bool is_ignore_ecgi,
     int ignore_ecgi,
+    bool is_age_of_location_information,
     int age_of_location_information,
     char *ue_location_timestamp,
     char *geographical_information,
@@ -22,9 +25,12 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_create(
         return NULL;
     }
     eutra_location_local_var->tai = tai;
+    eutra_location_local_var->is_ignore_tai = is_ignore_tai;
     eutra_location_local_var->ignore_tai = ignore_tai;
     eutra_location_local_var->ecgi = ecgi;
+    eutra_location_local_var->is_ignore_ecgi = is_ignore_ecgi;
     eutra_location_local_var->ignore_ecgi = ignore_ecgi;
+    eutra_location_local_var->is_age_of_location_information = is_age_of_location_information;
     eutra_location_local_var->age_of_location_information = age_of_location_information;
     eutra_location_local_var->ue_location_timestamp = ue_location_timestamp;
     eutra_location_local_var->geographical_information = geographical_information;
@@ -72,7 +78,7 @@ cJSON *OpenAPI_eutra_location_convertToJSON(OpenAPI_eutra_location_t *eutra_loca
         goto end;
     }
 
-    if (eutra_location->ignore_tai) {
+    if (eutra_location->is_ignore_tai) {
     if (cJSON_AddBoolToObject(item, "ignoreTai", eutra_location->ignore_tai) == NULL) {
         ogs_error("OpenAPI_eutra_location_convertToJSON() failed [ignore_tai]");
         goto end;
@@ -90,14 +96,14 @@ cJSON *OpenAPI_eutra_location_convertToJSON(OpenAPI_eutra_location_t *eutra_loca
         goto end;
     }
 
-    if (eutra_location->ignore_ecgi) {
+    if (eutra_location->is_ignore_ecgi) {
     if (cJSON_AddBoolToObject(item, "ignoreEcgi", eutra_location->ignore_ecgi) == NULL) {
         ogs_error("OpenAPI_eutra_location_convertToJSON() failed [ignore_ecgi]");
         goto end;
     }
     }
 
-    if (eutra_location->age_of_location_information) {
+    if (eutra_location->is_age_of_location_information) {
     if (cJSON_AddNumberToObject(item, "ageOfLocationInformation", eutra_location->age_of_location_information) == NULL) {
         ogs_error("OpenAPI_eutra_location_convertToJSON() failed [age_of_location_information]");
         goto end;
@@ -248,9 +254,12 @@ OpenAPI_eutra_location_t *OpenAPI_eutra_location_parseFromJSON(cJSON *eutra_loca
 
     eutra_location_local_var = OpenAPI_eutra_location_create (
         tai_local_nonprim,
+        ignore_tai ? true : false,
         ignore_tai ? ignore_tai->valueint : 0,
         ecgi_local_nonprim,
+        ignore_ecgi ? true : false,
         ignore_ecgi ? ignore_ecgi->valueint : 0,
+        age_of_location_information ? true : false,
         age_of_location_information ? age_of_location_information->valuedouble : 0,
         ue_location_timestamp ? ogs_strdup_or_assert(ue_location_timestamp->valuestring) : NULL,
         geographical_information ? ogs_strdup_or_assert(geographical_information->valuestring) : NULL,

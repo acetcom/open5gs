@@ -86,6 +86,7 @@ OpenAPI_point_uncertainty_circle_all_of_t *OpenAPI_point_uncertainty_circle_all_
 
     point_uncertainty_circle_all_of_local_var = OpenAPI_point_uncertainty_circle_all_of_create (
         point_local_nonprim,
+        
         uncertainty->valuedouble
     );
 

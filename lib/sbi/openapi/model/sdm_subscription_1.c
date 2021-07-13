@@ -6,6 +6,7 @@
 
 OpenAPI_sdm_subscription_1_t *OpenAPI_sdm_subscription_1_create(
     char *nf_instance_id,
+    bool is_implicit_unsubscribe,
     int implicit_unsubscribe,
     char *expires,
     char *callback_reference,
@@ -15,6 +16,7 @@ OpenAPI_sdm_subscription_1_t *OpenAPI_sdm_subscription_1_create(
     char *dnn,
     char *subscription_id,
     OpenAPI_plmn_id_1_t *plmn_id,
+    bool is_immediate_report,
     int immediate_report,
     OpenAPI_subscription_data_sets_1_t *report,
     char *supported_features,
@@ -26,6 +28,7 @@ OpenAPI_sdm_subscription_1_t *OpenAPI_sdm_subscription_1_create(
         return NULL;
     }
     sdm_subscription_1_local_var->nf_instance_id = nf_instance_id;
+    sdm_subscription_1_local_var->is_implicit_unsubscribe = is_implicit_unsubscribe;
     sdm_subscription_1_local_var->implicit_unsubscribe = implicit_unsubscribe;
     sdm_subscription_1_local_var->expires = expires;
     sdm_subscription_1_local_var->callback_reference = callback_reference;
@@ -35,6 +38,7 @@ OpenAPI_sdm_subscription_1_t *OpenAPI_sdm_subscription_1_create(
     sdm_subscription_1_local_var->dnn = dnn;
     sdm_subscription_1_local_var->subscription_id = subscription_id;
     sdm_subscription_1_local_var->plmn_id = plmn_id;
+    sdm_subscription_1_local_var->is_immediate_report = is_immediate_report;
     sdm_subscription_1_local_var->immediate_report = immediate_report;
     sdm_subscription_1_local_var->report = report;
     sdm_subscription_1_local_var->supported_features = supported_features;
@@ -82,7 +86,7 @@ cJSON *OpenAPI_sdm_subscription_1_convertToJSON(OpenAPI_sdm_subscription_1_t *sd
         goto end;
     }
 
-    if (sdm_subscription_1->implicit_unsubscribe) {
+    if (sdm_subscription_1->is_implicit_unsubscribe) {
     if (cJSON_AddBoolToObject(item, "implicitUnsubscribe", sdm_subscription_1->implicit_unsubscribe) == NULL) {
         ogs_error("OpenAPI_sdm_subscription_1_convertToJSON() failed [implicit_unsubscribe]");
         goto end;
@@ -162,7 +166,7 @@ cJSON *OpenAPI_sdm_subscription_1_convertToJSON(OpenAPI_sdm_subscription_1_t *sd
     }
     }
 
-    if (sdm_subscription_1->immediate_report) {
+    if (sdm_subscription_1->is_immediate_report) {
     if (cJSON_AddBoolToObject(item, "immediateReport", sdm_subscription_1->immediate_report) == NULL) {
         ogs_error("OpenAPI_sdm_subscription_1_convertToJSON() failed [immediate_report]");
         goto end;
@@ -349,6 +353,7 @@ OpenAPI_sdm_subscription_1_t *OpenAPI_sdm_subscription_1_parseFromJSON(cJSON *sd
 
     sdm_subscription_1_local_var = OpenAPI_sdm_subscription_1_create (
         ogs_strdup_or_assert(nf_instance_id->valuestring),
+        implicit_unsubscribe ? true : false,
         implicit_unsubscribe ? implicit_unsubscribe->valueint : 0,
         expires ? ogs_strdup_or_assert(expires->valuestring) : NULL,
         ogs_strdup_or_assert(callback_reference->valuestring),
@@ -358,6 +363,7 @@ OpenAPI_sdm_subscription_1_t *OpenAPI_sdm_subscription_1_parseFromJSON(cJSON *sd
         dnn ? ogs_strdup_or_assert(dnn->valuestring) : NULL,
         subscription_id ? ogs_strdup_or_assert(subscription_id->valuestring) : NULL,
         plmn_id ? plmn_id_local_nonprim : NULL,
+        immediate_report ? true : false,
         immediate_report ? immediate_report->valueint : 0,
         report ? report_local_nonprim : NULL,
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,

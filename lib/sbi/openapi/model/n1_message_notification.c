@@ -11,6 +11,7 @@ OpenAPI_n1_message_notification_t *OpenAPI_n1_message_notification_create(
     OpenAPI_registration_context_container_t *registration_ctxt_container,
     char *new_lmf_identification,
     OpenAPI_guami_t *guami,
+    bool is_c_io_t5_gs_optimisation,
     int c_io_t5_gs_optimisation,
     OpenAPI_ecgi_t *ecgi,
     OpenAPI_ncgi_t *ncgi
@@ -26,6 +27,7 @@ OpenAPI_n1_message_notification_t *OpenAPI_n1_message_notification_create(
     n1_message_notification_local_var->registration_ctxt_container = registration_ctxt_container;
     n1_message_notification_local_var->new_lmf_identification = new_lmf_identification;
     n1_message_notification_local_var->guami = guami;
+    n1_message_notification_local_var->is_c_io_t5_gs_optimisation = is_c_io_t5_gs_optimisation;
     n1_message_notification_local_var->c_io_t5_gs_optimisation = c_io_t5_gs_optimisation;
     n1_message_notification_local_var->ecgi = ecgi;
     n1_message_notification_local_var->ncgi = ncgi;
@@ -118,7 +120,7 @@ cJSON *OpenAPI_n1_message_notification_convertToJSON(OpenAPI_n1_message_notifica
     }
     }
 
-    if (n1_message_notification->c_io_t5_gs_optimisation) {
+    if (n1_message_notification->is_c_io_t5_gs_optimisation) {
     if (cJSON_AddBoolToObject(item, "cIoT5GSOptimisation", n1_message_notification->c_io_t5_gs_optimisation) == NULL) {
         ogs_error("OpenAPI_n1_message_notification_convertToJSON() failed [c_io_t5_gs_optimisation]");
         goto end;
@@ -239,6 +241,7 @@ OpenAPI_n1_message_notification_t *OpenAPI_n1_message_notification_parseFromJSON
         registration_ctxt_container ? registration_ctxt_container_local_nonprim : NULL,
         new_lmf_identification ? ogs_strdup_or_assert(new_lmf_identification->valuestring) : NULL,
         guami ? guami_local_nonprim : NULL,
+        c_io_t5_gs_optimisation ? true : false,
         c_io_t5_gs_optimisation ? c_io_t5_gs_optimisation->valueint : 0,
         ecgi ? ecgi_local_nonprim : NULL,
         ncgi ? ncgi_local_nonprim : NULL

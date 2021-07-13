@@ -7,6 +7,7 @@
 OpenAPI_dnn_configuration_t *OpenAPI_dnn_configuration_create(
     OpenAPI_pdu_session_types_t *pdu_session_types,
     OpenAPI_ssc_modes_t *ssc_modes,
+    bool is_iwk_eps_ind,
     int iwk_eps_ind,
     OpenAPI_subscribed_default_qos_t *_5g_qos_profile,
     OpenAPI_ambr_t *session_ambr,
@@ -16,12 +17,16 @@ OpenAPI_dnn_configuration_t *OpenAPI_dnn_configuration_create(
     OpenAPI_pdu_session_continuity_ind_e pdu_session_continuity_ind,
     char *nidd_nef_id,
     OpenAPI_nidd_information_t *nidd_info,
+    bool is_redundant_session_allowed,
     int redundant_session_allowed,
     OpenAPI_acs_info_t *acs_info,
     OpenAPI_list_t *ipv4_frame_route_list,
     OpenAPI_list_t *ipv6_frame_route_list,
+    bool is_atsss_allowed,
     int atsss_allowed,
+    bool is_secondary_auth,
     int secondary_auth,
+    bool is_dn_aaa_ip_address_allocation,
     int dn_aaa_ip_address_allocation,
     OpenAPI_ip_address_t *dn_aaa_address,
     char *iptv_acc_ctrl_info
@@ -33,6 +38,7 @@ OpenAPI_dnn_configuration_t *OpenAPI_dnn_configuration_create(
     }
     dnn_configuration_local_var->pdu_session_types = pdu_session_types;
     dnn_configuration_local_var->ssc_modes = ssc_modes;
+    dnn_configuration_local_var->is_iwk_eps_ind = is_iwk_eps_ind;
     dnn_configuration_local_var->iwk_eps_ind = iwk_eps_ind;
     dnn_configuration_local_var->_5g_qos_profile = _5g_qos_profile;
     dnn_configuration_local_var->session_ambr = session_ambr;
@@ -42,12 +48,16 @@ OpenAPI_dnn_configuration_t *OpenAPI_dnn_configuration_create(
     dnn_configuration_local_var->pdu_session_continuity_ind = pdu_session_continuity_ind;
     dnn_configuration_local_var->nidd_nef_id = nidd_nef_id;
     dnn_configuration_local_var->nidd_info = nidd_info;
+    dnn_configuration_local_var->is_redundant_session_allowed = is_redundant_session_allowed;
     dnn_configuration_local_var->redundant_session_allowed = redundant_session_allowed;
     dnn_configuration_local_var->acs_info = acs_info;
     dnn_configuration_local_var->ipv4_frame_route_list = ipv4_frame_route_list;
     dnn_configuration_local_var->ipv6_frame_route_list = ipv6_frame_route_list;
+    dnn_configuration_local_var->is_atsss_allowed = is_atsss_allowed;
     dnn_configuration_local_var->atsss_allowed = atsss_allowed;
+    dnn_configuration_local_var->is_secondary_auth = is_secondary_auth;
     dnn_configuration_local_var->secondary_auth = secondary_auth;
+    dnn_configuration_local_var->is_dn_aaa_ip_address_allocation = is_dn_aaa_ip_address_allocation;
     dnn_configuration_local_var->dn_aaa_ip_address_allocation = dn_aaa_ip_address_allocation;
     dnn_configuration_local_var->dn_aaa_address = dn_aaa_address;
     dnn_configuration_local_var->iptv_acc_ctrl_info = iptv_acc_ctrl_info;
@@ -119,7 +129,7 @@ cJSON *OpenAPI_dnn_configuration_convertToJSON(OpenAPI_dnn_configuration_t *dnn_
         goto end;
     }
 
-    if (dnn_configuration->iwk_eps_ind) {
+    if (dnn_configuration->is_iwk_eps_ind) {
     if (cJSON_AddBoolToObject(item, "iwkEpsInd", dnn_configuration->iwk_eps_ind) == NULL) {
         ogs_error("OpenAPI_dnn_configuration_convertToJSON() failed [iwk_eps_ind]");
         goto end;
@@ -219,7 +229,7 @@ cJSON *OpenAPI_dnn_configuration_convertToJSON(OpenAPI_dnn_configuration_t *dnn_
     }
     }
 
-    if (dnn_configuration->redundant_session_allowed) {
+    if (dnn_configuration->is_redundant_session_allowed) {
     if (cJSON_AddBoolToObject(item, "redundantSessionAllowed", dnn_configuration->redundant_session_allowed) == NULL) {
         ogs_error("OpenAPI_dnn_configuration_convertToJSON() failed [redundant_session_allowed]");
         goto end;
@@ -279,21 +289,21 @@ cJSON *OpenAPI_dnn_configuration_convertToJSON(OpenAPI_dnn_configuration_t *dnn_
     }
     }
 
-    if (dnn_configuration->atsss_allowed) {
+    if (dnn_configuration->is_atsss_allowed) {
     if (cJSON_AddBoolToObject(item, "atsssAllowed", dnn_configuration->atsss_allowed) == NULL) {
         ogs_error("OpenAPI_dnn_configuration_convertToJSON() failed [atsss_allowed]");
         goto end;
     }
     }
 
-    if (dnn_configuration->secondary_auth) {
+    if (dnn_configuration->is_secondary_auth) {
     if (cJSON_AddBoolToObject(item, "secondaryAuth", dnn_configuration->secondary_auth) == NULL) {
         ogs_error("OpenAPI_dnn_configuration_convertToJSON() failed [secondary_auth]");
         goto end;
     }
     }
 
-    if (dnn_configuration->dn_aaa_ip_address_allocation) {
+    if (dnn_configuration->is_dn_aaa_ip_address_allocation) {
     if (cJSON_AddBoolToObject(item, "dnAaaIpAddressAllocation", dnn_configuration->dn_aaa_ip_address_allocation) == NULL) {
         ogs_error("OpenAPI_dnn_configuration_convertToJSON() failed [dn_aaa_ip_address_allocation]");
         goto end;
@@ -544,6 +554,7 @@ OpenAPI_dnn_configuration_t *OpenAPI_dnn_configuration_parseFromJSON(cJSON *dnn_
     dnn_configuration_local_var = OpenAPI_dnn_configuration_create (
         pdu_session_types_local_nonprim,
         ssc_modes_local_nonprim,
+        iwk_eps_ind ? true : false,
         iwk_eps_ind ? iwk_eps_ind->valueint : 0,
         _5g_qos_profile ? _5g_qos_profile_local_nonprim : NULL,
         session_ambr ? session_ambr_local_nonprim : NULL,
@@ -553,12 +564,16 @@ OpenAPI_dnn_configuration_t *OpenAPI_dnn_configuration_parseFromJSON(cJSON *dnn_
         pdu_session_continuity_ind ? pdu_session_continuity_indVariable : 0,
         nidd_nef_id ? ogs_strdup_or_assert(nidd_nef_id->valuestring) : NULL,
         nidd_info ? nidd_info_local_nonprim : NULL,
+        redundant_session_allowed ? true : false,
         redundant_session_allowed ? redundant_session_allowed->valueint : 0,
         acs_info ? acs_info_local_nonprim : NULL,
         ipv4_frame_route_list ? ipv4_frame_route_listList : NULL,
         ipv6_frame_route_list ? ipv6_frame_route_listList : NULL,
+        atsss_allowed ? true : false,
         atsss_allowed ? atsss_allowed->valueint : 0,
+        secondary_auth ? true : false,
         secondary_auth ? secondary_auth->valueint : 0,
+        dn_aaa_ip_address_allocation ? true : false,
         dn_aaa_ip_address_allocation ? dn_aaa_ip_address_allocation->valueint : 0,
         dn_aaa_address ? dn_aaa_address_local_nonprim : NULL,
         iptv_acc_ctrl_info ? ogs_strdup_or_assert(iptv_acc_ctrl_info->valuestring) : NULL

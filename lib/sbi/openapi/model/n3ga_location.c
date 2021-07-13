@@ -9,6 +9,7 @@ OpenAPI_n3ga_location_t *OpenAPI_n3ga_location_create(
     char *n3_iwf_id,
     char *ue_ipv4_addr,
     char *ue_ipv6_addr,
+    bool is_port_number,
     int port_number,
     OpenAPI_tnap_id_t *tnap_id,
     OpenAPI_twap_id_t *twap_id,
@@ -26,6 +27,7 @@ OpenAPI_n3ga_location_t *OpenAPI_n3ga_location_create(
     n3ga_location_local_var->n3_iwf_id = n3_iwf_id;
     n3ga_location_local_var->ue_ipv4_addr = ue_ipv4_addr;
     n3ga_location_local_var->ue_ipv6_addr = ue_ipv6_addr;
+    n3ga_location_local_var->is_port_number = is_port_number;
     n3ga_location_local_var->port_number = port_number;
     n3ga_location_local_var->tnap_id = tnap_id;
     n3ga_location_local_var->twap_id = twap_id;
@@ -99,7 +101,7 @@ cJSON *OpenAPI_n3ga_location_convertToJSON(OpenAPI_n3ga_location_t *n3ga_locatio
     }
     }
 
-    if (n3ga_location->port_number) {
+    if (n3ga_location->is_port_number) {
     if (cJSON_AddNumberToObject(item, "portNumber", n3ga_location->port_number) == NULL) {
         ogs_error("OpenAPI_n3ga_location_convertToJSON() failed [port_number]");
         goto end;
@@ -271,6 +273,7 @@ OpenAPI_n3ga_location_t *OpenAPI_n3ga_location_parseFromJSON(cJSON *n3ga_locatio
         n3_iwf_id ? ogs_strdup_or_assert(n3_iwf_id->valuestring) : NULL,
         ue_ipv4_addr ? ogs_strdup_or_assert(ue_ipv4_addr->valuestring) : NULL,
         ue_ipv6_addr ? ogs_strdup_or_assert(ue_ipv6_addr->valuestring) : NULL,
+        port_number ? true : false,
         port_number ? port_number->valuedouble : 0,
         tnap_id ? tnap_id_local_nonprim : NULL,
         twap_id ? twap_id_local_nonprim : NULL,

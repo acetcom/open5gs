@@ -99,6 +99,7 @@ OpenAPI_eps_bearer_info_t *OpenAPI_eps_bearer_info_parseFromJSON(cJSON *eps_bear
     }
 
     eps_bearer_info_local_var = OpenAPI_eps_bearer_info_create (
+        
         ebi->valuedouble,
         pgw_s8u_fteid->valueint,
         bearer_level_qo_s->valueint

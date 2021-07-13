@@ -15,6 +15,7 @@ OpenAPI_amf_event_subscription_t *OpenAPI_amf_event_subscription_create(
     char *group_id,
     char *gpsi,
     char *pei,
+    bool is_any_ue,
     int any_ue,
     OpenAPI_amf_event_mode_t *options,
     OpenAPI_nf_type_e source_nf_type
@@ -34,6 +35,7 @@ OpenAPI_amf_event_subscription_t *OpenAPI_amf_event_subscription_create(
     amf_event_subscription_local_var->group_id = group_id;
     amf_event_subscription_local_var->gpsi = gpsi;
     amf_event_subscription_local_var->pei = pei;
+    amf_event_subscription_local_var->is_any_ue = is_any_ue;
     amf_event_subscription_local_var->any_ue = any_ue;
     amf_event_subscription_local_var->options = options;
     amf_event_subscription_local_var->source_nf_type = source_nf_type;
@@ -149,7 +151,7 @@ cJSON *OpenAPI_amf_event_subscription_convertToJSON(OpenAPI_amf_event_subscripti
     }
     }
 
-    if (amf_event_subscription->any_ue) {
+    if (amf_event_subscription->is_any_ue) {
     if (cJSON_AddBoolToObject(item, "anyUE", amf_event_subscription->any_ue) == NULL) {
         ogs_error("OpenAPI_amf_event_subscription_convertToJSON() failed [any_ue]");
         goto end;
@@ -337,6 +339,7 @@ OpenAPI_amf_event_subscription_t *OpenAPI_amf_event_subscription_parseFromJSON(c
         group_id ? ogs_strdup_or_assert(group_id->valuestring) : NULL,
         gpsi ? ogs_strdup_or_assert(gpsi->valuestring) : NULL,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
+        any_ue ? true : false,
         any_ue ? any_ue->valueint : 0,
         options ? options_local_nonprim : NULL,
         source_nf_type ? source_nf_typeVariable : 0

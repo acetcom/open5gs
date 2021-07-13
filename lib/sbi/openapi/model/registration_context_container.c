@@ -13,7 +13,9 @@ OpenAPI_registration_context_container_t *OpenAPI_registration_context_container
     char *initial_amf_name,
     OpenAPI_user_location_t *user_location,
     char *rrc_est_cause,
+    bool is_ue_context_request,
     int ue_context_request,
+    bool is_initial_amf_n2_ap_id,
     int initial_amf_n2_ap_id,
     char *an_n2_ipv4_addr,
     char *an_n2_ipv6_addr,
@@ -22,9 +24,11 @@ OpenAPI_registration_context_container_t *OpenAPI_registration_context_container
     OpenAPI_list_t *rejected_nssai_in_plmn,
     OpenAPI_list_t *rejected_nssai_in_ta,
     OpenAPI_plmn_id_t *selected_plmn_id,
+    bool is_iab_node_ind,
     int iab_node_ind,
     OpenAPI_ce_mode_b_ind_t *ce_mode_b_ind,
     OpenAPI_lte_m_ind_t *lte_m_ind,
+    bool is_authenticated_ind,
     int authenticated_ind,
     OpenAPI_npn_access_info_t *npn_access_info
 )
@@ -41,7 +45,9 @@ OpenAPI_registration_context_container_t *OpenAPI_registration_context_container
     registration_context_container_local_var->initial_amf_name = initial_amf_name;
     registration_context_container_local_var->user_location = user_location;
     registration_context_container_local_var->rrc_est_cause = rrc_est_cause;
+    registration_context_container_local_var->is_ue_context_request = is_ue_context_request;
     registration_context_container_local_var->ue_context_request = ue_context_request;
+    registration_context_container_local_var->is_initial_amf_n2_ap_id = is_initial_amf_n2_ap_id;
     registration_context_container_local_var->initial_amf_n2_ap_id = initial_amf_n2_ap_id;
     registration_context_container_local_var->an_n2_ipv4_addr = an_n2_ipv4_addr;
     registration_context_container_local_var->an_n2_ipv6_addr = an_n2_ipv6_addr;
@@ -50,9 +56,11 @@ OpenAPI_registration_context_container_t *OpenAPI_registration_context_container
     registration_context_container_local_var->rejected_nssai_in_plmn = rejected_nssai_in_plmn;
     registration_context_container_local_var->rejected_nssai_in_ta = rejected_nssai_in_ta;
     registration_context_container_local_var->selected_plmn_id = selected_plmn_id;
+    registration_context_container_local_var->is_iab_node_ind = is_iab_node_ind;
     registration_context_container_local_var->iab_node_ind = iab_node_ind;
     registration_context_container_local_var->ce_mode_b_ind = ce_mode_b_ind;
     registration_context_container_local_var->lte_m_ind = lte_m_ind;
+    registration_context_container_local_var->is_authenticated_ind = is_authenticated_ind;
     registration_context_container_local_var->authenticated_ind = authenticated_ind;
     registration_context_container_local_var->npn_access_info = npn_access_info;
 
@@ -165,14 +173,14 @@ cJSON *OpenAPI_registration_context_container_convertToJSON(OpenAPI_registration
     }
     }
 
-    if (registration_context_container->ue_context_request) {
+    if (registration_context_container->is_ue_context_request) {
     if (cJSON_AddBoolToObject(item, "ueContextRequest", registration_context_container->ue_context_request) == NULL) {
         ogs_error("OpenAPI_registration_context_container_convertToJSON() failed [ue_context_request]");
         goto end;
     }
     }
 
-    if (registration_context_container->initial_amf_n2_ap_id) {
+    if (registration_context_container->is_initial_amf_n2_ap_id) {
     if (cJSON_AddNumberToObject(item, "initialAmfN2ApId", registration_context_container->initial_amf_n2_ap_id) == NULL) {
         ogs_error("OpenAPI_registration_context_container_convertToJSON() failed [initial_amf_n2_ap_id]");
         goto end;
@@ -279,7 +287,7 @@ cJSON *OpenAPI_registration_context_container_convertToJSON(OpenAPI_registration
     }
     }
 
-    if (registration_context_container->iab_node_ind) {
+    if (registration_context_container->is_iab_node_ind) {
     if (cJSON_AddBoolToObject(item, "iabNodeInd", registration_context_container->iab_node_ind) == NULL) {
         ogs_error("OpenAPI_registration_context_container_convertToJSON() failed [iab_node_ind]");
         goto end;
@@ -312,7 +320,7 @@ cJSON *OpenAPI_registration_context_container_convertToJSON(OpenAPI_registration
     }
     }
 
-    if (registration_context_container->authenticated_ind) {
+    if (registration_context_container->is_authenticated_ind) {
     if (cJSON_AddBoolToObject(item, "authenticatedInd", registration_context_container->authenticated_ind) == NULL) {
         ogs_error("OpenAPI_registration_context_container_convertToJSON() failed [authenticated_ind]");
         goto end;
@@ -587,12 +595,15 @@ OpenAPI_registration_context_container_t *OpenAPI_registration_context_container
         ue_context_local_nonprim,
         local_time_zone ? ogs_strdup_or_assert(local_time_zone->valuestring) : NULL,
         an_typeVariable,
+        
         an_n2_ap_id->valuedouble,
         ran_node_id_local_nonprim,
         ogs_strdup_or_assert(initial_amf_name->valuestring),
         user_location_local_nonprim,
         rrc_est_cause ? ogs_strdup_or_assert(rrc_est_cause->valuestring) : NULL,
+        ue_context_request ? true : false,
         ue_context_request ? ue_context_request->valueint : 0,
+        initial_amf_n2_ap_id ? true : false,
         initial_amf_n2_ap_id ? initial_amf_n2_ap_id->valuedouble : 0,
         an_n2_ipv4_addr ? ogs_strdup_or_assert(an_n2_ipv4_addr->valuestring) : NULL,
         an_n2_ipv6_addr ? ogs_strdup_or_assert(an_n2_ipv6_addr->valuestring) : NULL,
@@ -601,9 +612,11 @@ OpenAPI_registration_context_container_t *OpenAPI_registration_context_container
         rejected_nssai_in_plmn ? rejected_nssai_in_plmnList : NULL,
         rejected_nssai_in_ta ? rejected_nssai_in_taList : NULL,
         selected_plmn_id ? selected_plmn_id_local_nonprim : NULL,
+        iab_node_ind ? true : false,
         iab_node_ind ? iab_node_ind->valueint : 0,
         ce_mode_b_ind ? ce_mode_b_ind_local_nonprim : NULL,
         lte_m_ind ? lte_m_ind_local_nonprim : NULL,
+        authenticated_ind ? true : false,
         authenticated_ind ? authenticated_ind->valueint : 0,
         npn_access_info ? npn_access_info_local_nonprim : NULL
     );

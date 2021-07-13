@@ -7,6 +7,7 @@
 OpenAPI_release_data_t *OpenAPI_release_data_create(
     OpenAPI_cause_e cause,
     OpenAPI_ng_ap_cause_t *ng_ap_cause,
+    bool is__5g_mm_cause_value,
     int _5g_mm_cause_value,
     OpenAPI_user_location_t *ue_location,
     char *ue_time_zone,
@@ -24,6 +25,7 @@ OpenAPI_release_data_t *OpenAPI_release_data_create(
     }
     release_data_local_var->cause = cause;
     release_data_local_var->ng_ap_cause = ng_ap_cause;
+    release_data_local_var->is__5g_mm_cause_value = is__5g_mm_cause_value;
     release_data_local_var->_5g_mm_cause_value = _5g_mm_cause_value;
     release_data_local_var->ue_location = ue_location;
     release_data_local_var->ue_time_zone = ue_time_zone;
@@ -91,7 +93,7 @@ cJSON *OpenAPI_release_data_convertToJSON(OpenAPI_release_data_t *release_data)
     }
     }
 
-    if (release_data->_5g_mm_cause_value) {
+    if (release_data->is__5g_mm_cause_value) {
     if (cJSON_AddNumberToObject(item, "5gMmCauseValue", release_data->_5g_mm_cause_value) == NULL) {
         ogs_error("OpenAPI_release_data_convertToJSON() failed [_5g_mm_cause_value]");
         goto end;
@@ -337,6 +339,7 @@ OpenAPI_release_data_t *OpenAPI_release_data_parseFromJSON(cJSON *release_dataJS
     release_data_local_var = OpenAPI_release_data_create (
         cause ? causeVariable : 0,
         ng_ap_cause ? ng_ap_cause_local_nonprim : NULL,
+        _5g_mm_cause_value ? true : false,
         _5g_mm_cause_value ? _5g_mm_cause_value->valuedouble : 0,
         ue_location ? ue_location_local_nonprim : NULL,
         ue_time_zone ? ogs_strdup_or_assert(ue_time_zone->valuestring) : NULL,

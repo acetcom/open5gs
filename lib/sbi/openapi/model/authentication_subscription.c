@@ -13,8 +13,10 @@ OpenAPI_authentication_subscription_t *OpenAPI_authentication_subscription_creat
     char *algorithm_id,
     char *enc_opc_key,
     char *enc_topc_key,
+    bool is_vector_generation_in_hss,
     int vector_generation_in_hss,
     OpenAPI_auth_method_e n5gc_auth_method,
+    bool is_rg_authentication_ind,
     int rg_authentication_ind,
     char *supi
 )
@@ -31,8 +33,10 @@ OpenAPI_authentication_subscription_t *OpenAPI_authentication_subscription_creat
     authentication_subscription_local_var->algorithm_id = algorithm_id;
     authentication_subscription_local_var->enc_opc_key = enc_opc_key;
     authentication_subscription_local_var->enc_topc_key = enc_topc_key;
+    authentication_subscription_local_var->is_vector_generation_in_hss = is_vector_generation_in_hss;
     authentication_subscription_local_var->vector_generation_in_hss = vector_generation_in_hss;
     authentication_subscription_local_var->n5gc_auth_method = n5gc_auth_method;
+    authentication_subscription_local_var->is_rg_authentication_ind = is_rg_authentication_ind;
     authentication_subscription_local_var->rg_authentication_ind = rg_authentication_ind;
     authentication_subscription_local_var->supi = supi;
 
@@ -126,7 +130,7 @@ cJSON *OpenAPI_authentication_subscription_convertToJSON(OpenAPI_authentication_
     }
     }
 
-    if (authentication_subscription->vector_generation_in_hss) {
+    if (authentication_subscription->is_vector_generation_in_hss) {
     if (cJSON_AddBoolToObject(item, "vectorGenerationInHss", authentication_subscription->vector_generation_in_hss) == NULL) {
         ogs_error("OpenAPI_authentication_subscription_convertToJSON() failed [vector_generation_in_hss]");
         goto end;
@@ -140,7 +144,7 @@ cJSON *OpenAPI_authentication_subscription_convertToJSON(OpenAPI_authentication_
     }
     }
 
-    if (authentication_subscription->rg_authentication_ind) {
+    if (authentication_subscription->is_rg_authentication_ind) {
     if (cJSON_AddBoolToObject(item, "rgAuthenticationInd", authentication_subscription->rg_authentication_ind) == NULL) {
         ogs_error("OpenAPI_authentication_subscription_convertToJSON() failed [rg_authentication_ind]");
         goto end;
@@ -283,8 +287,10 @@ OpenAPI_authentication_subscription_t *OpenAPI_authentication_subscription_parse
         algorithm_id ? ogs_strdup_or_assert(algorithm_id->valuestring) : NULL,
         enc_opc_key ? ogs_strdup_or_assert(enc_opc_key->valuestring) : NULL,
         enc_topc_key ? ogs_strdup_or_assert(enc_topc_key->valuestring) : NULL,
+        vector_generation_in_hss ? true : false,
         vector_generation_in_hss ? vector_generation_in_hss->valueint : 0,
         n5gc_auth_method ? n5gc_auth_methodVariable : 0,
+        rg_authentication_ind ? true : false,
         rg_authentication_ind ? rg_authentication_ind->valueint : 0,
         supi ? ogs_strdup_or_assert(supi->valuestring) : NULL
     );

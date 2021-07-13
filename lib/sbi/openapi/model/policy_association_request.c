@@ -22,6 +22,7 @@ OpenAPI_policy_association_request_t *OpenAPI_policy_association_request_create(
     OpenAPI_list_t *group_ids,
     OpenAPI_service_area_restriction_t *serv_area_res,
     OpenAPI_wireline_service_area_restriction_t *wl_serv_area_res,
+    bool is_rfsp,
     int rfsp,
     OpenAPI_ambr_t *ue_ambr,
     OpenAPI_list_t *allowed_snssais,
@@ -54,6 +55,7 @@ OpenAPI_policy_association_request_t *OpenAPI_policy_association_request_create(
     policy_association_request_local_var->group_ids = group_ids;
     policy_association_request_local_var->serv_area_res = serv_area_res;
     policy_association_request_local_var->wl_serv_area_res = wl_serv_area_res;
+    policy_association_request_local_var->is_rfsp = is_rfsp;
     policy_association_request_local_var->rfsp = rfsp;
     policy_association_request_local_var->ue_ambr = ue_ambr;
     policy_association_request_local_var->allowed_snssais = allowed_snssais;
@@ -321,7 +323,7 @@ cJSON *OpenAPI_policy_association_request_convertToJSON(OpenAPI_policy_associati
     }
     }
 
-    if (policy_association_request->rfsp) {
+    if (policy_association_request->is_rfsp) {
     if (cJSON_AddNumberToObject(item, "rfsp", policy_association_request->rfsp) == NULL) {
         ogs_error("OpenAPI_policy_association_request_convertToJSON() failed [rfsp]");
         goto end;
@@ -809,6 +811,7 @@ OpenAPI_policy_association_request_t *OpenAPI_policy_association_request_parseFr
         group_ids ? group_idsList : NULL,
         serv_area_res ? serv_area_res_local_nonprim : NULL,
         wl_serv_area_res ? wl_serv_area_res_local_nonprim : NULL,
+        rfsp ? true : false,
         rfsp ? rfsp->valuedouble : 0,
         ue_ambr ? ue_ambr_local_nonprim : NULL,
         allowed_snssais ? allowed_snssaisList : NULL,

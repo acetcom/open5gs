@@ -8,6 +8,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_create(
     OpenAPI_sqn_scheme_e sqn_scheme,
     char *sqn,
     OpenAPI_list_t* last_indexes,
+    bool is_ind_length,
     int ind_length,
     OpenAPI_sign_e dif_sign
 )
@@ -19,6 +20,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_create(
     sequence_number_local_var->sqn_scheme = sqn_scheme;
     sequence_number_local_var->sqn = sqn;
     sequence_number_local_var->last_indexes = last_indexes;
+    sequence_number_local_var->is_ind_length = is_ind_length;
     sequence_number_local_var->ind_length = ind_length;
     sequence_number_local_var->dif_sign = dif_sign;
 
@@ -80,7 +82,7 @@ cJSON *OpenAPI_sequence_number_convertToJSON(OpenAPI_sequence_number_t *sequence
         }
     }
 
-    if (sequence_number->ind_length) {
+    if (sequence_number->is_ind_length) {
     if (cJSON_AddNumberToObject(item, "indLength", sequence_number->ind_length) == NULL) {
         ogs_error("OpenAPI_sequence_number_convertToJSON() failed [ind_length]");
         goto end;
@@ -162,6 +164,7 @@ OpenAPI_sequence_number_t *OpenAPI_sequence_number_parseFromJSON(cJSON *sequence
         sqn_scheme ? sqn_schemeVariable : 0,
         sqn ? ogs_strdup_or_assert(sqn->valuestring) : NULL,
         last_indexes ? last_indexesList : NULL,
+        ind_length ? true : false,
         ind_length ? ind_length->valuedouble : 0,
         dif_sign ? dif_signVariable : 0
     );

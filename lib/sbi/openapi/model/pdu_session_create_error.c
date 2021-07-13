@@ -8,6 +8,7 @@ OpenAPI_pdu_session_create_error_t *OpenAPI_pdu_session_create_error_create(
     OpenAPI_problem_details_t *error,
     char *n1sm_cause,
     OpenAPI_ref_to_binary_data_t *n1_sm_info_to_ue,
+    bool is_back_off_timer,
     int back_off_timer,
     char *recovery_time
 )
@@ -19,6 +20,7 @@ OpenAPI_pdu_session_create_error_t *OpenAPI_pdu_session_create_error_create(
     pdu_session_create_error_local_var->error = error;
     pdu_session_create_error_local_var->n1sm_cause = n1sm_cause;
     pdu_session_create_error_local_var->n1_sm_info_to_ue = n1_sm_info_to_ue;
+    pdu_session_create_error_local_var->is_back_off_timer = is_back_off_timer;
     pdu_session_create_error_local_var->back_off_timer = back_off_timer;
     pdu_session_create_error_local_var->recovery_time = recovery_time;
 
@@ -79,7 +81,7 @@ cJSON *OpenAPI_pdu_session_create_error_convertToJSON(OpenAPI_pdu_session_create
     }
     }
 
-    if (pdu_session_create_error->back_off_timer) {
+    if (pdu_session_create_error->is_back_off_timer) {
     if (cJSON_AddNumberToObject(item, "backOffTimer", pdu_session_create_error->back_off_timer) == NULL) {
         ogs_error("OpenAPI_pdu_session_create_error_convertToJSON() failed [back_off_timer]");
         goto end;
@@ -148,6 +150,7 @@ OpenAPI_pdu_session_create_error_t *OpenAPI_pdu_session_create_error_parseFromJS
         error_local_nonprim,
         n1sm_cause ? ogs_strdup_or_assert(n1sm_cause->valuestring) : NULL,
         n1_sm_info_to_ue ? n1_sm_info_to_ue_local_nonprim : NULL,
+        back_off_timer ? true : false,
         back_off_timer ? back_off_timer->valuedouble : 0,
         recovery_time ? ogs_strdup_or_assert(recovery_time->valuestring) : NULL
     );

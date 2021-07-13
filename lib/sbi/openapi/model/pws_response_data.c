@@ -148,8 +148,11 @@ OpenAPI_pws_response_data_t *OpenAPI_pws_response_data_parseFromJSON(cJSON *pws_
     }
 
     pws_response_data_local_var = OpenAPI_pws_response_data_create (
+        
         ngap_message_type->valuedouble,
+        
         serial_number->valuedouble,
+        
         message_identifier->valuedouble,
         unknown_tai_list ? unknown_tai_listList : NULL
     );

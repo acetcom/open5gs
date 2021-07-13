@@ -5,11 +5,13 @@
 #include "af_routing_requirement_rm.h"
 
 OpenAPI_af_routing_requirement_rm_t *OpenAPI_af_routing_requirement_rm_create(
+    bool is_app_reloc,
     int app_reloc,
     OpenAPI_list_t *route_to_locs,
     OpenAPI_spatial_validity_rm_t *sp_val,
     OpenAPI_list_t *temp_vals,
     OpenAPI_up_path_chg_event_t *up_path_chg_sub,
+    bool is_addr_preser_ind,
     int addr_preser_ind
 )
 {
@@ -17,11 +19,13 @@ OpenAPI_af_routing_requirement_rm_t *OpenAPI_af_routing_requirement_rm_create(
     if (!af_routing_requirement_rm_local_var) {
         return NULL;
     }
+    af_routing_requirement_rm_local_var->is_app_reloc = is_app_reloc;
     af_routing_requirement_rm_local_var->app_reloc = app_reloc;
     af_routing_requirement_rm_local_var->route_to_locs = route_to_locs;
     af_routing_requirement_rm_local_var->sp_val = sp_val;
     af_routing_requirement_rm_local_var->temp_vals = temp_vals;
     af_routing_requirement_rm_local_var->up_path_chg_sub = up_path_chg_sub;
+    af_routing_requirement_rm_local_var->is_addr_preser_ind = is_addr_preser_ind;
     af_routing_requirement_rm_local_var->addr_preser_ind = addr_preser_ind;
 
     return af_routing_requirement_rm_local_var;
@@ -56,7 +60,7 @@ cJSON *OpenAPI_af_routing_requirement_rm_convertToJSON(OpenAPI_af_routing_requir
     }
 
     item = cJSON_CreateObject();
-    if (af_routing_requirement_rm->app_reloc) {
+    if (af_routing_requirement_rm->is_app_reloc) {
     if (cJSON_AddBoolToObject(item, "appReloc", af_routing_requirement_rm->app_reloc) == NULL) {
         ogs_error("OpenAPI_af_routing_requirement_rm_convertToJSON() failed [app_reloc]");
         goto end;
@@ -129,7 +133,7 @@ cJSON *OpenAPI_af_routing_requirement_rm_convertToJSON(OpenAPI_af_routing_requir
     }
     }
 
-    if (af_routing_requirement_rm->addr_preser_ind) {
+    if (af_routing_requirement_rm->is_addr_preser_ind) {
     if (cJSON_AddBoolToObject(item, "addrPreserInd", af_routing_requirement_rm->addr_preser_ind) == NULL) {
         ogs_error("OpenAPI_af_routing_requirement_rm_convertToJSON() failed [addr_preser_ind]");
         goto end;
@@ -222,11 +226,13 @@ OpenAPI_af_routing_requirement_rm_t *OpenAPI_af_routing_requirement_rm_parseFrom
     }
 
     af_routing_requirement_rm_local_var = OpenAPI_af_routing_requirement_rm_create (
+        app_reloc ? true : false,
         app_reloc ? app_reloc->valueint : 0,
         route_to_locs ? route_to_locsList : NULL,
         sp_val ? sp_val_local_nonprim : NULL,
         temp_vals ? temp_valsList : NULL,
         up_path_chg_sub ? up_path_chg_sub_local_nonprim : NULL,
+        addr_preser_ind ? true : false,
         addr_preser_ind ? addr_preser_ind->valueint : 0
     );
 

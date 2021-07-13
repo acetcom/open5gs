@@ -61,6 +61,7 @@ OpenAPI_lte_m_ind_t *OpenAPI_lte_m_ind_parseFromJSON(cJSON *lte_m_indJSON)
     }
 
     lte_m_ind_local_var = OpenAPI_lte_m_ind_create (
+        
         lte_cat_m_ind->valueint
     );
 

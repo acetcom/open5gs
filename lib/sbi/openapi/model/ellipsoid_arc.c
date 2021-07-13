@@ -187,10 +187,15 @@ OpenAPI_ellipsoid_arc_t *OpenAPI_ellipsoid_arc_parseFromJSON(cJSON *ellipsoid_ar
     ellipsoid_arc_local_var = OpenAPI_ellipsoid_arc_create (
         shape_local_nonprim,
         point_local_nonprim,
+        
         inner_radius->valuedouble,
+        
         uncertainty_radius->valuedouble,
+        
         offset_angle->valuedouble,
+        
         included_angle->valuedouble,
+        
         confidence->valuedouble
     );
 

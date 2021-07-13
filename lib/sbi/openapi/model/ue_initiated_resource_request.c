@@ -7,6 +7,7 @@
 OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_create(
     char *pcc_rule_id,
     OpenAPI_rule_operation_e rule_op,
+    bool is_precedence,
     int precedence,
     OpenAPI_list_t *pack_filt_info,
     OpenAPI_requested_qos_t *req_qos
@@ -18,6 +19,7 @@ OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_c
     }
     ue_initiated_resource_request_local_var->pcc_rule_id = pcc_rule_id;
     ue_initiated_resource_request_local_var->rule_op = rule_op;
+    ue_initiated_resource_request_local_var->is_precedence = is_precedence;
     ue_initiated_resource_request_local_var->precedence = precedence;
     ue_initiated_resource_request_local_var->pack_filt_info = pack_filt_info;
     ue_initiated_resource_request_local_var->req_qos = req_qos;
@@ -62,7 +64,7 @@ cJSON *OpenAPI_ue_initiated_resource_request_convertToJSON(OpenAPI_ue_initiated_
         goto end;
     }
 
-    if (ue_initiated_resource_request->precedence) {
+    if (ue_initiated_resource_request->is_precedence) {
     if (cJSON_AddNumberToObject(item, "precedence", ue_initiated_resource_request->precedence) == NULL) {
         ogs_error("OpenAPI_ue_initiated_resource_request_convertToJSON() failed [precedence]");
         goto end;
@@ -175,6 +177,7 @@ OpenAPI_ue_initiated_resource_request_t *OpenAPI_ue_initiated_resource_request_p
     ue_initiated_resource_request_local_var = OpenAPI_ue_initiated_resource_request_create (
         pcc_rule_id ? ogs_strdup_or_assert(pcc_rule_id->valuestring) : NULL,
         rule_opVariable,
+        precedence ? true : false,
         precedence ? precedence->valuedouble : 0,
         pack_filt_infoList,
         req_qos ? req_qos_local_nonprim : NULL

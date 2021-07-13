@@ -138,8 +138,10 @@ OpenAPI_pp_maximum_latency_t *OpenAPI_pp_maximum_latency_parseFromJSON(cJSON *pp
     }
 
     pp_maximum_latency_local_var = OpenAPI_pp_maximum_latency_create (
+        
         maximum_latency->valuedouble,
         ogs_strdup_or_assert(af_instance_id->valuestring),
+        
         reference_id->valuedouble,
         validity_time ? ogs_strdup_or_assert(validity_time->valuestring) : NULL,
         mtc_provider_information ? ogs_strdup_or_assert(mtc_provider_information->valuestring) : NULL

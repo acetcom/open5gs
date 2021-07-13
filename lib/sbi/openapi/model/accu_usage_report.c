@@ -6,13 +6,21 @@
 
 OpenAPI_accu_usage_report_t *OpenAPI_accu_usage_report_create(
     char *ref_um_ids,
+    bool is_vol_usage,
     long vol_usage,
+    bool is_vol_usage_uplink,
     long vol_usage_uplink,
+    bool is_vol_usage_downlink,
     long vol_usage_downlink,
+    bool is_time_usage,
     int time_usage,
+    bool is_next_vol_usage,
     long next_vol_usage,
+    bool is_next_vol_usage_uplink,
     long next_vol_usage_uplink,
+    bool is_next_vol_usage_downlink,
     long next_vol_usage_downlink,
+    bool is_next_time_usage,
     int next_time_usage
 )
 {
@@ -21,13 +29,21 @@ OpenAPI_accu_usage_report_t *OpenAPI_accu_usage_report_create(
         return NULL;
     }
     accu_usage_report_local_var->ref_um_ids = ref_um_ids;
+    accu_usage_report_local_var->is_vol_usage = is_vol_usage;
     accu_usage_report_local_var->vol_usage = vol_usage;
+    accu_usage_report_local_var->is_vol_usage_uplink = is_vol_usage_uplink;
     accu_usage_report_local_var->vol_usage_uplink = vol_usage_uplink;
+    accu_usage_report_local_var->is_vol_usage_downlink = is_vol_usage_downlink;
     accu_usage_report_local_var->vol_usage_downlink = vol_usage_downlink;
+    accu_usage_report_local_var->is_time_usage = is_time_usage;
     accu_usage_report_local_var->time_usage = time_usage;
+    accu_usage_report_local_var->is_next_vol_usage = is_next_vol_usage;
     accu_usage_report_local_var->next_vol_usage = next_vol_usage;
+    accu_usage_report_local_var->is_next_vol_usage_uplink = is_next_vol_usage_uplink;
     accu_usage_report_local_var->next_vol_usage_uplink = next_vol_usage_uplink;
+    accu_usage_report_local_var->is_next_vol_usage_downlink = is_next_vol_usage_downlink;
     accu_usage_report_local_var->next_vol_usage_downlink = next_vol_usage_downlink;
+    accu_usage_report_local_var->is_next_time_usage = is_next_time_usage;
     accu_usage_report_local_var->next_time_usage = next_time_usage;
 
     return accu_usage_report_local_var;
@@ -58,56 +74,56 @@ cJSON *OpenAPI_accu_usage_report_convertToJSON(OpenAPI_accu_usage_report_t *accu
         goto end;
     }
 
-    if (accu_usage_report->vol_usage) {
+    if (accu_usage_report->is_vol_usage) {
     if (cJSON_AddNumberToObject(item, "volUsage", accu_usage_report->vol_usage) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [vol_usage]");
         goto end;
     }
     }
 
-    if (accu_usage_report->vol_usage_uplink) {
+    if (accu_usage_report->is_vol_usage_uplink) {
     if (cJSON_AddNumberToObject(item, "volUsageUplink", accu_usage_report->vol_usage_uplink) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [vol_usage_uplink]");
         goto end;
     }
     }
 
-    if (accu_usage_report->vol_usage_downlink) {
+    if (accu_usage_report->is_vol_usage_downlink) {
     if (cJSON_AddNumberToObject(item, "volUsageDownlink", accu_usage_report->vol_usage_downlink) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [vol_usage_downlink]");
         goto end;
     }
     }
 
-    if (accu_usage_report->time_usage) {
+    if (accu_usage_report->is_time_usage) {
     if (cJSON_AddNumberToObject(item, "timeUsage", accu_usage_report->time_usage) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [time_usage]");
         goto end;
     }
     }
 
-    if (accu_usage_report->next_vol_usage) {
+    if (accu_usage_report->is_next_vol_usage) {
     if (cJSON_AddNumberToObject(item, "nextVolUsage", accu_usage_report->next_vol_usage) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [next_vol_usage]");
         goto end;
     }
     }
 
-    if (accu_usage_report->next_vol_usage_uplink) {
+    if (accu_usage_report->is_next_vol_usage_uplink) {
     if (cJSON_AddNumberToObject(item, "nextVolUsageUplink", accu_usage_report->next_vol_usage_uplink) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [next_vol_usage_uplink]");
         goto end;
     }
     }
 
-    if (accu_usage_report->next_vol_usage_downlink) {
+    if (accu_usage_report->is_next_vol_usage_downlink) {
     if (cJSON_AddNumberToObject(item, "nextVolUsageDownlink", accu_usage_report->next_vol_usage_downlink) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [next_vol_usage_downlink]");
         goto end;
     }
     }
 
-    if (accu_usage_report->next_time_usage) {
+    if (accu_usage_report->is_next_time_usage) {
     if (cJSON_AddNumberToObject(item, "nextTimeUsage", accu_usage_report->next_time_usage) == NULL) {
         ogs_error("OpenAPI_accu_usage_report_convertToJSON() failed [next_time_usage]");
         goto end;
@@ -207,13 +223,21 @@ OpenAPI_accu_usage_report_t *OpenAPI_accu_usage_report_parseFromJSON(cJSON *accu
 
     accu_usage_report_local_var = OpenAPI_accu_usage_report_create (
         ogs_strdup_or_assert(ref_um_ids->valuestring),
+        vol_usage ? true : false,
         vol_usage ? vol_usage->valuedouble : 0,
+        vol_usage_uplink ? true : false,
         vol_usage_uplink ? vol_usage_uplink->valuedouble : 0,
+        vol_usage_downlink ? true : false,
         vol_usage_downlink ? vol_usage_downlink->valuedouble : 0,
+        time_usage ? true : false,
         time_usage ? time_usage->valuedouble : 0,
+        next_vol_usage ? true : false,
         next_vol_usage ? next_vol_usage->valuedouble : 0,
+        next_vol_usage_uplink ? true : false,
         next_vol_usage_uplink ? next_vol_usage_uplink->valuedouble : 0,
+        next_vol_usage_downlink ? true : false,
         next_vol_usage_downlink ? next_vol_usage_downlink->valuedouble : 0,
+        next_time_usage ? true : false,
         next_time_usage ? next_time_usage->valuedouble : 0
     );
 

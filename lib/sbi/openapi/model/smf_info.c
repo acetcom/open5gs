@@ -10,7 +10,9 @@ OpenAPI_smf_info_t *OpenAPI_smf_info_create(
     OpenAPI_list_t *tai_range_list,
     char *pgw_fqdn,
     OpenAPI_list_t *access_type,
+    bool is_priority,
     int priority,
+    bool is_vsmf_support_ind,
     int vsmf_support_ind
 )
 {
@@ -23,7 +25,9 @@ OpenAPI_smf_info_t *OpenAPI_smf_info_create(
     smf_info_local_var->tai_range_list = tai_range_list;
     smf_info_local_var->pgw_fqdn = pgw_fqdn;
     smf_info_local_var->access_type = access_type;
+    smf_info_local_var->is_priority = is_priority;
     smf_info_local_var->priority = priority;
+    smf_info_local_var->is_vsmf_support_ind = is_vsmf_support_ind;
     smf_info_local_var->vsmf_support_ind = vsmf_support_ind;
 
     return smf_info_local_var;
@@ -142,14 +146,14 @@ cJSON *OpenAPI_smf_info_convertToJSON(OpenAPI_smf_info_t *smf_info)
     }
     }
 
-    if (smf_info->priority) {
+    if (smf_info->is_priority) {
     if (cJSON_AddNumberToObject(item, "priority", smf_info->priority) == NULL) {
         ogs_error("OpenAPI_smf_info_convertToJSON() failed [priority]");
         goto end;
     }
     }
 
-    if (smf_info->vsmf_support_ind) {
+    if (smf_info->is_vsmf_support_ind) {
     if (cJSON_AddBoolToObject(item, "vsmfSupportInd", smf_info->vsmf_support_ind) == NULL) {
         ogs_error("OpenAPI_smf_info_convertToJSON() failed [vsmf_support_ind]");
         goto end;
@@ -290,7 +294,9 @@ OpenAPI_smf_info_t *OpenAPI_smf_info_parseFromJSON(cJSON *smf_infoJSON)
         tai_range_list ? tai_range_listList : NULL,
         pgw_fqdn ? ogs_strdup_or_assert(pgw_fqdn->valuestring) : NULL,
         access_type ? access_typeList : NULL,
+        priority ? true : false,
         priority ? priority->valuedouble : 0,
+        vsmf_support_ind ? true : false,
         vsmf_support_ind ? vsmf_support_ind->valueint : 0
     );
 

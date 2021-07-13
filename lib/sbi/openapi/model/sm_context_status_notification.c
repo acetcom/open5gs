@@ -8,6 +8,7 @@ OpenAPI_sm_context_status_notification_t *OpenAPI_sm_context_status_notification
     OpenAPI_status_info_t *status_info,
     OpenAPI_small_data_rate_status_t *small_data_rate_status,
     OpenAPI_apn_rate_status_t *apn_rate_status,
+    bool is_ddn_failure_status,
     int ddn_failure_status,
     OpenAPI_list_t *notify_correlation_ids_forddn_failure,
     char *new_smf_id,
@@ -25,6 +26,7 @@ OpenAPI_sm_context_status_notification_t *OpenAPI_sm_context_status_notification
     sm_context_status_notification_local_var->status_info = status_info;
     sm_context_status_notification_local_var->small_data_rate_status = small_data_rate_status;
     sm_context_status_notification_local_var->apn_rate_status = apn_rate_status;
+    sm_context_status_notification_local_var->is_ddn_failure_status = is_ddn_failure_status;
     sm_context_status_notification_local_var->ddn_failure_status = ddn_failure_status;
     sm_context_status_notification_local_var->notify_correlation_ids_forddn_failure = notify_correlation_ids_forddn_failure;
     sm_context_status_notification_local_var->new_smf_id = new_smf_id;
@@ -106,7 +108,7 @@ cJSON *OpenAPI_sm_context_status_notification_convertToJSON(OpenAPI_sm_context_s
     }
     }
 
-    if (sm_context_status_notification->ddn_failure_status) {
+    if (sm_context_status_notification->is_ddn_failure_status) {
     if (cJSON_AddBoolToObject(item, "ddnFailureStatus", sm_context_status_notification->ddn_failure_status) == NULL) {
         ogs_error("OpenAPI_sm_context_status_notification_convertToJSON() failed [ddn_failure_status]");
         goto end;
@@ -289,6 +291,7 @@ OpenAPI_sm_context_status_notification_t *OpenAPI_sm_context_status_notification
         status_info_local_nonprim,
         small_data_rate_status ? small_data_rate_status_local_nonprim : NULL,
         apn_rate_status ? apn_rate_status_local_nonprim : NULL,
+        ddn_failure_status ? true : false,
         ddn_failure_status ? ddn_failure_status->valueint : 0,
         notify_correlation_ids_forddn_failure ? notify_correlation_ids_forddn_failureList : NULL,
         new_smf_id ? ogs_strdup_or_assert(new_smf_id->valuestring) : NULL,

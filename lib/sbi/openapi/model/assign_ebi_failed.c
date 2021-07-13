@@ -110,6 +110,7 @@ OpenAPI_assign_ebi_failed_t *OpenAPI_assign_ebi_failed_parseFromJSON(cJSON *assi
     }
 
     assign_ebi_failed_local_var = OpenAPI_assign_ebi_failed_create (
+        
         pdu_session_id->valuedouble,
         failed_arp_list ? failed_arp_listList : NULL
     );

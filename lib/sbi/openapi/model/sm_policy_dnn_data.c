@@ -10,21 +10,33 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_create(
     OpenAPI_list_t *subsc_cats,
     char *gbr_ul,
     char *gbr_dl,
+    bool is_adc_support,
     int adc_support,
+    bool is_subsc_spending_limits,
     int subsc_spending_limits,
+    bool is_ipv4_index,
     int ipv4_index,
+    bool is_ipv6_index,
     int ipv6_index,
+    bool is_offline,
     int offline,
+    bool is_online,
     int online,
     OpenAPI_charging_information_t *chf_info,
     OpenAPI_list_t* ref_um_data_limit_ids,
+    bool is_mps_priority,
     int mps_priority,
+    bool is_mcs_priority,
     int mcs_priority,
+    bool is_ims_signalling_prio,
     int ims_signalling_prio,
+    bool is_mps_priority_level,
     int mps_priority_level,
+    bool is_mcs_priority_level,
     int mcs_priority_level,
     OpenAPI_list_t* pra_infos,
     OpenAPI_list_t* bdt_ref_ids,
+    bool is_loc_rout_not_allowed,
     int loc_rout_not_allowed
 )
 {
@@ -37,21 +49,33 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_create(
     sm_policy_dnn_data_local_var->subsc_cats = subsc_cats;
     sm_policy_dnn_data_local_var->gbr_ul = gbr_ul;
     sm_policy_dnn_data_local_var->gbr_dl = gbr_dl;
+    sm_policy_dnn_data_local_var->is_adc_support = is_adc_support;
     sm_policy_dnn_data_local_var->adc_support = adc_support;
+    sm_policy_dnn_data_local_var->is_subsc_spending_limits = is_subsc_spending_limits;
     sm_policy_dnn_data_local_var->subsc_spending_limits = subsc_spending_limits;
+    sm_policy_dnn_data_local_var->is_ipv4_index = is_ipv4_index;
     sm_policy_dnn_data_local_var->ipv4_index = ipv4_index;
+    sm_policy_dnn_data_local_var->is_ipv6_index = is_ipv6_index;
     sm_policy_dnn_data_local_var->ipv6_index = ipv6_index;
+    sm_policy_dnn_data_local_var->is_offline = is_offline;
     sm_policy_dnn_data_local_var->offline = offline;
+    sm_policy_dnn_data_local_var->is_online = is_online;
     sm_policy_dnn_data_local_var->online = online;
     sm_policy_dnn_data_local_var->chf_info = chf_info;
     sm_policy_dnn_data_local_var->ref_um_data_limit_ids = ref_um_data_limit_ids;
+    sm_policy_dnn_data_local_var->is_mps_priority = is_mps_priority;
     sm_policy_dnn_data_local_var->mps_priority = mps_priority;
+    sm_policy_dnn_data_local_var->is_mcs_priority = is_mcs_priority;
     sm_policy_dnn_data_local_var->mcs_priority = mcs_priority;
+    sm_policy_dnn_data_local_var->is_ims_signalling_prio = is_ims_signalling_prio;
     sm_policy_dnn_data_local_var->ims_signalling_prio = ims_signalling_prio;
+    sm_policy_dnn_data_local_var->is_mps_priority_level = is_mps_priority_level;
     sm_policy_dnn_data_local_var->mps_priority_level = mps_priority_level;
+    sm_policy_dnn_data_local_var->is_mcs_priority_level = is_mcs_priority_level;
     sm_policy_dnn_data_local_var->mcs_priority_level = mcs_priority_level;
     sm_policy_dnn_data_local_var->pra_infos = pra_infos;
     sm_policy_dnn_data_local_var->bdt_ref_ids = bdt_ref_ids;
+    sm_policy_dnn_data_local_var->is_loc_rout_not_allowed = is_loc_rout_not_allowed;
     sm_policy_dnn_data_local_var->loc_rout_not_allowed = loc_rout_not_allowed;
 
     return sm_policy_dnn_data_local_var;
@@ -157,42 +181,42 @@ cJSON *OpenAPI_sm_policy_dnn_data_convertToJSON(OpenAPI_sm_policy_dnn_data_t *sm
     }
     }
 
-    if (sm_policy_dnn_data->adc_support) {
+    if (sm_policy_dnn_data->is_adc_support) {
     if (cJSON_AddBoolToObject(item, "adcSupport", sm_policy_dnn_data->adc_support) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [adc_support]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->subsc_spending_limits) {
+    if (sm_policy_dnn_data->is_subsc_spending_limits) {
     if (cJSON_AddBoolToObject(item, "subscSpendingLimits", sm_policy_dnn_data->subsc_spending_limits) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [subsc_spending_limits]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->ipv4_index) {
+    if (sm_policy_dnn_data->is_ipv4_index) {
     if (cJSON_AddNumberToObject(item, "ipv4Index", sm_policy_dnn_data->ipv4_index) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [ipv4_index]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->ipv6_index) {
+    if (sm_policy_dnn_data->is_ipv6_index) {
     if (cJSON_AddNumberToObject(item, "ipv6Index", sm_policy_dnn_data->ipv6_index) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [ipv6_index]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->offline) {
+    if (sm_policy_dnn_data->is_offline) {
     if (cJSON_AddBoolToObject(item, "offline", sm_policy_dnn_data->offline) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [offline]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->online) {
+    if (sm_policy_dnn_data->is_online) {
     if (cJSON_AddBoolToObject(item, "online", sm_policy_dnn_data->online) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [online]");
         goto end;
@@ -233,35 +257,35 @@ cJSON *OpenAPI_sm_policy_dnn_data_convertToJSON(OpenAPI_sm_policy_dnn_data_t *sm
         }
     }
 
-    if (sm_policy_dnn_data->mps_priority) {
+    if (sm_policy_dnn_data->is_mps_priority) {
     if (cJSON_AddBoolToObject(item, "mpsPriority", sm_policy_dnn_data->mps_priority) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [mps_priority]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->mcs_priority) {
+    if (sm_policy_dnn_data->is_mcs_priority) {
     if (cJSON_AddBoolToObject(item, "mcsPriority", sm_policy_dnn_data->mcs_priority) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [mcs_priority]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->ims_signalling_prio) {
+    if (sm_policy_dnn_data->is_ims_signalling_prio) {
     if (cJSON_AddBoolToObject(item, "imsSignallingPrio", sm_policy_dnn_data->ims_signalling_prio) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [ims_signalling_prio]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->mps_priority_level) {
+    if (sm_policy_dnn_data->is_mps_priority_level) {
     if (cJSON_AddNumberToObject(item, "mpsPriorityLevel", sm_policy_dnn_data->mps_priority_level) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [mps_priority_level]");
         goto end;
     }
     }
 
-    if (sm_policy_dnn_data->mcs_priority_level) {
+    if (sm_policy_dnn_data->is_mcs_priority_level) {
     if (cJSON_AddNumberToObject(item, "mcsPriorityLevel", sm_policy_dnn_data->mcs_priority_level) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [mcs_priority_level]");
         goto end;
@@ -304,7 +328,7 @@ cJSON *OpenAPI_sm_policy_dnn_data_convertToJSON(OpenAPI_sm_policy_dnn_data_t *sm
         }
     }
 
-    if (sm_policy_dnn_data->loc_rout_not_allowed) {
+    if (sm_policy_dnn_data->is_loc_rout_not_allowed) {
     if (cJSON_AddBoolToObject(item, "locRoutNotAllowed", sm_policy_dnn_data->loc_rout_not_allowed) == NULL) {
         ogs_error("OpenAPI_sm_policy_dnn_data_convertToJSON() failed [loc_rout_not_allowed]");
         goto end;
@@ -572,21 +596,33 @@ OpenAPI_sm_policy_dnn_data_t *OpenAPI_sm_policy_dnn_data_parseFromJSON(cJSON *sm
         subsc_cats ? subsc_catsList : NULL,
         gbr_ul ? ogs_strdup_or_assert(gbr_ul->valuestring) : NULL,
         gbr_dl ? ogs_strdup_or_assert(gbr_dl->valuestring) : NULL,
+        adc_support ? true : false,
         adc_support ? adc_support->valueint : 0,
+        subsc_spending_limits ? true : false,
         subsc_spending_limits ? subsc_spending_limits->valueint : 0,
+        ipv4_index ? true : false,
         ipv4_index ? ipv4_index->valuedouble : 0,
+        ipv6_index ? true : false,
         ipv6_index ? ipv6_index->valuedouble : 0,
+        offline ? true : false,
         offline ? offline->valueint : 0,
+        online ? true : false,
         online ? online->valueint : 0,
         chf_info ? chf_info_local_nonprim : NULL,
         ref_um_data_limit_ids ? ref_um_data_limit_idsList : NULL,
+        mps_priority ? true : false,
         mps_priority ? mps_priority->valueint : 0,
+        mcs_priority ? true : false,
         mcs_priority ? mcs_priority->valueint : 0,
+        ims_signalling_prio ? true : false,
         ims_signalling_prio ? ims_signalling_prio->valueint : 0,
+        mps_priority_level ? true : false,
         mps_priority_level ? mps_priority_level->valuedouble : 0,
+        mcs_priority_level ? true : false,
         mcs_priority_level ? mcs_priority_level->valuedouble : 0,
         pra_infos ? pra_infosList : NULL,
         bdt_ref_ids ? bdt_ref_idsList : NULL,
+        loc_rout_not_allowed ? true : false,
         loc_rout_not_allowed ? loc_rout_not_allowed->valueint : 0
     );
 

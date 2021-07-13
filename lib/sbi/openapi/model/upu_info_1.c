@@ -189,7 +189,9 @@ OpenAPI_upu_info_1_t *OpenAPI_upu_info_1_parseFromJSON(cJSON *upu_info_1JSON)
 
     upu_info_1_local_var = OpenAPI_upu_info_1_create (
         upu_data_listList,
+        
         upu_reg_ind->valueint,
+        
         upu_ack_ind->valueint,
         upu_mac_iausf ? ogs_strdup_or_assert(upu_mac_iausf->valuestring) : NULL,
         counter_upu ? ogs_strdup_or_assert(counter_upu->valuestring) : NULL,

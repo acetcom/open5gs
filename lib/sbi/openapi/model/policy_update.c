@@ -9,6 +9,7 @@ OpenAPI_policy_update_t *OpenAPI_policy_update_create(
     OpenAPI_list_t *triggers,
     OpenAPI_service_area_restriction_t *serv_area_res,
     OpenAPI_wireline_service_area_restriction_t *wl_serv_area_res,
+    bool is_rfsp,
     int rfsp,
     OpenAPI_smf_selection_data_t *smf_sel_info,
     OpenAPI_ambr_t *ue_ambr,
@@ -23,6 +24,7 @@ OpenAPI_policy_update_t *OpenAPI_policy_update_create(
     policy_update_local_var->triggers = triggers;
     policy_update_local_var->serv_area_res = serv_area_res;
     policy_update_local_var->wl_serv_area_res = wl_serv_area_res;
+    policy_update_local_var->is_rfsp = is_rfsp;
     policy_update_local_var->rfsp = rfsp;
     policy_update_local_var->smf_sel_info = smf_sel_info;
     policy_update_local_var->ue_ambr = ue_ambr;
@@ -108,7 +110,7 @@ cJSON *OpenAPI_policy_update_convertToJSON(OpenAPI_policy_update_t *policy_updat
     }
     }
 
-    if (policy_update->rfsp) {
+    if (policy_update->is_rfsp) {
     if (cJSON_AddNumberToObject(item, "rfsp", policy_update->rfsp) == NULL) {
         ogs_error("OpenAPI_policy_update_convertToJSON() failed [rfsp]");
         goto end;
@@ -268,6 +270,7 @@ OpenAPI_policy_update_t *OpenAPI_policy_update_parseFromJSON(cJSON *policy_updat
         triggers ? triggersList : NULL,
         serv_area_res ? serv_area_res_local_nonprim : NULL,
         wl_serv_area_res ? wl_serv_area_res_local_nonprim : NULL,
+        rfsp ? true : false,
         rfsp ? rfsp->valuedouble : 0,
         smf_sel_info ? smf_sel_info_local_nonprim : NULL,
         ue_ambr ? ue_ambr_local_nonprim : NULL,

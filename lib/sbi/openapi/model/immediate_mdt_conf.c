@@ -12,9 +12,13 @@ OpenAPI_immediate_mdt_conf_t *OpenAPI_immediate_mdt_conf_create(
     OpenAPI_report_interval_mdt_e report_interval,
     OpenAPI_report_interval_nr_mdt_e report_interval_nr,
     OpenAPI_report_amount_mdt_e report_amount,
+    bool is_event_threshold_rsrp,
     int event_threshold_rsrp,
+    bool is_event_threshold_rsrq,
     int event_threshold_rsrq,
+    bool is_event_threshold_rsrp_nr,
     int event_threshold_rsrp_nr,
+    bool is_event_threshold_rsrq_nr,
     int event_threshold_rsrq_nr,
     OpenAPI_collection_period_rmm_lte_mdt_e collection_period_rmm_lte,
     OpenAPI_collection_period_rmm_nr_mdt_e collection_period_rmm_nr,
@@ -37,9 +41,13 @@ OpenAPI_immediate_mdt_conf_t *OpenAPI_immediate_mdt_conf_create(
     immediate_mdt_conf_local_var->report_interval = report_interval;
     immediate_mdt_conf_local_var->report_interval_nr = report_interval_nr;
     immediate_mdt_conf_local_var->report_amount = report_amount;
+    immediate_mdt_conf_local_var->is_event_threshold_rsrp = is_event_threshold_rsrp;
     immediate_mdt_conf_local_var->event_threshold_rsrp = event_threshold_rsrp;
+    immediate_mdt_conf_local_var->is_event_threshold_rsrq = is_event_threshold_rsrq;
     immediate_mdt_conf_local_var->event_threshold_rsrq = event_threshold_rsrq;
+    immediate_mdt_conf_local_var->is_event_threshold_rsrp_nr = is_event_threshold_rsrp_nr;
     immediate_mdt_conf_local_var->event_threshold_rsrp_nr = event_threshold_rsrp_nr;
+    immediate_mdt_conf_local_var->is_event_threshold_rsrq_nr = is_event_threshold_rsrq_nr;
     immediate_mdt_conf_local_var->event_threshold_rsrq_nr = event_threshold_rsrq_nr;
     immediate_mdt_conf_local_var->collection_period_rmm_lte = collection_period_rmm_lte;
     immediate_mdt_conf_local_var->collection_period_rmm_nr = collection_period_rmm_nr;
@@ -153,28 +161,28 @@ cJSON *OpenAPI_immediate_mdt_conf_convertToJSON(OpenAPI_immediate_mdt_conf_t *im
     }
     }
 
-    if (immediate_mdt_conf->event_threshold_rsrp) {
+    if (immediate_mdt_conf->is_event_threshold_rsrp) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrp", immediate_mdt_conf->event_threshold_rsrp) == NULL) {
         ogs_error("OpenAPI_immediate_mdt_conf_convertToJSON() failed [event_threshold_rsrp]");
         goto end;
     }
     }
 
-    if (immediate_mdt_conf->event_threshold_rsrq) {
+    if (immediate_mdt_conf->is_event_threshold_rsrq) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrq", immediate_mdt_conf->event_threshold_rsrq) == NULL) {
         ogs_error("OpenAPI_immediate_mdt_conf_convertToJSON() failed [event_threshold_rsrq]");
         goto end;
     }
     }
 
-    if (immediate_mdt_conf->event_threshold_rsrp_nr) {
+    if (immediate_mdt_conf->is_event_threshold_rsrp_nr) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrpNr", immediate_mdt_conf->event_threshold_rsrp_nr) == NULL) {
         ogs_error("OpenAPI_immediate_mdt_conf_convertToJSON() failed [event_threshold_rsrp_nr]");
         goto end;
     }
     }
 
-    if (immediate_mdt_conf->event_threshold_rsrq_nr) {
+    if (immediate_mdt_conf->is_event_threshold_rsrq_nr) {
     if (cJSON_AddNumberToObject(item, "eventThresholdRsrqNr", immediate_mdt_conf->event_threshold_rsrq_nr) == NULL) {
         ogs_error("OpenAPI_immediate_mdt_conf_convertToJSON() failed [event_threshold_rsrq_nr]");
         goto end;
@@ -554,9 +562,13 @@ OpenAPI_immediate_mdt_conf_t *OpenAPI_immediate_mdt_conf_parseFromJSON(cJSON *im
         report_interval ? report_intervalVariable : 0,
         report_interval_nr ? report_interval_nrVariable : 0,
         report_amount ? report_amountVariable : 0,
+        event_threshold_rsrp ? true : false,
         event_threshold_rsrp ? event_threshold_rsrp->valuedouble : 0,
+        event_threshold_rsrq ? true : false,
         event_threshold_rsrq ? event_threshold_rsrq->valuedouble : 0,
+        event_threshold_rsrp_nr ? true : false,
         event_threshold_rsrp_nr ? event_threshold_rsrp_nr->valuedouble : 0,
+        event_threshold_rsrq_nr ? true : false,
         event_threshold_rsrq_nr ? event_threshold_rsrq_nr->valuedouble : 0,
         collection_period_rmm_lte ? collection_period_rmm_lteVariable : 0,
         collection_period_rmm_nr ? collection_period_rmm_nrVariable : 0,

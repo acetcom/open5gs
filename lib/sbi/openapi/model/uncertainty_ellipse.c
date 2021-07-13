@@ -99,8 +99,11 @@ OpenAPI_uncertainty_ellipse_t *OpenAPI_uncertainty_ellipse_parseFromJSON(cJSON *
     }
 
     uncertainty_ellipse_local_var = OpenAPI_uncertainty_ellipse_create (
+        
         semi_major->valuedouble,
+        
         semi_minor->valuedouble,
+        
         orientation_major->valuedouble
     );
 

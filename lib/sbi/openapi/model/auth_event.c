@@ -10,6 +10,7 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_create(
     char *time_stamp,
     OpenAPI_auth_type_e auth_type,
     char *serving_network_name,
+    bool is_auth_removal_ind,
     int auth_removal_ind
 )
 {
@@ -22,6 +23,7 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_create(
     auth_event_local_var->time_stamp = time_stamp;
     auth_event_local_var->auth_type = auth_type;
     auth_event_local_var->serving_network_name = serving_network_name;
+    auth_event_local_var->is_auth_removal_ind = is_auth_removal_ind;
     auth_event_local_var->auth_removal_ind = auth_removal_ind;
 
     return auth_event_local_var;
@@ -74,7 +76,7 @@ cJSON *OpenAPI_auth_event_convertToJSON(OpenAPI_auth_event_t *auth_event)
         goto end;
     }
 
-    if (auth_event->auth_removal_ind) {
+    if (auth_event->is_auth_removal_ind) {
     if (cJSON_AddBoolToObject(item, "authRemovalInd", auth_event->auth_removal_ind) == NULL) {
         ogs_error("OpenAPI_auth_event_convertToJSON() failed [auth_removal_ind]");
         goto end;
@@ -161,10 +163,12 @@ OpenAPI_auth_event_t *OpenAPI_auth_event_parseFromJSON(cJSON *auth_eventJSON)
 
     auth_event_local_var = OpenAPI_auth_event_create (
         ogs_strdup_or_assert(nf_instance_id->valuestring),
+        
         success->valueint,
         ogs_strdup_or_assert(time_stamp->valuestring),
         auth_typeVariable,
         ogs_strdup_or_assert(serving_network_name->valuestring),
+        auth_removal_ind ? true : false,
         auth_removal_ind ? auth_removal_ind->valueint : 0
     );
 

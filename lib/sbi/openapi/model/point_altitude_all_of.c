@@ -86,6 +86,7 @@ OpenAPI_point_altitude_all_of_t *OpenAPI_point_altitude_all_of_parseFromJSON(cJS
 
     point_altitude_all_of_local_var = OpenAPI_point_altitude_all_of_create (
         point_local_nonprim,
+        
         altitude->valuedouble
     );
 

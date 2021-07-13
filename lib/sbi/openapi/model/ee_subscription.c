@@ -11,6 +11,7 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_create(
     char *supported_features,
     char *subscription_id,
     OpenAPI_context_info_t *context_info,
+    bool is_epc_applied_ind,
     int epc_applied_ind,
     char *scef_diam_host,
     char *scef_diam_realm,
@@ -27,6 +28,7 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_create(
     ee_subscription_local_var->supported_features = supported_features;
     ee_subscription_local_var->subscription_id = subscription_id;
     ee_subscription_local_var->context_info = context_info;
+    ee_subscription_local_var->is_epc_applied_ind = is_epc_applied_ind;
     ee_subscription_local_var->epc_applied_ind = epc_applied_ind;
     ee_subscription_local_var->scef_diam_host = scef_diam_host;
     ee_subscription_local_var->scef_diam_realm = scef_diam_realm;
@@ -132,7 +134,7 @@ cJSON *OpenAPI_ee_subscription_convertToJSON(OpenAPI_ee_subscription_t *ee_subsc
     }
     }
 
-    if (ee_subscription->epc_applied_ind) {
+    if (ee_subscription->is_epc_applied_ind) {
     if (cJSON_AddBoolToObject(item, "epcAppliedInd", ee_subscription->epc_applied_ind) == NULL) {
         ogs_error("OpenAPI_ee_subscription_convertToJSON() failed [epc_applied_ind]");
         goto end;
@@ -280,6 +282,7 @@ OpenAPI_ee_subscription_t *OpenAPI_ee_subscription_parseFromJSON(cJSON *ee_subsc
         supported_features ? ogs_strdup_or_assert(supported_features->valuestring) : NULL,
         subscription_id ? ogs_strdup_or_assert(subscription_id->valuestring) : NULL,
         context_info ? context_info_local_nonprim : NULL,
+        epc_applied_ind ? true : false,
         epc_applied_ind ? epc_applied_ind->valueint : 0,
         scef_diam_host ? ogs_strdup_or_assert(scef_diam_host->valuestring) : NULL,
         scef_diam_realm ? ogs_strdup_or_assert(scef_diam_realm->valuestring) : NULL,

@@ -7,10 +7,15 @@
 OpenAPI_trigger_t *OpenAPI_trigger_create(
     OpenAPI_trigger_type_t *trigger_type,
     OpenAPI_trigger_category_t *trigger_category,
+    bool is_time_limit,
     int time_limit,
+    bool is_volume_limit,
     int volume_limit,
+    bool is_volume_limit64,
     int volume_limit64,
+    bool is_event_limit,
     int event_limit,
+    bool is_max_number_ofccc,
     int max_number_ofccc,
     char *tariff_time_change
 )
@@ -21,10 +26,15 @@ OpenAPI_trigger_t *OpenAPI_trigger_create(
     }
     trigger_local_var->trigger_type = trigger_type;
     trigger_local_var->trigger_category = trigger_category;
+    trigger_local_var->is_time_limit = is_time_limit;
     trigger_local_var->time_limit = time_limit;
+    trigger_local_var->is_volume_limit = is_volume_limit;
     trigger_local_var->volume_limit = volume_limit;
+    trigger_local_var->is_volume_limit64 = is_volume_limit64;
     trigger_local_var->volume_limit64 = volume_limit64;
+    trigger_local_var->is_event_limit = is_event_limit;
     trigger_local_var->event_limit = event_limit;
+    trigger_local_var->is_max_number_ofccc = is_max_number_ofccc;
     trigger_local_var->max_number_ofccc = max_number_ofccc;
     trigger_local_var->tariff_time_change = tariff_time_change;
 
@@ -75,35 +85,35 @@ cJSON *OpenAPI_trigger_convertToJSON(OpenAPI_trigger_t *trigger)
         goto end;
     }
 
-    if (trigger->time_limit) {
+    if (trigger->is_time_limit) {
     if (cJSON_AddNumberToObject(item, "timeLimit", trigger->time_limit) == NULL) {
         ogs_error("OpenAPI_trigger_convertToJSON() failed [time_limit]");
         goto end;
     }
     }
 
-    if (trigger->volume_limit) {
+    if (trigger->is_volume_limit) {
     if (cJSON_AddNumberToObject(item, "volumeLimit", trigger->volume_limit) == NULL) {
         ogs_error("OpenAPI_trigger_convertToJSON() failed [volume_limit]");
         goto end;
     }
     }
 
-    if (trigger->volume_limit64) {
+    if (trigger->is_volume_limit64) {
     if (cJSON_AddNumberToObject(item, "volumeLimit64", trigger->volume_limit64) == NULL) {
         ogs_error("OpenAPI_trigger_convertToJSON() failed [volume_limit64]");
         goto end;
     }
     }
 
-    if (trigger->event_limit) {
+    if (trigger->is_event_limit) {
     if (cJSON_AddNumberToObject(item, "eventLimit", trigger->event_limit) == NULL) {
         ogs_error("OpenAPI_trigger_convertToJSON() failed [event_limit]");
         goto end;
     }
     }
 
-    if (trigger->max_number_ofccc) {
+    if (trigger->is_max_number_ofccc) {
     if (cJSON_AddNumberToObject(item, "maxNumberOfccc", trigger->max_number_ofccc) == NULL) {
         ogs_error("OpenAPI_trigger_convertToJSON() failed [max_number_ofccc]");
         goto end;
@@ -201,10 +211,15 @@ OpenAPI_trigger_t *OpenAPI_trigger_parseFromJSON(cJSON *triggerJSON)
     trigger_local_var = OpenAPI_trigger_create (
         trigger_type_local_nonprim,
         trigger_category_local_nonprim,
+        time_limit ? true : false,
         time_limit ? time_limit->valuedouble : 0,
+        volume_limit ? true : false,
         volume_limit ? volume_limit->valuedouble : 0,
+        volume_limit64 ? true : false,
         volume_limit64 ? volume_limit64->valuedouble : 0,
+        event_limit ? true : false,
         event_limit ? event_limit->valuedouble : 0,
+        max_number_ofccc ? true : false,
         max_number_ofccc ? max_number_ofccc->valuedouble : 0,
         tariff_time_change ? ogs_strdup_or_assert(tariff_time_change->valuestring) : NULL
     );

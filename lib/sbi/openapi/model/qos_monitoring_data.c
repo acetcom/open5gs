@@ -8,10 +8,15 @@ OpenAPI_qos_monitoring_data_t *OpenAPI_qos_monitoring_data_create(
     char *qm_id,
     OpenAPI_list_t *req_qos_mon_params,
     OpenAPI_list_t *rep_freqs,
+    bool is_rep_thresh_dl,
     int rep_thresh_dl,
+    bool is_rep_thresh_ul,
     int rep_thresh_ul,
+    bool is_rep_thresh_rp,
     int rep_thresh_rp,
+    bool is_wait_time,
     int wait_time,
+    bool is_rep_period,
     int rep_period,
     char *notify_uri,
     char *notify_corre_id
@@ -24,10 +29,15 @@ OpenAPI_qos_monitoring_data_t *OpenAPI_qos_monitoring_data_create(
     qos_monitoring_data_local_var->qm_id = qm_id;
     qos_monitoring_data_local_var->req_qos_mon_params = req_qos_mon_params;
     qos_monitoring_data_local_var->rep_freqs = rep_freqs;
+    qos_monitoring_data_local_var->is_rep_thresh_dl = is_rep_thresh_dl;
     qos_monitoring_data_local_var->rep_thresh_dl = rep_thresh_dl;
+    qos_monitoring_data_local_var->is_rep_thresh_ul = is_rep_thresh_ul;
     qos_monitoring_data_local_var->rep_thresh_ul = rep_thresh_ul;
+    qos_monitoring_data_local_var->is_rep_thresh_rp = is_rep_thresh_rp;
     qos_monitoring_data_local_var->rep_thresh_rp = rep_thresh_rp;
+    qos_monitoring_data_local_var->is_wait_time = is_wait_time;
     qos_monitoring_data_local_var->wait_time = wait_time;
+    qos_monitoring_data_local_var->is_rep_period = is_rep_period;
     qos_monitoring_data_local_var->rep_period = rep_period;
     qos_monitoring_data_local_var->notify_uri = notify_uri;
     qos_monitoring_data_local_var->notify_corre_id = notify_corre_id;
@@ -90,35 +100,35 @@ cJSON *OpenAPI_qos_monitoring_data_convertToJSON(OpenAPI_qos_monitoring_data_t *
         }
     }
 
-    if (qos_monitoring_data->rep_thresh_dl) {
+    if (qos_monitoring_data->is_rep_thresh_dl) {
     if (cJSON_AddNumberToObject(item, "repThreshDl", qos_monitoring_data->rep_thresh_dl) == NULL) {
         ogs_error("OpenAPI_qos_monitoring_data_convertToJSON() failed [rep_thresh_dl]");
         goto end;
     }
     }
 
-    if (qos_monitoring_data->rep_thresh_ul) {
+    if (qos_monitoring_data->is_rep_thresh_ul) {
     if (cJSON_AddNumberToObject(item, "repThreshUl", qos_monitoring_data->rep_thresh_ul) == NULL) {
         ogs_error("OpenAPI_qos_monitoring_data_convertToJSON() failed [rep_thresh_ul]");
         goto end;
     }
     }
 
-    if (qos_monitoring_data->rep_thresh_rp) {
+    if (qos_monitoring_data->is_rep_thresh_rp) {
     if (cJSON_AddNumberToObject(item, "repThreshRp", qos_monitoring_data->rep_thresh_rp) == NULL) {
         ogs_error("OpenAPI_qos_monitoring_data_convertToJSON() failed [rep_thresh_rp]");
         goto end;
     }
     }
 
-    if (qos_monitoring_data->wait_time) {
+    if (qos_monitoring_data->is_wait_time) {
     if (cJSON_AddNumberToObject(item, "waitTime", qos_monitoring_data->wait_time) == NULL) {
         ogs_error("OpenAPI_qos_monitoring_data_convertToJSON() failed [wait_time]");
         goto end;
     }
     }
 
-    if (qos_monitoring_data->rep_period) {
+    if (qos_monitoring_data->is_rep_period) {
     if (cJSON_AddNumberToObject(item, "repPeriod", qos_monitoring_data->rep_period) == NULL) {
         ogs_error("OpenAPI_qos_monitoring_data_convertToJSON() failed [rep_period]");
         goto end;
@@ -275,10 +285,15 @@ OpenAPI_qos_monitoring_data_t *OpenAPI_qos_monitoring_data_parseFromJSON(cJSON *
         ogs_strdup_or_assert(qm_id->valuestring),
         req_qos_mon_paramsList,
         rep_freqsList,
+        rep_thresh_dl ? true : false,
         rep_thresh_dl ? rep_thresh_dl->valuedouble : 0,
+        rep_thresh_ul ? true : false,
         rep_thresh_ul ? rep_thresh_ul->valuedouble : 0,
+        rep_thresh_rp ? true : false,
         rep_thresh_rp ? rep_thresh_rp->valuedouble : 0,
+        wait_time ? true : false,
         wait_time ? wait_time->valuedouble : 0,
+        rep_period ? true : false,
         rep_period ? rep_period->valuedouble : 0,
         notify_uri ? ogs_strdup_or_assert(notify_uri->valuestring) : NULL,
         notify_corre_id ? ogs_strdup_or_assert(notify_corre_id->valuestring) : NULL

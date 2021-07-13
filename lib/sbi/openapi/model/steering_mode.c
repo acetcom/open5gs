@@ -8,6 +8,7 @@ OpenAPI_steering_mode_t *OpenAPI_steering_mode_create(
     OpenAPI_steer_mode_value_e steer_mode_value,
     OpenAPI_access_type_e active,
     OpenAPI_access_type_rm_t *standby,
+    bool is__3g_load,
     int _3g_load,
     OpenAPI_access_type_e prio_acc
 )
@@ -19,6 +20,7 @@ OpenAPI_steering_mode_t *OpenAPI_steering_mode_create(
     steering_mode_local_var->steer_mode_value = steer_mode_value;
     steering_mode_local_var->active = active;
     steering_mode_local_var->standby = standby;
+    steering_mode_local_var->is__3g_load = is__3g_load;
     steering_mode_local_var->_3g_load = _3g_load;
     steering_mode_local_var->prio_acc = prio_acc;
 
@@ -70,7 +72,7 @@ cJSON *OpenAPI_steering_mode_convertToJSON(OpenAPI_steering_mode_t *steering_mod
     }
     }
 
-    if (steering_mode->_3g_load) {
+    if (steering_mode->is__3g_load) {
     if (cJSON_AddNumberToObject(item, "3gLoad", steering_mode->_3g_load) == NULL) {
         ogs_error("OpenAPI_steering_mode_convertToJSON() failed [_3g_load]");
         goto end;
@@ -147,6 +149,7 @@ OpenAPI_steering_mode_t *OpenAPI_steering_mode_parseFromJSON(cJSON *steering_mod
         steer_mode_valueVariable,
         active ? activeVariable : 0,
         standby ? standby_local_nonprim : NULL,
+        _3g_load ? true : false,
         _3g_load ? _3g_load->valuedouble : 0,
         prio_acc ? prio_accVariable : 0
     );

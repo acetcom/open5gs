@@ -5,15 +5,20 @@
 #include "authorized_default_qos.h"
 
 OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_create(
+    bool is__5qi,
     int _5qi,
     OpenAPI_arp_t *arp,
+    bool is_priority_level,
     int priority_level,
+    bool is_aver_window,
     int aver_window,
+    bool is_max_data_burst_vol,
     int max_data_burst_vol,
     char *maxbr_ul,
     char *maxbr_dl,
     char *gbr_ul,
     char *gbr_dl,
+    bool is_ext_max_data_burst_vol,
     int ext_max_data_burst_vol
 )
 {
@@ -21,15 +26,20 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_create(
     if (!authorized_default_qos_local_var) {
         return NULL;
     }
+    authorized_default_qos_local_var->is__5qi = is__5qi;
     authorized_default_qos_local_var->_5qi = _5qi;
     authorized_default_qos_local_var->arp = arp;
+    authorized_default_qos_local_var->is_priority_level = is_priority_level;
     authorized_default_qos_local_var->priority_level = priority_level;
+    authorized_default_qos_local_var->is_aver_window = is_aver_window;
     authorized_default_qos_local_var->aver_window = aver_window;
+    authorized_default_qos_local_var->is_max_data_burst_vol = is_max_data_burst_vol;
     authorized_default_qos_local_var->max_data_burst_vol = max_data_burst_vol;
     authorized_default_qos_local_var->maxbr_ul = maxbr_ul;
     authorized_default_qos_local_var->maxbr_dl = maxbr_dl;
     authorized_default_qos_local_var->gbr_ul = gbr_ul;
     authorized_default_qos_local_var->gbr_dl = gbr_dl;
+    authorized_default_qos_local_var->is_ext_max_data_burst_vol = is_ext_max_data_burst_vol;
     authorized_default_qos_local_var->ext_max_data_burst_vol = ext_max_data_burst_vol;
 
     return authorized_default_qos_local_var;
@@ -59,7 +69,7 @@ cJSON *OpenAPI_authorized_default_qos_convertToJSON(OpenAPI_authorized_default_q
     }
 
     item = cJSON_CreateObject();
-    if (authorized_default_qos->_5qi) {
+    if (authorized_default_qos->is__5qi) {
     if (cJSON_AddNumberToObject(item, "5qi", authorized_default_qos->_5qi) == NULL) {
         ogs_error("OpenAPI_authorized_default_qos_convertToJSON() failed [_5qi]");
         goto end;
@@ -79,21 +89,21 @@ cJSON *OpenAPI_authorized_default_qos_convertToJSON(OpenAPI_authorized_default_q
     }
     }
 
-    if (authorized_default_qos->priority_level) {
+    if (authorized_default_qos->is_priority_level) {
     if (cJSON_AddNumberToObject(item, "priorityLevel", authorized_default_qos->priority_level) == NULL) {
         ogs_error("OpenAPI_authorized_default_qos_convertToJSON() failed [priority_level]");
         goto end;
     }
     }
 
-    if (authorized_default_qos->aver_window) {
+    if (authorized_default_qos->is_aver_window) {
     if (cJSON_AddNumberToObject(item, "averWindow", authorized_default_qos->aver_window) == NULL) {
         ogs_error("OpenAPI_authorized_default_qos_convertToJSON() failed [aver_window]");
         goto end;
     }
     }
 
-    if (authorized_default_qos->max_data_burst_vol) {
+    if (authorized_default_qos->is_max_data_burst_vol) {
     if (cJSON_AddNumberToObject(item, "maxDataBurstVol", authorized_default_qos->max_data_burst_vol) == NULL) {
         ogs_error("OpenAPI_authorized_default_qos_convertToJSON() failed [max_data_burst_vol]");
         goto end;
@@ -128,7 +138,7 @@ cJSON *OpenAPI_authorized_default_qos_convertToJSON(OpenAPI_authorized_default_q
     }
     }
 
-    if (authorized_default_qos->ext_max_data_burst_vol) {
+    if (authorized_default_qos->is_ext_max_data_burst_vol) {
     if (cJSON_AddNumberToObject(item, "extMaxDataBurstVol", authorized_default_qos->ext_max_data_burst_vol) == NULL) {
         ogs_error("OpenAPI_authorized_default_qos_convertToJSON() failed [ext_max_data_burst_vol]");
         goto end;
@@ -231,15 +241,20 @@ OpenAPI_authorized_default_qos_t *OpenAPI_authorized_default_qos_parseFromJSON(c
     }
 
     authorized_default_qos_local_var = OpenAPI_authorized_default_qos_create (
+        _5qi ? true : false,
         _5qi ? _5qi->valuedouble : 0,
         arp ? arp_local_nonprim : NULL,
+        priority_level ? true : false,
         priority_level ? priority_level->valuedouble : 0,
+        aver_window ? true : false,
         aver_window ? aver_window->valuedouble : 0,
+        max_data_burst_vol ? true : false,
         max_data_burst_vol ? max_data_burst_vol->valuedouble : 0,
         maxbr_ul ? ogs_strdup_or_assert(maxbr_ul->valuestring) : NULL,
         maxbr_dl ? ogs_strdup_or_assert(maxbr_dl->valuestring) : NULL,
         gbr_ul ? ogs_strdup_or_assert(gbr_ul->valuestring) : NULL,
         gbr_dl ? ogs_strdup_or_assert(gbr_dl->valuestring) : NULL,
+        ext_max_data_burst_vol ? true : false,
         ext_max_data_burst_vol ? ext_max_data_burst_vol->valuedouble : 0
     );
 

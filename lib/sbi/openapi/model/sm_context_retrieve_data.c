@@ -9,6 +9,7 @@ OpenAPI_sm_context_retrieve_data_t *OpenAPI_sm_context_retrieve_data_create(
     OpenAPI_sm_context_type_e sm_context_type,
     OpenAPI_plmn_id_t *serving_network,
     OpenAPI_list_t *not_to_transfer_ebi_list,
+    bool is_ran_unchanged_ind,
     int ran_unchanged_ind
 )
 {
@@ -20,6 +21,7 @@ OpenAPI_sm_context_retrieve_data_t *OpenAPI_sm_context_retrieve_data_create(
     sm_context_retrieve_data_local_var->sm_context_type = sm_context_type;
     sm_context_retrieve_data_local_var->serving_network = serving_network;
     sm_context_retrieve_data_local_var->not_to_transfer_ebi_list = not_to_transfer_ebi_list;
+    sm_context_retrieve_data_local_var->is_ran_unchanged_ind = is_ran_unchanged_ind;
     sm_context_retrieve_data_local_var->ran_unchanged_ind = ran_unchanged_ind;
 
     return sm_context_retrieve_data_local_var;
@@ -99,7 +101,7 @@ cJSON *OpenAPI_sm_context_retrieve_data_convertToJSON(OpenAPI_sm_context_retriev
                     }
     }
 
-    if (sm_context_retrieve_data->ran_unchanged_ind) {
+    if (sm_context_retrieve_data->is_ran_unchanged_ind) {
     if (cJSON_AddBoolToObject(item, "ranUnchangedInd", sm_context_retrieve_data->ran_unchanged_ind) == NULL) {
         ogs_error("OpenAPI_sm_context_retrieve_data_convertToJSON() failed [ran_unchanged_ind]");
         goto end;
@@ -172,6 +174,7 @@ OpenAPI_sm_context_retrieve_data_t *OpenAPI_sm_context_retrieve_data_parseFromJS
         sm_context_type ? sm_context_typeVariable : 0,
         serving_network ? serving_network_local_nonprim : NULL,
         not_to_transfer_ebi_list ? not_to_transfer_ebi_listList : NULL,
+        ran_unchanged_ind ? true : false,
         ran_unchanged_ind ? ran_unchanged_ind->valueint : 0
     );
 

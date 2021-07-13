@@ -7,6 +7,7 @@
 OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configuration_create(
     OpenAPI_model_5_gvn_group_data_t *_5g_vn_group_data,
     OpenAPI_list_t *members,
+    bool is_reference_id,
     int reference_id,
     char *af_instance_id,
     char *internal_group_identifier,
@@ -19,6 +20,7 @@ OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configurati
     }
     model_5_gvn_group_configuration_local_var->_5g_vn_group_data = _5g_vn_group_data;
     model_5_gvn_group_configuration_local_var->members = members;
+    model_5_gvn_group_configuration_local_var->is_reference_id = is_reference_id;
     model_5_gvn_group_configuration_local_var->reference_id = reference_id;
     model_5_gvn_group_configuration_local_var->af_instance_id = af_instance_id;
     model_5_gvn_group_configuration_local_var->internal_group_identifier = internal_group_identifier;
@@ -83,7 +85,7 @@ cJSON *OpenAPI_model_5_gvn_group_configuration_convertToJSON(OpenAPI_model_5_gvn
                     }
     }
 
-    if (model_5_gvn_group_configuration->reference_id) {
+    if (model_5_gvn_group_configuration->is_reference_id) {
     if (cJSON_AddNumberToObject(item, "referenceId", model_5_gvn_group_configuration->reference_id) == NULL) {
         ogs_error("OpenAPI_model_5_gvn_group_configuration_convertToJSON() failed [reference_id]");
         goto end;
@@ -184,6 +186,7 @@ OpenAPI_model_5_gvn_group_configuration_t *OpenAPI_model_5_gvn_group_configurati
     model_5_gvn_group_configuration_local_var = OpenAPI_model_5_gvn_group_configuration_create (
         _5g_vn_group_data ? _5g_vn_group_data_local_nonprim : NULL,
         members ? membersList : NULL,
+        reference_id ? true : false,
         reference_id ? reference_id->valuedouble : 0,
         af_instance_id ? ogs_strdup_or_assert(af_instance_id->valuestring) : NULL,
         internal_group_identifier ? ogs_strdup_or_assert(internal_group_identifier->valuestring) : NULL,

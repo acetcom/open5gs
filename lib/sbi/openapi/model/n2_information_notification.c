@@ -16,6 +16,7 @@ OpenAPI_n2_information_notification_t *OpenAPI_n2_information_notification_creat
     char *an_n2_ipv4_addr,
     char *an_n2_ipv6_addr,
     OpenAPI_guami_t *guami,
+    bool is_notify_source_ng_ran,
     int notify_source_ng_ran
 )
 {
@@ -34,6 +35,7 @@ OpenAPI_n2_information_notification_t *OpenAPI_n2_information_notification_creat
     n2_information_notification_local_var->an_n2_ipv4_addr = an_n2_ipv4_addr;
     n2_information_notification_local_var->an_n2_ipv6_addr = an_n2_ipv6_addr;
     n2_information_notification_local_var->guami = guami;
+    n2_information_notification_local_var->is_notify_source_ng_ran = is_notify_source_ng_ran;
     n2_information_notification_local_var->notify_source_ng_ran = notify_source_ng_ran;
 
     return n2_information_notification_local_var;
@@ -189,7 +191,7 @@ cJSON *OpenAPI_n2_information_notification_convertToJSON(OpenAPI_n2_information_
     }
     }
 
-    if (n2_information_notification->notify_source_ng_ran) {
+    if (n2_information_notification->is_notify_source_ng_ran) {
     if (cJSON_AddBoolToObject(item, "notifySourceNgRan", n2_information_notification->notify_source_ng_ran) == NULL) {
         ogs_error("OpenAPI_n2_information_notification_convertToJSON() failed [notify_source_ng_ran]");
         goto end;
@@ -347,6 +349,7 @@ OpenAPI_n2_information_notification_t *OpenAPI_n2_information_notification_parse
         an_n2_ipv4_addr ? ogs_strdup_or_assert(an_n2_ipv4_addr->valuestring) : NULL,
         an_n2_ipv6_addr ? ogs_strdup_or_assert(an_n2_ipv6_addr->valuestring) : NULL,
         guami ? guami_local_nonprim : NULL,
+        notify_source_ng_ran ? true : false,
         notify_source_ng_ran ? notify_source_ng_ran->valueint : 0
     );
 

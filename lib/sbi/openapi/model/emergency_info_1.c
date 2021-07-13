@@ -8,6 +8,7 @@ OpenAPI_emergency_info_1_t *OpenAPI_emergency_info_1_create(
     char *pgw_fqdn,
     OpenAPI_ip_address_1_t *pgw_ip_address,
     char *smf_instance_id,
+    bool is_epdg_ind,
     int epdg_ind
 )
 {
@@ -18,6 +19,7 @@ OpenAPI_emergency_info_1_t *OpenAPI_emergency_info_1_create(
     emergency_info_1_local_var->pgw_fqdn = pgw_fqdn;
     emergency_info_1_local_var->pgw_ip_address = pgw_ip_address;
     emergency_info_1_local_var->smf_instance_id = smf_instance_id;
+    emergency_info_1_local_var->is_epdg_ind = is_epdg_ind;
     emergency_info_1_local_var->epdg_ind = epdg_ind;
 
     return emergency_info_1_local_var;
@@ -72,7 +74,7 @@ cJSON *OpenAPI_emergency_info_1_convertToJSON(OpenAPI_emergency_info_1_t *emerge
     }
     }
 
-    if (emergency_info_1->epdg_ind) {
+    if (emergency_info_1->is_epdg_ind) {
     if (cJSON_AddBoolToObject(item, "epdgInd", emergency_info_1->epdg_ind) == NULL) {
         ogs_error("OpenAPI_emergency_info_1_convertToJSON() failed [epdg_ind]");
         goto end;
@@ -124,6 +126,7 @@ OpenAPI_emergency_info_1_t *OpenAPI_emergency_info_1_parseFromJSON(cJSON *emerge
         pgw_fqdn ? ogs_strdup_or_assert(pgw_fqdn->valuestring) : NULL,
         pgw_ip_address ? pgw_ip_address_local_nonprim : NULL,
         smf_instance_id ? ogs_strdup_or_assert(smf_instance_id->valuestring) : NULL,
+        epdg_ind ? true : false,
         epdg_ind ? epdg_ind->valueint : 0
     );
 

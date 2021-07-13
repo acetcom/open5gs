@@ -143,6 +143,7 @@ OpenAPI_sor_info_1_t *OpenAPI_sor_info_1_parseFromJSON(cJSON *sor_info_1JSON)
 
     sor_info_1_local_var = OpenAPI_sor_info_1_create (
         steering_container ? steering_container_local_nonprim : NULL,
+        
         ack_ind->valueint,
         sor_mac_iausf ? ogs_strdup_or_assert(sor_mac_iausf->valuestring) : NULL,
         countersor ? ogs_strdup_or_assert(countersor->valuestring) : NULL,

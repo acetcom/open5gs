@@ -244,7 +244,8 @@ bool ogs_sbi_nnrf_handle_nf_profile(ogs_sbi_nf_instance_t *nf_instance,
 
     nf_instance->nf_type = NFProfile->nf_type;
     nf_instance->nf_status = NFProfile->nf_status;
-    nf_instance->time.heartbeat_interval = NFProfile->heart_beat_timer;
+    if (NFProfile->is_heart_beat_timer == true)
+        nf_instance->time.heartbeat_interval = NFProfile->heart_beat_timer;
 
     if (NFProfile->fqdn)
         ogs_fqdn_parse(nf_instance->fqdn,
@@ -329,14 +330,15 @@ bool ogs_sbi_nnrf_handle_nf_profile(ogs_sbi_nf_instance_t *nf_instance,
             if (!IpEndPoint) continue;
 
             if (nf_service->num_of_addr < OGS_SBI_MAX_NUM_OF_IP_ADDRESS) {
-                port = IpEndPoint->port;
-                if (!port) {
+                if (!IpEndPoint->is_port) {
                     if (nf_service->scheme == OpenAPI_uri_scheme_http)
                         port = OGS_SBI_HTTP_PORT;
                     else if (nf_service->scheme == OpenAPI_uri_scheme_https)
                         port = OGS_SBI_HTTPS_PORT;
                     else
                         continue;
+                } else {
+                    port = IpEndPoint->port;
                 }
 
                 if (IpEndPoint->ipv4_address) {

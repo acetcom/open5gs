@@ -7,6 +7,7 @@
 OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_create(
     char *type,
     char *title,
+    bool is_status,
     int status,
     char *detail,
     char *instance,
@@ -16,6 +17,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_create(
     OpenAPI_access_token_err_t *access_token_error,
     OpenAPI_access_token_req_t *access_token_request,
     char *nrf_id,
+    bool is_max_waiting_time,
     int max_waiting_time
 )
 {
@@ -25,6 +27,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_create(
     }
     transfer_mt_data_error_local_var->type = type;
     transfer_mt_data_error_local_var->title = title;
+    transfer_mt_data_error_local_var->is_status = is_status;
     transfer_mt_data_error_local_var->status = status;
     transfer_mt_data_error_local_var->detail = detail;
     transfer_mt_data_error_local_var->instance = instance;
@@ -34,6 +37,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_create(
     transfer_mt_data_error_local_var->access_token_error = access_token_error;
     transfer_mt_data_error_local_var->access_token_request = access_token_request;
     transfer_mt_data_error_local_var->nrf_id = nrf_id;
+    transfer_mt_data_error_local_var->is_max_waiting_time = is_max_waiting_time;
     transfer_mt_data_error_local_var->max_waiting_time = max_waiting_time;
 
     return transfer_mt_data_error_local_var;
@@ -85,7 +89,7 @@ cJSON *OpenAPI_transfer_mt_data_error_convertToJSON(OpenAPI_transfer_mt_data_err
     }
     }
 
-    if (transfer_mt_data_error->status) {
+    if (transfer_mt_data_error->is_status) {
     if (cJSON_AddNumberToObject(item, "status", transfer_mt_data_error->status) == NULL) {
         ogs_error("OpenAPI_transfer_mt_data_error_convertToJSON() failed [status]");
         goto end;
@@ -173,7 +177,7 @@ cJSON *OpenAPI_transfer_mt_data_error_convertToJSON(OpenAPI_transfer_mt_data_err
     }
     }
 
-    if (transfer_mt_data_error->max_waiting_time) {
+    if (transfer_mt_data_error->is_max_waiting_time) {
     if (cJSON_AddNumberToObject(item, "maxWaitingTime", transfer_mt_data_error->max_waiting_time) == NULL) {
         ogs_error("OpenAPI_transfer_mt_data_error_convertToJSON() failed [max_waiting_time]");
         goto end;
@@ -308,6 +312,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
     transfer_mt_data_error_local_var = OpenAPI_transfer_mt_data_error_create (
         type ? ogs_strdup_or_assert(type->valuestring) : NULL,
         title ? ogs_strdup_or_assert(title->valuestring) : NULL,
+        status ? true : false,
         status ? status->valuedouble : 0,
         detail ? ogs_strdup_or_assert(detail->valuestring) : NULL,
         instance ? ogs_strdup_or_assert(instance->valuestring) : NULL,
@@ -317,6 +322,7 @@ OpenAPI_transfer_mt_data_error_t *OpenAPI_transfer_mt_data_error_parseFromJSON(c
         access_token_error ? access_token_error_local_nonprim : NULL,
         access_token_request ? access_token_request_local_nonprim : NULL,
         nrf_id ? ogs_strdup_or_assert(nrf_id->valuestring) : NULL,
+        max_waiting_time ? true : false,
         max_waiting_time ? max_waiting_time->valuedouble : 0
     );
 

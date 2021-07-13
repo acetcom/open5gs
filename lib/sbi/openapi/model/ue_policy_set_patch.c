@@ -7,6 +7,7 @@
 OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_create(
     OpenAPI_list_t* ue_policy_sections,
     OpenAPI_list_t *upsis,
+    bool is_andsp_ind,
     int andsp_ind,
     char *pei,
     OpenAPI_list_t *os_ids
@@ -18,6 +19,7 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_create(
     }
     ue_policy_set_patch_local_var->ue_policy_sections = ue_policy_sections;
     ue_policy_set_patch_local_var->upsis = upsis;
+    ue_policy_set_patch_local_var->is_andsp_ind = is_andsp_ind;
     ue_policy_set_patch_local_var->andsp_ind = andsp_ind;
     ue_policy_set_patch_local_var->pei = pei;
     ue_policy_set_patch_local_var->os_ids = os_ids;
@@ -96,7 +98,7 @@ cJSON *OpenAPI_ue_policy_set_patch_convertToJSON(OpenAPI_ue_policy_set_patch_t *
                     }
     }
 
-    if (ue_policy_set_patch->andsp_ind) {
+    if (ue_policy_set_patch->is_andsp_ind) {
     if (cJSON_AddBoolToObject(item, "andspInd", ue_policy_set_patch->andsp_ind) == NULL) {
         ogs_error("OpenAPI_ue_policy_set_patch_convertToJSON() failed [andsp_ind]");
         goto end;
@@ -217,6 +219,7 @@ OpenAPI_ue_policy_set_patch_t *OpenAPI_ue_policy_set_patch_parseFromJSON(cJSON *
     ue_policy_set_patch_local_var = OpenAPI_ue_policy_set_patch_create (
         ue_policy_sections ? ue_policy_sectionsList : NULL,
         upsis ? upsisList : NULL,
+        andsp_ind ? true : false,
         andsp_ind ? andsp_ind->valueint : 0,
         pei ? ogs_strdup_or_assert(pei->valuestring) : NULL,
         os_ids ? os_idsList : NULL

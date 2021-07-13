@@ -18,6 +18,7 @@ OpenAPI_access_and_mobility_data_t *OpenAPI_access_and_mobility_data_create(
     char *reachability_status_ts,
     OpenAPI_sms_support_e sms_over_nas_status,
     char *sms_over_nas_status_ts,
+    bool is_roaming_status,
     int roaming_status,
     char *roaming_status_ts,
     OpenAPI_plmn_id_1_t *current_plmn,
@@ -44,6 +45,7 @@ OpenAPI_access_and_mobility_data_t *OpenAPI_access_and_mobility_data_create(
     access_and_mobility_data_local_var->reachability_status_ts = reachability_status_ts;
     access_and_mobility_data_local_var->sms_over_nas_status = sms_over_nas_status;
     access_and_mobility_data_local_var->sms_over_nas_status_ts = sms_over_nas_status_ts;
+    access_and_mobility_data_local_var->is_roaming_status = is_roaming_status;
     access_and_mobility_data_local_var->roaming_status = roaming_status;
     access_and_mobility_data_local_var->roaming_status_ts = roaming_status_ts;
     access_and_mobility_data_local_var->current_plmn = current_plmn;
@@ -226,7 +228,7 @@ cJSON *OpenAPI_access_and_mobility_data_convertToJSON(OpenAPI_access_and_mobilit
     }
     }
 
-    if (access_and_mobility_data->roaming_status) {
+    if (access_and_mobility_data->is_roaming_status) {
     if (cJSON_AddBoolToObject(item, "roamingStatus", access_and_mobility_data->roaming_status) == NULL) {
         ogs_error("OpenAPI_access_and_mobility_data_convertToJSON() failed [roaming_status]");
         goto end;
@@ -529,6 +531,7 @@ OpenAPI_access_and_mobility_data_t *OpenAPI_access_and_mobility_data_parseFromJS
         reachability_status_ts ? ogs_strdup_or_assert(reachability_status_ts->valuestring) : NULL,
         sms_over_nas_status ? sms_over_nas_statusVariable : 0,
         sms_over_nas_status_ts ? ogs_strdup_or_assert(sms_over_nas_status_ts->valuestring) : NULL,
+        roaming_status ? true : false,
         roaming_status ? roaming_status->valueint : 0,
         roaming_status_ts ? ogs_strdup_or_assert(roaming_status_ts->valuestring) : NULL,
         current_plmn ? current_plmn_local_nonprim : NULL,

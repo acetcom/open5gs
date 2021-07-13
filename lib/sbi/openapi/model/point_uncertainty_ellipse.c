@@ -136,6 +136,7 @@ OpenAPI_point_uncertainty_ellipse_t *OpenAPI_point_uncertainty_ellipse_parseFrom
         shape_local_nonprim,
         point_local_nonprim,
         uncertainty_ellipse_local_nonprim,
+        
         confidence->valuedouble
     );
 

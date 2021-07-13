@@ -215,6 +215,7 @@ OpenAPI_service_type_unrelated_class_1_t *OpenAPI_service_type_unrelated_class_1
     }
 
     service_type_unrelated_class_1_local_var = OpenAPI_service_type_unrelated_class_1_create (
+        
         service_type->valuedouble,
         allowed_geographic_area ? allowed_geographic_areaList : NULL,
         privacy_check_related_action ? privacy_check_related_actionVariable : 0,
